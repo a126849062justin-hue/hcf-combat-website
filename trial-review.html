@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>體驗後訓練評估｜HCF 新竹格鬥</title>
+<meta name="description" content="HCF 體驗後訓練評估：完成今天的體驗，依真實感受完成約 45 秒評估，教練結合你的表現與目標，提供主推薦與備選方案。">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://www.hsinchucombat.com/trial-review.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<!-- Google tag (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZCPVLM3SY0"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-ZCPVLM3SY0');</script>
+<style>
+:root{--red:#C81015;--red-hi:#E11B22;--black:#0A0A0A;--panel:#141414;--line:#2A2A2A;--text:#F5F5F5;--muted:#9A9A9A;--gold:#D4AF37;--green:#0F9D63}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--text);font-family:"Noto Sans TC","Noto Sans CJK TC",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased;min-height:100dvh;display:flex;flex-direction:column}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(circle at 80% -10%,rgba(200,16,21,.22),transparent 55%),radial-gradient(circle at 0% 110%,rgba(255,255,255,.05),transparent 50%)}
+a{color:inherit}
+.hd{position:sticky;top:0;z-index:20;background:rgba(10,10,10,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hd-in{max-width:720px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:1px;font-size:17px;text-decoration:none}
+.brand i{display:block;width:5px;height:22px;background:var(--red);border-radius:1px}
+.back{font-size:14px;color:var(--muted);text-decoration:none}.back:hover{color:#fff}
+.pg{max-width:720px;margin:0 auto;padding:0 20px;width:100%}
+.pg-bar{height:4px;background:#1E1E1E;border-radius:99px;overflow:hidden;margin-top:18px}
+.pg-fill{height:100%;width:25%;background:var(--red);transition:width .35s cubic-bezier(.4,0,.2,1)}
+.pg-txt{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-top:8px;letter-spacing:.5px}
+main{position:relative;z-index:1;flex:1;max-width:720px;margin:0 auto;width:100%;padding:22px 20px 130px}
+.lede{margin-bottom:8px}
+.lede .en{font-size:13px;color:var(--gold);font-weight:700;letter-spacing:.28em}
+.lede h1{font-size:clamp(26px,6.4vw,36px);font-weight:900;letter-spacing:.5px;line-height:1.25;margin-top:10px}
+.lede p{color:#CFCFCF;font-size:15px;margin-top:16px;line-height:1.95}
+.step{display:none;animation:in .3s ease}.step.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.q{margin-top:30px}
+.q .t{display:block;font-size:18px;font-weight:700;margin-bottom:12px;letter-spacing:.3px}
+.q .t .req{color:var(--red);margin-left:4px}
+.q .hint{display:block;font-size:13px;color:var(--muted);font-weight:400;margin-top:5px}
+.q .qmax{font-size:13px;color:var(--gold);font-weight:500;margin:-2px 0 10px}
+input[type=text],textarea{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:10px;color:var(--text);font:inherit;font-size:16px;padding:14px 16px;transition:border-color .18s}
+textarea{min-height:88px;resize:vertical;line-height:1.6}
+input:focus,textarea:focus{outline:none;border-color:var(--red)}
+input::placeholder,textarea::placeholder{color:#5E5E5E}
+.opts{display:grid;gap:10px}.opts.two{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.opt{position:relative;display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;cursor:pointer;transition:.18s}
+.opt:hover{border-color:#4A4A4A}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt .box{flex:none;width:22px;height:22px;border:2px solid #4A4A4A;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.18s}
+.opt.multi .box{border-radius:6px}
+.opt .box::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--red);transform:scale(0);transition:transform .18s}
+.opt.multi .box::after{border-radius:2px}
+.opt .lb{font-size:16px;font-weight:500}.opt .lb b{color:var(--gold);font-weight:700}
+.opt .sub{display:block;font-size:13px;color:var(--muted);font-weight:400;margin-top:2px}
+.opt input:checked~.box{border-color:var(--red)}.opt input:checked~.box::after{transform:scale(1)}
+.opt:has(input:checked){border-color:var(--red);background:rgba(200,16,21,.10)}
+/* 五段式評分 */
+.rate5{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.rate{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 6px;text-align:center;cursor:pointer;transition:.16s}
+.rate:hover{border-color:#4A4A4A}.rate input{position:absolute;opacity:0;pointer-events:none}
+.rate .n{font-size:26px;font-weight:900;line-height:1}
+.rate .l{display:block;font-size:11.5px;color:var(--muted);margin-top:8px;line-height:1.35;font-weight:500}
+.rate:has(input:checked){border-color:var(--red);background:rgba(200,16,21,.12)}
+.rate:has(input:checked) .n{color:var(--red)}.rate:has(input:checked) .l{color:var(--text)}
+@media(max-width:520px){.rate5{grid-template-columns:1fr;gap:8px}.rate{display:flex;align-items:center;gap:14px;padding:13px 16px;text-align:left}.rate .n{font-size:22px}.rate .l{margin-top:0;font-size:14px}}
+.err{display:none;color:#FF6B6F;font-size:14px;margin-top:8px}.err.on{display:block}
+.branch{margin-top:20px;padding:20px;border:1px dashed var(--line);border-radius:12px;background:rgba(212,175,55,.04)}
+.branch .bt{font-size:14px;color:var(--gold);font-weight:900;letter-spacing:1px;margin-bottom:14px}
+.warnbox{margin-top:12px;padding:14px 16px;border:1px solid rgba(255,107,111,.5);background:rgba(255,107,111,.08);border-radius:10px;color:#FFB4B6;font-size:14px;line-height:1.7}
+.optag{font-size:12px;color:var(--muted);font-weight:400;margin-left:6px}
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(10,10,10,.95);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:14px 20px calc(14px + env(safe-area-inset-bottom))}
+.nav-in{max-width:720px;margin:0 auto;display:flex;gap:12px}
+.btn{flex:1;border:none;border-radius:10px;font:inherit;font-size:17px;font-weight:900;letter-spacing:1px;padding:15px 20px;cursor:pointer;transition:.18s}
+.btn-p{background:var(--red);color:#fff}.btn-p:hover{background:var(--red-hi)}
+.btn-s{flex:0 0 108px;background:transparent;color:var(--muted);border:1px solid var(--line)}.btn-s:hover{color:#fff;border-color:#4A4A4A}
+/* 完成頁 / 結果頁 */
+.done,.result{display:none;padding:34px 0 20px}.done.on,.result.on{display:block;animation:in .35s ease}
+.done{text-align:center}
+.done .tick{width:74px;height:74px;border-radius:50%;background:var(--red);margin:0 auto 22px;display:flex;align-items:center;justify-content:center}
+.done h2{font-size:27px;font-weight:900}
+.done p{color:#CFCFCF;margin-top:14px;font-size:15px;line-height:1.95}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px 24px;margin-top:22px;text-align:left}
+.card h3{font-size:15px;font-weight:900;color:var(--red);letter-spacing:1px;margin-bottom:12px}
+.card ul{list-style:none;font-size:15px;line-height:2.05;color:#DADADA}.card ul li::before{content:"・";color:var(--red);margin-right:4px}
+.hand{margin-top:20px;font-size:13px;color:var(--gold);letter-spacing:.5px}
+.b1{display:block;background:var(--red);color:#fff;text-align:center;font-weight:900;font-size:17px;padding:16px;border-radius:10px;margin-top:22px;text-decoration:none}
+.line-btn{display:block;background:#06C755;color:#fff;text-align:center;font-weight:900;font-size:16px;padding:15px;border-radius:10px;margin-top:12px;text-decoration:none}
+.b2g{display:block;border:1px solid var(--line);color:var(--text);text-align:center;font-weight:700;font-size:15px;padding:14px;border-radius:10px;margin-top:12px;text-decoration:none}
+/* 結果頁 */
+.result .rtag{font-size:13px;color:var(--gold);font-weight:700;letter-spacing:.28em}
+.result h2{font-size:26px;font-weight:900;margin-top:10px}
+.rec{background:linear-gradient(150deg,#1c1b20,#141317);border:1px solid rgba(200,16,21,.4);border-radius:14px;padding:24px;margin-top:22px}
+.rec .lab{font-size:12px;color:var(--muted);letter-spacing:.2em}
+.rec .main{font-family:inherit;font-weight:900;font-size:22px;color:#fff;margin-top:6px;line-height:1.4}
+.rec .reason{color:#CFCFCF;font-size:15px;line-height:1.95;margin-top:14px}
+.rec .alt{margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);color:#CFCFCF;font-size:14.5px}
+.rec .alt b{color:var(--gold)}
+.result .note{color:var(--muted);font-size:13.5px;margin-top:18px;line-height:1.8}
+</style>
+</head>
+<body>
+<header class="hd"><div class="hd-in"><a class="brand" href="/"><i></i>HCF 新竹格鬥</a><a class="back" href="/">返回官網</a></div></header>
+
+<div class="pg" id="pgWrap"><div class="pg-bar"><div class="pg-fill" id="pgFill"></div></div>
+  <div class="pg-txt"><span id="pgStep">第 1 步 / 共 4 步</span><span>約 45 秒</span></div></div>
+
+<main>
+  <div id="formWrap">
+    <div class="lede" id="lede">
+      <div class="en">HCF TRAINING REVIEW</div>
+      <h1>完成今天的體驗<br>找到最適合你的下一步</h1>
+      <p>剛完成訓練，辛苦了！請依今天的真實感受完成約 45 秒評估。教練會結合你的訓練表現、目標與課後感受，提供一個<b style="color:#fff">主推薦方案</b>與一個<b style="color:#fff">備選方案</b>。這不是考試，也不代表一定要購買課程。</p>
+    </div>
+
+    <form id="revForm">
+      <input type="hidden" name="學員編號" id="f_lead">
+      <input type="hidden" name="體驗日期" id="f_date">
+
+      <!-- STEP 1 -->
+      <section class="step on" data-step="1">
+        <div class="q"><label class="t" for="f_name">怎麼稱呼你？<span class="req">*</span>
+          <span class="hint">請使用加入官方 LINE 時相同的姓名或稱呼，方便教練核對你的預約資料</span></label>
+          <input type="text" id="f_name" name="稱呼" placeholder="王小明"><div class="err">請填寫稱呼</div></div>
+        <div class="q" data-group="type"><span class="t">今天參加哪一種體驗？<span class="req">*</span></span>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="體驗類型" value="團體課體驗 $400"><span class="box"></span><span class="lb">團體課體驗｜$400</span></label>
+            <label class="opt"><input type="radio" name="體驗類型" value="私人教練體驗 1 堂"><span class="box"></span><span class="lb">私人教練體驗 1 堂</span></label>
+            <label class="opt"><input type="radio" name="體驗類型" value="私教深度體驗・第 1 堂"><span class="box"></span><span class="lb">私人教練深度體驗・第 1 堂</span></label>
+            <label class="opt"><input type="radio" name="體驗類型" value="私教深度體驗・第 2 堂"><span class="box"></span><span class="lb">私人教練深度體驗・第 2 堂</span></label>
+            <label class="opt"><input type="radio" name="體驗類型" value="其他"><span class="box"></span><span class="lb">其他</span></label>
+          </div><div class="err">請選擇一項</div></div>
+        <div class="q" data-group="coach"><span class="t">今天由哪位教練帶領？<span class="req">*</span></span>
+          <div class="opts two">
+            <label class="opt"><input type="radio" name="帶課教練" value="黃謙和總教練"><span class="box"></span><span class="lb">黃謙和 總教練</span></label>
+            <label class="opt"><input type="radio" name="帶課教練" value="高大可教練"><span class="box"></span><span class="lb">高大可 教練</span></label>
+            <label class="opt"><input type="radio" name="帶課教練" value="小米教練"><span class="box"></span><span class="lb">小米 教練</span></label>
+            <label class="opt"><input type="radio" name="帶課教練" value="其他教練"><span class="box"></span><span class="lb">其他教練</span></label>
+          </div><div class="err">請選擇一項</div></div>
+      </section>
+
+      <!-- STEP 2 -->
+      <section class="step" data-step="2">
+        <div class="q" data-group="feel"><span class="t">今天整體的體驗感受如何？<span class="req">*</span></span>
+          <div class="rate5">
+            <label class="rate"><input type="radio" name="整體感受" value="1｜不太適合"><span class="n">1</span><span class="l">不太適合</span></label>
+            <label class="rate"><input type="radio" name="整體感受" value="2｜與預期有落差"><span class="n">2</span><span class="l">與預期有落差</span></label>
+            <label class="rate"><input type="radio" name="整體感受" value="3｜還不錯"><span class="n">3</span><span class="l">還不錯</span></label>
+            <label class="rate"><input type="radio" name="整體感受" value="4｜很喜歡"><span class="n">4</span><span class="l">很喜歡</span></label>
+            <label class="rate"><input type="radio" name="整體感受" value="5｜非常適合我"><span class="n">5</span><span class="l">非常適合我</span></label>
+          </div><div class="err">請選一個分數</div>
+          <div class="branch" id="lowFeel" style="display:none">
+            <div class="bt">主要是哪個部分與你的預期不同？<span class="optag">可複選</span></div>
+            <div class="opts two">
+              <label class="opt multi"><input type="checkbox" name="預期落差" value="強度太高"><span class="box"></span><span class="lb">強度太高</span></label>
+              <label class="opt multi"><input type="checkbox" name="預期落差" value="強度太低"><span class="box"></span><span class="lb">強度太低</span></label>
+              <label class="opt multi"><input type="checkbox" name="預期落差" value="動作太多跟不上"><span class="box"></span><span class="lb">動作太多，跟不上</span></label>
+              <label class="opt multi"><input type="checkbox" name="預期落差" value="個別指導不足"><span class="box"></span><span class="lb">個別指導不足</span></label>
+              <label class="opt multi"><input type="checkbox" name="預期落差" value="課程節奏不適合"><span class="box"></span><span class="lb">課程節奏不適合</span></label>
+              <label class="opt multi"><input type="checkbox" name="預期落差" value="場館或團體氣氛不適合"><span class="box"></span><span class="lb">場館／團體氣氛</span></label>
+              <label class="opt multi"><input type="checkbox" name="預期落差" value="教學方式不適合"><span class="box"></span><span class="lb">教學方式不適合</span></label>
+              <label class="opt multi"><input type="checkbox" name="預期落差" value="時段不方便"><span class="box"></span><span class="lb">時段不方便</span></label>
+              <label class="opt multi"><input type="checkbox" name="預期落差" value="其他"><span class="box"></span><span class="lb">其他</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="q" data-group="intensity"><span class="t">今天的訓練強度如何？<span class="req">*</span></span>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="訓練強度" value="太輕鬆，希望增加挑戰"><span class="box"></span><span class="lb">太輕鬆，希望增加挑戰</span></label>
+            <label class="opt"><input type="radio" name="訓練強度" value="剛剛好，有訓練感但可完成"><span class="box"></span><span class="lb">剛剛好，有訓練感但可以完成</span></label>
+            <label class="opt"><input type="radio" name="訓練強度" value="有挑戰但可接受"><span class="box"></span><span class="lb">有挑戰，但仍在可接受範圍</span></label>
+            <label class="opt"><input type="radio" name="訓練強度" value="稍微太累，需降低強度"><span class="box"></span><span class="lb">稍微太累，需要降低強度</span></label>
+            <label class="opt"><input type="radio" name="訓練強度" value="身體有不舒服或疼痛"><span class="box"></span><span class="lb">身體有不舒服或疼痛</span></label>
+          </div><div class="err">請選擇一項</div>
+          <div id="painWrap" style="display:none">
+            <div class="branch" style="margin-top:14px">
+              <div class="bt">不舒服的位置在哪裡？</div>
+              <div class="opts two">
+                <label class="opt"><input type="radio" name="不適部位" value="頭暈噁心或呼吸不適"><span class="box"></span><span class="lb">頭暈／噁心／呼吸不適</span></label>
+                <label class="opt"><input type="radio" name="不適部位" value="肩膀手肘或手腕"><span class="box"></span><span class="lb">肩膀／手肘／手腕</span></label>
+                <label class="opt"><input type="radio" name="不適部位" value="腰部或背部"><span class="box"></span><span class="lb">腰部或背部</span></label>
+                <label class="opt"><input type="radio" name="不適部位" value="膝蓋"><span class="box"></span><span class="lb">膝蓋</span></label>
+                <label class="opt"><input type="radio" name="不適部位" value="腳踝或足部"><span class="box"></span><span class="lb">腳踝或足部</span></label>
+                <label class="opt"><input type="radio" name="不適部位" value="其他部位"><span class="box"></span><span class="lb">其他部位</span></label>
+              </div>
+              <div class="warnbox">請先告知現場教練。在教練確認前，暫不安排高強度訓練。</div>
+            </div>
+          </div>
+        </div>
+        <div class="q" data-group="best" data-multi="1" data-max="2"><span class="t">今天哪個部分讓你最有感？<span class="req">*</span></span>
+          <div class="qmax">最多選 2 項</div>
+          <div class="opts two">
+            <label class="opt multi"><input type="checkbox" name="最有感" value="打靶的節奏與成就感"><span class="box"></span><span class="lb">打靶節奏與成就感</span></label>
+            <label class="opt multi"><input type="checkbox" name="最有感" value="拳腿膝等泰拳動作"><span class="box"></span><span class="lb">拳腿膝等泰拳動作</span></label>
+            <label class="opt multi"><input type="checkbox" name="最有感" value="流汗量與燃脂感"><span class="box"></span><span class="lb">流汗量與燃脂感</span></label>
+            <label class="opt multi"><input type="checkbox" name="最有感" value="教練的個別糾正"><span class="box"></span><span class="lb">教練的個別糾正</span></label>
+            <label class="opt multi"><input type="checkbox" name="最有感" value="體能與肌力訓練"><span class="box"></span><span class="lb">體能與肌力訓練</span></label>
+            <label class="opt multi"><input type="checkbox" name="最有感" value="團體訓練氣氛"><span class="box"></span><span class="lb">團體訓練氣氛</span></label>
+            <label class="opt multi"><input type="checkbox" name="最有感" value="舒壓與釋放壓力"><span class="box"></span><span class="lb">舒壓與釋放壓力</span></label>
+            <label class="opt multi"><input type="checkbox" name="最有感" value="發現自己的問題與進步方向"><span class="box"></span><span class="lb">發現問題與進步方向</span></label>
+            <label class="opt multi"><input type="checkbox" name="最有感" value="安全感與教練照顧"><span class="box"></span><span class="lb">安全感與教練照顧</span></label>
+            <label class="opt multi"><input type="checkbox" name="最有感" value="還無法判斷"><span class="box"></span><span class="lb">還無法判斷</span></label>
+          </div><div class="err">請至少選 1 項（最多 2 項）</div></div>
+      </section>
+
+      <!-- STEP 3 -->
+      <section class="step" data-step="3">
+        <!-- 團課分支 -->
+        <div id="brGroup" style="display:none">
+          <div class="q" data-group="g_follow"><span class="t">今天團課的內容跟得上嗎？<span class="req">*</span></span>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="團課_跟上" value="大部分都跟得上"><span class="box"></span><span class="lb">大部分都跟得上</span></label>
+              <label class="opt"><input type="radio" name="團課_跟上" value="基本跟得上，有些動作要再練"><span class="box"></span><span class="lb">基本跟得上，有些動作要再練</span></label>
+              <label class="opt"><input type="radio" name="團課_跟上" value="動作較多，容易手忙腳亂"><span class="box"></span><span class="lb">動作較多，容易手忙腳亂</span></label>
+              <label class="opt"><input type="radio" name="團課_跟上" value="希望有更多個別指導"><span class="box"></span><span class="lb">希望有更多個別指導</span></label>
+              <label class="opt"><input type="radio" name="團課_跟上" value="完全跟不上，需先補基礎"><span class="box"></span><span class="lb">完全跟不上，需先補基礎</span></label>
+            </div><div class="err">請選擇一項</div></div>
+          <div class="q" data-group="g_like"><span class="t">你喜歡團體一起訓練的方式嗎？<span class="req">*</span></span>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="團課_團體方式" value="很喜歡，有人一起比較有動力"><span class="box"></span><span class="lb">很喜歡，有人一起比較有動力</span></label>
+              <label class="opt"><input type="radio" name="團課_團體方式" value="喜歡，但想先補幾堂基礎"><span class="box"></span><span class="lb">喜歡，但想先補幾堂基礎</span></label>
+              <label class="opt"><input type="radio" name="團課_團體方式" value="可以接受，想再上一次看看"><span class="box"></span><span class="lb">可以接受，想再上一次看看</span></label>
+              <label class="opt"><input type="radio" name="團課_團體方式" value="比較喜歡一對一教學"><span class="box"></span><span class="lb">比較喜歡一對一教學</span></label>
+              <label class="opt"><input type="radio" name="團課_團體方式" value="希望教練幫我判斷"><span class="box"></span><span class="lb">希望教練幫我判斷</span></label>
+            </div><div class="err">請選擇一項</div></div>
+        </div>
+        <!-- 私教分支 -->
+        <div id="brPrivate" style="display:none">
+          <div class="q" data-group="p_fit"><span class="t">今天是否有針對你的狀況調整？<span class="req">*</span></span>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="私教_針對性" value="非常有針對性，感覺到個人差異"><span class="box"></span><span class="lb">非常有針對性，能感覺到個人差異</span></label>
+              <label class="opt"><input type="radio" name="私教_針對性" value="有，教練發現並修正我的問題"><span class="box"></span><span class="lb">有，教練發現並修正我的問題</span></label>
+              <label class="opt"><input type="radio" name="私教_針對性" value="有一些，需再上一堂才判斷"><span class="box"></span><span class="lb">有一些，需要再上一堂才判斷</span></label>
+              <label class="opt"><input type="radio" name="私教_針對性" value="與原本期待有落差"><span class="box"></span><span class="lb">與原本期待有落差</span></label>
+              <label class="opt"><input type="radio" name="私教_針對性" value="還無法判斷"><span class="box"></span><span class="lb">還無法判斷</span></label>
+            </div><div class="err">請選擇一項</div></div>
+          <div class="q" data-group="p_help" data-multi="1" data-max="2"><span class="t">接下來最希望教練協助什麼？<span class="req">*</span></span>
+            <div class="qmax">最多選 2 項</div>
+            <div class="opts two">
+              <label class="opt multi"><input type="checkbox" name="私教_希望協助" value="基本站姿與步法"><span class="box"></span><span class="lb">基本站姿與步法</span></label>
+              <label class="opt multi"><input type="checkbox" name="私教_希望協助" value="出拳踢腿與動作細節"><span class="box"></span><span class="lb">出拳、踢腿與動作細節</span></label>
+              <label class="opt multi"><input type="checkbox" name="私教_希望協助" value="身體協調與重心控制"><span class="box"></span><span class="lb">身體協調與重心控制</span></label>
+              <label class="opt multi"><input type="checkbox" name="私教_希望協助" value="打靶組合與節奏"><span class="box"></span><span class="lb">打靶組合與節奏</span></label>
+              <label class="opt multi"><input type="checkbox" name="私教_希望協助" value="體能減脂與訓練安排"><span class="box"></span><span class="lb">體能、減脂與訓練安排</span></label>
+              <label class="opt multi"><input type="checkbox" name="私教_希望協助" value="防守與實戰能力"><span class="box"></span><span class="lb">防守與實戰能力</span></label>
+              <label class="opt multi"><input type="checkbox" name="私教_希望協助" value="舊傷與動作限制"><span class="box"></span><span class="lb">舊傷與動作限制</span></label>
+              <label class="opt multi"><input type="checkbox" name="私教_希望協助" value="比賽與選手訓練"><span class="box"></span><span class="lb">比賽與選手訓練</span></label>
+              <label class="opt multi"><input type="checkbox" name="私教_希望協助" value="希望教練綜合評估"><span class="box"></span><span class="lb">希望教練綜合評估</span></label>
+            </div><div class="err">請至少選 1 項（最多 2 項）</div></div>
+        </div>
+        <!-- 所有人 -->
+        <div class="q" data-group="goal3" data-multi="1" data-max="2"><span class="t">如果持續訓練三個月，最希望看到什麼改變？<span class="req">*</span></span>
+          <div class="qmax">最多選 2 項</div>
+          <div class="opts two">
+            <label class="opt multi"><input type="checkbox" name="三個月改變" value="體重下降改善體態"><span class="box"></span><span class="lb">體重下降、改善體態</span></label>
+            <label class="opt multi"><input type="checkbox" name="三個月改變" value="體力與心肺進步"><span class="box"></span><span class="lb">體力與心肺進步</span></label>
+            <label class="opt multi"><input type="checkbox" name="三個月改變" value="建立每週固定運動習慣"><span class="box"></span><span class="lb">建立每週固定運動習慣</span></label>
+            <label class="opt multi"><input type="checkbox" name="三個月改變" value="學會完整泰拳基礎"><span class="box"></span><span class="lb">學會完整的泰拳基礎</span></label>
+            <label class="opt multi"><input type="checkbox" name="三個月改變" value="動作更扎實不再手忙腳亂"><span class="box"></span><span class="lb">動作更扎實，不再手忙腳亂</span></label>
+            <label class="opt multi"><input type="checkbox" name="三個月改變" value="增加自信與防身能力"><span class="box"></span><span class="lb">增加自信與防身能力</span></label>
+            <label class="opt multi"><input type="checkbox" name="三個月改變" value="有效釋放工作壓力"><span class="box"></span><span class="lb">有效釋放工作壓力</span></label>
+            <label class="opt multi"><input type="checkbox" name="三個月改變" value="可進行安全技術對練"><span class="box"></span><span class="lb">可以進行安全的技術對練</span></label>
+            <label class="opt multi"><input type="checkbox" name="三個月改變" value="為比賽做準備"><span class="box"></span><span class="lb">為比賽做準備</span></label>
+            <label class="opt multi"><input type="checkbox" name="三個月改變" value="目前還不確定"><span class="box"></span><span class="lb">目前還不確定</span></label>
+          </div><div class="err">請至少選 1 項（最多 2 項）</div></div>
+        <div class="q"><label class="t" for="f_goal">有沒有一個更具體的目標？<span class="optag">選填</span></label>
+          <textarea id="f_goal" name="具體目標" placeholder="例如：瘦 5 公斤、每週運動兩次、三個月後能完成基本拳腿組合"></textarea></div>
+      </section>
+
+      <!-- STEP 4 -->
+      <section class="step" data-step="4">
+        <div class="q" data-group="next"><span class="t">完成今天的體驗後，你比較希望怎麼安排？<span class="req">*</span></span>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="下一步安排" value="想直接安排正式課程"><span class="box"></span><span class="lb">想直接安排正式課程</span></label>
+            <label class="opt"><input type="radio" name="下一步安排" value="想了解團體課方案"><span class="box"></span><span class="lb">想了解團體課方案</span></label>
+            <label class="opt"><input type="radio" name="下一步安排" value="想了解私人教練方案"><span class="box"></span><span class="lb">想了解私人教練方案</span></label>
+            <label class="opt"><input type="radio" name="下一步安排" value="想了解私課＋團課搭配"><span class="box"></span><span class="lb">想了解私課＋團課搭配方式</span></label>
+            <label class="opt"><input type="radio" name="下一步安排" value="希望教練直接推薦"><span class="box"></span><span class="lb">希望教練直接推薦</span></label>
+            <label class="opt"><input type="radio" name="下一步安排" value="想先再體驗或評估一次"><span class="box"></span><span class="lb">想先再體驗或評估一次</span></label>
+            <label class="opt"><input type="radio" name="下一步安排" value="課程不錯，但需要考慮一下"><span class="box"></span><span class="lb">課程不錯，但需要考慮一下</span></label>
+            <label class="opt"><input type="radio" name="下一步安排" value="目前暫時不會開始"><span class="box"></span><span class="lb">目前暫時不會開始</span></label>
+          </div><div class="err">請選擇一項</div></div>
+        <div id="worryWrap" style="display:none">
+          <div class="branch">
+            <div class="bt">目前最大的顧慮是什麼？<span class="optag">可複選</span></div>
+            <div class="opts two">
+              <label class="opt multi"><input type="checkbox" name="最大顧慮" value="預算需要考慮"><span class="box"></span><span class="lb">預算需要考慮</span></label>
+              <label class="opt multi"><input type="checkbox" name="最大顧慮" value="上課時間還沒確定"><span class="box"></span><span class="lb">上課時間還沒確定</span></label>
+              <label class="opt multi"><input type="checkbox" name="最大顧慮" value="工作容易加班"><span class="box"></span><span class="lb">工作容易加班</span></label>
+              <label class="opt multi"><input type="checkbox" name="最大顧慮" value="想和家人或另一半討論"><span class="box"></span><span class="lb">想和家人／另一半討論</span></label>
+              <label class="opt multi"><input type="checkbox" name="最大顧慮" value="擔心自己不能持續"><span class="box"></span><span class="lb">擔心自己不能持續</span></label>
+              <label class="opt multi"><input type="checkbox" name="最大顧慮" value="擔心體能或動作跟不上"><span class="box"></span><span class="lb">擔心體能或動作跟不上</span></label>
+              <label class="opt multi"><input type="checkbox" name="最大顧慮" value="舊傷或身體狀況"><span class="box"></span><span class="lb">舊傷或身體狀況</span></label>
+              <label class="opt multi"><input type="checkbox" name="最大顧慮" value="距離或交通"><span class="box"></span><span class="lb">距離或交通</span></label>
+              <label class="opt multi"><input type="checkbox" name="最大顧慮" value="正在比較其他場館"><span class="box"></span><span class="lb">正在比較其他場館</span></label>
+              <label class="opt multi"><input type="checkbox" name="最大顧慮" value="課程方式與預期不同"><span class="box"></span><span class="lb">課程方式與預期不同</span></label>
+              <label class="opt multi"><input type="checkbox" name="最大顧慮" value="目前沒有特別顧慮"><span class="box"></span><span class="lb">目前沒有特別顧慮</span></label>
+              <label class="opt multi"><input type="checkbox" name="最大顧慮" value="其他"><span class="box"></span><span class="lb">其他</span></label>
+            </div>
+            <div class="bt" style="margin-top:18px">教練怎麼協助，會讓你比較容易開始？<span class="optag">可複選</span></div>
+            <div class="opts two">
+              <label class="opt multi"><input type="checkbox" name="希望協助方式" value="幫我安排適合的固定時間"><span class="box"></span><span class="lb">幫我安排適合的固定時間</span></label>
+              <label class="opt multi"><input type="checkbox" name="希望協助方式" value="從較低強度開始"><span class="box"></span><span class="lb">從較低強度開始</span></label>
+              <label class="opt multi"><input type="checkbox" name="希望協助方式" value="先用私課補足基礎"><span class="box"></span><span class="lb">先用私課補足基礎</span></label>
+              <label class="opt multi"><input type="checkbox" name="希望協助方式" value="提供不同預算的開始方式"><span class="box"></span><span class="lb">提供不同預算的開始方式</span></label>
+              <label class="opt multi"><input type="checkbox" name="希望協助方式" value="再安排一次課程評估"><span class="box"></span><span class="lb">再安排一次課程評估</span></label>
+              <label class="opt multi"><input type="checkbox" name="希望協助方式" value="目前不需要協助"><span class="box"></span><span class="lb">目前不需要協助</span></label>
+              <label class="opt multi"><input type="checkbox" name="希望協助方式" value="其他"><span class="box"></span><span class="lb">其他</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="q" data-group="when"><span class="t">大約什麼時候希望開始？<span class="req">*</span></span>
+          <div class="opts two">
+            <label class="opt"><input type="radio" name="開始時間" value="今天就可以安排"><span class="box"></span><span class="lb">今天就可以安排</span></label>
+            <label class="opt"><input type="radio" name="開始時間" value="最近 3 天內"><span class="box"></span><span class="lb">最近 3 天內</span></label>
+            <label class="opt"><input type="radio" name="開始時間" value="這個星期"><span class="box"></span><span class="lb">這個星期</span></label>
+            <label class="opt"><input type="radio" name="開始時間" value="兩個星期內"><span class="box"></span><span class="lb">兩個星期內</span></label>
+            <label class="opt"><input type="radio" name="開始時間" value="下個月"><span class="box"></span><span class="lb">下個月</span></label>
+            <label class="opt"><input type="radio" name="開始時間" value="時間還不確定"><span class="box"></span><span class="lb">時間還不確定</span></label>
+            <label class="opt"><input type="radio" name="開始時間" value="目前先了解"><span class="box"></span><span class="lb">目前先了解</span></label>
+          </div><div class="err">請選擇一項</div></div>
+      </section>
+    </form>
+  </div>
+
+  <!-- 完成頁 -->
+  <div class="done" id="done">
+    <div class="tick"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <h2>體驗評估已完成 🥊</h2>
+    <p>請將這個畫面交給現場教練。教練會根據你今天的訓練表現、最有感的課程內容、三個月後的目標與適合的訓練頻率，提供一個<b style="color:#fff">主推薦方案</b>與一個<b style="color:#fff">備選方案</b>。</p>
+    <a class="b1" id="showRec" href="javascript:void(0)">查看我的評估結果 →</a>
+    <a class="line-btn" id="doneLine" href="https://lin.ee/7lidUv0" target="_blank" rel="noopener">回到 HCF 官方 LINE</a>
+    <div class="card"><h3>給教練的提醒</h3><ul>
+      <li>低分或身體不適者：先處理體驗落差與安全，暫不推高頻方案</li>
+      <li>價格由教練現場說明「主推薦＋備選」，不要讓學員自己在整排價格裡選</li>
+    </ul></div>
+  </div>
+
+  <!-- 結果頁 -->
+  <div class="result" id="result">
+    <div class="rtag">YOUR TRAINING DIRECTION</div>
+    <h2>你的訓練方向</h2>
+    <div class="rec">
+      <div class="lab">主推薦</div>
+      <div class="main" id="recMain">—</div>
+      <div class="reason" id="recReason"></div>
+      <div class="alt" id="recAlt"></div>
+    </div>
+    <p class="note">這是依你的回答自動整理的方向，實際方案與價格由教練現場依你的狀況說明。</p>
+    <a class="line-btn" href="https://lin.ee/7lidUv0" target="_blank" rel="noopener">回到 HCF 官方 LINE</a>
+  </div>
+</main>
+
+<div class="nav" id="navBar"><div class="nav-in">
+  <button type="button" class="btn btn-s" id="btnPrev" style="display:none">上一步</button>
+  <button type="button" class="btn btn-p" id="btnNext">下一步</button>
+</div></div>
+
+<iframe name="fs_sink" style="display:none" title="sink"></iframe>
+<script>
+(function(){
+  var TOTAL=4,cur=1,submitted=false;
+  var LEAD_EMAIL='hsinchucombat2022@gmail.com';
+  var form=document.getElementById('revForm'),steps=document.querySelectorAll('.step');
+  var fill=document.getElementById('pgFill'),pgStep=document.getElementById('pgStep');
+  var btnN=document.getElementById('btnNext'),btnP=document.getElementById('btnPrev');
+  var val=function(n){var e=form.querySelector('[name="'+n+'"]:checked');return e?e.value:'';};
+  var multi=function(n){return [].slice.call(form.querySelectorAll('[name="'+n+'"]:checked')).map(function(e){return e.value;});};
+
+  /* URL 參數帶入 */
+  var qp=new URLSearchParams(location.search);
+  if(qp.get('lead'))document.getElementById('f_lead').value=qp.get('lead');
+  if(qp.get('name'))document.getElementById('f_name').value=qp.get('name');
+  var TYPEMAP={group:'團體課體驗 $400',private:'私人教練體驗 1 堂',p1:'私人教練體驗 1 堂',deep1:'私教深度體驗・第 1 堂',deep2:'私教深度體驗・第 2 堂'};
+  var t=TYPEMAP[qp.get('type')]; if(t){var r=form.querySelector('input[name="體驗類型"][value="'+t+'"]');if(r)r.checked=true;}
+  var COACHMAP={huang:'黃謙和總教練',kao:'高大可教練',mi:'小米教練'};
+  var c=COACHMAP[qp.get('coach')]; if(c){var cr=form.querySelector('input[name="帶課教練"][value="'+c+'"]');if(cr)cr.checked=true;}
+  var d=new Date();document.getElementById('f_date').value=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
+
+  function isPrivate(){return /私/.test(val('體驗類型'));}
+  function paint(){
+    steps.forEach(function(s){s.classList.toggle('on',+s.dataset.step===cur);});
+    if(cur===3){document.getElementById('brGroup').style.display=isPrivate()?'none':'block';
+                document.getElementById('brPrivate').style.display=isPrivate()?'block':'none';}
+    fill.style.width=(cur/TOTAL*100)+'%';
+    document.getElementById('lede').style.display=cur===1?'block':'none';
+    pgStep.textContent='第 '+cur+' 步 / 共 '+TOTAL+' 步';
+    btnP.style.display=cur===1?'none':'block';
+    btnN.textContent=cur===TOTAL?'取得我的訓練建議':'下一步';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  /* 條件式追加 */
+  form.querySelectorAll('input[name="整體感受"]').forEach(function(r){r.addEventListener('change',function(){
+    var n=parseInt(r.value,10);document.getElementById('lowFeel').style.display=(r.checked&&n<=3)?'block':'none';});});
+  form.querySelectorAll('input[name="訓練強度"]').forEach(function(r){r.addEventListener('change',function(){
+    document.getElementById('painWrap').style.display=(r.checked&&r.value==='身體有不舒服或疼痛')?'block':'none';});});
+  form.querySelectorAll('input[name="下一步安排"]').forEach(function(r){r.addEventListener('change',function(){
+    var show=r.checked&&(r.value==='課程不錯，但需要考慮一下'||r.value==='目前暫時不會開始');
+    document.getElementById('worryWrap').style.display=show?'block':'none';});});
+
+  /* 最多選 2 */
+  document.querySelectorAll('.q[data-max="2"]').forEach(function(q){q.addEventListener('change',function(e){
+    var ck=q.querySelectorAll('input:checked');if(ck.length>2&&e.target.checked){e.target.checked=false;
+      var m=q.querySelector('.qmax');if(m){var o=m.textContent;m.textContent='最多選 2 項喔';m.style.color='#FF6B6F';setTimeout(function(){m.textContent=o;m.style.color='';},1400);}}});});
+
+  function validate(sec){
+    sec.querySelectorAll('.err').forEach(function(e){e.classList.remove('on');});
+    var ok=true,first=null;
+    sec.querySelectorAll('.q[data-group]').forEach(function(q){
+      if(q.closest('[style*="display:none"],[style*="display: none"]'))return; // 隱藏分支不驗證
+      if(q.offsetParent===null)return;
+      var sel=q.querySelectorAll('input:checked').length,max=+q.dataset.max||0;
+      if(sel===0){ok=false;first=first||q;var e=q.querySelector('.err');if(e)e.classList.add('on');}
+      else if(max&&sel>max){ok=false;first=first||q;var e2=q.querySelector('.err');if(e2)e2.classList.add('on');}
+    });
+    // 稱呼必填
+    if(+sec.dataset.step===1){var nm=document.getElementById('f_name');if(!nm.value.trim()){ok=false;first=first||nm;nm.parentElement.querySelector('.err').classList.add('on');}}
+    if(!ok&&first)first.scrollIntoView({behavior:'smooth',block:'center'});
+    return ok;
+  }
+
+  btnN.addEventListener('click',function(){
+    var sec=document.querySelector('.step[data-step="'+cur+'"]');
+    if(!validate(sec))return;
+    if(cur<TOTAL){gtag('event','review_step',{step:cur});cur++;paint();return;}
+    submit();
+  });
+  btnP.addEventListener('click',function(){if(cur>1){cur--;paint();}});
+
+  /* 推薦引擎：主推薦＋備選＋原因 */
+  function recommend(){
+    var feel=parseInt(val('整體感受')||'0',10), intensity=val('訓練強度'), priv=isPrivate();
+    var goals=multi('三個月改變'), help=multi('私教_希望協助'), next=val('下一步安排');
+    var follow=val('團課_跟上'), like=val('團課_團體方式'), fit=val('私教_針對性');
+    var wantComp=/比賽|選手/.test((help.join()+goals.join()+next));
+    var fatLoss=goals.indexOf('體重下降改善體態')>-1;
+    var main,reason,alt;
+    if(intensity==='身體有不舒服或疼痛'||intensity==='稍微太累，需降低強度'){
+      main='先調整強度・安全優先';
+      reason='你今天回報強度偏高或身體不適。教練會先確認狀況、調整訓練強度，暫不安排高頻或高強度方案。';
+      alt='備選：待身體確認後，再依你的目標安排合適的入門節奏。';
+    } else if(wantComp){
+      main='總教練個別評估';
+      reason='你提到比賽／選手方向或已有格鬥經驗，這類訓練需由總教練先評估體能、技術與可訓練時間，不直接排一般團課。';
+      alt='備選：先以私人教練建立技術與體能基礎，再進入選手訓練。';
+    } else if(!priv){ // 團課
+      if((follow==='大部分都跟得上'||follow==='基本跟得上，有些動作要再練')&&like==='很喜歡，有人一起比較有動力'){
+        main='團體課 10 堂或包月';
+        reason='你跟得上團課節奏、也喜歡團體訓練的氣氛，適合直接用團課建立頻率與熟練度。';
+        alt='備選：搭配 1～2 堂私教做動作微調，進步更快。';
+      } else if(follow==='完全跟不上，需先補基礎'||follow==='希望有更多個別指導'||like==='喜歡，但想先補幾堂基礎'||like==='比較喜歡一對一教學'){
+        main='團課升級包（私課補基礎＋團課）';
+        reason='你喜歡團體訓練，但目前動作或節奏還需要個別修正。先用少量私教把基礎打好，再回團課會輕鬆很多。';
+        alt='備選：新手啟動包，從零把技術與體能一次建立。';
+      } else {
+        main='先再上一次團課評估';
+        reason='你對團課的感受還在觀察中。建議再體驗一次，讓教練確認最適合的起點。';
+        alt='備選：團課 10 堂，邊上邊調整。';
+      }
+    } else { // 私教
+      if(fit==='與原本期待有落差'){
+        main='換教練或調整教學方向後再評估';
+        reason='今天的私教與你的期待有落差。教練會先了解落差點，調整教學方式或安排更合適的教練，再決定方案。';
+        alt='備選：先再上一堂調整後的私教確認。';
+      } else if(fatLoss){
+        main='減脂衝刺包（私教＋打靶＋團課包月）';
+        reason='你的主要目標是減脂塑身，適合用私教控制動作品質、搭配打靶與團課拉高訓練量與熱量消耗。';
+        alt='備選：私人教練 10 堂，先把動作與強度建立好。';
+      } else {
+        main='私人教練 10 堂';
+        reason='你在私教中感受到針對性的調整，適合持續一對一精修動作與訓練安排，進步最快也最安全。';
+        alt='備選：私課＋團課搭配，兼顧個別指導與訓練量。';
+      }
+    }
+    return {main:main,reason:reason,alt:alt};
+  }
+
+  function submit(){
+    if(submitted)return;submitted=true;btnN.disabled=true;btnN.textContent='整理建議中…';
+    var rec=recommend();
+    var name=(document.getElementById('f_name').value||'').trim();
+    gtag('event','trial_review_submit',{next:val('下一步安排'),feel:val('整體感受')});
+    // 寄一份到教練信箱
+    try{
+      var payload={};new FormData(form).forEach(function(v,k){if(!v)return;payload[k]=payload[k]?payload[k]+'、'+v:v;});
+      payload['系統建議_主推薦']=rec.main;payload['系統建議_原因']=rec.reason;
+      payload._subject='🥊 體驗後評估｜'+name+'（'+val('下一步安排')+'）';payload._template='table';payload._captcha='false';
+      fetch('https://formsubmit.co/ajax/'+LEAD_EMAIL,{method:'POST',keepalive:true,headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)}).catch(function(){});
+    }catch(e){}
+    // 填入結果頁
+    document.getElementById('recMain').textContent=rec.main;
+    document.getElementById('recReason').textContent=rec.reason;
+    document.getElementById('recAlt').innerHTML='<b>'+rec.alt.split('：')[0]+'：</b>'+(rec.alt.split('：')[1]||'');
+    // 顯示完成頁
+    document.getElementById('formWrap').style.display='none';
+    document.getElementById('pgWrap').style.display='none';
+    document.getElementById('navBar').style.display='none';
+    document.getElementById('done').classList.add('on');
+    window.scrollTo({top:0});
+  }
+  document.getElementById('showRec').addEventListener('click',function(){
+    document.getElementById('done').classList.remove('on');
+    document.getElementById('result').classList.add('on');window.scrollTo({top:0});
+  });
+
+  form.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.tagName!=='TEXTAREA'){e.preventDefault();btnN.click();}});
+  paint();
+})();
+</script>
+</body>
+</html>
