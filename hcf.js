@@ -190,13 +190,15 @@ document.querySelectorAll('[data-cnt]').forEach(function(el){cio.observe(el)});
 /* 官網表單 → HCF 後台 APP（鏡射，不影響原本 FormSubmit/LINE 流程）2026-09 */
 (function(){
   var LEAD_ENDPOINT = 'https://beamish-basbousa-cb3585.netlify.app/.netlify/functions/web-lead';
+  // 只鏡射「正在使用」的活躍問卷；survey(已301轉走)/trial-review(孤兒)不接後台
+  var ACTIVE = { booking:1, status:1, complaint:1, 'survey-trial-followup':1 };
   function formTypeOf(form){
     if (form && form.id === 'diagForm') return 'booking';
-    if (form && form.id === 'revForm') return 'trial-review';
     var p = (location.pathname.split('/').pop() || '').replace(/\.html$/,'');
     return p || 'other';
   }
   function mirror(form){
+    if (!ACTIVE[formTypeOf(form)]) return;      // 未使用的問卷不進後台
     try {
       var fd = new FormData(form), fields = {};
       fd.forEach(function(v,k){
