@@ -186,3 +186,32 @@ document.querySelectorAll('[data-cnt]').forEach(function(el){cio.observe(el)});
 
 /* 全站背景配樂（跨頁接續，桌面限定） */
 (function(){var s=document.createElement('script');s.src='hcf-bgm.js';s.defer=true;(document.head||document.documentElement).appendChild(s);})();
+
+/* 官網表單 → HCF 後台 APP（鏡射，不影響原本 FormSubmit/LINE 流程）2026-09 */
+(function(){
+  var LEAD_ENDPOINT = 'https://beamish-basbousa-cb3585.netlify.app/.netlify/functions/web-lead';
+  function formTypeOf(form){
+    if (form && form.id === 'diagForm') return 'booking';
+    if (form && form.id === 'revForm') return 'trial-review';
+    var p = (location.pathname.split('/').pop() || '').replace(/\.html$/,'');
+    return p || 'other';
+  }
+  function mirror(form){
+    try {
+      var fd = new FormData(form), fields = {};
+      fd.forEach(function(v,k){
+        if (/^_/.test(k)) return;                 // 跳過 FormSubmit 內部欄位(_next/_captcha…)
+        if (fields[k] == null) fields[k] = v;
+        else fields[k] = [].concat(fields[k], v); // 多選(checkbox)收成陣列
+      });
+      fetch(LEAD_ENDPOINT, {
+        method:'POST', keepalive:true, headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ formType: formTypeOf(form), page: location.pathname, fields: fields })
+      }).catch(function(){});
+    } catch(e){}
+  }
+  document.addEventListener('submit', function(e){
+    var form = e.target;
+    if (form && form.tagName === 'FORM') mirror(form);   // 不 preventDefault，原流程照跑
+  }, true);
+})();
