@@ -216,4 +216,6 @@ document.querySelectorAll('[data-cnt]').forEach(function(el){cio.observe(el)});
     var form = e.target;
     if (form && form.tagName === 'FORM') mirror(form);   // 不 preventDefault，原流程照跑
   }, true);
+  // JS 精靈式送出的頁面(如 booking 的 submit())沒有原生 submit 事件 → 對外開放讓它手動呼叫
+  try { window.hcfMirrorForm = mirror; } catch(e){}
 })();

@@ -490,6 +490,9 @@ footer{position:relative;z-index:1;max-width:720px;margin:0 auto;width:100%;padd
       }).catch(function(){});
     } catch(e){}
 
+    // 鏡射到後台 APP（官網來客＋推播團隊）——此頁是 JS 送出、無原生 submit 事件，手動呼叫
+    try { if (window.hcfMirrorForm) window.hcfMirrorForm(form); } catch(e){}
+
     document.getElementById('doneMsg').textContent = '已填寫｜' + (name || '你的稱呼');
     document.getElementById('formWrap').style.display = 'none';
     document.getElementById('pgWrap').style.display   = 'none';
