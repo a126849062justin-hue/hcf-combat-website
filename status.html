@@ -463,6 +463,7 @@ body.wz .grpmsg{display:none!important}
     if(btn){btn.disabled=true;btn.style.opacity='.6';btn.style.cursor='default';btn.textContent='✅ 已送出';}
     if(window.hcfTrack)hcfTrack('survey_submit');
     try{form.submit();}catch(e){}
+    try{if(window.hcfMirrorForm)window.hcfMirrorForm(form);}catch(e){}   // 鏡射到後台APP(此頁form.submit()無原生submit事件)
     if(window.HCF_BACKEND){try{fetch(window.HCF_BACKEND+'/api/lead',{method:'POST',keepalive:true,body:JSON.stringify({name:nm,contact:ct,source:'status',payload:Object.assign({身分:label},p)})});}catch(e){}}
     showDone();
   }
