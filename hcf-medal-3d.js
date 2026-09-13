@@ -20,10 +20,10 @@
       r.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
       var w=canvas.clientWidth||canvas.width||300,h=canvas.clientHeight||canvas.height||300;
       r.setSize(w,h,false);r.outputEncoding=THREE.sRGBEncoding;r.toneMapping=THREE.ACESFilmicToneMapping;r.toneMappingExposure=1.2;
-      var s=new THREE.Scene();var cam=new THREE.PerspectiveCamera(34,w/h,0.1,100);cam.position.set(0,0,7.4);
+      var s=new THREE.Scene();var cam=new THREE.PerspectiveCamera(34,w/h,0.1,100);cam.position.set(0,0,9.3);
       var pm=new THREE.PMREMGenerator(r);s.environment=pm.fromEquirectangular(envTex(THREE)).texture;
       s.add(new THREE.AmbientLight(0xffffff,0.12));var k=new THREE.DirectionalLight(0xffffff,1.2);k.position.set(-3,4,6);s.add(k);
-      var coin=new THREE.Group();s.add(coin);
+      var coin=new THREE.Group();coin.position.y=-0.18;s.add(coin);
       var R=2,TH=0.24,face=faceTex(THREE,gimg);
       var edge=new THREE.MeshPhysicalMaterial({color:new THREE.Color('#8a5f16'),metalness:1,roughness:0.24,envMapIntensity:1.7});
       coin.add(new THREE.Mesh(new THREE.CylinderGeometry(R,R,TH,120,1,false).rotateX(Math.PI/2),edge));
