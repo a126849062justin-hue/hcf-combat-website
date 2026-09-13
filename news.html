@@ -158,6 +158,13 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .s1-p b{color:var(--gold)}
 .s1-cta{display:inline-block;margin-top:20px;background:var(--red);color:#fff;font-weight:900;letter-spacing:.03em;padding:13px 26px;border-radius:8px;box-shadow:0 12px 30px rgba(200,16,21,.36);transition:.2s}
 .s1card:hover .s1-cta{background:#fff;color:var(--red)}
+/* S1 賽季 3D 金牌（無邊框懸浮） */
+.s1-medal{position:relative;display:flex;flex-direction:column;align-items:center;margin:4px 0 22px}
+.s1-medal .glow{position:absolute;top:-8px;width:300px;height:300px;max-width:88%;border-radius:50%;filter:blur(48px);opacity:.55;pointer-events:none;background:radial-gradient(circle,rgba(212,175,55,.44),rgba(200,16,21,.16) 46%,transparent 70%)}
+.s1-medal canvas{position:relative;z-index:1;width:250px;height:250px;max-width:68vw;aspect-ratio:1/1;cursor:grab;touch-action:none;display:block}
+.s1-medal canvas:active{cursor:grabbing}
+.s1-medal .hint{position:relative;z-index:1;margin-top:-2px;font-family:var(--en,monospace);font-weight:700;font-size:.8rem;color:#cfd3da;display:flex;align-items:center;gap:6px}
+.s1-medal .hint b{color:var(--gold)}
 
 /* 沈浸升級（高端／創意） */
 :root{--gold:#C9A24B}
@@ -210,7 +217,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
   <div class="wrap">
     <div class="pm-head rv">
       <div class="kicker">ACTIVITIES &amp; OFFERS / 本月活動</div>
-      <h2>本月活動，<i>一次玩懂</i></h2>
+      <h2>本月活動 <i>一次玩懂</i></h2>
       <p class="pm-lead">四個進行中的活動——點一下、拉一下，立刻知道你能拿到什麼。完整方案與價目見 <a href="pricing.html">課程方案</a>、<a href="packages.html">套組方案</a>。</p>
     </div>
 
@@ -239,13 +246,18 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 
     <!-- 2｜戰鬥通行證 -->
     <div class="pm-panel" data-panel="pass">
+      <div class="s1-medal">
+        <div class="glow"></div>
+        <canvas id="newsPassMedal" aria-label="S1 賽季金牌 3D 立體勳章"></canvas>
+        <div class="hint">🔄 拖曳旋轉 · S1 賽季金牌 · 最高折抵 <b>$1,500</b></div>
+      </div>
       <div class="act-stat" id="statPass"></div>
       <a class="s1card" href="battle-pass.html">
         <div class="s1-glow"></div>
         <div class="s1-body">
           <div class="s1-badge">🎮 S1 賽季・進行中</div>
           <h3 class="s1-h">團體課出席挑戰賽</h3>
-          <p class="s1-p">當月出席累積達標，次月續約最高現折 <b>$1,500</b>。24 格 LINE 數位集點卡、即時課表、英雄榜、教練認證——完整賽季體驗，一鍵進入。</p>
+          <p class="s1-p">當月出席累積達標，次月續約最高現折 <b>$1,500</b>。24 格 LINE 數位集點卡、出勤英雄榜、段位勳章階梯——完整賽季體驗，一鍵進入。</p>
           <span class="s1-cta">進入 S1 賽季挑戰賽 →</span>
         </div>
       </a>
@@ -480,6 +492,22 @@ document.addEventListener('DOMContentLoaded',function(){(window.HCF_CONTENT||Pro
 })();
 </script>
 <script>
+/* S1 賽季 3D 金牌：僅在使用者切到「戰鬥通行證」分頁時才載入 THREE + 模組（不拖慢其他訪客） */
+(function(){
+  var btn=document.querySelector('.pm-tab[data-tab="pass"]');
+  var cv=document.getElementById('newsPassMedal');
+  if(!btn||!cv)return;
+  var busy=false,done=false;
+  function inject(src,cb){var s=document.createElement('script');s.src=src;s.onload=cb;s.onerror=cb;document.head.appendChild(s);}
+  function mount(){if(!done&&window.THREE&&window.HCFMedal){done=true;HCFMedal.mount(cv,{spin:0.007});}}
+  function ensure(){
+    if(done||busy)return;busy=true;
+    if(window.THREE){inject('hcf-medal-3d.js',mount);}
+    else{inject('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',function(){inject('hcf-medal-3d.js',mount);});}
+  }
+  btn.addEventListener('click',ensure);
+  if(btn.classList.contains('on'))ensure();
+})();
 (function(){
   function esc(s){return String(s).replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
   fetch("https://beamish-basbousa-cb3585.netlify.app/.netlify/functions/site-content?key=news")
