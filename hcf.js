@@ -219,3 +219,15 @@ document.querySelectorAll('[data-cnt]').forEach(function(el){cio.observe(el)});
   // JS 精靈式送出的頁面(如 booking 的 submit())沒有原生 submit 事件 → 對外開放讓它手動呼叫
   try { window.hcfMirrorForm = mirror; } catch(e){}
 })();
+
+/* 官網公告橫幅（後台「官網內容」可編輯；留空不顯示）2026-09 */
+(function(){
+  fetch('https://beamish-basbousa-cb3585.netlify.app/.netlify/functions/site-content?key=announcement')
+    .then(function(r){return r.json();}).then(function(j){
+      var t = j && j.data && j.data.text; if(!t) return;
+      var bar = document.createElement('div');
+      bar.textContent = '📢 ' + t;
+      bar.style.cssText = 'position:sticky;top:0;z-index:9999;background:#C81015;color:#fff;font-size:13px;line-height:1.5;padding:8px 14px;text-align:center;font-family:\'Noto Sans TC\',sans-serif';
+      if(document.body) document.body.insertBefore(bar, document.body.firstChild);
+    }).catch(function(){});
+})();
