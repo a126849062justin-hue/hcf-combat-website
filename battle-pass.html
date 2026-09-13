@@ -462,57 +462,6 @@
             </div>
         </section>
 
-        <!-- SECTION 3.5: LIVE WEEKLY SCHEDULE & 22:00 CUTOFF COUNTDOWN -->
-        <section id="schedule" class="py-20 bg-slate-950/80 border-t border-white/10 relative">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-                
-                <!-- Schedule Header & Live 22:00 Cutoff Clock -->
-                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 pb-6 border-b border-white/10">
-                    <div class="space-y-2">
-                        <div class="inline-flex items-center space-x-2 bg-brandRed/10 border border-brandRed/30 text-rose-300 px-3.5 py-1 rounded-full text-xs font-mono font-bold">
-                            <span class="w-2 h-2 rounded-full bg-brandRed animate-ping"></span>
-                            <span>LIVE ARENA SCHEDULE</span>
-                        </div>
-                        <h2 class="text-3xl sm:text-4xl font-black text-white">本週團體課即時開班課表</h2>
-                        <p class="text-sm text-slate-400">10 人精緻滿班制・3 人即刻成班・實名線上預約即時佔位</p>
-                    </div>
-
-                    <!-- Cutoff Countdown Bento Box -->
-                    <div class="avp-glass p-4 sm:p-5 rounded-2xl border border-brandGold/30 flex items-center space-x-4 bg-slate-900/90 shadow-lg shadow-amber-500/10">
-                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-yellow-600 text-slate-950 flex items-center justify-center text-xl font-black shadow-md">
-                            <i class="fas fa-hourglass-half animate-spin" style="animation-duration: 8s;"></i>
-                        </div>
-                        <div>
-                            <div class="flex items-center gap-1.5 text-xs font-bold text-slate-300">
-                                <span>今日預約截單倒數</span>
-                                <span class="text-brandGold font-mono text-[10px] bg-brandGold/10 px-2 py-0.5 rounded border border-brandGold/30">前一天 22:00 截單</span>
-                            </div>
-                            <div class="text-2xl sm:text-3xl font-black font-mono text-brandGold tracking-tight" id="cutoffCountdown">
-                                00 : 00 : 00
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Day Selector Tabs -->
-                <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" id="scheduleDayTabs">
-                    <button onclick="switchScheduleDay('MON')" class="sched-tab active px-5 py-2.5 rounded-xl text-xs font-black transition-all bg-brandRed text-white shadow-lg shadow-brandRed/30 flex-shrink-0">週一 (MON)</button>
-                    <button onclick="switchScheduleDay('TUE')" class="sched-tab px-5 py-2.5 rounded-xl text-xs font-bold transition-all bg-slate-900/80 hover:bg-white/10 text-slate-300 flex-shrink-0 border border-white/10">週二 (TUE)</button>
-                    <button onclick="switchScheduleDay('WED')" class="sched-tab px-5 py-2.5 rounded-xl text-xs font-bold transition-all bg-slate-900/80 hover:bg-white/10 text-slate-300 flex-shrink-0 border border-white/10">週三 (WED)</button>
-                    <button onclick="switchScheduleDay('THU')" class="sched-tab px-5 py-2.5 rounded-xl text-xs font-bold transition-all bg-slate-900/80 hover:bg-white/10 text-slate-300 flex-shrink-0 border border-white/10">週四 (THU)</button>
-                    <button onclick="switchScheduleDay('FRI')" class="sched-tab px-5 py-2.5 rounded-xl text-xs font-bold transition-all bg-slate-900/80 hover:bg-white/10 text-slate-300 flex-shrink-0 border border-white/10">週五 (FRI)</button>
-                    <button onclick="switchScheduleDay('SAT')" class="sched-tab px-5 py-2.5 rounded-xl text-xs font-bold transition-all bg-slate-900/80 hover:bg-white/10 text-slate-300 flex-shrink-0 border border-white/10">週六 (SAT)</button>
-                    <button onclick="switchScheduleDay('SUN')" class="sched-tab px-5 py-2.5 rounded-xl text-xs font-bold transition-all bg-slate-900/80 hover:bg-white/10 text-slate-300 flex-shrink-0 border border-white/10">週日 (SUN)</button>
-                </div>
-
-                <!-- Live Dynamic Course Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="scheduleCardGrid">
-                    <!-- Cards populated via JavaScript -->
-                </div>
-
-            </div>
-        </section>
-
         <!-- SECTION 3.6: S1 HALL OF FAME & ATTENDANCE LEADERBOARD -->
         <section id="leaderboard" class="py-20 bg-slate-900/50 border-t border-white/10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
@@ -684,169 +633,6 @@
                             <button onclick="setSliderAndScroll(24)" class="px-3 py-1.5 bg-brandGold text-slate-950 font-black rounded-lg text-[10px] hover:scale-105 transition-all">
                                 衝擊 Lv.3
                             </button>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-
-        <!-- SECTION 3.7: HEAD COACH 3D SIGNATURE CERTIFICATION WALL -->
-        <section id="coaches" class="py-20 bg-slate-950/80 border-t border-white/10">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-                
-                <!-- Section Header -->
-                <div class="text-center max-w-3xl mx-auto space-y-3">
-                    <span class="text-xs font-black uppercase tracking-widest text-brandRed font-mono bg-brandRed/10 border border-brandRed/30 px-3.5 py-1 rounded-full">
-                        HEAD COACH VERIFICATION
-                    </span>
-                    <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-white">
-                        主教練簽名審查與官方認證印章
-                    </h2>
-                    <p class="text-sm sm:text-base text-slate-400">
-                        點擊教練卡片可 360° 翻轉檢視國家級賽事認證、打擊專精與 S1 賽季核發防偽鋼印。
-                    </p>
-                </div>
-
-                <!-- 3 Coach Flip Cards Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    
-                    <!-- Coach 1: Alex -->
-                    <div class="coach-card card-perspective h-[420px] cursor-pointer" onclick="toggleCoachCard(this)">
-                        <div class="coach-card-inner relative w-full h-full">
-                            <!-- Front -->
-                            <div class="coach-front absolute inset-0 avp-glass rounded-3xl p-6 border border-white/15 flex flex-col justify-between overflow-hidden">
-                                <div class="space-y-4">
-                                    <div class="flex justify-between items-start">
-                                        <span class="text-[10px] font-mono font-bold text-rose-400 bg-brandRed/20 px-2.5 py-1 rounded-full border border-brandRed/30">HEAD COACH</span>
-                                        <span class="text-[11px] text-slate-400 font-mono"><i class="fas fa-rotate mr-1"></i>點擊翻轉</span>
-                                    </div>
-                                    <img src="https://placehold.co/300x300/1e293b/ffffff?text=Coach+Alex" alt="Coach Alex" class="w-28 h-28 rounded-2xl mx-auto border-2 border-brandRed/40 object-cover shadow-lg">
-                                    <div class="text-center">
-                                        <h3 class="text-xl font-black text-white">Alex Chen 總教練</h3>
-                                        <p class="text-xs text-brandGold font-bold mt-0.5">WBC Muay Thai 認證裁判 / 職業踢拳 14 勝</p>
-                                    </div>
-                                    <p class="text-xs text-slate-300 text-center leading-relaxed">專精重擊爆發力輸出、精準打擊步法與防禦反擊節奏調教。</p>
-                                </div>
-                                <div class="text-center text-[11px] font-mono text-brandGold bg-brandGold/10 py-2 rounded-xl border border-brandGold/30 font-bold">
-                                    ★ S1 賽季出勤認證專員
-                                </div>
-                            </div>
-
-                            <!-- Back (Official Seal & Credentials) -->
-                            <div class="coach-back absolute inset-0 avp-glass-red rounded-3xl p-6 border border-brandRed flex flex-col justify-between">
-                                <div class="space-y-3 text-center">
-                                    <h4 class="text-base font-black text-white">HCF 官方裁判簽核驗證</h4>
-                                    <div class="relative w-28 h-28 mx-auto my-2 flex items-center justify-center">
-                                        <div class="absolute inset-0 rounded-full border-2 border-dashed border-brandGold seal-rotate"></div>
-                                        <div class="text-center">
-                                            <i class="fas fa-certificate text-brandGold text-3xl mb-1"></i>
-                                            <span class="block text-[8px] font-mono font-black text-brandGold tracking-widest uppercase">HCF VERIFIED</span>
-                                        </div>
-                                    </div>
-                                    <ul class="text-xs text-slate-200 text-left space-y-2">
-                                        <li class="flex items-center gap-2"><i class="fas fa-check text-brandGold"></i> 全國泰拳錦標賽 71KG 冠軍</li>
-                                        <li class="flex items-center gap-2"><i class="fas fa-check text-brandGold"></i> 累積執教時數逾 6,500+ 小時</li>
-                                        <li class="flex items-center gap-2"><i class="fas fa-check text-brandGold"></i> S1 通行證出席審核主教官</li>
-                                    </ul>
-                                </div>
-                                <div class="text-center text-[10px] text-slate-400 font-mono">
-                                    VERIFICATION ID: HCF-S1-AC01
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Coach 2: Ken -->
-                    <div class="coach-card card-perspective h-[420px] cursor-pointer" onclick="toggleCoachCard(this)">
-                        <div class="coach-card-inner relative w-full h-full">
-                            <!-- Front -->
-                            <div class="coach-front absolute inset-0 avp-glass rounded-3xl p-6 border border-white/15 flex flex-col justify-between overflow-hidden">
-                                <div class="space-y-4">
-                                    <div class="flex justify-between items-start">
-                                        <span class="text-[10px] font-mono font-bold text-amber-400 bg-amber-500/20 px-2.5 py-1 rounded-full border border-amber-500/30">SENIOR COACH</span>
-                                        <span class="text-[11px] text-slate-400 font-mono"><i class="fas fa-rotate mr-1"></i>點擊翻轉</span>
-                                    </div>
-                                    <img src="https://placehold.co/300x300/1e293b/ffffff?text=Coach+Ken" alt="Coach Ken" class="w-28 h-28 rounded-2xl mx-auto border-2 border-amber-500/40 object-cover shadow-lg">
-                                    <div class="text-center">
-                                        <h3 class="text-xl font-black text-white">Ken Tsao 踢拳主教練</h3>
-                                        <p class="text-xs text-brandGold font-bold mt-0.5">K-1 荷式踢拳專精 / 體能訓練官</p>
-                                    </div>
-                                    <p class="text-xs text-slate-300 text-center leading-relaxed">荷蘭踢拳連續組手打擊、高心率體能燃脂與新手安全打擊引導。</p>
-                                </div>
-                                <div class="text-center text-[11px] font-mono text-brandGold bg-brandGold/10 py-2 rounded-xl border border-brandGold/30 font-bold">
-                                    ★ S1 賽季出勤認證專員
-                                </div>
-                            </div>
-
-                            <!-- Back -->
-                            <div class="coach-back absolute inset-0 avp-glass-gold rounded-3xl p-6 border border-brandGold flex flex-col justify-between">
-                                <div class="space-y-3 text-center">
-                                    <h4 class="text-base font-black text-white">HCF 官方裁判簽核驗證</h4>
-                                    <div class="relative w-28 h-28 mx-auto my-2 flex items-center justify-center">
-                                        <div class="absolute inset-0 rounded-full border-2 border-dashed border-amber-400 seal-rotate"></div>
-                                        <div class="text-center">
-                                            <i class="fas fa-award text-brandGold text-3xl mb-1"></i>
-                                            <span class="block text-[8px] font-mono font-black text-brandGold tracking-widest uppercase">K-1 CERTIFIED</span>
-                                        </div>
-                                    </div>
-                                    <ul class="text-xs text-slate-200 text-left space-y-2">
-                                        <li class="flex items-center gap-2"><i class="fas fa-check text-brandGold"></i> 國際 NSCA-CPT 肌力體能專家</li>
-                                        <li class="flex items-center gap-2"><i class="fas fa-check text-brandGold"></i> 荷式踢拳高階教練研習認證</li>
-                                        <li class="flex items-center gap-2"><i class="fas fa-check text-brandGold"></i> 精準動作矯正與受傷預防防護</li>
-                                    </ul>
-                                </div>
-                                <div class="text-center text-[10px] text-slate-400 font-mono">
-                                    VERIFICATION ID: HCF-S1-KT02
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Coach 3: Maya -->
-                    <div class="coach-card card-perspective h-[420px] cursor-pointer" onclick="toggleCoachCard(this)">
-                        <div class="coach-card-inner relative w-full h-full">
-                            <!-- Front -->
-                            <div class="coach-front absolute inset-0 avp-glass rounded-3xl p-6 border border-white/15 flex flex-col justify-between overflow-hidden">
-                                <div class="space-y-4">
-                                    <div class="flex justify-between items-start">
-                                        <span class="text-[10px] font-mono font-bold text-rose-300 bg-rose-500/20 px-2.5 py-1 rounded-full border border-rose-500/30">ELITE COACH</span>
-                                        <span class="text-[11px] text-slate-400 font-mono"><i class="fas fa-rotate mr-1"></i>點擊翻轉</span>
-                                    </div>
-                                    <img src="https://placehold.co/300x300/1e293b/ffffff?text=Coach+Maya" alt="Coach Maya" class="w-28 h-28 rounded-2xl mx-auto border-2 border-rose-400/40 object-cover shadow-lg">
-                                    <div class="text-center">
-                                        <h3 class="text-xl font-black text-white">Maya Lin 女子體能專精</h3>
-                                        <p class="text-xs text-rose-300 font-bold mt-0.5">女子防身專攻 / 核心肌群暴燃</p>
-                                    </div>
-                                    <p class="text-xs text-slate-300 text-center leading-relaxed">擅長零基礎學員心肺提升、體態雕塑、敏捷協調性與實戰防身技巧。</p>
-                                </div>
-                                <div class="text-center text-[11px] font-mono text-brandGold bg-brandGold/10 py-2 rounded-xl border border-brandGold/30 font-bold">
-                                    ★ S1 賽季出勤認證專員
-                                </div>
-                            </div>
-
-                            <!-- Back -->
-                            <div class="coach-back absolute inset-0 avp-glass-red rounded-3xl p-6 border border-rose-500 flex flex-col justify-between">
-                                <div class="space-y-3 text-center">
-                                    <h4 class="text-base font-black text-white">HCF 官方裁判簽核驗證</h4>
-                                    <div class="relative w-28 h-28 mx-auto my-2 flex items-center justify-center">
-                                        <div class="absolute inset-0 rounded-full border-2 border-dashed border-rose-300 seal-rotate"></div>
-                                        <div class="text-center">
-                                            <i class="fas fa-shield-heart text-rose-400 text-3xl mb-1"></i>
-                                            <span class="block text-[8px] font-mono font-black text-rose-300 tracking-widest uppercase">DEFENSE ELITE</span>
-                                        </div>
-                                    </div>
-                                    <ul class="text-xs text-slate-200 text-left space-y-2">
-                                        <li class="flex items-center gap-2"><i class="fas fa-check text-rose-400"></i> 全國大專盃拳擊金牌</li>
-                                        <li class="flex items-center gap-2"><i class="fas fa-check text-rose-400"></i> 女子格鬥爆燃專案首席教練</li>
-                                        <li class="flex items-center gap-2"><i class="fas fa-check text-rose-400"></i> 親切耐心指導・新手五星好評</li>
-                                    </ul>
-                                </div>
-                                <div class="text-center text-[10px] text-slate-400 font-mono">
-                                    VERIFICATION ID: HCF-S1-ML03
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -1853,7 +1639,6 @@
             const clockEl = document.getElementById('cutoffCountdown');
             if (clockEl) clockEl.innerText = display;
         }
-        setInterval(updateCutoffCountdown, 1000);
 
         // Coach Flip Card Trigger
         function toggleCoachCard(card) {
@@ -1915,8 +1700,6 @@
         window.addEventListener('load', () => {
             if(window.HCFMedal){HCFMedal.mount(document.getElementById('passCanvas'));}
             buildStampGrid();
-            renderSchedule('MON');
-            updateCutoffCountdown();
             updateRewardCalculation(16);
             initLiff();
 
