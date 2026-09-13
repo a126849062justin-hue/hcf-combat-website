@@ -508,6 +508,21 @@ document.addEventListener('DOMContentLoaded',function(){(window.HCF_CONTENT||Pro
   btn.addEventListener('click',ensure);
   if(btn.classList.contains('on'))ensure();
 })();
+(function(){
+  function esc(s){return String(s).replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
+  fetch("https://beamish-basbousa-cb3585.netlify.app/.netlify/functions/site-content?key=news")
+   .then(function(r){return r.json();}).then(function(j){
+     var items=(j&&j.data&&j.data.items)||[]; if(!items.length) return;
+     var wrap=document.querySelector("#offers .wrap"); if(!wrap) return;
+     var box=document.createElement("div");
+     box.style.cssText="margin:0 0 22px;display:grid;gap:10px";
+     box.innerHTML='<div style="font-family:monospace;color:#C81015;font-size:.7rem;letter-spacing:.2em;font-weight:700">最新消息 / NEWS</div>'+
+       items.map(function(it){return '<div style="background:#fff;border-left:3px solid #C81015;border-radius:0 10px 10px 0;padding:10px 14px;box-shadow:0 6px 18px -12px rgba(0,0,0,.4)">'+
+         '<div style="font-weight:800;font-size:15px;color:#141413">'+esc(it.title||"")+' <span style="font-weight:400;color:#888;font-size:12px">'+esc(it.date||"")+'</span></div>'+
+         (it.text?'<div style="font-size:13px;color:#555;margin-top:3px;white-space:pre-wrap">'+esc(it.text)+'</div>':"")+'</div>';}).join("");
+     var head=wrap.querySelector(".pm-head"); if(head&&head.nextSibling){wrap.insertBefore(box,head.nextSibling);}else{wrap.insertBefore(box,wrap.firstChild);}
+   }).catch(function(){});
+})();
 </script>
 </body>
 </html>
