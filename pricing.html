@@ -192,5 +192,12 @@ document.addEventListener('DOMContentLoaded',function(){(window.HCF_CONTENT||Pro
   });
 })});
 </script>
+<script>
+(function(){
+  fetch("https://beamish-basbousa-cb3585.netlify.app/.netlify/functions/site-content?key=pricing")
+   .then(function(r){return r.json();}).then(function(j){ var d=j&&j.data; if(!d)return;
+     Object.keys(d).forEach(function(pk){ var el=document.querySelector("[data-pk=\"" + pk + "\"]"); if(el&&d[pk]) el.textContent=d[pk]; }); }).catch(function(){});
+})();
+</script>
 </body>
 </html>
