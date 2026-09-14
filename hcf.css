@@ -239,8 +239,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
 .wcard:hover::after,.tcard:hover::after,.lvb:hover::after{box-shadow:inset 0 0 0 1px rgba(200,16,21,.32)}
 
 /* E. 內文連結底線掃（限內容區，不動 nav/footer） */
-.cbody a,.lead a,.ans a{background:linear-gradient(var(--red),var(--red)) left 100% / 0% 2px no-repeat;transition:background-size .3s ease;padding-bottom:1px}
-.cbody a:hover,.lead a:hover,.ans a:hover{background-size:100% 2px;color:var(--red)}
+.cbody a:not(.cbtn):not(.cardlink),.lead a:not(.cbtn):not(.cardlink),.ans a:not(.cbtn):not(.cardlink){background:linear-gradient(var(--red),var(--red)) left 100% / 0% 2px no-repeat;transition:background-size .3s ease;padding-bottom:1px}
+.cbody a:not(.cbtn):not(.cardlink):hover,.lead a:not(.cbtn):not(.cardlink):hover,.ans a:not(.cbtn):not(.cardlink):hover{background-size:100% 2px;color:var(--red)}
 
 /* F. 捲動進度條末端圓角（接 v1 #scrollbar） */
 #scrollbar{border-radius:0 3px 3px 0}
