@@ -370,6 +370,15 @@ footer{position:relative;z-index:1;max-width:720px;margin:0 auto;width:100%;padd
     </div>
     <a class="map-btn" href="https://maps.google.com/?q=新竹市北區台溪里林森路301號2樓" target="_blank" rel="noopener">新竹市北區林森路 301 號 2 樓</a>
     <a class="map-btn" href="pricing.html" style="margin-top:12px">先看看完整課程方案 →</a>
+
+    <!-- 課後評估動線 -->
+    <div class="card" style="margin-top:26px;border-color:var(--gold)">
+      <h3 style="color:var(--gold)">🥊 上完體驗課後</h3>
+      <ul>
+        <li>課程結束後，花 <b style="color:var(--gold)">45 秒</b>做「課後評估」，教練依你今天的表現與目標，幫你配一個主推方案＋一個備選方案。</li>
+      </ul>
+      <a class="line-btn" href="trial-review.html" style="background:var(--gold);color:#111">開始 45 秒課後評估 →</a>
+    </div>
   </div>
 </main>
 
@@ -499,8 +508,7 @@ footer{position:relative;z-index:1;max-width:720px;margin:0 auto;width:100%;padd
     document.getElementById('navBar').classList.remove('on');
     document.getElementById('done').classList.add('on');
     window.scrollTo({top:0});
-    // 停留讓對方看到要傳的訊息，再帶去官方 LINE
-    setTimeout(function(){ window.location.href = LINE_URL; }, 3200);
+    // 完成頁改為停留頁：保留 LINE 訊息可複製 + 課後評估動線；LINE 由使用者點按鈕前往（不自動跳轉）
   }
 
   // Enter 不直接送出
