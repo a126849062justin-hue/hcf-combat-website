@@ -77,6 +77,15 @@
 .hb-line{background:#06C755;color:#fff}
 .hb-book{background:#fff;color:var(--carbon)}
 .hb-gh{border:1px solid rgba(255,255,255,.3);color:#fff}
+.step-cols{display:flex;gap:22px;align-items:flex-start;margin-top:6px}
+.step-body{flex:1;min-width:0}
+.step-media{flex:0 0 auto;width:206px;margin:0}
+.step-media img{width:100%;height:auto;border-radius:14px;border:1px solid rgba(255,255,255,.14);box-shadow:0 16px 36px rgba(0,0,0,.55);display:block;background:#fff}
+.step-media.two{width:auto;display:flex;gap:12px}
+.step-media.two span{display:block;width:148px}
+.step-media.two em{display:block;text-align:center;font-style:normal;font-size:.74rem;color:#9a9a9a;margin-top:6px}
+.step-media figcaption{text-align:center;font-size:.74rem;color:#9a9a9a;margin-top:7px}
+@media(max-width:640px){.step-cols{flex-direction:column}.step-media{width:100%;max-width:270px;margin:8px auto 0}.step-media.two{max-width:none;width:100%;justify-content:center}}
 @media(max-width:520px){.step{padding:22px 18px}.step-no{width:44px;height:44px;font-size:1.25rem}.bank-b{grid-template-columns:1fr;gap:2px}.bank-b dt{margin-top:8px}}
 </style>
 </head>
@@ -107,67 +116,90 @@
       <article class="step" id="step1">
         <div class="step-h"><div class="step-no">1</div><h2 class="step-t">加入官方 LINE</h2></div>
         <p class="step-lead">搜尋 @228pffia 加好友，點選單「課程預約」</p>
-        <ul>
-          <li>LINE 搜尋 <code>@228pffia</code>（記得加 <b>@</b>）</li>
-          <li>或點 <a href="https://lin.ee/7lidUv0" target="_blank" rel="noopener"><code>lin.ee/7lidUv0</code></a> 加好友</li>
-          <li>聊天室下方點 <b>「課程預約」</b> 進入 FitBook</li>
-        </ul>
+        <div class="step-cols">
+          <div class="step-body">
+            <ul>
+              <li>LINE 搜尋 <code>@228pffia</code>（記得加 <b>@</b>）</li>
+              <li>或點 <a href="https://lin.ee/7lidUv0" target="_blank" rel="noopener"><code>lin.ee/7lidUv0</code></a> 加好友</li>
+              <li>聊天室下方點 <b>「課程預約」</b> 進入 FitBook</li>
+            </ul>
+          </div>
+          <figure class="step-media"><img src="htb-1.webp" width="460" height="841" loading="lazy" alt="HCF 官方 LINE 聊天室，下方選單有「課程預約」"></figure>
+        </div>
       </article>
 
       <article class="step" id="step2">
         <div class="step-h"><div class="step-no">2</div><h2 class="step-t">用 LINE 登入</h2></div>
         <p class="step-lead">點綠色「使用 LINE 帳號登入」，這就是辦會員</p>
-        <ul>
-          <li>第一次用 LINE 登入 <b>＝自動註冊會員</b></li>
-          <li>點綠色 <b>「使用 LINE 帳號登入」</b></li>
-          <li>按 <b>「同意」</b> 即可</li>
-        </ul>
+        <div class="step-cols">
+          <div class="step-body">
+            <ul>
+              <li>第一次用 LINE 登入 <b>＝自動註冊會員</b></li>
+              <li>點綠色 <b>「使用 LINE 帳號登入」</b></li>
+              <li>按 <b>「同意」</b> 即可</li>
+            </ul>
+          </div>
+          <figure class="step-media"><img src="htb-2.webp" width="460" height="926" loading="lazy" alt="FitBook 註冊登入畫面，綠色「使用 LINE 帳號登入」按鈕"></figure>
+        </div>
       </article>
 
       <article class="step" id="step3">
         <div class="step-h"><div class="step-no">3</div><h2 class="step-t">填手機、建立資料</h2></div>
         <p class="step-lead">選 +886、輸入手機，再填姓名生日</p>
-        <ul>
-          <li>選 <code>+886 台灣</code> 輸入手機號碼</li>
-          <li>按 <b>「下一步」</b></li>
-          <li>填 <b>真實姓名、生日</b> → 送出</li>
-        </ul>
+        <div class="step-cols">
+          <div class="step-body">
+            <ul>
+              <li>選 <code>+886 台灣</code> 輸入手機號碼</li>
+              <li>按 <b>「下一步」</b></li>
+              <li>填 <b>真實姓名、生日</b> → 送出</li>
+            </ul>
+          </div>
+          <figure class="step-media"><img src="htb-3.webp" width="460" height="935" loading="lazy" alt="FitBook 手機號碼輸入畫面，選 +886 台灣"></figure>
+        </div>
       </article>
 
       <article class="step" id="step4">
         <div class="step-h"><div class="step-no">4</div><h2 class="step-t">選課卡、按購買</h2></div>
         <p class="step-lead">課卡方案 →「體驗課卡」→ NT$400 按購買</p>
-        <ul>
-          <li>上方點 <b>「課卡方案」</b> 分頁</li>
-          <li>分類選 <b>「體驗課卡」</b></li>
-          <li>首次體驗 <b>NT$400</b> 按 <b>「購買」</b></li>
-        </ul>
-        <div class="note">
-          <b>首次體驗價：</b>團體課程 <b>NT$400</b>（原 $600）／私教一對一 <b>NT$1,400</b>（原 $2,200）。儲值 1 堂、購買後 14 天內使用。
+        <div class="step-cols">
+          <div class="step-body">
+            <ul>
+              <li>上方點 <b>「課卡方案」</b> 分頁</li>
+              <li>分類選 <b>「體驗課卡」</b></li>
+              <li>首次體驗 <b>NT$400</b> 按 <b>「購買」</b></li>
+            </ul>
+            <div class="note"><b>首次體驗價：</b>團體課程 <b>NT$400</b>（原 $600）／私教一對一 <b>NT$1,400</b>（原 $2,200）。儲值 1 堂、購買後 14 天內使用。</div>
+          </div>
+          <figure class="step-media"><img src="htb-4.webp" width="460" height="829" loading="lazy" alt="FitBook 課卡方案分頁，體驗課卡 NT$400 按購買"></figure>
         </div>
       </article>
 
       <article class="step" id="step5">
         <div class="step-h"><div class="step-no">5</div><h2 class="step-t">轉帳、按匯款回報</h2></div>
         <p class="step-lead">照「匯款資訊」轉帳，務必回報！</p>
-        <div class="bank">
-          <div class="bank-h">匯款資訊</div>
-          <dl class="bank-b">
-            <dt>銀行</dt><dd>中國信託商業銀行（822）</dd>
-            <dt>分行</dt><dd>營業部 0901</dd>
-            <dt>戶名</dt><dd>黃謙和</dd>
-            <dt>帳號</dt><dd><span id="acct">0000901621759415</span><button type="button" class="copy" id="copyAcct">複製</button></dd>
-            <dt>金額</dt><dd class="amt">NT$400</dd>
-          </dl>
-        </div>
-        <ul>
-          <li>看 <b>「匯款資訊」</b> 轉帳（中信 822・NT$400）</li>
-          <li>轉完 <b>「一定」</b> 按 <b>「匯款回報」</b> 填資料</li>
-          <li>館方審核後，課卡才入帳</li>
-        </ul>
-        <div class="warn">
-          <b>⚠️ 最重要</b>
-          <span>轉帳後沒按「匯款回報」＝收不到課卡！</span>
+        <div class="step-cols">
+          <div class="step-body">
+            <div class="bank">
+              <div class="bank-h">匯款資訊</div>
+              <dl class="bank-b">
+                <dt>銀行</dt><dd>中國信託商業銀行（822）</dd>
+                <dt>分行</dt><dd>營業部 0901</dd>
+                <dt>戶名</dt><dd>黃謙和</dd>
+                <dt>帳號</dt><dd><span id="acct">0000901621759415</span><button type="button" class="copy" id="copyAcct">複製</button></dd>
+                <dt>金額</dt><dd class="amt">NT$400</dd>
+              </dl>
+            </div>
+            <ul>
+              <li>看 <b>「匯款資訊」</b> 轉帳（中信 822・NT$400）</li>
+              <li>轉完 <b>「一定」</b> 按 <b>「匯款回報」</b> 填資料</li>
+              <li>館方審核後，課卡才入帳</li>
+            </ul>
+            <div class="warn"><b>⚠️ 最重要</b><span>轉帳後沒按「匯款回報」＝收不到課卡！</span></div>
+          </div>
+          <figure class="step-media two">
+            <span><img src="htb-5a.webp" width="520" height="578" loading="lazy" alt="FitBook 匯款資訊視窗"><em>① 匯款資訊</em></span>
+            <span><img src="htb-5b.webp" width="520" height="575" loading="lazy" alt="FitBook 等待審核，按匯款回報"><em>② 等待審核</em></span>
+          </figure>
         </div>
       </article>
 
