@@ -220,11 +220,11 @@ const WE=['SAT','SUN'],WEZ=['週六','週日'];
 const WT=[{s:'11:00',e:'16:00',tag:'日間・私教預約'},{s:'19:00',e:'20:00',tag:'第一堂・新手 LV.1'},{s:'20:00',e:'21:00',tag:'第二堂・中階／燃脂'},{s:'21:00',e:'21:50',tag:'第三堂・進階 LV.3'}];
 const ET=[{s:'11:00',e:'12:00'},{s:'13:30',e:'15:00'}];
 const C=(cat,lv,zh,en,note)=>({cat,lv,zh,en,note});
-const PV=()=>C('private',0,'私人教練課','PRIVATE','一對一彈性預約，依目標客製內容');
-const NEW=()=>C('mt',1,'新手泰拳','MUAY THAI','站架步法×直拳掃踢，零基礎友善、不對打');
-const MID=()=>C('mt',2,'中階泰拳','MUAY THAI','技術精修×條件對練，攻防轉換與組合技');
-const CARDIO=()=>C('cardio',1,'泰拳燃脂','CARDIO','高密度打靶循環，一堂約 600–800 大卡');
-const SPAR=()=>C('mt',3,'自由技術對打','MUAY THAI','護具下自由對練×複盤，距離・時機・節奏');
+const PV=()=>C('private',0,'私人教練課','PRIVATE','一對一／一對二依目標客製，時段須確認教練與場地');
+const NEW=()=>C('mt',1,'新手泰拳','MUAY THAI','站架步法、基本拳腿與打靶；零基礎友善、不互相擊打');
+const MID=()=>C('mt',2,'中階泰拳','MUAY THAI','組合、距離與指定情境攻防；需基礎，部分主題有搭檔接觸');
+const CARDIO=()=>C('cardio',1,'泰拳燃脂','CARDIO','拳腿與體能循環，依程度調整速度、回合與休息；一堂約 600–800 大卡');
+const SPAR=()=>C('mt',3,'自由技術對打','MUAY THAI','依主題練距離、時機與控制；需教練評估、指定裝備與當日確認');
 const WEEKDAY=[
  [PV(),PV(),PV(),PV(),PV()],
  [NEW(),NEW(),NEW(),NEW(),NEW()],
@@ -232,8 +232,8 @@ const WEEKDAY=[
  [null,null,SPAR(),null,SPAR()],
 ];
 const WEEKEND=[
- [C('mt',1,'新手泰拳','MUAY THAI','站架步法×直拳掃踢，零基礎友善、不對打'),null],
- [C('squad',3,'選手班','FIGHTER SQUAD','邀請制進階／備賽，總教練親自帶。技術深化・多回合對練・逐人複盤'),null],
+ [C('mt',1,'新手泰拳','MUAY THAI','站架步法、基本拳腿與打靶；零基礎友善、不互相擊打'),null],
+ [C('squad',3,'選手班','FIGHTER SQUAD','邀請制專項／備賽訓練，依當期計畫安排技術、體能與複盤'),null],
 ];
 let f='all';
 function badge(c){
