@@ -96,6 +96,18 @@ a{color:inherit;text-decoration:none}
 
 /* ================= 第一幕 ================= */
 .act1{background:#fff;padding:30px 0 60px;position:relative;overflow:hidden}
+.act1 .pick2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
+.act1 .pk{display:block;text-decoration:none;border-radius:18px;padding:28px 26px;border:1px solid var(--line);background:var(--surface);transition:transform .25s,box-shadow .25s;position:relative}
+.act1 .pk:hover{transform:translateY(-3px);box-shadow:0 22px 46px rgba(0,0,0,.12)}
+.act1 .pk-g{border-top:4px solid var(--red)}
+.act1 .pk-p{border-top:4px solid var(--ink)}
+.act1 .pk-en{font-family:var(--en);font-weight:700;letter-spacing:.16em;font-size:.72rem;color:var(--red)}
+.act1 .pk-p .pk-en{color:var(--ink)}
+.act1 .pk-t{display:block;font-family:var(--serif);font-weight:900;font-size:clamp(1.5rem,4vw,2.05rem);color:var(--ink);margin:8px 0 10px}
+.act1 .pk p{color:#555;line-height:1.8;font-size:.95rem;margin:0 0 16px}
+.act1 .pk-go{font-weight:900;color:var(--ink)}
+.act1 .pk:hover .pk-go{color:var(--red)}
+@media(max-width:640px){.act1 .pick2{grid-template-columns:1fr}}
 .kicker{font-family:var(--en);letter-spacing:.36em;font-size:.72rem;color:var(--red);font-weight:600}
 .h2{font-family:var(--serif);font-weight:900;font-size:clamp(1.9rem,5.5vw,3rem);letter-spacing:.04em;line-height:1.25;margin-top:10px}
 .h2 i{font-style:normal;color:var(--red)}
@@ -658,8 +670,22 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 <section class="act1">
   <div class="wrap">
     <div class="kicker rv">ACT 1 / TRAINING</div>
-    <h2 class="h2 rv">走進 HCF <br>每種戰鬥都有<i>入口</i></h2>
-    <p class="lead rv">站立打擊到地面纏鬥，從減脂健體到職業備戰——四大課程體系，跟著現役職業選手練。</p>
+    <h2 class="h2 rv">走進 HCF <br>先選你的<i>路線</i></h2>
+    <p class="lead rv">兩種練法，先挑一個開始：想跟一群人依程度分級、熱血一起練，選<b>團課</b>；想要客製進度、時段彈性、一對一個別指導，選<b>私課</b>。四大體系（泰拳・散打・踢拳・肌力體能）團課、私課都能練。</p>
+    <div class="pick2 rv">
+      <a class="pk pk-g" href="group-classes.html">
+        <span class="pk-en">GROUP CLASSES</span>
+        <b class="pk-t">團體課程</b>
+        <p>跟一群人一起練、依程度分級，氣氛熱血。首堂體驗 $400，零基礎友善、不對打。</p>
+        <span class="pk-go">了解團課・看課表 →</span>
+      </a>
+      <a class="pk pk-p" href="private-training.html">
+        <span class="pk-en">PRIVATE 1:1 / 1:2</span>
+        <b class="pk-t">私人課程</b>
+        <p>教練完全為你而來，客製進度與目標。時段彈性，一對一或一對二都可以。</p>
+        <span class="pk-go">了解私課・預約諮詢 →</span>
+      </a>
+    </div>
   </div>
   <div class="float-track-clip">
     <div class="float-track" id="ftrack"></div>
