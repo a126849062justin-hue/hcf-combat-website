@@ -81,10 +81,7 @@
 <script src="hcf-analytics.js" defer></script>
 <script>
 (function(){
-  if(window.hcfTrack)hcfTrack('seo_beginner_view',{page:'beginner-muay-thai'});
-  document.addEventListener('click',function(e){var a=e.target.closest('a[data-line],a[data-cta]');if(!a||!window.hcfTrack)return;
-    hcfTrack(a.hasAttribute('data-line')?'line_click':'cta_click',{source:'beginner-muay-thai',intent:a.getAttribute('data-intent')||'seo_beginner'});});
-})();
+  if(window.hcfTrack)hcfTrack('seo_beginner_view',{page:'beginner-muay-thai'});})();
 </script>
 </body>
 </html>
