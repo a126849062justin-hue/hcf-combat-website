@@ -66,12 +66,16 @@
   document.addEventListener('click',function(e){
     var el=e.target.closest('a,button');if(!el)return;
     var h=el.href||'';
-    if(h.indexOf('fit-book.com')>-1)hcfTrack('cta_booking',{label:(el.textContent||'').trim().slice(0,30)});
-    else if(h.indexOf('lin.ee')>-1)hcfTrack('cta_line',{label:(el.textContent||'').trim().slice(0,30)});
+    var iw=el.closest&&el.closest('[data-intent]');
+    var src=(document.body&&document.body.dataset&&document.body.dataset.page)||location.pathname;
+    var intent=iw?(iw.getAttribute('data-intent')||''):'';
+    var lbl=(el.textContent||'').trim().slice(0,30);
+    if(h.indexOf('fit-book.com')>-1||h.indexOf('booking.html')>-1)hcfTrack('cta_booking',{label:lbl,source:src,intent:intent});
+    else if(h.indexOf('lin.ee')>-1)hcfTrack('cta_line',{label:lbl,source:src,intent:intent});
     else if(h.indexOf('instagram.com')>-1)hcfTrack('social_click',{platform:'ig'});
     else if(h.indexOf('facebook.com')>-1)hcfTrack('social_click',{platform:'fb'});
     else if(h.indexOf('youtube.com')>-1)hcfTrack('social_click',{platform:'yt'});
-    else if(h.indexOf('tel:')===0)hcfTrack('cta_phone');
+    else if(h.indexOf('tel:')===0)hcfTrack('cta_phone',{source:src,intent:intent});
     else if(el.classList&&el.classList.contains('svtab'))hcfTrack(el.classList.contains('voice')?'voice_tab_click':'survey_tab_click');
     else if(h.indexOf('survey.html')>-1)hcfTrack('nav_survey');
     else if(h.indexOf('schedule.html')>-1)hcfTrack('nav_schedule');

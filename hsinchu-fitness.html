@@ -81,10 +81,7 @@
 <script src="hcf-analytics.js" defer></script>
 <script>
 (function(){
-  if(window.hcfTrack)hcfTrack('seo_fitness_view',{page:'hsinchu-fitness'});
-  document.addEventListener('click',function(e){var a=e.target.closest('a[data-line],a[data-cta]');if(!a||!window.hcfTrack)return;
-    hcfTrack(a.hasAttribute('data-line')?'line_click':'cta_click',{source:'hsinchu-fitness',intent:a.getAttribute('data-intent')||'seo_fitness'});});
-})();
+  if(window.hcfTrack)hcfTrack('seo_fitness_view',{page:'hsinchu-fitness'});})();
 </script>
 </body>
 </html>
