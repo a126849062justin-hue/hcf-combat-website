@@ -31,7 +31,7 @@ a{color:inherit;text-decoration:none}
 .nav{position:fixed;inset:0 0 auto 0;z-index:200;transition:background .35s,box-shadow .35s}
 .nav-in{max-width:var(--maxw);margin:0 auto;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 24px}
 .nav-logo{display:flex;align-items:center;gap:10px}
-.nav-logo img{height:56px}
+.nav-logo img{height:68px}
 .nav-logo b{font-family:var(--en);font-weight:700;letter-spacing:.14em;font-size:1.05rem;color:#fff;transition:color .35s}
 .nav-logo b i{color:var(--red);font-style:normal}
 .nav-links{display:flex;gap:28px;align-items:center}
@@ -50,7 +50,7 @@ a{color:inherit;text-decoration:none}
 .mnav{display:none;flex-direction:column;background:#fff;border-bottom:1px solid var(--line)}
 .mnav a{padding:14px 24px;font-weight:700;color:var(--ink);border-top:1px solid var(--line)}
 .mnav a.cta{background:var(--red);color:#fff;text-align:center}
-@media(max-width:920px){.nav-links{display:none}.nav-burger{display:block}.mnav.open{display:flex}}
+@media(max-width:1180px){.nav-links{display:none}.nav-burger{display:block}.mnav.open{display:flex}}
 
 /* ================= HERO ================= */
 .hero{position:relative;height:100svh;min-height:560px;background:var(--carbon);overflow:hidden;color:#fff}
@@ -512,8 +512,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 /* ===== 比照賽博龐克 v3：Orbitron + LOGO lockup + CTA ===== */
 .kicker,.hero-kicker,.fin-k{font-family:var(--tech)}
 .nav-logo .nlk{display:flex;flex-direction:column;justify-content:center;line-height:1}
-.nav-logo .nlk b{font-family:var(--tech);font-weight:900;font-style:italic;font-size:1.85rem;letter-spacing:.14em;color:#fff;text-shadow:0 0 14px rgba(200,16,21,.5)}
-.nav-logo .nlk em{font-family:var(--tech);font-style:normal;font-weight:700;font-size:.64rem;letter-spacing:.34em;color:var(--red);margin-top:4px;white-space:nowrap}
+.nav-logo .nlk b{font-family:var(--tech);font-weight:900;font-style:italic;font-size:2.2rem;letter-spacing:.14em;color:#fff;text-shadow:0 0 14px rgba(200,16,21,.5)}
+.nav-logo .nlk em{font-family:var(--tech);font-style:normal;font-weight:700;font-size:.72rem;letter-spacing:.32em;color:var(--red);margin-top:4px;white-space:nowrap}
 .nav.sc .nav-logo .nlk b{color:var(--ink);text-shadow:none}
 .nav-cta{font-family:var(--tech)!important;font-weight:700;letter-spacing:.12em;display:inline-flex;align-items:center;gap:7px;box-shadow:0 0 0 1px rgba(200,16,21,.45),0 6px 20px rgba(200,16,21,.35)}
 .cta-bolt{flex:0 0 auto}
@@ -525,7 +525,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 .nav-cta{padding-left:22px;padding-right:22px;box-shadow:none;filter:drop-shadow(0 4px 14px rgba(200,16,21,.5))}
 .hb1{padding-left:36px;padding-right:36px}
 /* 桌機:標題+logo靠最左, nav CTA更清楚, hb2/手機CTA也斜 */
-@media(min-width:769px){.nav-in{max-width:none;padding-left:clamp(28px,5vw,72px);padding-right:clamp(20px,3vw,48px)}}
+@media(min-width:769px){.nav-in{max-width:none;height:86px;padding-left:clamp(28px,5vw,72px);padding-right:clamp(20px,3vw,48px)}}
+@media(min-width:1181px) and (max-width:1360px){.nav-links{gap:16px}.nav-links a{font-size:.85rem;letter-spacing:.02em}}
 @media(min-width:769px){.hero-body{max-width:none;margin:0;padding-left:clamp(28px,5vw,72px);padding-right:clamp(20px,3vw,48px)}}
 .nav-cta{padding:11px 24px!important;font-size:.96rem;letter-spacing:.12em;filter:drop-shadow(0 3px 16px rgba(255,40,50,.7))}
 .hb2{font-style:italic;clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%);padding-left:32px;padding-right:32px}
