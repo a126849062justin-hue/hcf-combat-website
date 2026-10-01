@@ -346,21 +346,9 @@ function hcfCountdown(){
 }
 hcfCountdown();
 
-// ===== 後台遠端課表覆寫 =====
-// 從 HCF 後台 APP(site-content)抓最新課表；後台「官網內容」編輯後這裡自動顯示。
-window.HCF_CONTENT = fetch('https://beamish-basbousa-cb3585.netlify.app/.netlify/functions/site-content?key=schedule&_='+Date.now(),{cache:'no-store'})
-  .then(function(r){return r.json();}).then(function(j){return { schedule: (j&&j.data)||null };}).catch(function(){return {};});
-document.addEventListener('DOMContentLoaded',function(){(window.HCF_CONTENT||Promise.resolve({})).then(function(c){
-  var S=c&&c.schedule;
-  if(!S||!S.weekday)return;
-  function slot(x){return x&&x.zh?{cat:x.cat||'mt',lv:+x.lv===3?3:+x.lv===2?2:1,zh:x.zh,en:x.en||'',note:x.note||''}:null;}
-  function tslot(t){return {s:t.s,e:t.e,tag:t.tag||''};}
-  WT.length=0;(S.wt||[]).forEach(function(t){WT.push(tslot(t))});
-  ET.length=0;(S.et||[]).forEach(function(t){ET.push(tslot(t))});
-  WEEKDAY.length=0;(S.weekday||[]).forEach(function(row){WEEKDAY.push(row.map(slot))});
-  WEEKEND.length=0;(S.weekend||[]).forEach(function(row){WEEKEND.push(row.map(slot))});
-  render();hcfToday();hcfCountdown();
-})});
+// ===== 課表以程式碼為準（公告版）=====
+// 不再從後台 site-content 覆寫課表，避免 fetch 後把畫面蓋成舊版／營運版造成閃現。
+// 要調整課表：改上方 WEEKDAY／WEEKEND 常數即可（公告版＝只掛對外團課）。
 </script>
 <script src="hcf-analytics.js" defer></script>
 </body>
