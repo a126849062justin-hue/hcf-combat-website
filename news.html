@@ -510,7 +510,7 @@ document.addEventListener('DOMContentLoaded',function(){(window.HCF_CONTENT||Pro
 })();
 (function(){
   function esc(s){return String(s).replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
-  fetch("https://beamish-basbousa-cb3585.netlify.app/.netlify/functions/site-content?key=news")
+  fetch("https://beamish-basbousa-cb3585.netlify.app/.netlify/functions/site-content?key=news&_="+Date.now(),{cache:"no-store"})
    .then(function(r){return r.json();}).then(function(j){
      var items=(j&&j.data&&j.data.items)||[]; if(!items.length) return;
      var wrap=document.querySelector("#offers .wrap"); if(!wrap) return;
