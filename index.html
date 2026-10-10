@@ -627,28 +627,25 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SportsActivityLocation", "name": "HCF 新竹格鬥", "alternateName": "HCF Combat Hsinchu", "description": "新竹泰拳、散打、踢拳、肌力體能格鬥訓練館，職業選手教練授課，$400 首堂體驗。", "url": "https://www.hsinchucombat.com", "telephone": "+886-925-571-225", "priceRange": "NT$400 - NT$5,500", "image": "https://www.hsinchucombat.com/og-cover.jpg", "address": {"@type": "PostalAddress", "streetAddress": "北區林森路301號2樓", "addressLocality": "新竹市", "addressCountry": "TW"}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "11:00", "closes": "22:00"}, {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday", "Sunday"], "opens": "11:00", "closes": "16:00"}], "sameAs": ["https://www.instagram.com/hc.combat2022/", "https://m.facebook.com/hsinchucombat/", "https://youtube.com/playlist?list=PLFtibVDr-YTBsPUoEfClpei2ttq1mGtKN", "https://lin.ee/7lidUv0"]}</script>
 <style>.ndd{position:relative}.ndd>a i{font-style:normal;font-size:.68em;margin-left:4px;opacity:.8}.ndd::after{content:"";position:absolute;left:-10px;right:-10px;top:100%;height:14px}.ndd-m{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(6px);background:#fff;min-width:158px;padding:8px 0;box-shadow:0 18px 44px rgba(17,17,17,.18);border-top:3px solid var(--red,#C81015);opacity:0;visibility:hidden;transition:.22s;z-index:210}.ndd:hover .ndd-m,.ndd:focus-within .ndd-m{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}.ndd-m a{display:block;padding:11px 18px;color:var(--ink,#111)!important;font-size:.9rem;font-weight:700}.ndd-m a::after{display:none}.ndd-m a:hover{background:var(--surface,#F7F7F7);color:var(--red,#C81015)!important}.msub-t{display:flex;justify-content:space-between;align-items:center;width:100%;padding:14px 24px;font-weight:700;color:var(--ink,#111);border:0;border-top:1px solid var(--line,#E5E5E5);background:#fff;font-family:var(--sans,sans-serif);font-size:1rem;cursor:pointer;text-align:left}.msub-t i{font-style:normal;color:var(--red,#C81015);font-weight:900;transition:transform .2s}.msub-t.open i{transform:rotate(45deg)}.msub{display:none;flex-direction:column;background:var(--surface,#F7F7F7)}.msub.open{display:flex}.msub a{padding-left:42px!important;font-size:.95rem}.msub-grid.open{display:grid;grid-template-columns:1fr 1fr}.msub-grid a{padding:13px 10px 13px 26px!important;font-size:.9rem;position:relative}.msub-grid a::before{content:"·";position:absolute;left:14px;color:var(--red,#C81015);font-weight:900}.msub-grid a:nth-child(odd){border-right:1px solid var(--line,#E5E5E5)}</style>
 <style>
-/* New visitors can understand the first class without leaving the hero. */
-.hero-intro{margin-top:20px;font-size:clamp(17px,2.4vw,23px);font-weight:700;line-height:1.55;text-shadow:0 2px 14px #000}
-.hero-intro strong{color:#fff}
-.hero-facts{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:10px;font-size:14px;color:#eee;text-shadow:0 2px 10px #000}
-.hero-facts span+span::before{content:'·';margin-right:16px;color:#e95454}
-.hero-acts{margin-top:22px;gap:12px}
+/* Keep the first screen focused on the film, name and one trial message. */
+.hero-vname{display:none}
+body .svtab,body .vtab-wrap{display:none!important}
+.hero-intro{margin-top:24px;font-size:clamp(16px,2vw,21px);font-weight:500;line-height:1.7;letter-spacing:.04em;text-shadow:0 2px 14px #000}
+.hero-acts{margin-top:32px}
 .hero-acts a{display:inline-flex;align-items:center;justify-content:center;min-height:48px;text-align:center;border-radius:4px}
-.hero-next{margin-top:12px;font-size:13px;line-height:1.7;color:#eee;text-shadow:0 2px 10px #000}
 .a4-grid>*{min-width:0}
 .offer .cd{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 .offer .cd div{width:auto;min-width:0}
 .hero-shade{background:linear-gradient(180deg,rgba(10,10,10,.5),rgba(10,10,10,.2) 25%,rgba(10,10,10,.86) 100%)}
-@media(min-width:769px){.hero-body{padding-bottom:13vh}.hero-h1{font-size:clamp(2.6rem,7vw,5.7rem)}}
+@media(min-width:769px){.hero-body{padding-bottom:16vh}.hero-h1{font-size:clamp(2.6rem,7vw,5.7rem)}}
 @media(max-width:920px){
   .hero{height:auto;min-height:calc(100svh - 72px - env(safe-area-inset-bottom))}
-  .hero-body{min-height:inherit;height:auto;padding:132px 24px 60px;justify-content:flex-end}
-  .hero-acts{display:flex;gap:10px}.hero-acts a{font-size:14px;padding:13px 16px;transform:none}
-  .hero-intro{font-size:19px;margin-top:20px}.hero-facts{font-size:13px;gap:6px 12px}
-  .hero-facts span+span::before{margin-right:12px}.hero-next{max-width:300px}
+  .hero-body{min-height:inherit;height:auto;padding:132px 24px 96px;justify-content:flex-end}
+  .hero-acts{display:none}
+  .hero-intro{font-size:16px;margin-top:22px;letter-spacing:.02em}
   .hero-dots{bottom:24px}.hero-scroll{display:none}
 }
-@media(max-width:380px){.hero-body{padding-left:20px;padding-right:20px}.hero-h1{font-size:1.85rem}.hero-sub{font-size:.8rem}.hero-acts{flex-direction:column;align-items:stretch}.hero-next{font-size:12px}}
+@media(max-width:380px){.hero-body{padding-left:20px;padding-right:20px}.hero-h1{font-size:1.85rem}.hero-intro{font-size:14px}}
 @media(prefers-reduced-motion:reduce){.hero-acts{opacity:1;animation:none}.hero-acts a{transition:none}}
 </style>
 <link rel="stylesheet" href="hcf-actions.css">
@@ -690,11 +687,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
   <div class="hero-body">
     <div class="hero-vname" id="hvname"><em>NOW PLAYING</em><b>品牌形象</b></div>
     <h1 class="hero-h1"><i>HCF</i>新竹格鬥館</h1>
-    <p class="hero-sub">新竹泰拳首選 · 踢拳 · 散打 · 專業重訓</p>
-    <p class="hero-intro">零基礎，從第一拳開始。<br><strong>60 分鐘團課體驗 $400</strong></p>
-    <div class="hero-facts"><span>入門不對打</span><span>拳套館內提供</span><span>新竹市林森路 301 號</span></div>
-    <div class="hero-acts"><a class="hb1" href="booking.html">安排我的體驗課 →</a><a class="hb2" href="schedule.html">看課表與分級</a></div>
-    <p class="hero-next">填寫 60 秒需求，再由 LINE 與教練確認時段。</p>
+    <p class="hero-intro">零基礎友善 · 團課體驗 $400</p>
+    <div class="hero-acts"><a class="hb1" href="booking.html">安排體驗課 →</a></div>
   </div>
   <div class="hero-dots" id="dots"></div>
   <div class="hero-scroll">SCROLL</div>
@@ -711,18 +705,18 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
   <div class="wrap">
     <div class="kicker rv">ACT 1 / TRAINING</div>
     <h2 class="h2 rv">走進 HCF <br>先選你的<i>路線</i></h2>
-    <p class="lead rv">兩種練法，先挑一個開始：想跟一群人依程度分級、熱血一起練，選<b>團課</b>；想要客製進度、時段彈性、一對一個別指導，選<b>私課</b>。四大體系（泰拳・散打・踢拳・肌力體能）團課、私課都能練。</p>
+    <p class="lead rv">團課一起練，私課按你的節奏。零基礎也能開始。</p>
     <div class="pick2 rv">
       <a class="pk pk-g" href="group-classes.html">
         <span class="pk-en">GROUP CLASSES</span>
         <b class="pk-t">團體課程</b>
-        <p>跟一群人一起練、依程度分級，氣氛熱血。首堂體驗 $400，零基礎友善、不對打。</p>
+        <p>依程度分級，零基礎友善、不對打。</p>
         <span class="pk-go">了解團課・看課表 →</span>
       </a>
       <a class="pk pk-p" href="private-training.html">
         <span class="pk-en">PRIVATE 1:1 / 1:2</span>
         <b class="pk-t">私人課程</b>
-        <p>教練完全為你而來，客製進度與目標。時段彈性，一對一或一對二都可以。</p>
+        <p>一對一或一對二，客製進度、彈性時段。</p>
         <span class="pk-go">了解私課・預約諮詢 →</span>
       </a>
     </div>
