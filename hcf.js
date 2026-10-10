@@ -2,6 +2,8 @@
 (function(){
 // ===== 共用元件注入：nav / 浮動層 / 頁尾 =====
 var page=document.body.dataset.page||'';
+// The booking wizard owns its navigation; keep the lead integration below active.
+if(page==='booking')return;
 var NAV='<div class="nav-in">\
 <a class="nav-logo" href="index.html"><img src="assets/final-logo.png" alt="HCF"><span class="nlk"><b>HCF</b><em>COMBAT SYSTEM</em></span></a>\
 <nav class="nav-links">\
@@ -13,14 +15,14 @@ var NAV='<div class="nav-in">\
 <a href="team.html" data-p="team" data-en="COACHES">教練團隊</a>\
 <a href="pricing.html" data-p="pricing" data-en="PRICING">課程方案</a><a href="partnership.html" data-p="partnership" data-en="CORPORATE">企業合作</a><a href="shop.html" data-p="shop" data-en="SHOP">商城</a>\
 <a href="how-to-book.html" data-p="how-to-book" data-en="GUIDE">預約教學</a>\
-<a class="nav-cta" href="booking.html"><svg class="cta-bolt" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg>立即預約</a>\
+<a class="nav-cta" href="booking.html"><svg class="cta-bolt" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg>安排體驗課</a>\
 </nav>\
 <button class="nav-burger" id="burger" aria-label="選單"><span></span><span></span><span></span></button>\
 </div>\
 <nav class="mnav" id="mnav">\
 <a href="index.html" data-en="HOME">首頁</a><a href="news.html" data-en="EVENTS">最新活動</a><a href="philosophy.html" data-en="BRAND">品牌哲學</a>\
 <button class="msub-t open" type="button" data-en="CLASS">課程介紹<i>＋</i></button><div class="msub msub-grid open"><a href="group-classes.html" data-en="GROUP">團體課程</a><a href="private-training.html" data-en="PRIVATE">私人課程</a></div><a href="team.html" data-en="COACHES">教練團隊</a><button class="msub-t open" type="button" data-en="PRICING">課程方案<i>＋</i></button><div class="msub msub-grid open"><a href="pricing.html" data-en="PRICING">價目表</a><a href="packages.html" data-en="BUNDLE">套組方案</a><a href="schedule.html" data-en="SCHEDULE">課表</a><a href="partnership.html" data-en="CORPORATE">企業合作</a></div><a href="survey.html" data-en="FAQ">新手問答</a><a href="shop.html" data-en="SHOP">商城</a><a href="https://www.fit-book.com.tw/hsinchucombat" target="_blank" rel="noopener" data-en="LOGIN">會員登入</a>\
-<a href="how-to-book.html" data-en="GUIDE">預約教學</a><a class="cta" href="booking.html">立即預約 $400 體驗</a><div class="mnav-social"><a href="https://www.instagram.com/hc.combat2022/" target="_blank" rel="noopener" data-s="ig" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm0 2a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H7zm5 3.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 2a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM17.5 6a1 1 0 110 2 1 1 0 010-2z"/></svg></a><a href="https://m.facebook.com/hsinchucombat/" target="_blank" rel="noopener" data-s="fb" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.6V3.9c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.7v3h2.4v8h3.4z"/></svg></a><a href="https://youtube.com/playlist?list=PLFtibVDr-YTBsPUoEfClpei2ttq1mGtKN" target="_blank" rel="noopener" data-s="yt" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 00-1.7-1.7C19.4 5.2 12 5.2 12 5.2s-7.4 0-8.9.4A2.5 2.5 0 001.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7c.2.9.9 1.5 1.7 1.7 1.5.4 8.9.4 8.9.4s7.4 0 8.9-.4a2.5 2.5 0 001.7-1.7c.4-1.5.4-4.7.4-4.7zM9.8 15.1V8.9l5.3 3.1-5.3 3.1z"/></svg></a><a href="https://lin.ee/7lidUv0" target="_blank" rel="noopener" data-s="line" aria-label="LINE"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.5c-5 0-9 3.2-9 7.2 0 3.5 3 6.5 7.2 7.1.3.05.6.15.7.35.06.2.04.5.02.7l-.12.75c-.03.2-.17.86.77.47s5.1-3 6.9-5.2c1.2-1.4 1.8-2.8 1.8-4.4 0-4-4-7.2-9.06-7.2z"/></svg></a></div></nav>';
+<a href="how-to-book.html" data-en="GUIDE">預約教學</a><a class="cta" href="booking.html">安排體驗 · $400 起</a><div class="mnav-social"><a href="https://www.instagram.com/hc.combat2022/" target="_blank" rel="noopener" data-s="ig" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm0 2a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H7zm5 3.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 2a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM17.5 6a1 1 0 110 2 1 1 0 010-2z"/></svg></a><a href="https://m.facebook.com/hsinchucombat/" target="_blank" rel="noopener" data-s="fb" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.6V3.9c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.7v3h2.4v8h3.4z"/></svg></a><a href="https://youtube.com/playlist?list=PLFtibVDr-YTBsPUoEfClpei2ttq1mGtKN" target="_blank" rel="noopener" data-s="yt" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 00-1.7-1.7C19.4 5.2 12 5.2 12 5.2s-7.4 0-8.9.4A2.5 2.5 0 001.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7c.2.9.9 1.5 1.7 1.7 1.5.4 8.9.4 8.9.4s7.4 0 8.9-.4a2.5 2.5 0 001.7-1.7c.4-1.5.4-4.7.4-4.7zM9.8 15.1V8.9l5.3 3.1-5.3 3.1z"/></svg></a><a href="https://lin.ee/7lidUv0" target="_blank" rel="noopener" data-s="line" aria-label="LINE"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.5c-5 0-9 3.2-9 7.2 0 3.5 3 6.5 7.2 7.1.3.05.6.15.7.35.06.2.04.5.02.7l-.12.75c-.03.2-.17.86.77.47s5.1-3 6.9-5.2c1.2-1.4 1.8-2.8 1.8-4.4 0-4-4-7.2-9.06-7.2z"/></svg></a></div></nav>';
 var nav=document.getElementById('nav'); if(nav){nav.innerHTML=NAV;
   var on=nav.querySelector('[data-p="'+page+'"]'); if(on)on.classList.add('on');}
 
@@ -64,7 +66,7 @@ document.head.appendChild(NAVCSS2);
 
 var FLOAT='<button class="totop" id="totop" aria-label="回頂部">TOP</button>\
 <div class="mcta">\
-<a class="m1" href="booking.html">立即預約 $400 體驗</a>\
+<a class="m1" href="booking.html">安排體驗 · $400 起</a>\
 <a class="m2" href="https://lin.ee/7lidUv0" target="_blank" rel="noopener">LINE 諮詢</a></div>';
 document.body.insertAdjacentHTML('beforeend',FLOAT);
 
@@ -72,7 +74,7 @@ var FOOT='<div class="fin-in">\
 <div class="fin-k">HCF COMBAT HSINCHU</div>\
 <div class="fin-q">這輩子總要為自己<i>贏一次</i></div>\
 <div class="fin-btns">\
-<a class="hb1" href="booking.html">立即預約 $400 體驗</a>\
+<a class="hb1" href="booking.html">安排體驗 · $400 起</a>\
 <a class="hb2" href="https://lin.ee/7lidUv0" target="_blank" rel="noopener">LINE 諮詢</a></div></div>\
 <div class="fin-foot">\
 <div><h5>HCF 新竹格鬥</h5><p>Honor 榮譽 · Courage 勇氣 · Faith 信念</p><p>泰拳 / 散打 / 踢拳 / 肌力體能</p></div>\
@@ -132,7 +134,7 @@ document.querySelectorAll('[data-cnt]').forEach(function(el){cio.observe(el)});
 
 /* ===== 左側預約入口 ===== */
 (function(){
-  if(document.body.dataset.page==='survey'||document.body.dataset.page==='status'||document.querySelector('.svtab'))return;
+  if(document.body.dataset.page==='booking'||document.body.dataset.page==='survey'||document.body.dataset.page==='status'||document.querySelector('.svtab'))return;
   var st=document.createElement('style');
   st.textContent=".svtab{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:140;display:flex;flex-direction:column;align-items:center;background:#C81015;color:#fff;text-decoration:none;font-weight:900;font-size:.86rem;line-height:1.5;text-align:center;padding:13px 9px;width:max-content;border-radius:0 14px 14px 0;box-shadow:5px 0 22px rgba(200,16,21,.5);transition:padding .25s,background .25s;animation:svwig 4.5s ease-in-out infinite}.svtab:hover{background:#9B0B0F;padding-left:15px;animation:none}.svtab b{display:block;font-family:inherit}@keyframes svwig{0%,82%,100%{transform:translateY(-50%) translateX(0)}88%{transform:translateY(-50%) translateX(6px)}94%{transform:translateY(-50%) translateX(-1px)}}@keyframes svwigm{0%,82%,100%{transform:translateX(0)}88%{transform:translateX(5px)}94%{transform:translateX(-1px)}}@media(max-width:880px){.svtab{top:104px;transform:none;font-size:.76rem;padding:11px 7px;border-radius:0 12px 12px 0;box-shadow:4px 0 16px rgba(200,16,21,.5);animation:svwigm 4.5s ease-in-out infinite}}";
   document.head.appendChild(st);
@@ -186,7 +188,7 @@ document.querySelectorAll('[data-cnt]').forEach(function(el){cio.observe(el)});
 })();
 
 /* 全站背景配樂（跨頁接續，桌面限定） */
-(function(){var s=document.createElement('script');s.src='hcf-bgm.js';s.defer=true;(document.head||document.documentElement).appendChild(s);})();
+(function(){if(document.body.dataset.page==='booking')return;var s=document.createElement('script');s.src='hcf-bgm.js';s.defer=true;(document.head||document.documentElement).appendChild(s);})();
 
 /* 官網表單 → HCF 後台 APP（鏡射，不影響原本 FormSubmit/LINE 流程）2026-09 */
 (function(){
