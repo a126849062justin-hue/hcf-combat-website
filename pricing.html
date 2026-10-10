@@ -88,6 +88,19 @@
 .pack .go{display:block;text-align:center;background:var(--ink);color:#fff;font-weight:800;font-size:.9rem;padding:12px;margin-top:13px;transition:background .2s}
 .pack:hover .go{background:var(--red)}
 </style>
+<style>
+.price-summary{padding:0 0 32px}.price-summary h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2rem);margin-bottom:10px}
+.price-summary>p{color:var(--ink2);font-size:.92rem;margin-bottom:20px;max-width:680px}
+.price-compare{width:100%;border-collapse:collapse;font-size:1rem;background:#fff;border:1px solid var(--line)}
+.price-compare caption{text-align:left;font-size:.8rem;color:var(--ink2);padding-bottom:10px}
+.price-compare th,.price-compare td{text-align:left;padding:18px 20px;border-bottom:1px solid var(--line);vertical-align:top}
+.price-compare thead{background:var(--ink);color:#fff}.price-compare tbody th{font-weight:700}
+.price-compare td:nth-child(2){font-weight:900;color:var(--red);white-space:nowrap}
+.price-compare small{display:block;font-size:.78rem;color:var(--ink2);font-weight:400;margin-top:4px;white-space:normal}
+.price-summary .price-note{font-size:.85rem;line-height:1.8;margin-top:16px}
+.price-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.price-actions a{padding:14px 20px;min-height:48px;border:1px solid var(--ink);font-weight:700;text-decoration:none}.price-actions a:first-child{background:var(--red);border-color:var(--red);color:#fff}
+@media(max-width:600px){.price-compare{font-size:.86rem}.price-compare th,.price-compare td{padding:14px 10px}.price-compare small{font-size:.73rem}.price-actions{flex-direction:column}.price-actions a{text-align:center}.prow .nm{white-space:normal}.prow .pz{flex-shrink:0}.prow .nm small{display:block;margin-left:0}}
+</style>
 </head>
 <body data-page="pricing">
 <header class="nav" id="nav"></header>
@@ -98,7 +111,7 @@
   <div class="phero-in">
     <div class="kicker">PRICING / PLANS</div>
     <h1>第一堂課 <i>$400</i> <br>之後的路你自己選</h1>
-    <p>不綁長約話術、價格全部攤開。先用一堂體驗課確認這裡適不適合你，再決定要走團課、私課，還是直接月票練好練滿。</p>
+    <p>先看懂體驗費用，再決定怎麼開始。用一堂課確認這裡適不適合你，之後再選團課、私課或包月方案。</p>
   </div>
 </section>
 
@@ -109,12 +122,32 @@
 
 <section class="pr dotbg">
   <div class="wrap">
+    <div class="price-summary" id="compare">
+      <div class="kicker">FIND YOUR START</div>
+      <h2>先選適合你的開始方式</h2>
+      <p>第一次來，先體驗再決定。以下金額以新台幣計；私人課時段請先與教練確認。</p>
+      <table class="price-compare">
+        <caption>體驗課與團課包月比較</caption>
+        <thead><tr><th scope="col">課程</th><th scope="col">費用</th><th scope="col">適合你，如果…</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">團課體驗<small>1 堂 · 60 分鐘</small></th><td><span data-pk="p_g_trial">$400</span><small>新生首堂</small></td><td>想先感受氣氛、學基本動作</td></tr>
+          <tr><th scope="row">一對一體驗<small>1 堂 · 60 分鐘</small></th><td><span data-pk="p11_t1">$1,400</span></td><td>希望教練專注調整你的動作</td></tr>
+          <tr><th scope="row">一對一深度體驗<small>2 堂 · 每堂 60 分鐘</small></th><td><span data-pk="p11_t2">$2,400</span><small>2 堂合計</small></td><td>想多一點時間建立基礎</td></tr>
+          <tr><th scope="row">一對二體驗<small>1 堂 · 60 分鐘</small></th><td><span data-pk="p12_t1">$2,400</span></td><td>想和夥伴一起接受指導</td></tr>
+          <tr><th scope="row">團課包月<small>需由櫃檯開卡</small></th><td><span data-pk="p_max">$5,500</span><small>每月</small></td><td>已確認適合、希望規律訓練</td></tr>
+        </tbody>
+      </table>
+      <p class="price-note">團課、打靶與包月方案需具備 HCF 會員資格並由櫃檯開卡；會員費、啟用日與效期請在購買前確認。常態堂數方案及私人打靶價格可透過 LINE 洽詢。</p>
+      <div class="price-actions"><a href="booking.html">安排我的體驗課 →</a><a href="https://lin.ee/7lidUv0" target="_blank" rel="noopener">LINE 詢問堂數與效期 ↗</a></div>
+    </div>
+
 
     <div class="pgroup rv">
       <div class="pg-head"><span class="no">01</span><h2>團體課</h2><span class="en">GROUP CLASS · 60 MINS</span></div>
       <p class="pg-note">泰拳／散打／踢拳／肌力體能，依程度分組教學。最多人選擇的入門方式。</p>
       <div class="plist">
         <div class="prow hot"><span class="nm">首堂體驗<small>新生限定</small></span><span class="dots"></span><span class="pz" data-pk="p_g_trial">$400</span></div>
+        <div class="prow"><span class="nm">包月無限方案<small>每月・櫃檯開卡</small></span><span class="dots"></span><span class="pz" data-pk="p_max">$5,500</span></div>
       </div>
     </div>
 
@@ -139,12 +172,12 @@
       <div class="pg-head"><span class="no">04</span><h2>私人打靶課</h2><span class="en">PAD WORK · 40 MINS</span></div>
       <p class="pg-note">40 分鐘高強度一對一打靶——進度衝刺、賽前磨技、或單純爽快出汗的最佳選擇。</p>
       <div class="plist">
-<div class="prow inq"><span class="nm">完整方案・堂數價格</span><span class="dots"></span><span class="pz">歡迎洽詢 →</span></div>
+<a class="prow inq" href="https://lin.ee/7lidUv0" target="_blank" rel="noopener"><span class="nm">完整方案・堂數價格</span><span class="dots"></span><span class="pz">LINE 洽詢 →</span></a>
 </div>
-      <a class="pbtn" href="https://www.fit-book.com.tw/hsinchucombat/plan/588" target="_blank" rel="noopener">FitBook 線上預約 · 領 $400 體驗</a>
+      <a class="pbtn" href="https://www.fit-book.com.tw/hsinchucombat/plan/588" target="_blank" rel="noopener">已確定課程？到 FitBook 約課</a>
     </div>
 
-    <div class="fine rv">課程效期、請假與轉讓規範以館內公告為準；私人課時段請先透過 LINE 與教練確認。所有方案皆可透過 FitBook 線上預約與管理。</div>
+    <div class="fine rv">課程效期、請假與轉讓規範以館內公告為準；私人課時段請先透過 LINE 與教練確認。已開卡學員可透過 FitBook 預約與管理課程。</div>
   </div>
 </section>
 
@@ -196,7 +229,7 @@ document.addEventListener('DOMContentLoaded',function(){(window.HCF_CONTENT||Pro
 (function(){
   fetch("https://beamish-basbousa-cb3585.netlify.app/.netlify/functions/site-content?key=pricing&_="+Date.now(),{cache:"no-store"})
    .then(function(r){return r.json();}).then(function(j){ var d=j&&j.data; if(!d)return;
-     Object.keys(d).forEach(function(pk){ var el=document.querySelector("[data-pk=\"" + pk + "\"]"); if(el&&d[pk]) el.textContent=d[pk]; }); }).catch(function(){});
+     Object.keys(d).forEach(function(pk){ document.querySelectorAll("[data-pk=\"" + pk + "\"]").forEach(function(el){ if(d[pk]) el.textContent=d[pk]; }); }); }).catch(function(){});
 })();
 </script>
 </body>

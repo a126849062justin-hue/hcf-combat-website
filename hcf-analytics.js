@@ -107,7 +107,7 @@
     st.textContent='.vtab-wrap{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:140;display:flex;flex-direction:column;gap:10px;align-items:flex-start}'
       +'.vtab-wrap .svtab{position:static!important;top:auto!important;transform:none!important;margin:0!important}'
       +'.svtab.voice{background:#2b1210;box-shadow:6px 0 20px rgba(0,0,0,.55),inset -3px 0 0 rgba(200,16,21,.9);border-top:1px solid rgba(184,149,85,.45);border-bottom:1px solid rgba(184,149,85,.45)}.svtab.voice:hover{background:#3a1512}'
-      +'@media(max-width:920px){.vtab-wrap{top:88px;transform:none;display:flex!important;gap:8px}.vtab-wrap .svtab{display:block!important;font-size:.72rem!important;padding:8px 6px!important;line-height:1.4!important}}';
+      +'@media(max-width:920px){.vtab-wrap,.vtab-wrap .svtab{display:none!important}}';
     document.head.appendChild(st);
     var wrap=document.createElement('div');wrap.className='vtab-wrap';
     sv.parentNode.insertBefore(wrap,sv);wrap.appendChild(sv);
@@ -128,17 +128,23 @@
   st.textContent='.mnav a.mnav-sub{padding-left:46px!important;font-size:.92rem!important;opacity:.92}';
   document.head.appendChild(st);
   function mk(e,cls){var a=document.createElement('a');a.href=e.href;a.textContent=e.label;if(cls)a.className=cls;return a;}
+  function hasLink(box,href){
+    var wanted=new URL(href,location.href).pathname.replace(/\.html$/,'').replace(/\/$/,'');
+    return Array.from(box.querySelectorAll('a[href]')).some(function(a){
+      return a.origin===location.origin && a.pathname.replace(/\.html$/,'').replace(/\/$/,'')===wanted;
+    });
+  }
   function injectMnav(mnav){
-    if(!mnav.querySelector('a[href="'+PKG.href+'"]')){
+    if(!hasLink(mnav,PKG.href)){
       var pricing=mnav.querySelector('a[href="pricing.html"]')||mnav.querySelector('a[href*="pricing"]');
       var a=mk(PKG,'mnav-sub');
       if(pricing&&pricing.parentNode)pricing.parentNode.insertBefore(a,pricing.nextSibling);
       else mnav.appendChild(a);
     }
-    if(!mnav.querySelector('a[href="'+VOICE.href+'"]'))mnav.appendChild(mk(VOICE));
+    if(!hasLink(mnav,VOICE.href))mnav.appendChild(mk(VOICE));
   }
   function injectFooter(box){
-    [PKG,VOICE].forEach(function(e){if(!box.querySelector('a[href="'+e.href+'"]'))box.appendChild(mk(e));});
+    [PKG,VOICE].forEach(function(e){if(!hasLink(box,e.href))box.appendChild(mk(e));});
   }
   function inject(){
     var doneM=false,doneF=false;

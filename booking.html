@@ -136,9 +136,19 @@ input::placeholder,textarea::placeholder{color:#5E5E5E}
 .member a{color:var(--gold);font-weight:700;text-decoration:none;border-bottom:1px solid rgba(212,175,55,.4)}
 footer{position:relative;z-index:1;max-width:720px;margin:0 auto;width:100%;padding:0 20px 120px;font-size:12px;color:#5E5E5E;letter-spacing:.5px;text-align:center}
 @media(max-width:420px){.btn{font-size:16px;padding:14px}.btn-s{flex:0 0 92px}}
+
+.booking-steps{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:24px;counter-reset:booking}
+.booking-steps li{counter-increment:booking;padding:12px 8px;border:1px solid #353535;border-radius:8px;font-size:13px;text-align:center;color:#eee;background:rgba(255,255,255,.025)}
+.booking-steps li::before{content:'0' counter(booking);display:block;color:var(--gold);font-size:12px;font-weight:900;letter-spacing:2px;margin-bottom:5px}
+.booking-direct{display:block;text-align:center;border:1px solid #505050;border-radius:10px;padding:14px;margin-top:12px;font-size:14px;font-weight:700;text-decoration:none}
+.booking-direct:hover{border-color:var(--gold);color:var(--gold)}
+.booking-note{font-size:12px!important;color:#aaa!important;text-align:center;margin-top:10px!important}
+.opt:focus-within{outline:2px solid var(--gold);outline-offset:3px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+
 </style>
 </head>
-<body>
+<body data-page="booking">
 
 <header class="hd">
   <div class="hd-in">
@@ -155,12 +165,15 @@ footer{position:relative;z-index:1;max-width:720px;margin:0 auto;width:100%;padd
 <main>
   <!-- ============ 首頁 ============ -->
   <div class="lede" id="intro">
-    <h1>HCF <em>新生訓練</em>規劃<span class="sub">60 秒需求診斷</span></h1>
+    <h1>安排我的<em>體驗課</em><span class="sub">60 秒需求診斷 · 團課 $400 起</span></h1>
     <p>不需要有任何格鬥基礎。<br>
        告訴我們你目前的目標、運動經驗與方便時間，教練會依照你的實際狀況，推薦適合的體驗方式。</p>
-    <p class="fine">我們不會亂推課，也不會強迫購買。填寫時間約 60 秒。</p>
+    <p class="fine">填寫約 60 秒，再到官方 LINE 傳送你的稱呼，由教練確認適合的課程與時段。填表不等於預約完成。</p>
     <div class="trust"><span>🥊 零基礎友善</span><span>🧭 教練親自規劃</span><span>🚫 不強迫購買</span></div>
-    <button class="startbtn" id="startBtn" type="button">開始我的訓練規劃</button>
+    <ol class="booking-steps" aria-label="體驗安排流程"><li>填寫需求</li><li>加入官方 LINE</li><li>確認上課時段</li></ol>
+    <button class="startbtn" id="startBtn" type="button">填寫需求，安排體驗課 →</button>
+    <a class="booking-direct" href="https://www.fit-book.com.tw/hsinchucombat/plan/588" target="_blank" rel="noopener">已確定課程？直接到 FitBook 約課 ↗</a>
+    <p class="booking-note">還不確定適合哪種課程？先填需求，讓教練協助你。</p>
   </div>
 
   <!-- ============ 表單 ============ -->
