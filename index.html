@@ -649,11 +649,45 @@ body .svtab,body .vtab-wrap{display:none!important}
 @media(prefers-reduced-motion:reduce){.hero-acts{opacity:1;animation:none}.hero-acts a{transition:none}}
 </style>
 <link rel="stylesheet" href="hcf-actions.css">
+<style id="hcfvl-placement-styles">
+/* HCF VISUAL LAB：首頁橫幅、導覽入口、頁尾品牌列。 */
+.hcfvl-nav-link{display:inline-flex!important;align-items:center;gap:6px;min-height:42px;padding:8px 12px!important;flex-shrink:0;border:1px solid transparent;border-radius:999px;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(105deg,#4890ff,#bd71ef,#ff8e8f,#ffcf74) border-box;color:#20242d!important;font-family:inherit;font-weight:700!important;font-size:12px!important;line-height:1.4;text-decoration:none;white-space:nowrap}
+.hcfvl-nav-link::after{display:none!important}
+.hcfvl-nav-link::before{content:"";width:8px;height:8px;flex-shrink:0;border-radius:50%;background:linear-gradient(120deg,#337cff,#c43dff,#ff796c)}
+.hcfvl-mobile-entry{display:none!important}
+#nav.hcfvl-has-design .hcfvl-nav-link:focus-visible,.hcfvl-hero-strip a:focus-visible,.hcfvl-footer-band a:focus-visible{outline:3px solid #4671df;outline-offset:4px}
+@media(min-width:1181px) and (max-width:1279px){#nav.hcfvl-has-design .nav-links{gap:10px}#nav.hcfvl-has-design .nav-links>a{font-size:12px;letter-spacing:0}}
+@media(max-width:1180px){#nav.hcfvl-has-design .hcfvl-mobile-entry{display:inline-flex!important;margin-left:auto;margin-right:12px}#nav.hcfvl-has-design .nav-burger{flex-shrink:0}}
+@media(max-width:380px){#nav.hcfvl-has-design .nav-in{padding-left:14px;padding-right:14px}#nav.hcfvl-has-design .hcfvl-mobile-entry{margin-right:6px;padding:8px 9px!important;font-size:11px!important}#nav.hcfvl-has-design .nav-logo .nlk em{font-size:8px;letter-spacing:.13em}#nav.hcfvl-has-design .nav-logo{gap:7px}}
+#mnav .hcfvl-menu-entry{background:linear-gradient(100deg,#eff5ff,#f9f2ff,#fff6ed);color:#1d2230!important;border-left:3px solid #a874f6!important;margin:8px 20px;padding:12px 14px!important;border-radius:6px}
+.hcfvl-hero-strip{position:relative;isolation:isolate;background:#fff;color:#15161b;border-top:3px solid transparent;border-image:linear-gradient(90deg,#36b8ff,#705dff,#fc68c6,#ffb85f) 1;border-bottom:1px solid #e8e7eb;font-family:inherit}
+.hcfvl-hero-strip::before{content:"";position:absolute;z-index:-1;inset:0;background:radial-gradient(ellipse at 20% 100%,#e4f2ffb0,transparent 48%),radial-gradient(ellipse at 85% 100%,#ffe8f49c,transparent 45%);pointer-events:none}
+.hcfvl-hero-strip .hcfvl-strip-inner{display:grid;grid-template-columns:122px minmax(0,1fr) auto;gap:26px;align-items:center;max-width:1160px;margin:auto;padding:22px 24px}
+.hcfvl-strip-brand{display:block;min-width:0;text-align:center;color:#434750;text-decoration:none}
+.hcfvl-strip-brand img{display:block;width:94px;max-width:100%;height:auto;margin:0 auto 5px}
+.hcfvl-strip-brand span{font-size:10px;font-weight:500;line-height:1.4;letter-spacing:1.3px;white-space:nowrap}
+.hcfvl-hero-strip .hcfvl-strip-title{margin:0 0 5px;font-size:21px;font-weight:900;line-height:1.55;letter-spacing:.02em;color:#15161b}
+.hcfvl-hero-strip .hcfvl-strip-sub{margin:0;font-size:12px;font-weight:400;line-height:1.7;letter-spacing:.025em;color:#545a66}
+.hcfvl-strip-cta{display:inline-flex;justify-content:center;align-items:center;gap:20px;min-height:48px;padding:12px 24px;border-radius:999px;background:#14151b;color:#fff!important;text-decoration:none;font-size:14px;font-weight:600;line-height:1.5;white-space:nowrap;box-shadow:0 9px 22px -14px #954ffa}
+.hcfvl-strip-cta span{font-size:20px;line-height:1}
+@media(max-width:700px){.hcfvl-hero-strip .hcfvl-strip-inner{grid-template-columns:80px minmax(0,1fr);gap:16px;padding:20px 22px}.hcfvl-strip-brand img{width:74px}.hcfvl-strip-brand span{font-size:9px;letter-spacing:.45px}.hcfvl-hero-strip .hcfvl-strip-title{font-size:17px;line-height:1.5}.hcfvl-hero-strip .hcfvl-strip-sub{font-size:11px}.hcfvl-strip-cta{grid-column:1/-1;justify-self:stretch;min-height:44px;padding:10px 20px;font-size:14px}}
+.hcfvl-footer-band{position:relative;z-index:2;max-width:1160px;margin:44px auto 0;padding:22px 24px;border-top:1px solid #ffffff26;border-bottom:1px solid #ffffff26;font-family:inherit;text-align:left}
+.hcfvl-footer-band>a{display:flex;align-items:center;gap:22px;color:#f5f5f7;text-decoration:none}
+.hcfvl-footer-band .hcfvl-footer-logo{display:grid;place-items:center;width:100px;min-height:60px;padding:12px;background:#fff;border-radius:8px;flex-shrink:0}
+.hcfvl-footer-band img{width:76px;height:auto;display:block}
+.hcfvl-footer-band .hcfvl-footer-copy{flex:1;min-width:0}
+.hcfvl-footer-band strong{display:block;font-size:18px;font-weight:700;line-height:1.5;color:#fff}
+.hcfvl-footer-band small{display:block;margin-top:5px;color:#b4b8c2;font-size:12px;line-height:1.7}
+.hcfvl-footer-band .hcfvl-footer-action{padding:10px 18px;border-radius:999px;background:#fff;color:#17191e;font-size:13px;font-weight:600;line-height:1.5;white-space:nowrap}
+@media(max-width:600px){.hcfvl-footer-band{padding:20px 0}.hcfvl-footer-band>a{gap:14px;flex-wrap:wrap}.hcfvl-footer-band .hcfvl-footer-logo{width:78px;min-height:52px;padding:10px}.hcfvl-footer-band strong{font-size:16px}.hcfvl-footer-band .hcfvl-footer-action{margin-left:92px}}
+@media(min-width:1280px) and (max-width:1360px){#nav.hcfvl-has-design .nav-links{gap:12px}}
+
+</style>
 </head>
 <body>
 
 <!-- NAV -->
-<header class="nav" id="nav">
+<header class="nav hcfvl-has-design" id="nav">
   <div class="nav-in">
     <a class="nav-logo" href="#top"><picture><source srcset="assets/final-logo.webp" type="image/webp"><img src="assets/final-logo.png" alt="HCF"></picture><span class="nlk"><b>HCF</b><em>COMBAT SYSTEM</em></span></a>
     <nav class="nav-links">
@@ -667,14 +701,17 @@ body .svtab,body .vtab-wrap{display:none!important}
       <a href="partnership.html" data-en="CORPORATE">企業合作</a>
       <a href="shop.html">商城</a>
       <a href="how-to-book.html" data-p="how-to-book">預約教學</a>
-      <a class="nav-cta" href="booking.html"><svg class="cta-bolt" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg>安排體驗課</a>
+      <a class="hcfvl-nav-link" href="https://www.hcfvisuallab.com/?utm_source=hsinchucombat&amp;utm_medium=referral&amp;utm_campaign=brand_cross_promo&amp;utm_content=nav_design" target="_blank" rel="noopener noreferrer">品牌設計 ↗</a>
+<a class="nav-cta" href="booking.html"><svg class="cta-bolt" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg>安排體驗課</a>
     </nav>
-    <button class="nav-burger" id="burger" aria-label="選單"><span></span><span></span><span></span></button>
+    <a class="hcfvl-nav-link hcfvl-mobile-entry" href="https://www.hcfvisuallab.com/?utm_source=hsinchucombat&amp;utm_medium=referral&amp;utm_campaign=brand_cross_promo&amp;utm_content=mobile_header_design" target="_blank" rel="noopener noreferrer">品牌設計 ↗</a>
+<button class="nav-burger" id="burger" aria-label="選單"><span></span><span></span><span></span></button>
   </div>
   <nav class="mnav" id="mnav">
     <a href="#top" data-en="HOME">首頁</a><a href="news.html" data-en="EVENTS">最新活動</a><a href="philosophy.html" data-en="BRAND">品牌哲學</a>
     <button class="msub-t open" type="button" data-en="CLASS">課程介紹<i>＋</i></button><div class="msub msub-grid open"><a href="group-classes.html" data-en="GROUP">團體課程</a><a href="private-training.html" data-en="PRIVATE">私人課程</a></div><a href="team.html" data-en="COACHES">教練團隊</a><button class="msub-t open" type="button" data-en="PRICING">課程方案<i>＋</i></button><div class="msub msub-grid open"><a href="pricing.html" data-en="PRICING">價目表</a><a href="packages.html" data-en="BUNDLE">套組方案</a><a href="schedule.html" data-en="SCHEDULE">課表</a><a href="partnership.html" data-en="CORPORATE">企業合作</a></div><a href="survey.html" data-en="FAQ">新手問答</a><a href="shop.html" data-en="SHOP">商城</a><a href="https://www.fit-book.com.tw/hsinchucombat" target="_blank" rel="noopener" data-en="LOGIN">會員登入</a>
-    <a href="how-to-book.html" data-en="GUIDE">預約教學</a><a class="cta" href="booking.html">安排體驗 · $400 起</a><div class="mnav-social"><a href="https://www.instagram.com/hc.combat2022/" target="_blank" rel="noopener" data-s="ig" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm0 2a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H7zm5 3.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 2a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM17.5 6a1 1 0 110 2 1 1 0 010-2z"/></svg></a><a href="https://m.facebook.com/hsinchucombat/" target="_blank" rel="noopener" data-s="fb" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.6V3.9c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.7v3h2.4v8h3.4z"/></svg></a><a href="https://youtube.com/playlist?list=PLFtibVDr-YTBsPUoEfClpei2ttq1mGtKN" target="_blank" rel="noopener" data-s="yt" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 00-1.7-1.7C19.4 5.2 12 5.2 12 5.2s-7.4 0-8.9.4A2.5 2.5 0 001.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7c.2.9.9 1.5 1.7 1.7 1.5.4 8.9.4 8.9.4s7.4 0 8.9-.4a2.5 2.5 0 001.7-1.7c.4-1.5.4-4.7.4-4.7zM9.8 15.1V8.9l5.3 3.1-5.3 3.1z"/></svg></a><a href="https://lin.ee/7lidUv0" target="_blank" rel="noopener" data-s="line" aria-label="LINE"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.5c-5 0-9 3.2-9 7.2 0 3.5 3 6.5 7.2 7.1.3.05.6.15.7.35.06.2.04.5.02.7l-.12.75c-.03.2-.17.86.77.47s5.1-3 6.9-5.2c1.2-1.4 1.8-2.8 1.8-4.4 0-4-4-7.2-9.06-7.2z"/></svg></a></div>
+    <a href="how-to-book.html" data-en="GUIDE">預約教學</a><a class="hcfvl-menu-entry" href="https://www.hcfvisuallab.com/?utm_source=hsinchucombat&amp;utm_medium=referral&amp;utm_campaign=brand_cross_promo&amp;utm_content=mobile_menu_design" target="_blank" rel="noopener noreferrer">HCF VISUAL LAB｜品牌設計 ↗</a>
+<a class="cta" href="booking.html">安排體驗 · $400 起</a><div class="mnav-social"><a href="https://www.instagram.com/hc.combat2022/" target="_blank" rel="noopener" data-s="ig" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm0 2a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H7zm5 3.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 2a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM17.5 6a1 1 0 110 2 1 1 0 010-2z"/></svg></a><a href="https://m.facebook.com/hsinchucombat/" target="_blank" rel="noopener" data-s="fb" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.6V3.9c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.7v3h2.4v8h3.4z"/></svg></a><a href="https://youtube.com/playlist?list=PLFtibVDr-YTBsPUoEfClpei2ttq1mGtKN" target="_blank" rel="noopener" data-s="yt" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 00-1.7-1.7C19.4 5.2 12 5.2 12 5.2s-7.4 0-8.9.4A2.5 2.5 0 001.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7c.2.9.9 1.5 1.7 1.7 1.5.4 8.9.4 8.9.4s7.4 0 8.9-.4a2.5 2.5 0 001.7-1.7c.4-1.5.4-4.7.4-4.7zM9.8 15.1V8.9l5.3 3.1-5.3 3.1z"/></svg></a><a href="https://lin.ee/7lidUv0" target="_blank" rel="noopener" data-s="line" aria-label="LINE"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.5c-5 0-9 3.2-9 7.2 0 3.5 3 6.5 7.2 7.1.3.05.6.15.7.35.06.2.04.5.02.7l-.12.75c-.03.2-.17.86.77.47s5.1-3 6.9-5.2c1.2-1.4 1.8-2.8 1.8-4.4 0-4-4-7.2-9.06-7.2z"/></svg></a></div>
   </nav>
 </header>
 
@@ -693,6 +730,15 @@ body .svtab,body .vtab-wrap{display:none!important}
   <div class="hero-dots" id="dots"></div>
   <div class="hero-scroll">SCROLL</div>
 </section>
+
+<!-- 放在首頁主視覺 </section> 之後、原本 .seamA 之前。共用樣式：hcf-promo-placements.css -->
+<aside class="hcfvl-hero-strip" id="hcfvl-hero-strip" aria-label="HCF 自有設計品牌介紹">
+<div class="hcfvl-strip-inner">
+<a class="hcfvl-strip-brand" href="https://www.hcfvisuallab.com/?utm_source=hsinchucombat&amp;utm_medium=referral&amp;utm_campaign=brand_cross_promo&amp;utm_content=hero_brand_logo" target="_blank" rel="noopener noreferrer"><img src="/assets/hcf-mark.webp" width="600" height="241" alt="HCF VISUAL LAB"><span>HCF VISUAL LAB</span></a>
+<div><p class="hcfvl-strip-title">你正在看的官網，也是我們的作品。</p><p class="hcfvl-strip-sub">HCF 自有設計品牌｜網頁設計・品牌識別・SEO</p></div>
+<a class="hcfvl-strip-cta" href="https://www.hcfvisuallab.com/diagnosis?utm_source=hsinchucombat&amp;utm_medium=referral&amp;utm_campaign=brand_cross_promo&amp;utm_content=home_hero_strip" target="_blank" rel="noopener noreferrer">免費品牌健檢 <span aria-hidden="true">→</span></a>
+</div>
+</aside>
 
 <!-- 縫合 A -->
 <div class="seamA">
@@ -999,6 +1045,79 @@ body .svtab,body .vtab-wrap{display:none!important}
       <details class="qa rv"><summary>會不會很容易受傷？</summary><div class="ans">入門課程以技術與體能為主，不會安排實戰對打；進階對打採護具加分級配對，由教練全程在場控管強度。</div></details>
     </div>
 
+<!-- 首頁品牌區塊：放在「新手常見問答」後、<div class="loc"> 之前。 -->
+<!-- 將 assets/hcf-mark.webp 一起加入原網站；此檔是嵌入片段，不是整站部署包。 -->
+<style>
+#hcfvl-promo{position:relative;isolation:isolate;overflow:hidden;container-type:inline-size;box-sizing:border-box;margin:64px 0;background:#fff;color:#111217;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;text-align:center;color-scheme:light}
+#hcfvl-promo *{box-sizing:border-box}
+#hcfvl-promo .hcfvl-label{position:absolute;z-index:2;top:26px;left:30px;margin:0;font-size:11px;line-height:1.7;font-weight:500;letter-spacing:1.5px;color:#606572}
+#hcfvl-promo .hcfvl-note{position:absolute;z-index:2;top:25px;right:30px;margin:0;color:#606572;text-align:right;font-size:10px;line-height:1.9;letter-spacing:2px}
+#hcfvl-promo .hcfvl-note::after{content:"";display:block;width:25px;height:1px;background:#737783;margin:14px 0 0 auto}
+#hcfvl-promo .hcfvl-content{position:relative;z-index:1;padding:77px 28px 180px}
+#hcfvl-promo .hcfvl-brand{margin:0}
+#hcfvl-promo .hcfvl-logo{display:block;width:194px;max-width:62%;height:auto;margin:0 auto 15px}
+#hcfvl-promo .hcfvl-wordmark{margin:0;font-size:12px;line-height:1.8;font-weight:500;letter-spacing:2px;color:#30333b}
+#hcfvl-promo .hcfvl-title{margin:31px 0 17px;color:#0a0b0e;font-size:clamp(32px,7cqi,66px);font-weight:900;line-height:1.2;letter-spacing:.04em;font-style:normal;text-wrap:balance}
+#hcfvl-promo .hcfvl-tagline{margin:0;color:#2d3038;font-size:clamp(14px,2.2cqi,20px);font-weight:400;line-height:1.9;letter-spacing:.14em;text-wrap:balance}
+#hcfvl-promo .hcfvl-actions{display:flex;flex-direction:column;align-items:center;gap:17px;margin-top:30px}
+#hcfvl-promo .hcfvl-primary{position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:32px;min-height:58px;max-width:100%;padding:14px 37px;border:1px solid #343741;border-radius:999px;background:linear-gradient(150deg,#292c36,#101117 75%);color:#fff;font-size:19px;font-weight:500;line-height:1.5;letter-spacing:.12em;text-decoration:none;transition:transform .2s ease}
+#hcfvl-promo .hcfvl-primary::before{content:"";position:absolute;z-index:-2;inset:23px 15px -13px;border-radius:inherit;background:linear-gradient(90deg,#477fff,#a251ff 49%,#ff5abb);opacity:.48;filter:blur(16px)}
+#hcfvl-promo .hcfvl-primary::after{content:"";position:absolute;z-index:-1;inset:0;border-radius:inherit;background:linear-gradient(150deg,#292c36,#101117 75%)}
+#hcfvl-promo .hcfvl-primary:hover{transform:translateY(-3px)}
+#hcfvl-promo .hcfvl-arrow{font-family:Arial,sans-serif;font-size:28px;line-height:1;font-weight:400}
+#hcfvl-promo .hcfvl-secondary{display:inline-flex;align-items:center;min-height:44px;padding:4px 8px;color:#4b505d;font-size:12px;line-height:1.5;letter-spacing:.03em;text-decoration:underline;text-underline-offset:5px}
+#hcfvl-promo a:focus-visible{outline:3px solid #365ed8;outline-offset:6px}
+#hcfvl-promo .hcfvl-waves{max-width:none;display:block;position:absolute;z-index:0;pointer-events:none;width:100%;height:240px;left:0;bottom:32px}
+#hcfvl-promo .hcfvl-bottom{position:absolute;z-index:1;bottom:29px;left:20px;right:20px;margin:0;color:#515867;font-size:11px;line-height:1.7;letter-spacing:3px}
+@media(max-width:600px){
+#hcfvl-promo{margin:40px 0}
+#hcfvl-promo .hcfvl-label{top:20px;left:20px;font-size:11px;letter-spacing:.5px}
+#hcfvl-promo .hcfvl-note{top:18px;right:20px;font-size:11px;letter-spacing:1px}
+#hcfvl-promo .hcfvl-content{padding:106px 20px 166px}
+#hcfvl-promo .hcfvl-logo{width:158px}
+#hcfvl-promo .hcfvl-wordmark{font-size:11px;letter-spacing:1px}
+#hcfvl-promo .hcfvl-title{margin-top:31px;font-size:clamp(30px,8.8cqi,48px);letter-spacing:.02em}
+#hcfvl-promo .hcfvl-tagline{font-size:14px;letter-spacing:.08em}
+#hcfvl-promo .hcfvl-tagline span{display:block}
+#hcfvl-promo .hcfvl-tagline .hcfvl-dot{display:none}
+#hcfvl-promo .hcfvl-primary{min-height:55px;padding:13px 28px;font-size:17px;gap:22px;letter-spacing:.08em}
+#hcfvl-promo .hcfvl-actions{margin-top:27px;gap:15px}
+#hcfvl-promo .hcfvl-waves{width:170%;left:-35%;height:210px;bottom:32px}
+}
+@media(prefers-reduced-motion:reduce){#hcfvl-promo .hcfvl-primary{transition:none}}
+</style>
+<section id="hcfvl-promo" aria-labelledby="hcfvl-promo-title">
+<p class="hcfvl-label">HCF 自有設計品牌</p>
+<p class="hcfvl-note" aria-hidden="true">YOUR BRAND<br>HEALTH CHECK<br>TODAY</p>
+<div class="hcfvl-content">
+<figure class="hcfvl-brand">
+<img class="hcfvl-logo" src="/assets/hcf-mark.webp" width="600" height="241" alt="HCF VISUAL LAB 彩色品牌標誌" loading="lazy" decoding="async">
+<figcaption class="hcfvl-wordmark">HCF VISUAL LAB｜品牌成長夥伴</figcaption>
+</figure>
+<h2 class="hcfvl-title" id="hcfvl-promo-title">免費品牌健檢</h2>
+<p class="hcfvl-tagline">發現機會・優化方向<span class="hcfvl-dot">・</span><span>打造更強的品牌</span></p>
+<div class="hcfvl-actions">
+<a class="hcfvl-primary" href="https://www.hcfvisuallab.com/diagnosis?utm_source=hsinchucombat&amp;utm_medium=referral&amp;utm_campaign=brand_cross_promo&amp;utm_content=home_brand_check" target="_blank" rel="noopener noreferrer">立即預約健檢 <span class="hcfvl-arrow" aria-hidden="true">→</span></a>
+<a class="hcfvl-secondary" href="https://www.hcfvisuallab.com/works?utm_source=hsinchucombat&amp;utm_medium=referral&amp;utm_campaign=brand_cross_promo&amp;utm_content=home_portfolio" target="_blank" rel="noopener noreferrer">這個格鬥官網，也是我們的作品 ↗</a>
+</div>
+</div>
+<svg class="hcfvl-waves" viewBox="0 0 1440 420" preserveAspectRatio="none" fill="none" aria-hidden="true">
+<defs>
+<linearGradient id="hcfvl-spectrum" x1="0" y1="140" x2="1440" y2="190" gradientUnits="userSpaceOnUse"><stop stop-color="#26c1ff"/><stop offset=".25" stop-color="#6673ff"/><stop offset=".48" stop-color="#e58dff"/><stop offset=".69" stop-color="#ff298d"/><stop offset=".86" stop-color="#ff813c"/><stop offset="1" stop-color="#ffe67a"/></linearGradient>
+<linearGradient id="hcfvl-fade" x1="720" y1="130" x2="720" y2="420" gradientUnits="userSpaceOnUse"><stop offset=".38" stop-color="white"/><stop offset="1" stop-color="white" stop-opacity="0"/></linearGradient>
+<mask id="hcfvl-mask"><rect width="1440" height="420" fill="url(#hcfvl-fade)"/></mask>
+</defs>
+<g fill="url(#hcfvl-spectrum)" mask="url(#hcfvl-mask)">
+<path opacity=".15" d="M-60 0C210 35 345 295 625 278C945 258 1150 67 1500 8V335C1240 287 1090 382 820 363C478 339 247 418-60 387Z"/>
+<path opacity=".29" d="M-60 114C256 66 382 327 683 308C970 289 1124 171 1500 95V335C1165 312 1033 381 790 355C468 320 260 273-60 396Z"/>
+<path opacity=".63" d="M-60 237C277 109 433 355 729 305C1031 253 1163 176 1500 222V318C1117 178 1004 343 745 343C407 340 253 170-60 316Z"/>
+<path opacity=".34" d="M-60 333C222 143 410 242 705 322C1034 411 1189 169 1500 303V410C1192 436 1032 478 753 375C422 253 256 400-60 425Z"/>
+</g>
+<path d="M-60 237C277 109 433 355 729 305C1031 253 1163 176 1500 222" stroke="white" stroke-opacity=".8"/>
+</svg>
+<p class="hcfvl-bottom">HCF VISUAL LAB</p>
+</section>
+
     <div class="loc">
       <div class="kicker rv">LOCATION</div>
       <h2 class="h2 rv" style="font-size:clamp(1.5rem,4vw,2.1rem)">找到<i>我們</i></h2>
@@ -1084,7 +1203,21 @@ body .svtab,body .vtab-wrap{display:none!important}
       <div class="fin-social"><a class="fs-ic" href="https://www.instagram.com/hc.combat2022/" target="_blank" rel="noopener" data-s="ig" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm0 2a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H7zm5 3.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 2a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM17.5 6a1 1 0 110 2 1 1 0 010-2z"/></svg></a><a class="fs-ic" href="https://m.facebook.com/hsinchucombat/" target="_blank" rel="noopener" data-s="fb" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.6V3.9c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.7v3h2.4v8h3.4z"/></svg></a><a class="fs-ic" href="https://youtube.com/playlist?list=PLFtibVDr-YTBsPUoEfClpei2ttq1mGtKN" target="_blank" rel="noopener" data-s="yt" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 00-1.7-1.7C19.4 5.2 12 5.2 12 5.2s-7.4 0-8.9.4A2.5 2.5 0 001.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7c.2.9.9 1.5 1.7 1.7 1.5.4 8.9.4 8.9.4s7.4 0 8.9-.4a2.5 2.5 0 001.7-1.7c.4-1.5.4-4.7.4-4.7zM9.8 15.1V8.9l5.3 3.1-5.3 3.1z"/></svg></a><a class="fs-ic" href="https://lin.ee/7lidUv0" target="_blank" rel="noopener" data-s="line" aria-label="LINE"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.5c-5 0-9 3.2-9 7.2 0 3.5 3 6.5 7.2 7.1.3.05.6.15.7.35.06.2.04.5.02.7l-.12.75c-.03.2-.17.86.77.47s5.1-3 6.9-5.2c1.2-1.4 1.8-2.8 1.8-4.4 0-4-4-7.2-9.06-7.2z"/></svg></a></div>
     </div>
   </div>
-  <div class="fin-copy">© 2026 HCF COMBAT HSINCHU · 新竹 HCF 格鬥　|　<a href="legal.html#privacy" style="color:#cfcfcf;text-decoration:underline">隱私權政策</a> · <a href="legal.html#disclaimer" style="color:#cfcfcf;text-decoration:underline">免責聲明</a> · <a href="careers.html" style="color:#cfcfcf;text-decoration:underline">人才招募</a> · <a href="partnership.html" style="color:#cfcfcf;text-decoration:underline">企業合作</a></div>
+  <!-- 放在全站既有頁尾版權列之前；首頁放 .fin-foot 之後、.fin-copy 之前。共用樣式：hcf-promo-placements.css -->
+<div class="hcfvl-footer-band" id="hcfvl-footer-band">
+<a href="https://www.hcfvisuallab.com/?utm_source=hsinchucombat&amp;utm_medium=referral&amp;utm_campaign=brand_cross_promo&amp;utm_content=footer_brand_band" target="_blank" rel="noopener noreferrer">
+<span class="hcfvl-footer-logo"><img src="/assets/hcf-mark.webp" width="600" height="241" alt="HCF VISUAL LAB"></span>
+<span class="hcfvl-footer-copy"><strong>也想打造自己的品牌？</strong><small>HCF 自有設計品牌｜網站、品牌識別與視覺設計</small></span>
+<span class="hcfvl-footer-action">認識 HCF VISUAL LAB ↗</span>
+</a>
+</div>
+
+<div class="fin-copy">© 2026 HCF COMBAT HSINCHU · 新竹 HCF 格鬥　|　<a href="legal.html#privacy" style="color:#cfcfcf;text-decoration:underline">隱私權政策</a> · <a href="legal.html#disclaimer" style="color:#cfcfcf;text-decoration:underline">免責聲明</a> · <a href="careers.html" style="color:#cfcfcf;text-decoration:underline">人才招募</a> · <a href="partnership.html" style="color:#cfcfcf;text-decoration:underline">企業合作</a><!-- 加在既有全站頁尾內；首頁可放在 .fin-copy 裡的既有內容之後。 -->
+<!-- 保留原有版權、隱私權與聯絡資訊。此片段只新增設計署名。 -->
+<span class="hcfvl-footer-credit" style="display:inline-flex;align-items:center;flex-wrap:wrap;margin-inline-start:12px;">
+  <a href="https://www.hcfvisuallab.com/?utm_source=hsinchucombat&amp;utm_medium=referral&amp;utm_campaign=brand_cross_promo&amp;utm_content=footer_credit" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;min-height:44px;color:inherit;font-size:13px;text-decoration:underline;text-underline-offset:4px;">網站設計｜HCF VISUAL LAB ↗</a>
+</span>
+</div>
 </section>
 
 <!-- 浮動層 -->
