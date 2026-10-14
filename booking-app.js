@@ -1,4 +1,4 @@
-/* hcf-booking-app-20261014-r1 · existing questions, prices and delivery destinations */
+/* hcf-booking-line-20261014-r2 · confirmed receipt before LINE draft handoff */
 (function () {
   'use strict';
   var TOTAL = 4, cur = 1, submitted = false;
@@ -42,8 +42,8 @@
       if (step === cur) item.setAttribute('aria-current', 'step'); else item.removeAttribute('aria-current');
     });
     btnP.style.display = cur === 1 ? 'none' : 'block';
-    btnN.textContent = cur === TOTAL ? '送出需求 給教練' : '下一步 →';
-    document.getElementById('navHint').textContent = ['下一步：體驗方式', '下一步：方便時間', '下一步：安全與確認', '送出後請到官方 LINE 確認'][cur - 1];
+    btnN.textContent = cur === TOTAL ? '送出並前往 LINE' : '下一步 →';
+    document.getElementById('navHint').textContent = ['下一步：體驗方式', '下一步：方便時間', '下一步：安全與確認', 'LINE 會帶入表單，請再按傳送'][cur - 1];
     document.querySelector('.step.on h2').focus({ preventScroll: true });
     window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion:reduce)').matches ? 'instant' : 'smooth' });
   }
@@ -99,29 +99,80 @@
   form.addEventListener('keydown', function (event) { if (event.key === 'Enter' && event.target.tagName !== 'TEXTAREA') { event.preventDefault(); btnN.click(); } });
   async function submit() {
     submitted = true; btnN.disabled = true; btnP.disabled = true; error.hidden = true; btnN.textContent = '正在送出需求…';
-    var name = document.getElementById('f_name').value.trim();
+    var snapshot = answers(), name = snapshot['稱呼'];
+    var inputs = Array.from(form.elements).map(function (input) { return { input: input, disabled: input.disabled }; });
+    var handoff;
     try {
-      if (!window.hcfMirrorForm) throw new Error('not ready');
-      var result = await window.hcfMirrorForm(form);
+      if (!window.hcfMirrorForm || !window.HCFBookingLine) throw new Error('not ready');
+      handoff = window.HCFBookingLine.build(snapshot, navigator);
+      var delivery = window.hcfMirrorForm(form);
+      inputs.forEach(function (row) { row.input.disabled = true; });
+      form.setAttribute('aria-busy', 'true');
+      var result = await delivery;
       if (!result || !result.ok) throw new Error('unconfirmed');
-      // Email remains the existing secondary channel. The APP must confirm receipt first.
-      var payload = answers(); payload._subject = '🥊 新生需求診斷｜' + name; payload._template = 'table'; payload._captcha = 'false';
-      fetch('https://formsubmit.co/ajax/hsinchucombat2022@gmail.com', { method: 'POST', keepalive: true, headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) }).catch(function () {});
-      track('generate_lead', { currency: 'TWD', value: 400, plan: chosen('開始方式')[0] || '', when: chosen('預計開始')[0] || '' });
-      document.getElementById('doneMsg').textContent = '已填寫｜' + name;
-      document.getElementById('formWrap').style.display = 'none'; document.getElementById('pgWrap').style.display = 'none';
-      document.getElementById('navBar').classList.remove('on'); document.getElementById('done').classList.add('on');
-      document.querySelector('#done h2').focus({ preventScroll: true }); window.scrollTo({ top: 0 });
-      // Explicit LINE button lets the visitor read/copy the confirmation without an automatic redirect.
     } catch (_) {
+      inputs.forEach(function (row) { row.input.disabled = row.disabled; });
+      form.removeAttribute('aria-busy');
       submitted = false; btnN.disabled = false; btnP.disabled = false; btnN.textContent = '重新送出需求';
       error.textContent = '暫時無法確認收件，填寫內容已保留在此頁。請檢查連線再試一次；若不確定是否已送出，也可到官方 LINE 請教練核對。'; error.hidden = false;
+      return;
     }
+    // All destinations use the same submitted snapshot. A LINE problem must never resubmit the form.
+    form.removeAttribute('aria-busy');
+    var payload = Object.assign({}, snapshot, { _subject: '🥊 新生需求診斷｜' + name, _template: 'table', _captcha: 'false' });
+    fetch('https://formsubmit.co/ajax/hsinchucombat2022@gmail.com', { method: 'POST', keepalive: true, headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) }).catch(function () {});
+    var stored = false;
+    try { stored = window.HCFBookingLine.save(window.sessionStorage, handoff.message, Date.now()); } catch (_) {}
+    showDone(handoff, stored);
+    if (!stored && handoff.autoOpen) lineStatus.textContent = '需求已收件。此瀏覽器無法暫存摘要，請先複製完整表單，再點按鈕前往 LINE。';
+    track('generate_lead', { currency: 'TWD', value: 400, plan: snapshot['開始方式'] || '', when: snapshot['預計開始'] || '' });
   }
+  function showDone(handoff, autoOpen) {
+    document.getElementById('doneMsg').textContent = handoff.message;
+    document.getElementById('intro').style.display = 'none';
+    document.getElementById('formWrap').style.display = 'none'; document.getElementById('pgWrap').style.display = 'none';
+    document.getElementById('navBar').classList.remove('on'); document.getElementById('done').classList.add('on');
+    document.querySelector('#done h2').focus({ preventScroll: true }); window.scrollTo({ top: 0 });
+    prepareLine(handoff, autoOpen);
+  }
+  var lineTimer = null;
+  var lineButton = document.getElementById('openLine'), lineStatus = document.getElementById('lineStatus'), cancelLine = document.getElementById('cancelLine');
+  function stopLine() { if (lineTimer !== null) clearTimeout(lineTimer); lineTimer = null; cancelLine.hidden = true; }
+  function prepareLine(handoff, autoOpen) {
+    stopLine(); lineButton.href = handoff.url;
+    if (!handoff.autoOpen) {
+      lineStatus.textContent = handoff.reason === 'desktop' ? '電腦版請先複製完整表單，再開啟官方 LINE；可用手機掃描 LINE 頁面的 QR code。' : '內容較長，完整表單已保留下方。請先複製，再開啟官方 LINE 貼上並傳送。';
+      lineButton.textContent = '開啟 HCF 官方 LINE'; return;
+    }
+    lineButton.textContent = '立即開啟 LINE 帶入表單';
+    if (autoOpen === false) { lineStatus.textContent = '需求已收件。若尚未在 LINE 傳送，請用下方按鈕繼續，不必重新填表。'; return; }
+    lineStatus.textContent = '3 秒後開啟官方 LINE，表單會帶入訊息框。請再按一次「傳送」，教練才會在 LINE 收到。';
+    cancelLine.hidden = false;
+    lineTimer = setTimeout(function () {
+      stopLine();
+      lineStatus.textContent = '正在開啟 LINE。若沒有跳轉或沒有帶入內容，請使用下方按鈕，或複製完整表單貼上。';
+      window.location.assign(handoff.url);
+    }, 3000);
+  }
+  lineButton.addEventListener('click', stopLine);
+  cancelLine.addEventListener('click', function () { stopLine(); lineStatus.textContent = '已留在此頁。準備好後點「開啟 LINE」，確認內容再按傳送。'; });
+  document.addEventListener('visibilitychange', function () { if (document.hidden && lineTimer !== null) { stopLine(); lineStatus.textContent = '需求已收件。若尚未在 LINE 傳送，請用下方按鈕繼續。'; } });
+  window.addEventListener('pagehide', stopLine);
+  window.addEventListener('pageshow', function (event) { if (event.persisted) { stopLine(); lineStatus.textContent = '需求已收件。若尚未在 LINE 傳送，請用下方按鈕繼續。'; } });
   document.getElementById('copyDone').addEventListener('click', async function () {
+    stopLine();
+    lineStatus.textContent = '完整表單已保留下方。複製後開啟官方 LINE，貼上並按「傳送」。';
     var text = document.getElementById('doneMsg');
     try { await navigator.clipboard.writeText(text.textContent); document.getElementById('copyStatus').textContent = '已複製，貼到官方 LINE 即可'; }
     catch (_) { var selection = window.getSelection(), range = document.createRange(); range.selectNodeContents(text); selection.removeAllRanges(); selection.addRange(range); document.getElementById('copyStatus').textContent = '請長按已選取的文字並複製'; }
   });
+  document.getElementById('newBooking').addEventListener('click', function () {
+    stopLine(); try { window.HCFBookingLine.clear(window.sessionStorage); } catch (_) {}
+    window.location.reload();
+  });
   revealBranches();
+  try {
+    var restored = window.HCFBookingLine.restore(window.sessionStorage, Date.now(), navigator);
+    if (restored) { submitted = true; showDone(restored, false); }
+  } catch (_) {}
 })();

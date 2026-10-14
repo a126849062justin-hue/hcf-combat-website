@@ -32,9 +32,9 @@
   gtag('config', 'G-ZCPVLM3SY0');
 </script>
 
-<link rel="stylesheet" href="booking-app.css?v=hcf-booking-app-20261014-r1">
+<link rel="stylesheet" href="booking-app.css?v=hcf-booking-line-20261014-r2">
 </head>
-<body data-page="booking" data-design="hcf-booking-app-20261014-r1">
+<body data-page="booking" data-design="hcf-booking-line-20261014-r2">
 
 <header class="hd">
   <div class="hd-in">
@@ -59,7 +59,7 @@
       <div class="hero-price">團體課體驗 <b>$400 起</b></div>
       <div class="trust"><span>零基礎友善</span><span>教練親自規劃</span><span>不強迫購買</span></div>
       <button class="startbtn" id="startBtn" type="button"><span>開始我的訓練規劃<small>約 60 秒 · 4 個步驟</small></span><b aria-hidden="true">↗</b></button>
-      <p class="booking-note">填表後到官方 LINE 確認，填表不等於預約完成。</p>
+      <p class="booking-note">手機送出後將開啟官方 LINE 並帶入表單，請再按「傳送」。時段仍由教練確認。</p>
       <a class="booking-direct" href="https://www.fit-book.com.tw/hsinchucombat/plan/588" target="_blank" rel="noopener">已確定課程？直接到 FitBook 約課 ↗</a>
     </div>
     <div class="hero-brand" aria-label="HCF 新生訓練規劃">
@@ -69,7 +69,7 @@
       <div class="entry-card"><span class="entry-dot"></span><div>你的目標 是教練的起點<small>填寫需求後 由教練協助安排</small></div><b aria-hidden="true">01</b></div>
       <span class="brand-bottom">HONOR / COURAGE / FAITH</span>
     </div>
-    <ol class="booking-steps" aria-label="體驗安排流程"><li><b>填寫需求</b><span>讓教練先了解你</span></li><li><b>加入官方 LINE</b><span>傳送填表時的稱呼</span></li><li><b>確認上課時段</b><span>由教練協助安排</span></li></ol>
+    <ol class="booking-steps" aria-label="體驗安排流程"><li><b>填寫需求</b><span>讓教練先了解你</span></li><li><b>到 LINE 按傳送</b><span>手機帶入剛填好的表單</span></li><li><b>確認上課時段</b><span>由教練協助安排</span></li></ol>
   </div>
 
   <!-- ============ 表單 ============ -->
@@ -262,7 +262,7 @@
 
         <section class="review-card" aria-labelledby="reviewTitle"><div class="review-title"><span class="eyebrow">READY FOR YOUR FIRST ROUND</span><h3 id="reviewTitle">送出前 再看一次</h3><p>有要調整的地方，可以按上一步修改。</p></div><dl id="bookingSummary"></dl></section>
         <p class="privacy-note">
-          送出即表示同意以上資料僅供 HCF 新竹格鬥安排課程與訓練安全評估使用，不會提供給第三方。你可隨時要求查詢、更正或刪除。
+          以上資料供 HCF 新竹格鬥安排課程與訓練安全評估使用，透過網站收件與寄信服務保存及傳遞。手機送出成功後將開啟 HCF 官方 LINE，帶入剛填寫的完整表單（包含你填寫的身體狀況），請確認後再按「傳送」。本分頁會短暫保留收件摘要供返回後複製，30 分鐘後不再還原。你可隨時向 HCF 要求查詢、更正或刪除資料。
         </p>
       </section>
     </form>
@@ -275,10 +275,14 @@
   <!-- ============ 完成頁 ============ -->
   <div class="done" id="done">
     <div class="tick"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-    <span class="eyebrow">YOUR NEXT STEP</span><h2 tabindex="-1">需求已收到<br>下一步 到 LINE 確認</h2>
-    <p>接下來請回到 HCF 官方 LINE，傳送下面這句話，教練就會依你的目標、經驗與方便時間，幫你選適合的體驗課程。</p>
-    <div class="msgbox"><span class="lb">回到 LINE 傳送這句</span><div class="m" id="doneMsg">已填寫｜你的稱呼</div><button class="copy-btn" id="copyDone" type="button">複製這句話</button><p id="copyStatus" role="status"></p></div>
-    <a class="line-btn" href="https://lin.ee/7lidUv0" rel="noopener">回到官方 LINE 預約</a>
+    <span class="eyebrow">YOUR NEXT STEP</span><h2 tabindex="-1">需求已收到<br>到 LINE 再按傳送</h2>
+    <p>APP 已收到你的需求。請在 HCF 官方 LINE 確認訊息內容並按「傳送」，讓教練對上你的帳號，接著協助確認課程與時段。</p>
+    <p id="lineStatus" class="line-status" role="status"></p>
+    <button id="cancelLine" class="copy-btn" type="button" hidden>先留在此頁</button>
+    <a id="openLine" class="line-btn" href="https://lin.ee/7lidUv0" rel="noopener noreferrer">開啟 HCF 官方 LINE</a>
+    <div class="msgbox"><span class="lb">帶到官方 LINE 的完整表單<br>可上下捲動查看，複製會包含全部答案</span><div class="m" id="doneMsg" tabindex="0"></div><button class="copy-btn" id="copyDone" type="button">複製完整表單</button><p id="copyStatus" role="status"></p></div>
+    <p class="receipt-note">本分頁短暫保留收件摘要，30 分鐘後不再還原。清除本頁內容不會刪除教練已收到的表單。</p>
+    <button id="newBooking" class="copy-btn" type="button">清除本頁內容並重新填寫</button>
     <div class="card">
       <h3>體驗當天提醒</h3>
       <ul>
@@ -304,6 +308,7 @@
 
 
   <script src="hcf.js?v=booking-20261014-r1" defer></script>
-<script src="booking-app.js?v=hcf-booking-app-20261014-r1" defer></script>
+<script src="booking-line.js?v=hcf-booking-line-20261014-r2" defer></script>
+<script src="booking-app.js?v=hcf-booking-line-20261014-r2" defer></script>
 </body>
 </html>
