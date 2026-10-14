@@ -1,0 +1,10 @@
+/group-feedback
+  Cache-Control: no-cache
+  Referrer-Policy: no-referrer
+  X-Content-Type-Options: nosniff
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src https://beamish-basbousa-cb3585.netlify.app; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'
+/group-feedback.html
+  Cache-Control: no-cache
+  Referrer-Policy: no-referrer
+  X-Content-Type-Options: nosniff
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src https://beamish-basbousa-cb3585.netlify.app; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'
