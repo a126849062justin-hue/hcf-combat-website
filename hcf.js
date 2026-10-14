@@ -214,12 +214,12 @@ document.querySelectorAll('[data-cnt]').forEach(function(el){cio.observe(el)});
       return fetch(LEAD_ENDPOINT, {
         method:'POST', keepalive:true, signal:controller ? controller.signal : undefined, headers:{'Content-Type':'application/json'},
         body: JSON.stringify({ formType: formTypeOf(form), page: location.pathname, fields: fields })
-      }).then(function(response){ return response.json().then(function(data){return {ok:response.ok && data.ok === true};}); }).catch(function(){return {ok:false};}).finally(function(){if(timer)clearTimeout(timer);});
+      }).then(function(response){ return response.json().then(function(data){return {ok:response.ok && data.ok === true, id:typeof data.id === 'string' ? data.id : ''};}); }).catch(function(){return {ok:false};}).finally(function(){if(timer)clearTimeout(timer);});
     } catch(e){if(timer)clearTimeout(timer);return Promise.resolve({ok:false});}
   }
   document.addEventListener('submit', function(e){
     var form = e.target;
-    if (form && form.tagName === 'FORM') mirror(form);   // 不 preventDefault，原流程照跑
+    if (form && form.tagName === 'FORM' && form.id !== 'diagForm') mirror(form);   // 不 preventDefault，原流程照跑
   }, true);
   // JS 精靈式送出的頁面(如 booking 的 submit())沒有原生 submit 事件 → 對外開放讓它手動呼叫
   try { window.hcfMirrorForm = mirror; } catch(e){}

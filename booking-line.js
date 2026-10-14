@@ -1,4 +1,4 @@
-/* hcf-booking-line-20261014-r2 · https://developers.line.biz/en/docs/messaging-api/using-line-url-scheme/ */
+/* hcf-booking-upgrade-20261014-r3 · https://developers.line.biz/en/docs/messaging-api/using-line-url-scheme/ */
 (function () {
   'use strict';
   // Resolved from the website's existing https://lin.ee/7lidUv0 link.
@@ -9,8 +9,9 @@
   function wellFormed(value) {
     return String(value).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDFFF]/g, function (s) { return s.length === 2 ? s : '\uFFFD'; });
   }
-  function build(fields, device) {
+  function build(fields, device, receiptId) {
     var lines = ['【HCF 體驗課需求】'];
+    if (/^[a-z0-9]{10,40}$/.test(receiptId || '')) lines.push('收件編號：' + receiptId);
     Object.entries(fields).forEach(function (entry) {
       if (entry[0].charAt(0) === '_') return;
       var value = Array.isArray(entry[1]) ? entry[1].join('、') : String(entry[1] == null ? '' : entry[1]);
@@ -24,7 +25,8 @@
     var draftURL = 'https://line.me/R/oaMessage/' + encodeURIComponent(ACCOUNT) + '/?' + encodeURIComponent(message);
     var mobile = /Android|iPhone|iPad|iPod/i.test(device.userAgent || '') || (device.platform === 'MacIntel' && device.maxTouchPoints > 1);
     var reason = !mobile ? 'desktop' : draftURL.length > MAX_HANDOFF_URL ? 'long' : 'draft';
-    return { message: message, url: reason === 'draft' ? draftURL : PROFILE, autoOpen: reason === 'draft', reason: reason };
+    var receipt = message.match(/(?:^|\n)收件編號：([a-z0-9]{10,40})(?:\n|$)/);
+    return { receiptId: receipt ? receipt[1] : '', profileURL: PROFILE, message: message, url: reason === 'draft' ? draftURL : PROFILE, autoOpen: reason === 'draft', reason: reason };
   }
   var RECEIPT_KEY = 'hcf.booking.line.receipt.v1', MAX_AGE = 30 * 60 * 1000;
   function save(storage, message, now) {
