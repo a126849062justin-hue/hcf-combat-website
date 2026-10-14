@@ -32,148 +32,44 @@
   gtag('config', 'G-ZCPVLM3SY0');
 </script>
 
-<style>
-:root{
-  --red:#C81015; --red-hi:#E11B22; --black:#0A0A0A; --panel:#141414;
-  --line:#2A2A2A; --text:#F5F5F5; --muted:#9A9A9A; --gold:#D4AF37;
-}
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth}
-body{
-  background:var(--black);color:var(--text);
-  font-family:"Noto Sans TC","Noto Sans CJK TC",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  line-height:1.7;-webkit-font-smoothing:antialiased;
-  min-height:100dvh;display:flex;flex-direction:column;
-}
-body::before{
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:radial-gradient(circle at 80% -10%,rgba(200,16,21,.22),transparent 55%),
-             radial-gradient(circle at 0% 110%,rgba(255,255,255,.05),transparent 50%);
-}
-a{color:inherit}
-.hd{position:sticky;top:0;z-index:20;background:rgba(10,10,10,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.hd-in{max-width:720px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:1px;font-size:17px;text-decoration:none}
-.brand i{display:block;width:5px;height:22px;background:var(--red);border-radius:1px}
-.back{font-size:14px;color:var(--muted);text-decoration:none}
-.back:hover{color:#fff}
-.pg{max-width:720px;margin:0 auto;padding:0 20px;width:100%}
-.pg-bar{height:4px;background:#1E1E1E;border-radius:99px;overflow:hidden;margin-top:18px}
-.pg-fill{height:100%;width:25%;background:var(--red);transition:width .35s cubic-bezier(.4,0,.2,1)}
-.pg-txt{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-top:8px;letter-spacing:.5px}
-main{position:relative;z-index:1;flex:1;max-width:720px;margin:0 auto;width:100%;padding:22px 20px 120px}
-.lede h1{font-size:clamp(28px,7vw,40px);font-weight:900;letter-spacing:.5px;line-height:1.22}
-.lede h1 em{color:var(--red);font-style:normal}
-.lede .sub{display:block;font-size:clamp(17px,4.4vw,22px);color:var(--gold);font-weight:700;margin-top:6px;letter-spacing:1px}
-.lede p{color:#CFCFCF;font-size:15.5px;margin-top:18px;line-height:1.9}
-.lede .fine{color:var(--muted);font-size:13.5px;margin-top:14px}
-.startbtn{display:block;width:100%;margin-top:28px;background:var(--red);color:#fff;border:none;border-radius:10px;
-  font:inherit;font-size:18px;font-weight:900;letter-spacing:1px;padding:17px 24px;cursor:pointer;transition:.18s}
-.startbtn:hover{background:var(--red-hi)}
-.trust{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
-.trust span{font-size:13px;color:#CFCFCF;background:var(--panel);border:1px solid var(--line);border-radius:99px;padding:7px 14px}
-.step{display:none;animation:in .3s ease}
-.step.on{display:block}
-@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.q{margin-top:30px}
-.q>label.t,.q .t{display:block;font-size:19px;font-weight:700;margin-bottom:12px;letter-spacing:.3px}
-.q .t .req{color:var(--red);margin-left:4px}
-.q .hint{display:block;font-size:13px;color:var(--muted);font-weight:400;margin-top:5px}
-.q .qmax{font-size:13px;color:var(--gold);font-weight:500;margin:-2px 0 10px}
-input[type=text],input[type=tel],input[type=date],input[type=number],textarea{
-  width:100%;background:var(--panel);border:1px solid var(--line);border-radius:10px;
-  color:var(--text);font:inherit;font-size:16px;padding:14px 16px;transition:border-color .18s}
-textarea{min-height:96px;resize:vertical;line-height:1.6}
-input:focus,textarea:focus{outline:none;border-color:var(--red)}
-input::placeholder,textarea::placeholder{color:#5E5E5E}
-.opts{display:grid;gap:10px}
-.opts.two{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
-.opt{position:relative;display:flex;align-items:center;gap:12px;background:var(--panel);
-  border:1px solid var(--line);border-radius:10px;padding:14px 16px;cursor:pointer;transition:.18s}
-.opt:hover{border-color:#4A4A4A}
-.opt input{position:absolute;opacity:0;pointer-events:none}
-.opt .box{flex:none;width:22px;height:22px;border:2px solid #4A4A4A;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;transition:.18s}
-.opt.multi .box{border-radius:6px}
-.opt .box::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--red);transform:scale(0);transition:transform .18s}
-.opt.multi .box::after{border-radius:2px}
-.opt .lb{font-size:16px;font-weight:500}
-.opt .lb b{color:var(--gold);font-weight:700}
-.opt .sub{display:block;font-size:13px;color:var(--muted);font-weight:400;margin-top:2px}
-.opt input:checked ~ .box{border-color:var(--red)}
-.opt input:checked ~ .box::after{transform:scale(1)}
-.opt:has(input:checked){border-color:var(--red);background:rgba(200,16,21,.10)}
-.err{display:none;color:#FF6B6F;font-size:14px;margin-top:8px}
-.err.on{display:block}
-.branch{margin-top:24px;padding:20px;border:1px dashed var(--line);border-radius:12px;background:rgba(212,175,55,.04)}
-.branch .bt{font-size:14px;color:var(--gold);font-weight:900;letter-spacing:1px;margin-bottom:4px}
-.branch .bd{font-size:13px;color:var(--muted);margin-bottom:14px}
-.optag{font-size:12px;color:var(--muted);font-weight:400;margin-left:6px}
-.nav{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(10,10,10,.95);
-  backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:14px 20px calc(14px + env(safe-area-inset-bottom));display:none}
-.nav.on{display:block}
-.nav-in{max-width:720px;margin:0 auto;display:flex;gap:12px}
-.btn{flex:1;border:none;border-radius:10px;font:inherit;font-size:17px;font-weight:900;letter-spacing:1px;padding:15px 20px;cursor:pointer;transition:.18s}
-.btn-p{background:var(--red);color:#fff}
-.btn-p:hover{background:var(--red-hi)}
-.btn-s{flex:0 0 108px;background:transparent;color:var(--muted);border:1px solid var(--line)}
-.btn-s:hover{color:#fff;border-color:#4A4A4A}
-.done{display:none;text-align:center;padding:36px 0 20px}
-.done.on{display:block;animation:in .35s ease}
-.done .tick{width:76px;height:76px;border-radius:50%;background:var(--red);margin:0 auto 24px;display:flex;align-items:center;justify-content:center}
-.done h2{font-size:28px;font-weight:900;letter-spacing:.5px}
-.done p{color:#CFCFCF;margin-top:12px;font-size:15px;line-height:1.9}
-.msgbox{background:var(--panel);border:1px solid var(--gold);border-radius:12px;padding:18px 20px;margin-top:22px;text-align:center}
-.msgbox .lb{font-size:13px;color:var(--muted);letter-spacing:.5px}
-.msgbox .m{font-size:20px;font-weight:900;color:var(--gold);margin-top:6px;letter-spacing:1px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px 24px;margin-top:22px;text-align:left}
-.card h3{font-size:16px;font-weight:900;color:var(--red);letter-spacing:1px;margin-bottom:12px}
-.card ul{list-style:none;font-size:15px;line-height:2.1;color:#DADADA}
-.card ul li::before{content:"・";color:var(--red);margin-right:4px}
-.line-btn{display:block;background:#06C755;color:#fff;text-align:center;font-weight:900;font-size:17px;padding:16px;border-radius:10px;margin-top:22px;text-decoration:none;letter-spacing:1px}
-.map-btn{display:block;border:1px solid var(--line);color:var(--text);text-align:center;font-weight:700;font-size:15px;padding:14px;border-radius:10px;margin-top:12px;text-decoration:none}
-.member{margin-top:36px;padding-top:22px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);text-align:center}
-.member a{color:var(--gold);font-weight:700;text-decoration:none;border-bottom:1px solid rgba(212,175,55,.4)}
-footer{position:relative;z-index:1;max-width:720px;margin:0 auto;width:100%;padding:0 20px 120px;font-size:12px;color:#5E5E5E;letter-spacing:.5px;text-align:center}
-@media(max-width:420px){.btn{font-size:16px;padding:14px}.btn-s{flex:0 0 92px}}
-
-.booking-steps{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:24px;counter-reset:booking}
-.booking-steps li{counter-increment:booking;padding:12px 8px;border:1px solid #353535;border-radius:8px;font-size:13px;text-align:center;color:#eee;background:rgba(255,255,255,.025)}
-.booking-steps li::before{content:'0' counter(booking);display:block;color:var(--gold);font-size:12px;font-weight:900;letter-spacing:2px;margin-bottom:5px}
-.booking-direct{display:block;text-align:center;border:1px solid #505050;border-radius:10px;padding:14px;margin-top:12px;font-size:14px;font-weight:700;text-decoration:none}
-.booking-direct:hover{border-color:var(--gold);color:var(--gold)}
-.booking-note{font-size:12px!important;color:#aaa!important;text-align:center;margin-top:10px!important}
-.opt:focus-within{outline:2px solid var(--gold);outline-offset:3px}
-a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
-
-</style>
+<link rel="stylesheet" href="booking-app.css?v=hcf-booking-app-20261014-r1">
 </head>
-<body data-page="booking">
+<body data-page="booking" data-design="hcf-booking-app-20261014-r1">
 
 <header class="hd">
   <div class="hd-in">
-    <a class="brand" href="/"><i></i>HCF 新竹格鬥</a>
-    <a class="back" href="/">返回官網</a>
+    <a class="brand" href="/"><img src="hcf-booking-logo.png" alt="" width="52" height="52"><span>HCF 新竹格鬥<small>HONOR · COURAGE · FAITH</small></span></a>
+    <a class="back" href="/">返回官網 <span aria-hidden="true">↗</span></a>
   </div>
 </header>
 
 <div class="pg" id="pgWrap" style="display:none">
-  <div class="pg-bar"><div class="pg-fill" id="pgFill"></div></div>
+  <ol class="step-track" aria-label="填寫進度"><li data-progress="1" aria-current="step"><span>01</span>你的目標</li><li data-progress="2"><span>02</span>體驗方式</li><li data-progress="3"><span>03</span>方便時間</li><li data-progress="4"><span>04</span>安全與確認</li></ol><div class="pg-bar"><div class="pg-fill" id="pgFill"></div></div>
   <div class="pg-txt"><span id="pgStep">第 1 步 / 共 4 步</span><span>約 60 秒</span></div>
 </div>
 
 <main>
   <!-- ============ 首頁 ============ -->
   <div class="lede" id="intro">
-    <h1>安排我的<em>體驗課</em><span class="sub">60 秒需求診斷 · 團課 $400 起</span></h1>
-    <p>不需要有任何格鬥基礎。<br>
-       告訴我們你目前的目標、運動經驗與方便時間，教練會依照你的實際狀況，推薦適合的體驗方式。</p>
-    <p class="fine">填寫約 60 秒，再到官方 LINE 傳送你的稱呼，由教練確認適合的課程與時段。填表不等於預約完成。</p>
-    <div class="trust"><span>🥊 零基礎友善</span><span>🧭 教練親自規劃</span><span>🚫 不強迫購買</span></div>
-    <ol class="booking-steps" aria-label="體驗安排流程"><li>填寫需求</li><li>加入官方 LINE</li><li>確認上課時段</li></ol>
-    <button class="startbtn" id="startBtn" type="button">填寫需求，安排體驗課 →</button>
-    <a class="booking-direct" href="https://www.fit-book.com.tw/hsinchucombat/plan/588" target="_blank" rel="noopener">已確定課程？直接到 FitBook 約課 ↗</a>
-    <p class="booking-note">還不確定適合哪種課程？先填需求，讓教練協助你。</p>
+    <div class="hero-copy">
+      <span class="eyebrow"><i></i> YOUR FIRST ROUND</span>
+      <h1>安排我的<br><em>第一堂體驗</em></h1>
+      <p class="hero-sub">不需要有基礎<br>先讓教練認識你</p>
+      <p class="hero-description">告訴我們你的目標、運動經驗與方便時間，<br class="desktop-break">一起找到適合你的訓練起點。</p>
+      <div class="hero-price">團體課體驗 <b>$400 起</b></div>
+      <div class="trust"><span>零基礎友善</span><span>教練親自規劃</span><span>不強迫購買</span></div>
+      <button class="startbtn" id="startBtn" type="button"><span>開始我的訓練規劃<small>約 60 秒 · 4 個步驟</small></span><b aria-hidden="true">↗</b></button>
+      <p class="booking-note">填表後到官方 LINE 確認，填表不等於預約完成。</p>
+      <a class="booking-direct" href="https://www.fit-book.com.tw/hsinchucombat/plan/588" target="_blank" rel="noopener">已確定課程？直接到 FitBook 約課 ↗</a>
+    </div>
+    <div class="hero-brand" aria-label="HCF 新生訓練規劃">
+      <div class="brand-orbit" aria-hidden="true"></div>
+      <span class="brand-caption">TRAIN WITH PURPOSE</span>
+      <img src="hcf-booking-logo.png" alt="HCF 新竹格鬥鯊魚標誌" width="640" height="640" fetchpriority="high">
+      <div class="entry-card"><span class="entry-dot"></span><div>你的目標 是教練的起點<small>填寫需求後 由教練協助安排</small></div><b aria-hidden="true">01</b></div>
+      <span class="brand-bottom">HONOR / COURAGE / FAITH</span>
+    </div>
+    <ol class="booking-steps" aria-label="體驗安排流程"><li><b>填寫需求</b><span>讓教練先了解你</span></li><li><b>加入官方 LINE</b><span>傳送填表時的稱呼</span></li><li><b>確認上課時段</b><span>由教練協助安排</span></li></ol>
   </div>
 
   <!-- ============ 表單 ============ -->
@@ -181,7 +77,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
     <form id="diagForm">
 
       <!-- STEP 1 -->
-      <section class="step on" data-step="1">
+      <section class="step on" data-step="1"><header class="step-heading"><span class="eyebrow">STEP 01 / 你的目標</span><h2 tabindex="-1">這一回合 從你開始</h2><p>先告訴我們怎麼稱呼你，以及你最想獲得的改變。</p></header>
         <div class="q">
           <label class="t" for="f_name">怎麼稱呼你？<span class="req">*</span>
             <span class="hint">填寫姓名或平常使用的稱呼即可；請使用加入官方 LINE 時相同的稱呼，方便教練核對你的預約資料</span></label>
@@ -190,7 +86,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
         </div>
         <div class="q" data-group="goal" data-multi="1" data-max="2">
           <span class="t">你目前最想透過訓練改善什麼？<span class="req">*</span></span>
-          <div class="qmax">最多選 2 項</div>
+          <div class="qmax" role="status">最多選 2 項 · 已選 0 項</div>
           <div class="opts">
             <label class="opt multi"><input type="checkbox" name="想改善" value="減脂、瘦身、改善體態"><span class="box"></span><span class="lb">減脂、瘦身、改善體態</span></label>
             <label class="opt multi"><input type="checkbox" name="想改善" value="提升體能、肌力與爆發力"><span class="box"></span><span class="lb">提升體能、肌力與爆發力</span></label>
@@ -206,7 +102,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
       </section>
 
       <!-- STEP 2 -->
-      <section class="step" data-step="2">
+      <section class="step" data-step="2"><header class="step-heading"><span class="eyebrow">STEP 02 / 體驗方式</span><h2 tabindex="-1">找到適合你的開始</h2><p>依照目前的經驗選擇，不確定也可以交給教練協助。</p></header>
         <div class="q" data-group="exp">
           <span class="t">你目前有泰拳、拳擊或格鬥經驗嗎？<span class="req">*</span></span>
           <div class="opts">
@@ -232,7 +128,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
       </section>
 
       <!-- STEP 3 -->
-      <section class="step" data-step="3">
+      <section class="step" data-step="3"><header class="step-heading"><span class="eyebrow">STEP 03 / 方便時間</span><h2 tabindex="-1">讓訓練走進你的生活</h2><p>選擇你方便的時段，實際上課時間由教練與你確認。</p></header>
         <div class="q" data-group="time" data-multi="1">
           <span class="t">你通常哪些時段比較方便？<span class="req">*</span><span class="hint">可複選，我們會盡量安排</span></span>
           <div class="opts two">
@@ -260,7 +156,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
       </section>
 
       <!-- STEP 4 -->
-      <section class="step" data-step="4">
+      <section class="step" data-step="4"><header class="step-heading"><span class="eyebrow">STEP 04 / 安全與確認</span><h2 tabindex="-1">準備好你的第一堂</h2><p>讓教練了解需要注意的地方，送出前再核對一次。</p></header>
         <div class="q" data-group="body">
           <span class="t">目前是否有舊傷、疾病或需要教練特別注意的狀況？<span class="req">*</span></span>
           <div class="opts">
@@ -364,7 +260,8 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
           </div>
         </div>
 
-        <p style="font-size:13px;color:#5E5E5E;margin-top:22px;line-height:1.8">
+        <section class="review-card" aria-labelledby="reviewTitle"><div class="review-title"><span class="eyebrow">READY FOR YOUR FIRST ROUND</span><h3 id="reviewTitle">送出前 再看一次</h3><p>有要調整的地方，可以按上一步修改。</p></div><dl id="bookingSummary"></dl></section>
+        <p class="privacy-note">
           送出即表示同意以上資料僅供 HCF 新竹格鬥安排課程與訓練安全評估使用，不會提供給第三方。你可隨時要求查詢、更正或刪除。
         </p>
       </section>
@@ -378,9 +275,9 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
   <!-- ============ 完成頁 ============ -->
   <div class="done" id="done">
     <div class="tick"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-    <h2>已收到你的需求診斷 🥊</h2>
+    <span class="eyebrow">YOUR NEXT STEP</span><h2 tabindex="-1">需求已收到<br>下一步 到 LINE 確認</h2>
     <p>接下來請回到 HCF 官方 LINE，傳送下面這句話，教練就會依你的目標、經驗與方便時間，幫你選適合的體驗課程。</p>
-    <div class="msgbox"><span class="lb">回到 LINE 傳送這句</span><div class="m" id="doneMsg">已填寫｜你的稱呼</div></div>
+    <div class="msgbox"><span class="lb">回到 LINE 傳送這句</span><div class="m" id="doneMsg">已填寫｜你的稱呼</div><button class="copy-btn" id="copyDone" type="button">複製這句話</button><p id="copyStatus" role="status"></p></div>
     <a class="line-btn" href="https://lin.ee/7lidUv0" rel="noopener">回到官方 LINE 預約</a>
     <div class="card">
       <h3>體驗當天提醒</h3>
@@ -396,141 +293,17 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
 </main>
 
 <div class="nav" id="navBar">
-  <div class="nav-in">
+  <div class="nav-in"><div class="nav-hint">HCF 新生訓練規劃<small id="navHint">下一步：體驗方式</small></div>
     <button type="button" class="btn btn-s" id="btnPrev" style="display:none">上一步</button>
     <button type="button" class="btn btn-p" id="btnNext">下一步</button>
   </div>
 </div>
 
+<p id="submitError" class="submit-error" role="alert" hidden></p>
 <footer>HCF ・ HSINCHU COMBAT &amp; FITNESS SINCE 2022</footer>
 
-<script>
-(function(){
-  var TOTAL = 4, cur = 1, submitted = false;
-  var LEAD_EMAIL = 'hsinchucombat2022@gmail.com';        // 收診斷通知的信箱，可改
-  var LINE_URL   = 'https://lin.ee/7lidUv0'; // 官方 LINE，可改
-  var steps  = document.querySelectorAll('.step');
-  var fill   = document.getElementById('pgFill');
-  var pgStep = document.getElementById('pgStep');
-  var btnN   = document.getElementById('btnNext');
-  var btnP   = document.getElementById('btnPrev');
-  var form   = document.getElementById('diagForm');
 
-  // 首頁 → 開始
-  document.getElementById('startBtn').addEventListener('click', function(){
-    document.getElementById('intro').style.display = 'none';
-    document.getElementById('formWrap').style.display = 'block';
-    document.getElementById('pgWrap').style.display = 'block';
-    document.getElementById('navBar').classList.add('on');
-    gtag('event','diagnosis_start');
-    paint();
-  });
-
-  function paint(){
-    steps.forEach(function(s){ s.classList.toggle('on', +s.dataset.step === cur); });
-    if (cur === 4) revealBranches();
-    fill.style.width = (cur / TOTAL * 100) + '%';
-    pgStep.textContent = '第 ' + cur + ' 步 / 共 ' + TOTAL + ' 步';
-    btnP.style.display = cur === 1 ? 'none' : 'block';
-    btnN.textContent   = cur === TOTAL ? '取得我的體驗建議' : '下一步';
-    window.scrollTo({top:0, behavior:'smooth'});
-  }
-
-  // Q2 最多選 2
-  var goalQ = document.querySelector('.q[data-group="goal"]');
-  goalQ.addEventListener('change', function(e){
-    var checked = goalQ.querySelectorAll('input:checked');
-    if (checked.length > 2 && e.target.checked) { e.target.checked = false;
-      var m = goalQ.querySelector('.qmax'); if (m){ m.textContent='最多選 2 項喔'; m.style.color='#FF6B6F'; setTimeout(function(){m.textContent='最多選 2 項';m.style.color='';},1500);} }
-  });
-
-  // Q7 身體狀況 → 舊傷／其他 顯示補充說明
-  document.querySelectorAll('input[name="身體狀況"]').forEach(function(r){
-    r.addEventListener('change', function(){
-      document.getElementById('injuryNote').style.display = (r.checked && r.value !== '沒有') ? 'block' : 'none';
-    });
-  });
-
-  // 依 Q2 顯示條件分流
-  function goalHas(v){ return !!document.querySelector('.q[data-group="goal"] input[value="'+v+'"]:checked'); }
-  function revealBranches(){
-    document.getElementById('branchFat').style.display  = goalHas('減脂、瘦身、改善體態') ? 'block' : 'none';
-    document.getElementById('branchComp').style.display = goalHas('想參加比賽或進入選手班') ? 'block' : 'none';
-    document.getElementById('branchKid').style.display  = goalHas('想讓孩子學習運動與紀律') ? 'block' : 'none';
-  }
-
-  function clearErr(sec){ sec.querySelectorAll('.err').forEach(function(e){ e.classList.remove('on'); }); }
-  function validate(sec){
-    clearErr(sec); var ok = true, first = null;
-    sec.querySelectorAll('input[type=text],textarea').forEach(function(el){
-      if (el.required && !el.value.trim()) { ok=false; first=first||el;
-        var e=el.closest('.q').querySelector('.err'); if(e) e.classList.add('on'); }
-    });
-    sec.querySelectorAll('.q[data-group]').forEach(function(q){
-      if (!q.dataset.group) return;                 // 只驗證必填題組（分流題 data-group="" 略過）
-      if (q.closest('.branch')) return;             // 分流題皆選填
-      var sel = q.querySelectorAll('input:checked').length;
-      var max = +q.dataset.max || 0;
-      if (sel === 0) { ok=false; first=first||q; var e=q.querySelector('.err'); if(e) e.classList.add('on'); }
-      else if (max && sel > max) { ok=false; first=first||q; var e2=q.querySelector('.err'); if(e2) e2.classList.add('on'); }
-    });
-    if (!ok && first) first.scrollIntoView({behavior:'smooth', block:'center'});
-    return ok;
-  }
-
-  btnN.addEventListener('click', function(){
-    var sec = document.querySelector('.step[data-step="' + cur + '"]');
-    if (!validate(sec)) return;
-    if (cur < TOTAL) { gtag('event','diagnosis_step',{step:cur}); cur++; paint(); return; }
-    submit();
-  });
-  btnP.addEventListener('click', function(){ if (cur > 1){ cur--; paint(); } });
-
-  function submit(){
-    if (submitted) return; submitted = true;
-    btnN.disabled = true; btnN.textContent = '產生建議中…';
-    var name = (document.getElementById('f_name').value || '').trim();
-
-    var startEl = document.querySelector('input[name="開始方式"]:checked');
-    gtag('event','generate_lead',{ currency:'TWD', value:400,
-      plan:startEl?startEl.value:'', when:(document.querySelector('input[name="預計開始"]:checked')||{}).value||'' });
-
-    // 收集所有答案 → 寄到教練信箱（FormSubmit）
-    try {
-      var payload = {};
-      new FormData(form).forEach(function(v,k){
-        if (!v) return;
-        payload[k] = payload[k] ? (payload[k] + '、' + v) : v;
-      });
-      payload._subject  = '🥊 新生需求診斷｜' + name;
-      payload._template = 'table';
-      payload._captcha  = 'false';
-      fetch('https://formsubmit.co/ajax/' + LEAD_EMAIL, {
-        method:'POST', keepalive:true,
-        headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body: JSON.stringify(payload)
-      }).catch(function(){});
-    } catch(e){}
-
-    // 鏡射到後台 APP（官網來客＋推播團隊）——此頁是 JS 送出、無原生 submit 事件，手動呼叫
-    try { if (window.hcfMirrorForm) window.hcfMirrorForm(form); } catch(e){}
-
-    document.getElementById('doneMsg').textContent = '已填寫｜' + (name || '你的稱呼');
-    document.getElementById('formWrap').style.display = 'none';
-    document.getElementById('pgWrap').style.display   = 'none';
-    document.getElementById('navBar').classList.remove('on');
-    document.getElementById('done').classList.add('on');
-    window.scrollTo({top:0});
-    // 停留讓對方看到要傳的訊息，再帶去官方 LINE
-    setTimeout(function(){ window.location.href = LINE_URL; }, 3200);
-  }
-
-  // Enter 不直接送出
-  form.addEventListener('keydown', function(e){
-    if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA'){ e.preventDefault(); btnN.click(); }
-  });
-})();
-</script>
-  <script src="hcf.js" defer></script>
+  <script src="hcf.js?v=booking-20261014-r1" defer></script>
+<script src="booking-app.js?v=hcf-booking-app-20261014-r1" defer></script>
 </body>
 </html>

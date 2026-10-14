@@ -201,7 +201,7 @@ document.querySelectorAll('[data-cnt]').forEach(function(el){cio.observe(el)});
     return p || 'other';
   }
   function mirror(form){
-    if (!ACTIVE[formTypeOf(form)]) return;      // 未使用的問卷不進後台
+    if (!ACTIVE[formTypeOf(form)]) return Promise.resolve({ok:false});      // 未使用的問卷不進後台
     try {
       var fd = new FormData(form), fields = {};
       fd.forEach(function(v,k){
@@ -209,11 +209,13 @@ document.querySelectorAll('[data-cnt]').forEach(function(el){cio.observe(el)});
         if (fields[k] == null) fields[k] = v;
         else fields[k] = [].concat(fields[k], v); // 多選(checkbox)收成陣列
       });
-      fetch(LEAD_ENDPOINT, {
-        method:'POST', keepalive:true, headers:{'Content-Type':'application/json'},
+      var controller = typeof AbortController === 'function' ? new AbortController() : null;
+      var timer = controller ? setTimeout(function(){controller.abort();},20000) : null;
+      return fetch(LEAD_ENDPOINT, {
+        method:'POST', keepalive:true, signal:controller ? controller.signal : undefined, headers:{'Content-Type':'application/json'},
         body: JSON.stringify({ formType: formTypeOf(form), page: location.pathname, fields: fields })
-      }).catch(function(){});
-    } catch(e){}
+      }).then(function(response){ return response.json().then(function(data){return {ok:response.ok && data.ok === true};}); }).catch(function(){return {ok:false};}).finally(function(){if(timer)clearTimeout(timer);});
+    } catch(e){if(timer)clearTimeout(timer);return Promise.resolve({ok:false});}
   }
   document.addEventListener('submit', function(e){
     var form = e.target;
