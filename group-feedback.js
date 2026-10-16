@@ -128,7 +128,7 @@ async function send(){
     $('done-branches').innerHTML=[...ROUTES[route].branches.map(b=>b==='group'?'團課感受':'私課感受'),'未來意願'].map(label=>`<span>✓ ${label}已收到</span>`).join('');
     $('receipt').textContent='收件編號 '+j.receipt;
     focusTop(document.querySelector('#done h1'));
-  }catch(e){$('form-error').hidden=false;$('form-error').textContent=(e.name==='TimeoutError'?'連線逾時，尚未確認收件。':e.message||'連線暫時無法確認。')+' 內容仍保留；重試會使用同一筆收件編號，請勿另開一份重填。';}
+  }catch(e){$('form-error').hidden=false;$('form-error').textContent=(e.name==='TimeoutError'?'連線逾時，尚未確認收件。':e.message||'連線暫時無法確認。')+(pending?' 內容仍保留；重試會使用同一筆收件編號，請勿另開一份重填。':' 內容仍保留，請返回確認並修改後再送出。');}
   finally{busy=false;lockSubmission();}
 }
 $('next').addEventListener('click',()=>{
