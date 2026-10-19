@@ -85,3 +85,15 @@
   if(foot&&foot.parentNode)foot.parentNode.insertBefore(node,foot);
   else document.body.appendChild(node);
 })();
+
+/* Shared HCF VISUAL LAB links and brand health check. */
+(function () {
+  if (document.getElementById('hcfvl-promo') || document.getElementById('hcfvl-site-loader')) return;
+  var script = document.createElement('script');
+  script.id = 'hcfvl-site-loader';
+  script.src = '/hcf-visual-lab.js?v=20261020';
+  script.async = true;
+  document.head.appendChild(script);
+})();
+
+

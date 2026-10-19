@@ -236,3 +236,15 @@ document.querySelectorAll('[data-cnt]').forEach(function(el){cio.observe(el)});
       if(document.body) document.body.insertBefore(bar, document.body.firstChild);
     }).catch(function(){});
 })();
+
+/* Shared HCF VISUAL LAB links and brand health check. */
+(function () {
+  if (document.getElementById('hcfvl-promo') || document.getElementById('hcfvl-site-loader')) return;
+  var script = document.createElement('script');
+  script.id = 'hcfvl-site-loader';
+  script.src = '/hcf-visual-lab.js?v=20261020';
+  script.async = true;
+  document.head.appendChild(script);
+})();
+
+
