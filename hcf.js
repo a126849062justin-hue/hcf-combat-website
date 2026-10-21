@@ -248,3 +248,15 @@ document.querySelectorAll('[data-cnt]').forEach(function(el){cio.observe(el)});
 })();
 
 
+
+/* Shared original-logo course assistant. */
+(function () {
+  var page = location.pathname.replace(/\.html$/, '').replace(/\/$/, '').split('/').pop();
+  var excluded = ['complaint', 'survey', 'status', 'trial-review', 'survey-trial-followup', 'group-feedback', 'plans-proposal', 'coach-huang-archive', 'card-huang', 'card-kao', 'card-mi'];
+  if (excluded.indexOf(page) !== -1 || document.getElementById('hcf-shark-assistant') || document.getElementById('hcf-assistant-loader')) return;
+  var script = document.createElement('script');
+  script.id = 'hcf-assistant-loader';
+  script.src = '/hcf-assistant.js?v=20261021';
+  script.async = true;
+  document.head.appendChild(script);
+})();
