@@ -91,7 +91,7 @@
   if (document.getElementById('hcfvl-promo') || document.getElementById('hcfvl-site-loader')) return;
   var script = document.createElement('script');
   script.id = 'hcfvl-site-loader';
-  script.src = '/hcf-visual-lab.js?v=20261020';
+  script.src = '/hcf-visual-lab.js?v=20261027';
   script.async = true;
   document.head.appendChild(script);
 })();
@@ -105,7 +105,7 @@
   if (excluded.indexOf(page) !== -1 || document.getElementById('hcf-shark-assistant') || document.getElementById('hcf-assistant-loader')) return;
   var script = document.createElement('script');
   script.id = 'hcf-assistant-loader';
-  script.src = '/hcf-assistant.js?v=20261021';
+  script.src = '/hcf-assistant.js?v=20261027';
   script.async = true;
   document.head.appendChild(script);
 })();

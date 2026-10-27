@@ -329,3 +329,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
 .mnav-social a[data-s="yt"]:hover,.fin-social .fs-ic[data-s="yt"]:hover,.mnav-social a[data-s="yt"]:active{background:none!important;color:#FF0000!important;border-color:transparent!important}
 .mnav-social a[data-s="line"]:hover,.fin-social .fs-ic[data-s="line"]:hover,.mnav-social a[data-s="line"]:active{background:none!important;color:#06C755!important;border-color:transparent!important}
 .mnav-social{gap:6px}.fin-social{gap:6px}
+
+/* Closed mobile drawer should not cast a shadow over page text. */
+@media(max-width:920px){#mnav.mnav:not(.open){box-shadow:none!important}}

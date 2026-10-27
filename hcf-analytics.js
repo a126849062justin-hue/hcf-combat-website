@@ -1,3 +1,5 @@
+/* Conversion events are separate from legacy metrics; names and dimensions are allowlisted. */
+(function(){if(!document.getElementById('hcf-growth-loader')){var s=document.createElement('script');s.id='hcf-growth-loader';s.src='/hcf-growth-events.js?v=20261027';document.head.append(s);}})();
 /* ============================================================
    HCF 數據追蹤 hcf-analytics.js — 全站 21 頁共用
    後台 = Google Analytics 4：申請後把 G-XXXXXXXXXX 填入下方 GA_ID
@@ -8,6 +10,7 @@
   var GA_ID='G-ZCPVLM3SY0';      // ← 申請 GA4 後填入，例如 'G-AB12CD34EF'
   var BACKEND='https://hcf-admin.onrender.com';    // ← 已對接 HCF 獨立後台（onrender，服務名 hcf-admin）；留空＝不啟用
 
+  if(!['www.hsinchucombat.com','hsinchucombat.com'].includes(location.hostname)){GA_ID='';BACKEND='';}
   window.HCF_BACKEND=BACKEND;
   /* 內容快取：公告列／課表／消息／價格（各頁自行取用） */
   window.HCF_CONTENT=BACKEND?fetch(BACKEND+'/api/public/content').then(function(r){return r.json()}).catch(function(){return{}}):Promise.resolve({});

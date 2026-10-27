@@ -45,6 +45,7 @@
     var actions = promo.querySelector('.hcfvl-site-actions');
     actions.appendChild(anchor('立即預約健檢 →', 'hcfvl-site-primary', 'brand_check', '/diagnosis'));
     actions.appendChild(anchor('看看我們的設計作品 ↗', 'hcfvl-site-secondary', 'portfolio', '/works'));
+    var caseLink = document.createElement('a'); caseLink.href='/website-design-case.html'; caseLink.className='hcfvl-site-secondary'; caseLink.textContent='這個官網怎麼做？看設計案例 →'; actions.appendChild(caseLink);
     footer.parentNode.insertBefore(promo, footer);
     var credit = document.createElement('p');
     credit.className = 'hcfvl-site-credit';

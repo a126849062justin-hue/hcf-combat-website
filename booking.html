@@ -29,12 +29,12 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-ZCPVLM3SY0');
+  if (['www.hsinchucombat.com','hsinchucombat.com'].includes(location.hostname)) gtag('config', 'G-ZCPVLM3SY0');
 </script>
 
-<link rel="stylesheet" href="booking-app.css?v=hcf-booking-logo-20261014-r4">
+<link rel="stylesheet" href="booking-app.css?v=hcf-booking-20261027">
 </head>
-<body data-page="booking" data-design="hcf-booking-logo-20261014-r4">
+<body data-page="booking" data-design="hcf-booking-20261027">
 
 <header class="hd">
   <div class="hd-in">
@@ -49,6 +49,7 @@
 </div>
 
 <main>
+  <aside id="choicePreview" class="choice-preview" hidden aria-label="小鯊選課建議"><b>已帶入小鯊選課建議</b><p id="choiceText"></p><small>所有選項都可修改；實際課程與時段由教練確認。</small><button id="clearChoice" type="button">清除建議，自己選擇</button></aside>
   <!-- ============ 首頁 ============ -->
   <div class="lede" id="intro">
     <div class="hero-copy">
@@ -60,6 +61,7 @@
       <div class="trust"><span>零基礎友善</span><span>教練親自規劃</span><span>不強迫購買</span></div>
       <button class="startbtn" id="startBtn" type="button"><span>開始我的訓練規劃<small>約 60 秒 · 4 個步驟</small></span><b aria-hidden="true">↗</b></button>
       <p class="booking-note">手機送出後將開啟官方 LINE 並帶入表單，請再按「傳送」。時段仍由教練確認。</p>
+      <a class="first-visit-link" href="first-time-muay-thai-guide.html">第一次來？先看上課流程與準備清單 →</a>
       <a class="booking-direct" href="https://www.fit-book.com.tw/hsinchucombat/plan/588" target="_blank" rel="noopener">已確定課程？直接到 FitBook 約課 ↗</a>
     </div>
     <div class="hero-brand" aria-label="HCF 新生訓練規劃">
@@ -278,8 +280,8 @@
   <div class="done" id="done">
     <div class="tick"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
     <span class="eyebrow">YOUR NEXT STEP</span><h2 tabindex="-1">需求已收到<br>到 LINE 再按傳送</h2>
-    <p>APP 已收到你的需求。請在 HCF 官方 LINE 確認訊息內容並按「傳送」，讓教練對上你的帳號，接著協助確認課程與時段。</p>
-    <div class="receipt-card"><span>已收件</span><b id="receiptId"></b><small>這是需求收件編號，並非課程預約成立</small></div><ol class="arrival-steps"><li class="complete">需求已收到</li><li>LINE 按傳送</li><li>等教練確認時段</li></ol>
+    <p>網站已收到你的需求。請在 HCF 官方 LINE 確認訊息內容並按「傳送」，讓教練對上你的帳號，接著協助確認課程與時段。</p>
+    <div class="receipt-card"><span>已收件</span><b id="receiptId"></b><small>這是需求收件編號，並非課程預約成立</small></div><ol class="arrival-steps" aria-label="預約辦理狀態"><li class="complete">網站已收件</li><li id="lineStep" aria-current="step">待到 LINE 傳送</li><li>待教練確認</li></ol><p class="handoff-note">開啟 LINE 不代表訊息已傳送；收到教練確認的課程與時間，預約才成立。</p>
     <p id="lineStatus" class="line-status" role="status"></p>
     <button id="cancelLine" class="copy-btn" type="button" hidden>先留在此頁</button>
     <a id="openLine" class="line-btn" href="https://lin.ee/7lidUv0" rel="noopener noreferrer">開啟 HCF 官方 LINE</a>
@@ -295,6 +297,7 @@
       </ul>
     </div>
     <a class="map-btn" href="https://maps.google.com/?q=新竹市北區台溪里林森路301號2樓" target="_blank" rel="noopener">新竹市北區林森路 301 號 2 樓</a>
+    <a class="map-btn" href="first-time-muay-thai-guide.html">第一次來館：報到、準備與交通 →</a>
     <a class="map-btn" href="pricing.html" style="margin-top:12px">先看看完整課程方案 →</a>
   </div>
 </main>
@@ -312,6 +315,8 @@
 
   <script src="hcf.js?v=booking-20261014-r3" defer></script>
 <script src="booking-line.js?v=hcf-booking-upgrade-20261014-r3" defer></script>
-<script src="booking-app.js?v=hcf-booking-upgrade-20261014-r3" defer></script>
+<script src="hcf-course-data.js?v=20261027" defer></script>
+<script src="hcf-growth-events.js?v=20261027" defer></script>
+<script src="booking-app.js?v=20261027" defer></script>
 </body>
 </html>
