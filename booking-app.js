@@ -10,10 +10,11 @@
   function track(event, data) {
     var events = ['booking_start','booking_step_view','booking_step_complete','booking_step_leave','booking_edit','booking_submit_success','booking_submit_failure','booking_line_open','booking_copy'];
     if (!events.includes(event)) return;
-    var safe = { form_version: '20261014_r3' };
+    var safe = { form_version: '20261027' };
     if (data && Number.isInteger(data.step) && data.step >= 1 && data.step <= TOTAL) safe.step = data.step;
     if (data && ['manual','automatic'].includes(data.mode)) safe.mode = data.mode;
-    if (typeof window.gtag === 'function') window.gtag('event', event, safe);
+    if (window.hcfGrowthTrack) window.hcfGrowthTrack(event, safe);
+    else if (typeof window.gtag === 'function') window.gtag('event', event, safe);
   }
   function chosen(name) { return Array.from(form.elements).filter(function (el) { return el.name === name && el.checked; }).map(function (el) { return el.value; }); }
   function branch(id, visible) {
@@ -67,6 +68,7 @@
     window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion:reduce)').matches ? 'instant' : 'smooth' });
   }
   document.getElementById('startBtn').addEventListener('click', function () {
+    window.dispatchEvent(new Event('hcf-booking-active'));
     document.getElementById('intro').style.display = 'none';
     document.getElementById('formWrap').style.display = 'block';
     document.getElementById('pgWrap').style.display = 'block';
@@ -163,6 +165,7 @@
     document.getElementById('intro').style.display = 'none';
     document.getElementById('formWrap').style.display = 'none'; document.getElementById('pgWrap').style.display = 'none';
     document.getElementById('navBar').classList.remove('on'); document.getElementById('done').classList.add('on');
+    document.getElementById('choicePreview').hidden = true;
     document.querySelector('#done h2').focus({ preventScroll: true }); window.scrollTo({ top: 0 });
     prepareLine(handoff, autoOpen);
   }
@@ -187,7 +190,7 @@
       openLineDraft('automatic');
     }, 3000);
   }
-  function openLineDraft(mode) { stopLine(); if (!lineHandoff) return; track('booking_line_open',{mode:mode}); window.location.assign(lineHandoff.url); }
+  function openLineDraft(mode) { stopLine(); if (!lineHandoff) return; track('booking_line_open',{mode:mode}); document.getElementById('lineStep').textContent = '已開啟 LINE，請傳送'; window.location.assign(lineHandoff.url); }
   lineButton.addEventListener('click', function (event) { event.preventDefault(); openLineDraft('manual'); });
   cancelLine.addEventListener('click', function () { stopLine(); lineStatus.textContent = '已留在此頁。準備好後點「開啟 LINE」，確認內容再按傳送。'; });
   document.addEventListener('visibilitychange', function () { if (document.hidden && lineTimer !== null) { stopLine(); lineStatus.textContent = '需求已收件。若尚未在 LINE 傳送，請用下方按鈕繼續。'; } });
@@ -204,6 +207,24 @@
   document.getElementById('newBooking').addEventListener('click', function () {
     stopLine(); try { window.HCFBookingLine.clear(window.sessionStorage); } catch (_) {}
     window.location.reload();
+  });
+  // Selection travels only in a URL fragment; never includes personal or health data.
+  var prefill = window.HCFChoice && window.HCFChoice.decode(location.hash), prefilled = [];
+  if (prefill) {
+    var fields = window.HCFChoice.fields(prefill), recommendation = window.HCFChoice.recommend(prefill);
+    Object.entries(fields).forEach(function(pair){
+      Array.from(form.elements).filter(function(el){return el.name === pair[0] && el.value === pair[1];}).forEach(function(el){el.checked=true;prefilled.push(el);});
+    });
+    document.getElementById('choicePreview').hidden=false;
+    document.getElementById('choiceText').textContent=recommendation.name+' · '+window.HCFChoice.goals[prefill.goal][0]+' · '+window.HCFChoice.experience[prefill.experience][0]+' · '+window.HCFChoice.times[prefill.time][0];
+    window.hcfGrowthTrack?.('booking_prefill',{course:recommendation.id});
+    history.replaceState(null,'',location.pathname+location.search);
+  }
+  document.getElementById('clearChoice').addEventListener('click',function(){
+    prefilled.forEach(function(el){el.checked=false;});prefilled=[];
+    document.getElementById('choicePreview').hidden=true;revealBranches();summary();
+    goalQ.querySelector('.qmax').textContent='最多選 2 項 · 已選 '+chosen('想改善').length+' 項';
+    if(started){cur=1;editing=false;paint();}
   });
   revealBranches();
   try {

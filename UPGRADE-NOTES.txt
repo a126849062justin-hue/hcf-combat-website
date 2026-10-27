@@ -1,0 +1,22 @@
+HCF website growth upgrade — 2026-10-27
+
+Public changes
+- Three-question shark course guide using shared hcf-course-data.js; only enum selection codes pass in the URL fragment. Booking keeps name/health unanswered and all preselected choices editable.
+- Booking has an explicit received / send LINE / coach confirmation sequence. Starting the form collapses the assistant. Clearing a recommendation during a form returns to step 1.
+- Mobile assistant has a compact launcher, full usable chat panel and minimize action. Closed mobile menus no longer cast a shadow over content.
+- Intermediate duration corrected to 60 minutes; invitation-only squad duration depends on the coach. No change to schedule slots or prices.
+- Existing first-time guide extended with arrival steps, class footage and preparation checklist. Five below-fold group-class videos no longer autoplay or preload metadata.
+- New /website-design-case page with actual website screenshots and tagged HCF VISUAL LAB inquiry links. Linked from homepage and shared promotion, and included in sitemap.
+
+Metrics and deployment
+- Existing GA4 measurement ID is retained. hcf-growth-events.js sends only allowlisted operation events and dimensions; no personal answers, health data, chat text or receipt IDs.
+- Existing Render backend hcf-admin.onrender.com must deploy backend/server.js + backend/admin.html. Public /api/health reports version 20261027 after deployment.
+- The authenticated dashboard separates combat signup operations from design inquiry clicks. Counts are event totals, not unique visitors or an attributed conversion rate. LINE open is not LINE sent or a confirmed booking.
+- Coach/business outcomes are daily aggregate counts entered manually in the existing authenticated dashboard. They do not copy leads or private form data from the separate booking APP.
+- Historical events are not backfilled. Referrer source is classified per browser-tab session. Unknown sources remain direct/unknown.
+- Course guidance labels, plan prices and booking field mapping live in hcf-course-data.js. Update alongside booking/pricing copy when offers change.
+
+Validation
+- node --test tests/*.cjs: all 48 course combinations match existing form values; invalid fragments rejected; event PII stripping; protected backend metrics, outcome overwrite and validation.
+- Desktop shark guide -> booking prefill; 390px form, validation and mock-only receipt. No live booking or email was submitted for QA.
+- Local preview rewrites outbound form endpoints in memory; test server and fixtures are outside this deployment.

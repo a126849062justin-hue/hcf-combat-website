@@ -1,3 +1,5 @@
+/* Conversion events are separate from legacy metrics; names and dimensions are allowlisted. */
+(function(){if(!document.getElementById('hcf-growth-loader')){var s=document.createElement('script');s.id='hcf-growth-loader';s.src='/hcf-growth-events.js?v=20261027';document.head.append(s);}})();
 /* ============================================================
    HCF 數據追蹤 hcf-analytics.js — 全站 21 頁共用
    後台 = Google Analytics 4：申請後把 G-XXXXXXXXXX 填入下方 GA_ID
