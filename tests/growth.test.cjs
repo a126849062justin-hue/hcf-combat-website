@@ -22,3 +22,10 @@ test('tracking strips personal answers, raw query URLs and unknown values',()=>{
  assert.equal(sent.length,1);assert.equal(sent[0].params.step,2);assert.equal(sent[0].params.source,'google');assert.ok(!JSON.stringify(sent).includes('DO_NOT_TRACK'));
  context.window.hcfGrowthTrack('free_form_text',{text:'secret'});assert.equal(sent.length,1);
 });
+
+test('preview hosts do not send analytics to production',()=>{
+ let calls=0;
+ const ctx={window:{},location:{hostname:'deploy-preview-126--hcf.netlify.app',pathname:'/booking',origin:'https://deploy-preview-126--hcf.netlify.app'},document:{referrer:'',addEventListener(){}},sessionStorage:{getItem(){return null},setItem(){}},URL,Set,navigator:{sendBeacon(){calls++;return true}}};
+ vm.runInNewContext(fs.readFileSync(require.resolve('../hcf-growth-events.js'),'utf8'),ctx);
+ ctx.window.hcfGrowthTrack('booking_start');assert.equal(calls,0);
+});

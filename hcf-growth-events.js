@@ -3,7 +3,7 @@
   'use strict';
   if (window.hcfGrowthTrack) return;
   var names = new Set(['shark_guide_start','shark_guide_complete','shark_booking_click','shark_minimize','booking_prefill','booking_start','booking_step_view','booking_step_complete','booking_step_leave','booking_edit','booking_submit_success','booking_submit_failure','booking_line_open','booking_copy','booking_entry','first_visit_view','first_visit_video','design_case_view','design_case_entry','design_inquiry_click']);
-  var local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  var local = !['www.hsinchucombat.com','hsinchucombat.com'].includes(location.hostname);
   var source = 'direct';
   try {
     var prior = sessionStorage.getItem('hcf-entry-source');
