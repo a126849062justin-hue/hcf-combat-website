@@ -59,7 +59,8 @@
     const saved = JSON.parse(localStorage.getItem(POSITION_KEY));
     if (saved && Number.isFinite(saved.x) && Number.isFinite(saved.y)) position = {x: Math.max(0, Math.min(1, saved.x)), y: Math.max(0, Math.min(1, saved.y))};
   } catch { /* Position storage is optional. */ }
-  let minimized = document.body.dataset.page === 'booking';
+  const readingPage = document.body.classList.contains('hcf-reading');
+  let minimized = document.body.dataset.page === 'booking' || readingPage;
   try { minimized = minimized || sessionStorage.getItem('hcf-shark-minimized') === '1'; } catch (_) {}
   const clamp = (n, min, max) => Math.max(min, Math.min(Math.max(min, max), n));
   function setMotion(value) {
@@ -257,7 +258,7 @@
   $$('.quick button').forEach(b => b.addEventListener('click', () => ask(b.dataset.question)));
   $('#form').addEventListener('submit', e => { e.preventDefault(); ask(input.value); });
   input.addEventListener('input', () => { if (!busy) mood(input.value ? 'thinking' : 'ready', input.value ? '我在聽，慢慢說。' : undefined); });
-  $('#close').addEventListener('click', () => {if(document.body.dataset.page==='booking')setMinimized(true,true);else setOpen(false);});
+  $('#close').addEventListener('click', () => {if(document.body.dataset.page==='booking'||readingPage)setMinimized(true,true);else setOpen(false);});
   root.addEventListener('keydown', e => { if (e.key === 'Escape' && open) { e.preventDefault(); e.stopPropagation(); setOpen(false); } });
   $('#reset').addEventListener('click', () => { position = {x: 1, y: 1}; layout(); savePosition(); });
   $('#motion').addEventListener('click', () => setMotion(!reduced));
