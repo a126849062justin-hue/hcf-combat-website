@@ -74,7 +74,7 @@
     var intent=iw?(iw.getAttribute('data-intent')||''):'';
     var lbl=(el.textContent||'').trim().slice(0,30);
     if(h.indexOf('fit-book.com')>-1||h.indexOf('booking.html')>-1)hcfTrack('cta_booking',{label:lbl,source:src,intent:intent});
-    else if(h.indexOf('lin.ee')>-1)hcfTrack('cta_line',{label:lbl,source:src,intent:intent});
+    else if(/^https:\/\/(lin\.ee|line\.me)\//.test(h))hcfTrack('cta_line',{label:el.hasAttribute('data-private-line')?'私人課 LINE 詢問':lbl,source:src,intent:el.hasAttribute('data-private-line')?'private':intent});
     else if(h.indexOf('instagram.com')>-1)hcfTrack('social_click',{platform:'ig'});
     else if(h.indexOf('facebook.com')>-1)hcfTrack('social_click',{platform:'fb'});
     else if(h.indexOf('youtube.com')>-1)hcfTrack('social_click',{platform:'yt'});
