@@ -7,3 +7,7 @@
 /faq            /                      301
 
 /survey.html   /status.html   301!
+
+# Retired standalone package page; keep existing bookmarks useful.
+/packages.html   /pricing   301
+/packages        /pricing   301

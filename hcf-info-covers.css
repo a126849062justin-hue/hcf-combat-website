@@ -1,0 +1,18 @@
+/* Schedule and pricing: original coach artwork, with readable copy on white. */
+.hcf-info-cover{background:#fff}
+.hcf-info-cover .phero{max-width:1360px;margin:0 auto;min-height:0;padding:116px 36px 54px;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);align-items:center;gap:32px;background:#fff;color:#273038;overflow:visible}
+.hcf-info-cover .phero::after,.hcf-info-cover .phero .glow{display:none}
+.hcf-info-cover .hcf-cover-photo{grid-column:2;grid-row:1;min-width:0}
+.hcf-info-cover .hcf-cover-photo img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;border-radius:8px}
+.hcf-info-cover .phero-in{grid-column:1;grid-row:1;min-width:0;max-width:none;margin:0;padding:0}
+.hcf-info-cover .phero .kicker{color:#59656d;font-size:12px;letter-spacing:.16em}
+.hcf-info-cover .phero h1{font-family:var(--sans,'Noto Sans TC',sans-serif);font-size:clamp(30px,3.4vw,46px);line-height:1.35;letter-spacing:-.02em;margin-top:16px;color:#273038;opacity:1;animation:none}
+.hcf-info-cover .phero h1 i{color:#a8282e;-webkit-text-stroke:0}
+.hcf-info-cover .phero p{font-size:16px;line-height:1.9;color:#505961;margin-top:20px;opacity:1;animation:none}
+@media(max-width:800px){
+ .hcf-info-cover .phero{grid-template-columns:minmax(0,1fr);gap:26px;padding:94px 22px 40px}
+ .hcf-info-cover .hcf-cover-photo{grid-column:1;grid-row:1}
+ .hcf-info-cover .phero-in{grid-column:1;grid-row:2}
+ .hcf-info-cover .phero h1{font-size:32px}
+ .hcf-info-cover .phero p{margin-top:16px}
+}

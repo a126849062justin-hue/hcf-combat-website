@@ -101,13 +101,14 @@
 .price-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.price-actions a{padding:14px 20px;min-height:48px;border:1px solid var(--ink);font-weight:700;text-decoration:none}.price-actions a:first-child{background:var(--red);border-color:var(--red);color:#fff}
 @media(max-width:600px){.price-compare{font-size:.86rem}.price-compare th,.price-compare td{padding:14px 10px}.price-compare small{font-size:.73rem}.price-actions{flex-direction:column}.price-actions a{text-align:center}.prow .nm{white-space:normal}.prow .pz{flex-shrink:0}.prow .nm small{display:block;margin-left:0}}
 </style>
+<link rel="stylesheet" href="hcf-course-covers.css?v=20261101">
+<link rel="stylesheet" href="hcf-info-covers.css?v=20261101">
 </head>
-<body data-page="pricing">
+<body class="hcf-light-cover hcf-info-cover" data-page="pricing">
 <header class="nav" id="nav"></header>
 
 <section class="phero">
-  <div class="bgimg"><picture><source srcset="hero1.webp" type="image/webp"><img src="hero1.jpg" alt="HCF 課程方案"></picture></div>
-  <div class="phero-ghost">PRICING</div>
+  <div class="hcf-cover-photo"><img src="assets/covers/coaches-1280.webp" srcset="assets/covers/coaches-640.webp 640w, assets/covers/coaches-1280.webp 1280w" sizes="(max-width: 800px) calc(100vw - 44px), (max-width: 1360px) 55vw, 740px" width="1280" height="720" alt="HCF 三位教練合照與新竹格鬥品牌標誌" fetchpriority="high" decoding="async"></div>
   <div class="phero-in">
     <div class="kicker">PRICING / PLANS</div>
     <h1>第一堂課 <i>$400</i> <br>之後的路你自己選</h1>
@@ -215,8 +216,8 @@
 <div class="seamC"><div class="wedge dot"></div></div>
 <section class="finale" id="finale"></section>
 
-<script src="hcf.js"></script>
-<script src="hcf-analytics.js" defer></script>
+<script src="hcf.js?v=20261101-nav"></script>
+<script src="hcf-analytics.js?v=20261101-nav" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded',function(){(window.HCF_CONTENT||Promise.resolve({})).then(function(c){
   var P=c&&c.pricing;if(!P)return;
