@@ -123,13 +123,10 @@
   if(!place()){var n=0,t=setInterval(function(){if(place()||++n>20)clearInterval(t);},150);}
 })();
 
-/* ===== 頁尾快速連結 & 手機選單 加入「套組方案 / 老闆信箱」入口 ===== */
+/* ===== 頁尾快速連結 & 手機選單 加入「老闆信箱」入口 ===== */
 (function(){
   if(document.body.dataset.page==='survey')return; // 問卷/測驗/投訴頁不加這些入口
-  var PKG={href:'packages.html',label:'套組方案'},VOICE={href:'complaint.html',label:'老闆我要投訴'};
-  var st=document.createElement('style');
-  st.textContent='.mnav a.mnav-sub{padding-left:46px!important;font-size:.92rem!important;opacity:.92}';
-  document.head.appendChild(st);
+  var VOICE={href:'complaint.html',label:'老闆我要投訴'};
   function mk(e,cls){var a=document.createElement('a');a.href=e.href;a.textContent=e.label;if(cls)a.className=cls;return a;}
   function hasLink(box,href){
     var wanted=new URL(href,location.href).pathname.replace(/\.html$/,'').replace(/\/$/,'');
@@ -138,16 +135,10 @@
     });
   }
   function injectMnav(mnav){
-    if(!hasLink(mnav,PKG.href)){
-      var pricing=mnav.querySelector('a[href="pricing.html"]')||mnav.querySelector('a[href*="pricing"]');
-      var a=mk(PKG,'mnav-sub');
-      if(pricing&&pricing.parentNode)pricing.parentNode.insertBefore(a,pricing.nextSibling);
-      else mnav.appendChild(a);
-    }
     if(!hasLink(mnav,VOICE.href))mnav.appendChild(mk(VOICE));
   }
   function injectFooter(box){
-    [PKG,VOICE].forEach(function(e){if(!hasLink(box,e.href))box.appendChild(mk(e));});
+    if(!hasLink(box,VOICE.href))box.appendChild(mk(VOICE));
   }
   function inject(){
     var doneM=false,doneF=false;

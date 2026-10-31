@@ -120,12 +120,14 @@
 <meta name="twitter:image" content="https://www.hsinchucombat.com/og-cover.jpg">
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://www.hsinchucombat.com/schedule.html", "url": "https://www.hsinchucombat.com/schedule.html", "name": "最新課表｜HCF 新竹格鬥", "description": "HCF 新竹格鬥每週課表：全泰拳專館，新手泰拳・中階泰拳・自由技術對打與週六選手班，日間私人教練預約制。", "inLanguage": "zh-Hant", "isPartOf": {"@type": "WebSite", "name": "HCF 新竹格鬥", "url": "https://www.hsinchucombat.com/"}, "about": {"@id": "https://www.hsinchucombat.com/#org"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://www.hsinchucombat.com/"}, {"@type": "ListItem", "position": 2, "name": "最新課表", "item": "https://www.hsinchucombat.com/schedule.html"}]}, {"@type": "SportsActivityLocation", "@id": "https://www.hsinchucombat.com/#org", "name": "HCF 新竹格鬥 Hsinchu Combat", "url": "https://www.hsinchucombat.com/", "telephone": "+886-925-571-225", "image": "https://www.hsinchucombat.com/assets/final-logo.png", "address": {"@type": "PostalAddress", "streetAddress": "林森路 301 號 2 樓", "addressLocality": "新竹市北區", "addressRegion": "新竹市", "addressCountry": "TW"}}]}</script>
+<link rel="stylesheet" href="hcf-course-covers.css?v=20261101">
+<link rel="stylesheet" href="hcf-info-covers.css?v=20261101">
 </head>
-<body data-page="sched">
+<body class="hcf-light-cover hcf-info-cover" data-page="sched">
 <header class="nav" id="nav"></header>
 
 <section class="phero">
-  <div class="phero-ghost">SCHEDULE</div>
+  <div class="hcf-cover-photo"><img src="assets/covers/coaches-1280.webp" srcset="assets/covers/coaches-640.webp 640w, assets/covers/coaches-1280.webp 1280w" sizes="(max-width: 800px) calc(100vw - 44px), (max-width: 1360px) 55vw, 740px" width="1280" height="720" alt="HCF 三位教練合照與新竹格鬥品牌標誌" fetchpriority="high" decoding="async"></div>
   <div class="phero-in">
     <div class="kicker">WEEKLY SCHEDULE / 最新課表</div>
     <h1>最新課表 <br>挑一堂<i>開打</i></h1>
@@ -211,7 +213,7 @@
 <div class="seamC"><div class="wedge dot"></div></div>
 <section class="finale" id="finale"></section>
 
-<script src="hcf.js"></script>
+<script src="hcf.js?v=20261101-nav"></script>
 <script>
 const BOOK='https://www.fit-book.com.tw/hsinchucombat/plan/588';
 const CATCOLOR={mt:'#C81015',cardio:'#E8A800',private:'#9AA0AA',sc:'#0F9D63',squad:'#E8A800'};
@@ -350,6 +352,6 @@ hcfCountdown();
 // 不再從後台 site-content 覆寫課表，避免 fetch 後把畫面蓋成舊版／營運版造成閃現。
 // 要調整課表：改上方 WEEKDAY／WEEKEND 常數即可（公告版＝只掛對外團課）。
 </script>
-<script src="hcf-analytics.js" defer></script>
+<script src="hcf-analytics.js?v=20261101-nav" defer></script>
 </body>
 </html>
