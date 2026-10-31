@@ -1,0 +1,141 @@
+{
+  "version": "2026-11-01",
+  "processing": "WebP responsive photos; H.264 MP4, silent, faststart, no location metadata; original files preserved.",
+  "heroExcerpt": {
+    "asset": "coaching-hero.mp4",
+    "source": "IMG_3363.mov",
+    "startSeconds": 25,
+    "durationSeconds": 10
+  },
+  "media": [
+    {
+      "source": "IMG_3989.MOV",
+      "asset": "partner-footwork",
+      "originalBytes": 19817820,
+      "duration": 6.1,
+      "bytes": 2400620,
+      "posterBytes": 66398,
+      "pages": [
+        "index.html",
+        "group-classes.html"
+      ]
+    },
+    {
+      "source": "IMG_3978.MOV",
+      "asset": "individual-pads",
+      "originalBytes": 23953609,
+      "duration": 7.43,
+      "bytes": 2651522,
+      "posterBytes": 55238,
+      "pages": [
+        "private-training.html"
+      ]
+    },
+    {
+      "source": "IMG_3783.MOV",
+      "asset": "clinch-practice",
+      "originalBytes": 21223680,
+      "duration": 6.5,
+      "bytes": 1495972,
+      "posterBytes": 65748,
+      "pages": [
+        "group-classes.html"
+      ]
+    },
+    {
+      "source": "IMG_3772.MOV",
+      "asset": "partner-technique",
+      "originalBytes": 31563645,
+      "duration": 9.73,
+      "bytes": 3040544,
+      "posterBytes": 70044,
+      "pages": [
+        "group-classes.html"
+      ]
+    },
+    {
+      "source": "IMG_3731.MOV",
+      "asset": "coached-conditioning",
+      "originalBytes": 17286337,
+      "duration": 5.33,
+      "bytes": 1434046,
+      "posterBytes": 57854,
+      "pages": [
+        "private-training.html"
+      ]
+    },
+    {
+      "source": "IMG_3427.MOV",
+      "asset": "agility-footwork",
+      "originalBytes": 17211841,
+      "duration": 5.3,
+      "bytes": 1548022,
+      "posterBytes": 55994,
+      "pages": [
+        "group-classes.html"
+      ]
+    },
+    {
+      "source": "IMG_3363.mov",
+      "asset": "coached-padwork",
+      "originalBytes": 133384555,
+      "duration": 40.87,
+      "bytes": 6725876,
+      "posterBytes": 75856,
+      "pages": [
+        "index.html",
+        "private-training.html"
+      ]
+    },
+    {
+      "source": "IMG_3312.MOV",
+      "asset": "technical-sparring",
+      "originalBytes": 30225918,
+      "duration": 9.27,
+      "bytes": 3263454,
+      "posterBytes": 68910,
+      "pages": [
+        "group-classes.html"
+      ]
+    },
+    {
+      "source": "IMG_2391.jpeg",
+      "asset": "class-community",
+      "originalBytes": 3005871,
+      "bytes": 204232,
+      "pages": [
+        "index.html",
+        "group-classes.html"
+      ]
+    },
+    {
+      "source": "IMG_3816.jpeg",
+      "asset": "after-class",
+      "originalBytes": 4126406,
+      "bytes": 198106,
+      "pages": [
+        "index.html",
+        "group-classes.html"
+      ]
+    },
+    {
+      "source": "IMG_2397.jpg",
+      "asset": "guided-kick",
+      "originalBytes": 281176,
+      "bytes": 72040,
+      "pages": [
+        "index.html",
+        "private-training.html"
+      ]
+    },
+    {
+      "source": "IMG_3998.jpg",
+      "asset": "bag-training",
+      "originalBytes": 328236,
+      "bytes": 116342,
+      "pages": [
+        "team.html"
+      ]
+    }
+  ]
+}
