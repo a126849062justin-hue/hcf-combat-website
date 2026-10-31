@@ -139,6 +139,23 @@
 /* 金句逐字浮現 */
 .qband blockquote span{opacity:0;transform:translateY(14px);display:inline-block;transition:opacity .5s,transform .5s}
 .qband.lit blockquote span{opacity:1;transform:none}
+.kao-ring{padding:64px 24px;background:#fff;color:var(--ink);scroll-margin-top:88px}
+.kao-ring-in{max-width:1120px;margin:0 auto}
+.kao-ring .k{font-family:var(--en);font-size:.72rem;letter-spacing:.22em;color:var(--red)}
+.kao-ring h2{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.2rem);margin-top:12px}
+.kao-ring-lead{margin:18px 0 28px;line-height:1.9;color:#505961}
+.kao-ring-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.kao-ring-grid figure{margin:0;min-width:0}
+.kao-ring-grid a{display:block;border-radius:6px;overflow:hidden}
+.kao-ring-grid a:focus-visible{outline:3px solid var(--red);outline-offset:5px}
+.kao-ring-grid img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:contain}
+.kao-ring-grid figcaption{padding-top:16px}
+.kao-ring-grid h3{font-size:1.1rem;margin-bottom:7px}
+.kao-ring-grid p{font-size:.92rem;line-height:1.8;color:#505961}
+.kao-ring-note{font-size:.8rem;color:#59656d;margin-top:24px}
+.kao-ring-jump{display:inline-block;margin-top:18px;color:#fff;font-weight:700;text-decoration:underline;text-underline-offset:5px}
+.kao-ring-jump:focus-visible{outline:3px solid #fff;outline-offset:5px}
+@media(max-width:680px){.kao-ring{padding:42px 20px}.kao-ring-grid{grid-template-columns:1fr;gap:28px}}
 </style>
 </head>
 <body data-page="home">
@@ -152,6 +169,7 @@
     <h1>他把以前的自己<br>留在<i>體重計</i>上</h1>
     <p>這不是一個天才的故事。這是一個普通人，決定不再跟自己和解的故事。</p>
     <div class="nm">KAO DA-KE × HSINCHU COMBAT</div>
+    <a class="kao-ring-jump" href="#kao-ring">看高大可的擂台照片 ↓</a>
   </div>
 </section>
 
@@ -249,6 +267,20 @@
 </section>
 
 <!-- 教練影片 -->
+<section class="kao-ring" id="kao-ring" aria-labelledby="kao-ring-title">
+  <div class="kao-ring-in">
+    <div class="k">RINGSIDE / 擂台紀錄</div>
+    <h2 id="kao-ring-title">高大可的擂台瞬間</h2>
+    <p class="kao-ring-lead">從繩邊的專注、近身的攻防，到賽後被舉起的手，留下擂台上的三個畫面。</p>
+    <div class="kao-ring-grid">
+      <figure><a href="assets/kao-ring/ringside-1440.webp" target="_blank" rel="noopener" aria-label="開啟高大可繩邊準備照片大圖（新分頁）"><img src="assets/kao-ring/ringside-1440.webp" srcset="assets/kao-ring/ringside-640.webp 640w, assets/kao-ring/ringside-1440.webp 1440w" sizes="(max-width: 680px) calc(100vw - 40px), (max-width: 1168px) calc((100vw - 92px) / 3), 359px" width="1440" height="960" alt="高大可教練戴著藍色拳套站在擂台繩邊" loading="lazy" decoding="async"></a><figcaption><h3>繩邊的專注</h3><p>站上擂台，準備迎接眼前的挑戰。</p></figcaption></figure>
+      <figure><a href="assets/kao-ring/clinch-1440.webp" target="_blank" rel="noopener" aria-label="開啟高大可近身攻防照片大圖（新分頁）"><img src="assets/kao-ring/clinch-1440.webp" srcset="assets/kao-ring/clinch-640.webp 640w, assets/kao-ring/clinch-1440.webp 1440w" sizes="(max-width: 680px) calc(100vw - 40px), (max-width: 1168px) calc((100vw - 92px) / 3), 359px" width="1440" height="960" alt="高大可教練在擂台上與對手進行近身攻防" loading="lazy" decoding="async"></a><figcaption><h3>近身攻防</h3><p>距離拉近，每個動作都需要專注。</p></figcaption></figure>
+      <figure><a href="assets/kao-ring/raised-hand-1440.webp" target="_blank" rel="noopener" aria-label="開啟高大可賽後舉手照片大圖（新分頁）"><img src="assets/kao-ring/raised-hand-1440.webp" srcset="assets/kao-ring/raised-hand-640.webp 640w, assets/kao-ring/raised-hand-1440.webp 1440w" sizes="(max-width: 680px) calc(100vw - 40px), (max-width: 1168px) calc((100vw - 92px) / 3), 359px" width="1440" height="960" alt="賽後裁判舉起高大可教練戴著藍色拳套的手" loading="lazy" decoding="async"></a><figcaption><h3>舉手的瞬間</h3><p>一場比賽結束，留下這一刻的紀錄。</p></figcaption></figure>
+    </div>
+    <p class="kao-ring-note">點照片可開啟大圖。</p>
+  </div>
+</section>
+
 <section class="cvideo-sec">
   <div class="cvideo-in">
     <div class="cvideo-k">影片 · WATCH</div>
