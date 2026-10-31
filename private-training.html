@@ -147,16 +147,17 @@
 }
 </style>
 <link rel="stylesheet" href="hcf-private.css?v=20261030">
+<link rel="stylesheet" href="hcf-training-media.css?v=20261101">
 </head>
 <body class="hcf-private" data-page="courses">
 <header class="nav" id="nav"></header>
 
 <!-- Hero -->
 <section class="ph2">
-  <video autoplay muted loop playsinline preload="metadata" poster="video_private_1.jpg">
-    <source src="video_private_1.mp4" type="video/mp4">
+  <video autoplay muted loop playsinline preload="metadata" poster="assets/training/coached-padwork.webp" data-mobile-training-src="assets/training/individual-pads.mp4" data-mobile-training-poster="assets/training/individual-pads.webp">
+    <source src="assets/training/coaching-hero.mp4" type="video/mp4">
   </video>
-  <img class="ph2-fallback" src="video_private_1.jpg" alt="" aria-hidden="true" style="opacity:0">
+  <img class="ph2-fallback" data-training-fallback src="assets/training/coached-padwork.webp" alt="" aria-hidden="true" style="opacity:0">
   <div class="spot"></div>
   <div class="ph2-in">
     <div class="k">PRIVATE TRAINING / 私人課程</div>
@@ -248,11 +249,24 @@
   </div>
 </section>
 
+<section class="hcf-training-section" id="private-class-scenes" aria-labelledby="private-scenes-title"><div class="hcf-media-wrap">
+<div class="hcf-media-heading"><span class="hcf-media-label">COACHING IN ACTION / 教練怎麼帶</span><h2 id="private-scenes-title">先看練習現場，<br>再想想你想怎麼開始。</h2><p>持靶、示範、動作提醒與體能練習，都是教練可以依目標安排的內容。以下為館內訓練片段，實際課程會依程度調整。</p><span class="hcf-media-note">點擊播放・無聲影片</span></div>
+<div class="hcf-training-grid hcf-private-scenes"><figure class="hcf-training-card hcf-portrait">
+  <video controls muted playsinline preload="none" width="720" height="1280" poster="assets/training/individual-pads.webp" aria-label="拳腿打靶，找到自己的節奏，無聲訓練影片" aria-describedby="individual-pads-caption"><source src="assets/training/individual-pads.mp4" type="video/mp4"><a href="assets/training/individual-pads.mp4">開啟拳腿打靶，找到自己的節奏影片</a></video>
+  <figcaption id="individual-pads-caption"><span class="hcf-media-label">個別練習 · 7 秒</span><h3>拳腿打靶，找到自己的節奏</h3><p>跟著教練的靶位練習拳腿組合，留意出手後的站姿與回位。</p></figcaption>
+</figure><figure class="hcf-training-card ">
+  <video controls muted playsinline preload="none" width="1280" height="720" poster="assets/training/coached-padwork.webp" aria-label="先示範，再陪你練，無聲訓練影片" aria-describedby="coached-padwork-caption"><source src="assets/training/coached-padwork.mp4" type="video/mp4"><a href="assets/training/coached-padwork.mp4">開啟先示範，再陪你練影片</a></video>
+  <figcaption id="coached-padwork-caption"><span class="hcf-media-label">持靶指導 · 41 秒</span><h3>先示範，再陪你練</h3><p>教練示範動作後持靶，讓學員把拳腿接到實際練習中。</p></figcaption>
+</figure><figure class="hcf-training-card ">
+  <video controls muted playsinline preload="none" width="1280" height="720" poster="assets/training/coached-conditioning.webp" aria-label="體能，也有人在旁提醒，無聲訓練影片" aria-describedby="coached-conditioning-caption"><source src="assets/training/coached-conditioning.mp4" type="video/mp4"><a href="assets/training/coached-conditioning.mp4">開啟體能，也有人在旁提醒影片</a></video>
+  <figcaption id="coached-conditioning-caption"><span class="hcf-media-label">體能練習 · 5 秒</span><h3>體能，也有人在旁提醒</h3><p>戰繩練習中，教練在旁觀察動作、提示節奏。</p></figcaption>
+</figure></div><div class="hcf-media-footer"><p>想多練技術、建立運動習慣，或找適合的上課時段？</p><a class="hcf-media-cta" href="#private-inquiry" data-intent="private">和教練聊聊我的需求 →</a></div></div></section>
+
 <!-- 私教的價值 -->
 <section class="pval">
   <div class="wrap">
     <div class="pval-wrap">
-      <div class="ph rv"><img src="gc_p2.jpg" alt="HCF 私人課一對一持靶指導"><span class="cap">一對一・手把手</span></div>
+      <div class="ph rv"><img class="" src="assets/training/guided-kick.webp" srcset="assets/training/guided-kick-640.webp 640w, assets/training/guided-kick.webp 1440w" sizes="(max-width: 680px) 100vw, 50vw" width="1440" height="1588" alt="教練在旁觀察孩子踢靶並給予動作指導" loading="lazy" decoding="async"><span class="cap">看見動作・給你提醒</span></div>
       <div class="tx rv">
         <div class="kicker">WHY PRIVATE</div>
         <h2 class="h2">私教的<i style="color:var(--gold)">價值</i></h2>
@@ -324,5 +338,6 @@
 <script src="hcf-analytics.js" defer></script>
 <script src="booking-line.js" defer></script>
 <script src="hcf-private.js?v=20261030" defer></script>
+<script src="hcf-training-media.js?v=20261101" defer></script>
 </body>
 </html>
