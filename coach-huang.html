@@ -662,6 +662,23 @@ section.alt{background:var(--surface);background-image:radial-gradient(rgba(17,1
   .al-sum .meta{margin-left:0;width:100%}
 }
 
+/* Coach's own training photos: full frames, captions outside the photos. */
+.huang-daily{padding:64px 0;background:#fff;scroll-margin-top:96px}
+.huang-daily .wrap{max-width:1040px}
+.huang-daily .al-lead{max-width:680px;color:var(--ink-2)}
+.huang-daily-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.huang-daily-grid figure{margin:0;min-width:0}
+.huang-daily-frame{height:480px;display:flex;align-items:center;justify-content:center;background:#f4f2ef;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.huang-daily-frame img{width:100%;height:100%;object-fit:contain}
+.huang-daily-grid figcaption{padding:18px 0 0}
+.huang-daily-grid figcaption span{font-family:var(--en);font-size:.7rem;letter-spacing:.18em;color:var(--ink-3)}
+.huang-daily-grid h3{font-size:1.2rem;margin:6px 0;color:var(--ink)}
+.huang-daily-grid p{font-size:.95rem;line-height:1.8;color:var(--ink-2)}
+.huang-daily-link{display:block;width:fit-content;margin-top:16px;font-weight:700;color:var(--ink);text-underline-offset:5px}
+.huang-daily-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:30px}
+.huang-daily-actions .al-cta,.huang-daily-actions .huang-daily-link{margin-top:0}
+.huang-daily a:focus-visible{outline:3px solid var(--red);outline-offset:5px}
+@media(max-width:640px){.huang-daily{padding:42px 0}.huang-daily-grid{grid-template-columns:1fr;gap:30px}.huang-daily-frame{height:auto;aspect-ratio:2/3}.huang-daily-actions{align-items:flex-start;flex-direction:column}}
 </style>
 <link rel="canonical" href="https://www.hsinchucombat.com/coach-huang.html">
 <meta name="theme-color" content="#C81015">
@@ -737,8 +754,27 @@ section.alt{background:var(--surface);background-image:radial-gradient(rgba(17,1
       </div>
       <p class="al-sub">自動播放中 · 點年份或左右滑動,自己翻他的生涯</p>
       <a class="al-cta" href="booking.html">▶ 跟黃謙和訓練 — $400 首堂體驗</a>
+      <a class="huang-daily-link" href="#huang-training">看教練的訓練日常 ↓</a>
     </div>
     <div class="al-hero-p"><span class="alp-glow" aria-hidden="true"></span><img src="huang_punch.png" alt="黃謙和 總教練 — 格鬥鋼鐵人 出拳"></div>
+  </div>
+</section>
+
+<section class="huang-daily" id="huang-training" aria-labelledby="huang-training-title">
+  <div class="wrap">
+    <header class="al-head"><div class="k en">TRAINING DIARY / 訓練日常</div><h2 id="huang-training-title">黃謙和的訓練日常</h2></header>
+    <p class="al-lead">從拳法練習到肌力訓練，看看黃謙和教練在館內訓練的樣子。</p>
+    <div class="huang-daily-grid">
+      <figure>
+        <div class="huang-daily-frame"><img src="assets/huang-training/boxing-practice-665.webp" srcset="assets/huang-training/boxing-practice-480.webp 480w, assets/huang-training/boxing-practice-665.webp 665w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 1040px) calc((100vw - 68px) / 2), 486px" width="665" height="1182" alt="黃謙和教練纏著粉紅色手綁帶，在館內練習拳法" loading="lazy" decoding="async"></div>
+        <figcaption><span>01 / BOXING PRACTICE</span><h3>拳法練習</h3><p>站架、出拳與移動，在日常練習裡反覆打磨。</p></figcaption>
+      </figure>
+      <figure>
+        <div class="huang-daily-frame"><img src="assets/huang-training/strength-training-736.webp" srcset="assets/huang-training/strength-training-480.webp 480w, assets/huang-training/strength-training-736.webp 736w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 1040px) calc((100vw - 68px) / 2), 486px" width="736" height="1068" alt="黃謙和教練雙手持槓片進行肌力訓練" loading="lazy" decoding="async"></div>
+        <figcaption><span>02 / STRENGTH TRAINING</span><h3>肌力訓練</h3><p>拳腳之外，也把肌力訓練放進日常。</p></figcaption>
+      </figure>
+    </div>
+    <div class="huang-daily-actions"><a class="al-cta" href="private-training.html#private-inquiry" data-cta data-intent="private">了解私人課，詢問適合的安排 →</a><a class="huang-daily-link" href="team.html">認識教練團隊 →</a></div>
   </div>
 </section>
 
