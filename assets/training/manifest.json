@@ -28,6 +28,7 @@
       "bytes": 2651522,
       "posterBytes": 55238,
       "pages": [
+        "index.html",
         "private-training.html"
       ]
     },
@@ -137,5 +138,13 @@
         "team.html"
       ]
     }
-  ]
+  ],
+  "mobileHero": {
+    "asset": "individual-pads.mp4",
+    "pages": [
+      "index.html",
+      "private-training.html"
+    ],
+    "reason": "Portrait footage preserves the coaching interaction on phones."
+  }
 }
