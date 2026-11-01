@@ -1,0 +1,54 @@
+/* Clear cover imagery. Readability shading stays close to the copy. */
+.hcf-clear-cover .phero .bgimg img,
+.hcf-clear-cover .sk-hero img,
+.hcf-clear-cover .sphero .bg img{opacity:1;filter:none}
+.hcf-clear-cover .phero:has(.bgimg)::after{background:linear-gradient(90deg,rgba(9,12,15,.68),rgba(9,12,15,.34) 44%,rgba(9,12,15,.04) 76%),linear-gradient(0deg,rgba(9,12,15,.22),transparent 50%)}
+/* News previously adds its own important overlay and monochrome filter. */
+.hcf-clear-cover .nhero::after{background:linear-gradient(90deg,rgba(9,12,15,.68),rgba(9,12,15,.32) 46%,rgba(9,12,15,.04) 78%)!important}
+.hcf-clear-cover .phero .glow,.hcf-clear-cover .nhero .grain{display:none}
+.hcf-clear-cover .phero .phero-in{ text-shadow:0 2px 8px rgba(0,0,0,.65)}
+.hcf-clear-cover .phero p{color:#fff}
+.hcf-clear-cover .phero h1 i,.hcf-clear-cover .sk-hero h1 i,.hcf-clear-cover .sphero h1 i{color:#ff9b8d;-webkit-text-stroke:0}
+.hcf-clear-cover .al-hero .k,.hcf-clear-cover .al-hero h1 .en{color:#ff9b8d;text-shadow:0 2px 8px rgba(0,0,0,.6)}
+/* A narrow navigation backing keeps white links visible over bright photos. */
+.hcf-clear-cover:has(.phero) .nav:not(.sc),.hcf-clear-cover:has(.sk-hero) .nav:not(.sc),.hcf-clear-cover:has(.sphero) .nav:not(.sc),.hcf-clear-cover:has(.hero) .nav:not(.sc){background:linear-gradient(180deg,rgba(9,12,15,.8),rgba(9,12,15,.58))}
+
+/* Home: remove the stacked color wash and artificial brightening. */
+.hcf-clear-cover .hero-vid{filter:none}
+.hcf-clear-cover .hero-shade{background:linear-gradient(90deg,rgba(9,12,15,.62),rgba(9,12,15,.24) 50%,rgba(9,12,15,.04) 80%),linear-gradient(0deg,rgba(9,12,15,.24),transparent 38%)}
+.hcf-clear-cover .hero::after,.hcf-clear-cover .hero .glow{display:none}
+
+/* Coach story covers retain a light local shade behind their headings. */
+.hcf-clear-cover .sk-hero::after{background:linear-gradient(0deg,rgba(9,12,15,.78),rgba(9,12,15,.22) 46%,transparent 74%)}
+.hcf-clear-cover .sphero::after{background:linear-gradient(0deg,rgba(9,12,15,.76),rgba(9,12,15,.16) 48%,transparent 76%)}
+.hcf-clear-cover .sk-hero .in,.hcf-clear-cover .sphero-in{text-shadow:0 2px 8px rgba(0,0,0,.6)}
+.hcf-clear-cover .al-hero::before{background:linear-gradient(90deg,rgba(8,6,5,.68),rgba(8,6,5,.3) 55%,rgba(8,6,5,.06)),url(huang_ring.jpg) center 24%/cover}
+.hcf-clear-cover .al-hero .alp-glow{display:none}
+.hcf-clear-cover .al-hero-p img{filter:drop-shadow(0 8px 14px rgba(0,0,0,.22))!important}
+.hcf-clear-cover .al-hero .huang-daily-link{color:#fff}
+.hcf-clear-cover .nt-hero-photo img{filter:drop-shadow(0 8px 14px rgba(0,0,0,.22))}
+.hcf-clear-cover .nt-hero::before,.hcf-clear-cover .nt-hero::after{display:none}
+
+/* Light course covers: an opaque text panel, with uncovered video beside it. */
+.hcf-clear-cover.hcf-light-cover .ph2,.hcf-clear-cover.hcf-light-cover .gh{min-height:90svh;align-items:center;padding:124px 24px 72px}
+.hcf-clear-cover.hcf-light-cover .ph2::before,.hcf-clear-cover.hcf-light-cover .gh::before{display:none}
+.hcf-clear-cover.hcf-light-cover .ph2-in,.hcf-clear-cover.hcf-light-cover .gh-in{max-width:570px;width:48%;margin:0 auto 0 max(0px,calc((100vw - 1240px)/2));padding:32px;background:#fff;border:1px solid #e7e7e5;border-radius:8px;box-shadow:0 12px 36px #18222c12}
+.hcf-clear-cover.hcf-private-cover .ph2-in{background:#fffdf7}
+.hcf-clear-cover.hcf-light-cover .ph2 h1,.hcf-clear-cover.hcf-light-cover .gh h1{font-size:clamp(36px,4vw,56px);line-height:1.25}
+.hcf-clear-cover.hcf-light-cover .ph2 .sub,.hcf-clear-cover.hcf-light-cover .gh .sub{font-size:16px;line-height:1.85;margin-top:18px}
+.hcf-clear-cover.hcf-light-cover .ph2 .cta,.hcf-clear-cover.hcf-light-cover .gh .cta{gap:10px;margin-top:24px}
+.hcf-clear-cover.hcf-light-cover .ph2 .b1,.hcf-clear-cover.hcf-light-cover .ph2 .b2,.hcf-clear-cover.hcf-light-cover .gh .b1,.hcf-clear-cover.hcf-light-cover .gh .b2{padding:14px 18px}
+.hcf-clear-cover.hcf-light-cover .scind{display:none}
+@media(max-width:900px){
+ .hcf-clear-cover.hcf-light-cover .ph2{--cover-media-height:clamp(380px,110vw,520px)}
+ .hcf-clear-cover.hcf-light-cover .gh{--cover-media-height:clamp(240px,56.25vw,440px)}
+ .hcf-clear-cover.hcf-light-cover .ph2,.hcf-clear-cover.hcf-light-cover .gh{display:block;min-height:0;padding:calc(72px + var(--cover-media-height)) 0 0}
+ .hcf-clear-cover.hcf-light-cover .ph2 video,.hcf-clear-cover.hcf-light-cover .ph2 .ph2-fallback,.hcf-clear-cover.hcf-light-cover .gh video,.hcf-clear-cover.hcf-light-cover .gh .gh-fallback{inset:72px 0 auto;height:var(--cover-media-height);opacity:1;filter:none}
+ .hcf-clear-cover.hcf-light-cover .ph2-in,.hcf-clear-cover.hcf-light-cover .gh-in{width:100%;max-width:none;margin:0;padding:30px 24px 40px;border:0;border-radius:0;box-shadow:none}
+ .hcf-clear-cover.hcf-light-cover .ph2 h1,.hcf-clear-cover.hcf-light-cover .gh h1{font-size:clamp(32px,7vw,44px)}
+ .hcf-clear-cover .al-hero::before{background:linear-gradient(180deg,rgba(8,6,5,.64),rgba(8,6,5,.24) 65%,rgba(8,6,5,.06)),url(huang_ring.jpg) center 24%/cover}
+}
+@media(max-width:640px){
+ .hcf-clear-cover .phero:has(.bgimg)::after,.hcf-clear-cover .nhero::after{background:linear-gradient(0deg,rgba(9,12,15,.78),rgba(9,12,15,.2) 64%,rgba(9,12,15,.08))!important}
+ .hcf-clear-cover .hero-shade{background:linear-gradient(0deg,rgba(9,12,15,.76),rgba(9,12,15,.24) 62%,rgba(9,12,15,.06))}
+}
