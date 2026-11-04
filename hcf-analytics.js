@@ -1,5 +1,5 @@
 /* Conversion events are separate from legacy metrics; names and dimensions are allowlisted. */
-(function(){if(!document.getElementById('hcf-growth-loader')){var s=document.createElement('script');s.id='hcf-growth-loader';s.src='/hcf-growth-events.js?v=20261027';document.head.append(s);}})();
+(function(){if(!document.getElementById('hcf-growth-loader')){var s=document.createElement('script');s.id='hcf-growth-loader';s.src='/hcf-growth-events.js?v=20261104-audit';document.head.append(s);}})();
 /* ============================================================
    HCF 數據追蹤 hcf-analytics.js — 全站 21 頁共用
    後台 = Google Analytics 4：申請後把 G-XXXXXXXXXX 填入下方 GA_ID
@@ -32,8 +32,8 @@
     if(BACKEND){
       try{
         var payload=JSON.stringify({name:name,params:params});
-        if(navigator.sendBeacon)navigator.sendBeacon(BACKEND+'/api/track',payload);
-        else fetch(BACKEND+'/api/track',{method:'POST',body:payload,keepalive:true});
+        if(!navigator.sendBeacon || !navigator.sendBeacon(BACKEND+'/api/track',payload))
+          fetch(BACKEND+'/api/track',{method:'POST',body:payload,keepalive:true}).catch(function(){});
       }catch(e){}
     }
     try{
@@ -69,23 +69,27 @@
   document.addEventListener('click',function(e){
     var el=e.target.closest('a,button');if(!el)return;
     var h=el.href||'';
+    if(el.classList&&el.classList.contains('svtab')){hcfTrack(el.classList.contains('voice')?'voice_tab_click':'survey_tab_click');return;}
+    if(!h)return;
+    var url;try{url=new URL(h,location.href);}catch(_){return;}
+    var internal=url.origin===location.origin;
+    var path=url.pathname.replace(/\.html$/,'').replace(/\/$/,'');
     var iw=el.closest&&el.closest('[data-intent]');
     var src=(document.body&&document.body.dataset&&document.body.dataset.page)||location.pathname;
     var intent=iw?(iw.getAttribute('data-intent')||''):'';
     var lbl=(el.textContent||'').trim().slice(0,30);
-    if(h.indexOf('fit-book.com')>-1||h.indexOf('booking.html')>-1)hcfTrack('cta_booking',{label:lbl,source:src,intent:intent});
+    if(/(^|\.)fit-book\.com\.tw$/.test(url.hostname)||(internal&&path==='/booking'))hcfTrack('cta_booking',{label:lbl,source:src,intent:intent});
     else if(/^https:\/\/(lin\.ee|line\.me)\//.test(h))hcfTrack('cta_line',{label:el.hasAttribute('data-private-line')?'私人課 LINE 詢問':lbl,source:src,intent:el.hasAttribute('data-private-line')?'private':intent});
     else if(h.indexOf('instagram.com')>-1)hcfTrack('social_click',{platform:'ig'});
     else if(h.indexOf('facebook.com')>-1)hcfTrack('social_click',{platform:'fb'});
     else if(h.indexOf('youtube.com')>-1)hcfTrack('social_click',{platform:'yt'});
     else if(h.indexOf('tel:')===0)hcfTrack('cta_phone',{source:src,intent:intent});
-    else if(el.classList&&el.classList.contains('svtab'))hcfTrack(el.classList.contains('voice')?'voice_tab_click':'survey_tab_click');
-    else if(h.indexOf('survey.html')>-1)hcfTrack('nav_survey');
-    else if(h.indexOf('schedule.html')>-1)hcfTrack('nav_schedule');
-    else if(h.indexOf('group-classes.html')>-1)hcfTrack('nav_group');
-    else if(h.indexOf('private-training.html')>-1)hcfTrack('nav_private');
-    else if(h.indexOf('plans-proposal.html')>-1){
-      var g=(h.split('g=')[1]||'').slice(0,2);
+    else if(internal&&['/survey','/status'].includes(path))hcfTrack('nav_survey');
+    else if(internal&&path==='/schedule')hcfTrack('nav_schedule');
+    else if(internal&&path==='/group-classes')hcfTrack('nav_group');
+    else if(internal&&path==='/private-training')hcfTrack('nav_private',{intent:'private'});
+    else if(internal&&path==='/plans-proposal'){
+      var g=url.searchParams.get('g')||'';if(!/^(01|02|03|04|05)$/.test(g))g='';
       hcfTrack('nav_goals',g?{goal:g}:{});
     }
   },true);

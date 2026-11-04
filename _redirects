@@ -6,8 +6,13 @@
 /faq.html       /                     301
 /faq            /                      301
 
-/survey.html   /status.html   301!
+/survey.html   /status   301!
+/survey        /status   301!
 
 # Retired standalone package page; keep existing bookmarks useful.
 /packages.html   /pricing   301
 /packages        /pricing   301
+
+# Retire the indexed planning mockup in favor of the actual price list.
+/plans-proposal.html   /pricing   301!
+/plans-proposal        /pricing   301!

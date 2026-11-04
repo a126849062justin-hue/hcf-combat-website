@@ -7,7 +7,7 @@
     await new Promise((resolve, reject) => { const s = document.createElement('script'); s.src = src; s.onload = resolve; s.onerror = reject; document.head.append(s); });
   }
   try { await dependency('/hcf-course-data.js?v=20261027', () => !!window.HCFChoice); } catch (_) { /* FAQs remain available offline. */ }
-  if (!window.hcfGrowthTrack) dependency('/hcf-growth-events.js?v=20261027', () => !!window.hcfGrowthTrack).catch(() => {});
+  if (!window.hcfGrowthTrack) dependency('/hcf-growth-events.js?v=20261104-audit', () => !!window.hcfGrowthTrack).catch(() => {});
   const track = (name, params) => window.hcfGrowthTrack?.(name, params);
   const host = document.createElement('div');
   host.id = 'hcf-shark-assistant';
@@ -61,7 +61,8 @@
   } catch { /* Position storage is optional. */ }
   const readingPage = document.body.classList.contains('hcf-reading');
   const inquiryPage = document.body.classList.contains('hcf-private');
-  let minimized = document.body.dataset.page === 'booking' || readingPage || inquiryPage;
+  const conversionHome = document.body.classList.contains('hcf-conversion-home');
+  let minimized = document.body.dataset.page === 'booking' || readingPage || inquiryPage || conversionHome;
   try { minimized = minimized || sessionStorage.getItem('hcf-shark-minimized') === '1'; } catch (_) {}
   const clamp = (n, min, max) => Math.max(min, Math.min(Math.max(min, max), n));
   function setMotion(value) {
@@ -115,7 +116,11 @@
     const x = b.left + b.width * position.x, y = b.top + b.height * position.y;
     Object.assign(launcher.style, {left: x + 'px', top: y + 'px'});
     Object.assign($('#tuck').style, {left: (x + b.size - 18) + 'px', top: (y - 15) + 'px'});
-    Object.assign($('#rest').style, {right: '12px', top: Math.max(v.top + 12,b.bottom - 44) + 'px'});
+    // On the home cover, use the existing utility-control row so the compact
+    // assistant cannot cover either primary inquiry button.
+    const musicBox = conversionHome ? document.getElementById('bgmBtn')?.getBoundingClientRect() : null;
+    const utilityRow = v.width <= 920 && musicBox?.width && musicBox.top > v.top + v.height / 2;
+    Object.assign($('#rest').style, {right: utilityRow ? (innerWidth - musicBox.left + 12) + 'px' : '12px', top: (utilityRow ? musicBox.top : Math.max(v.top + 12,b.bottom - 44)) + 'px'});
     const bubbleWidth = Math.min(220, v.width - margin * 2);
     Object.assign($('#speech').style, {width: bubbleWidth + 'px', left: clamp(x + b.size / 2 - bubbleWidth / 2, v.left + margin, v.left + v.width - margin - bubbleWidth) - x + 'px'});
     $('#speech').classList.toggle('below', y - v.top < 100);
@@ -259,7 +264,7 @@
   $$('.quick button').forEach(b => b.addEventListener('click', () => ask(b.dataset.question)));
   $('#form').addEventListener('submit', e => { e.preventDefault(); ask(input.value); });
   input.addEventListener('input', () => { if (!busy) mood(input.value ? 'thinking' : 'ready', input.value ? '我在聽，慢慢說。' : undefined); });
-  $('#close').addEventListener('click', () => {if(document.body.dataset.page==='booking'||readingPage||inquiryPage)setMinimized(true,true);else setOpen(false);});
+  $('#close').addEventListener('click', () => {if(document.body.dataset.page==='booking'||readingPage||inquiryPage||conversionHome)setMinimized(true,true);else setOpen(false);});
   root.addEventListener('keydown', e => { if (e.key === 'Escape' && open) { e.preventDefault(); e.stopPropagation(); setOpen(false); } });
   $('#reset').addEventListener('click', () => { position = {x: 1, y: 1}; layout(); savePosition(); });
   $('#motion').addEventListener('click', () => setMotion(!reduced));

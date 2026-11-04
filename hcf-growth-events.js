@@ -8,7 +8,11 @@
   try {
     var prior = sessionStorage.getItem('hcf-entry-source');
     var ref = document.referrer ? new URL(document.referrer).hostname : '';
-    if (prior && /^(direct|google|instagram|facebook|youtube|threads|referral)$/.test(prior)) source = prior;
+    var tagged = new URLSearchParams(location.search || '').get('utm_source') || '';
+    var aliases = {google:'google',google_maps:'google',google_business_profile:'google',instagram:'instagram',ig:'instagram',facebook:'facebook',fb:'facebook',youtube:'youtube',threads:'threads',referral:'referral'};
+    tagged = Object.prototype.hasOwnProperty.call(aliases,tagged.toLowerCase()) ? aliases[tagged.toLowerCase()] : '';
+    if (tagged) {source=tagged;sessionStorage.setItem('hcf-entry-source',source);}
+    else if (prior && /^(direct|google|instagram|facebook|youtube|threads|referral)$/.test(prior)) source = prior;
     else {
       source = /(^|\.)google\./.test(ref) ? 'google' : /(^|\.)instagram\.com$/.test(ref) ? 'instagram' : /(^|\.)(facebook\.com|fb\.com)$/.test(ref) ? 'facebook' : /(^|\.)youtube\.com$/.test(ref) ? 'youtube' : /(^|\.)threads\.(net|com)$/.test(ref) ? 'threads' : ref && ref !== location.hostname ? 'referral' : 'direct';
       sessionStorage.setItem('hcf-entry-source', source);
