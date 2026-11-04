@@ -69,3 +69,8 @@
  .hcf-team-feature img{max-height:550px}
  .hero .hero-coaching{object-position:52% center}
 }
+
+/* November class footage and the new team photo. */
+.hcf-community-grid img.hcf-team-nov{object-position:50% 75%}
+.gph.hcf-community-photo img.hcf-team-nov{object-position:50% 75%}
+.hcf-article .hcf-training-card{margin:24px 0}
