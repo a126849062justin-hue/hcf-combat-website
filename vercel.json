@@ -1,0 +1,12 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/classes", "destination": "/courses", "permanent": true },
+    { "source": "/admin", "destination": "/backend/admin", "permanent": true },
+    { "source": "/faq", "destination": "/", "permanent": true },
+    { "source": "/survey", "destination": "/status", "permanent": true },
+    { "source": "/packages", "destination": "/pricing", "permanent": true },
+    { "source": "/plans-proposal", "destination": "/pricing", "permanent": true }
+  ]
+}
