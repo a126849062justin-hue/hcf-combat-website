@@ -757,7 +757,7 @@ section.alt{background:var(--surface);background-image:radial-gradient(rgba(17,1
       <a class="al-cta" href="booking.html">▶ 跟黃謙和訓練 — $400 首堂體驗</a>
       <a class="huang-daily-link" href="#huang-training">看教練的訓練日常 ↓</a>
     </div>
-    <div class="al-hero-p"><span class="alp-glow" aria-hidden="true"></span><img src="huang_punch.png" alt="黃謙和 總教練 — 格鬥鋼鐵人 出拳"></div>
+    <div class="al-hero-p hcf-head-coach-photo"><img class="head-coach-poster" src="/assets/coaches/huang-head-coach-20261109-1200.webp" srcset="/assets/coaches/huang-head-coach-20261109-640.webp 640w, /assets/coaches/huang-head-coach-20261109-1200.webp 1122w" sizes="(max-width: 760px) calc(100vw - 48px), 480px" width="1122" height="1402" alt="黃謙和總教練 HCF 紅黑白形象海報" fetchpriority="high" decoding="async"></div>
   </div>
 </section>
 
@@ -1182,7 +1182,7 @@ section.alt{background:var(--surface);background-image:radial-gradient(rgba(17,1
 @media(max-width:900px){.al-hero-p img{width:min(98%,400px)!important}}
 </style>
 <script>
-(function(){var sec=document.querySelector('.al-hero');if(!sec)return;var img=sec.querySelector('.al-hero-p img'),glow=sec.querySelector('.alp-glow'),wrap=sec.querySelector('.al-hero-p');if(!img)return;
+(function(){var sec=document.querySelector('.al-hero');if(!sec)return;var img=sec.querySelector('.al-hero-p img'),glow=sec.querySelector('.alp-glow'),wrap=sec.querySelector('.al-hero-p');if(!img||img.classList.contains('head-coach-poster'))return;
 var rx=0,ry=0,reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 function upd(){var h=sec.offsetHeight||innerHeight;var e=Math.max(0,Math.min(1,1-Math.abs(sec.getBoundingClientRect().top)/h));e=e*e;var sc=1+e*0.12;
  img.style.transform='scale('+sc.toFixed(3)+') rotateY('+ry.toFixed(1)+'deg) rotateX('+rx.toFixed(1)+'deg)';
@@ -1211,5 +1211,6 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches){wrap.addEventListener
 }
 </style>
 <script src="/hcf-bgm.js?v=20261109-arena" defer></script>
+<style>.al-hero-p.hcf-head-coach-photo{align-items:center;overflow:visible}.al-hero-p .head-coach-poster{width:min(100%,430px)!important;height:auto!important;max-width:100%;object-fit:contain;transform:none!important;filter:none!important;animation:none!important;border:1px solid #ddd;background:#fff}</style>
 </body>
 </html>

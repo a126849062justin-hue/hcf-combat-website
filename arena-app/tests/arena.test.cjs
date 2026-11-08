@@ -12,6 +12,7 @@ const output = path.join(app, ".test-build");
 fs.mkdirSync(output, { recursive: true });
 for (const [from, to] of [
   ["components/Story.tsx", "Story.js"],
+  ["components/Content.tsx", "Content.js"],
   ["lib/pose.ts", "pose.js"],
   ["lib/store.ts", "store.js"],
   ["lib/sound.ts", "sound.js"],
@@ -29,13 +30,14 @@ for (const [from, to] of [
   ).outputText;
   fs.writeFileSync(
     path.join(output, to),
-    code.replaceAll("../lib/moments.json", "./moments.json"),
+    code.replaceAll("../lib/moments.json", "./moments.json").replaceAll("../lib/arena-default.json", "./arena-default.json"),
   );
 }
 fs.copyFileSync(
   path.join(app, "lib/moments.json"),
   path.join(output, "moments.json"),
 );
+fs.copyFileSync(path.join(app,"lib/arena-default.json"),path.join(output,"arena-default.json"));
 const dom = new JSDOM("<body></body>", {
   url: "https://www.hsinchucombat.com/fighters",
   pretendToBeVisual: true,
@@ -320,4 +322,79 @@ test("pre-rendered page has complete chapters media metadata and valid local lin
   }
   assert(!d.querySelector("#arena-music"));
   assert(d.querySelector('a[href="/booking.html"]'));
+});
+
+test("CMS content validation rejects unsafe media and respects visibility", () => {
+  const { parseArenaContent } = ar('./.test-build/Content.js');
+  const defaults = ar('./lib/arena-default.json');
+  const c = structuredClone(defaults);
+  c.intro = '真實訓練\n走進擂台';
+  c.moments[0].visible = false;
+  c.featured = c.featured.filter(id => id !== c.moments[0].id);
+  assert.equal(parseArenaContent(c).moments.length, 36);
+  for (const mutate of [
+    v => { v.headline = '你好！'; },
+    v => { v.heroImage = 'javascript:alert(1)'; },
+    v => { v.moments[0].video = 'https://example.com/clip.html'; },
+    v => { v.moments[1].id = v.moments[0].id; },
+    v => { v.moments[0].section = 'invalid'; },
+    v => { v.featured = ['missing']; },
+  ]) {
+    const bad = structuredClone(defaults); mutate(bad);
+    assert.equal(parseArenaContent(bad), null);
+  }
+});
+
+test("CMS publishes update the gallery and schema with safe offline fallback and rollback", async () => {
+  const { ArenaContentProvider, ArenaHeadline } = ar('./.test-build/Content.js');
+  const defaults = ar('./lib/arena-default.json');
+  const originalFetch = global.fetch;
+  let next = structuredClone(defaults), fail = false;
+  next.headline = '從練習走向擂台';
+  const hidden = next.moments.find(m => m.video);
+  hidden.visible = false;
+  next.featured = next.featured.filter(id => id !== hidden.id);
+  const schema = document.createElement('script');
+  schema.type = 'application/ld+json';
+  schema.textContent = JSON.stringify(ar('./lib/schema.json'));
+  document.head.append(schema);
+  global.fetch = async (url, options) => {
+    assert.equal(url, 'https://hcf-admin.onrender.com/api/public/arena');
+    assert.equal(options.credentials, 'omit');
+    if (fail) throw new Error('offline');
+    return { ok: true, json: async () => ({content: structuredClone(next)}) };
+  };
+  function View() { return React.createElement(ArenaContentProvider, null,
+    React.createElement(ArenaHeadline), React.createElement(MomentsGallery)); }
+  const videoCount = () => JSON.parse(schema.textContent)['@graph'].filter(n => n['@type'] === 'VideoObject').length;
+  const refresh = () => act(async () => { document.dispatchEvent(new w.Event('visibilitychange')); await new Promise(r => setTimeout(r, 0)); });
+  const c = await mount(View);
+  try {
+    assert.equal(c.querySelector('.arrival-zh').textContent, next.headline);
+    assert.equal(c.querySelectorAll('.moments-grid .moment').length, 36);
+    assert.equal(videoCount(), 23);
+    fail = true; await refresh();
+    assert.equal(c.querySelectorAll('.moments-grid .moment').length, 36);
+    fail = false; next = structuredClone(defaults); await refresh();
+    assert.equal(c.querySelectorAll('.moments-grid .moment').length, 37);
+    assert.equal(videoCount(), 24);
+  } finally { await unmount(); global.fetch = originalFetch; schema.remove(); }
+});
+
+test("homepage arena links and head coach posters keep full photo proportions", () => {
+  for (const name of ['index.html', 'coach-huang.html', 'team.html']) {
+    const window = new JSDOM(fs.readFileSync(path.join(R,name),'utf8')).window;
+    const d = window.document, poster = d.querySelector('img.head-coach-poster');
+    assert(poster, name);
+    assert.equal(poster.getAttribute('width'), '1122');
+    assert.equal(poster.getAttribute('height'), '1402');
+    assert(fs.existsSync(R + poster.getAttribute('src')));
+    if (name === 'index.html') {
+      const entry = d.querySelector('.hcf-arena-entry');
+      assert(entry.querySelector('a[href="fighters.html"]'));
+      assert(entry.querySelector('a[href="booking.html"]'));
+      assert(!/[\p{P}\p{S}]/u.test(entry.querySelector('h2').textContent));
+    }
+    window.close();
+  }
 });

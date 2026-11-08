@@ -2202,3 +2202,13 @@ svg {
     display: none !important;
   }
 }
+
+.arrival-description {
+  max-width: 430px;
+  font-size: 13px;
+  line-height: 1.8;
+  color: #d6d1d1;
+  margin: 10px 0;
+}
+
+.head-coach-card .coach-photo{background:#fff;aspect-ratio:1122/1402}.head-coach-card .coach-photo img{object-fit:contain;object-position:center}.head-coach-card:hover .coach-photo img{transform:none}

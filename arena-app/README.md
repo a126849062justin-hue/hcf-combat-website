@@ -28,7 +28,9 @@ Three.js loads separately near its scenes. On mobile and lower capability device
 
 - `app/fighters/page.tsx` contains the nine story chapters and booking calls to action
 - `components/Story.tsx` contains training tabs, the real Kao story comparison, and the media viewer
-- `lib/moments.json` references the existing 37 approved training and competition assets
+- `lib/arena-default.json` is the pre-rendered fallback for 37 approved training and competition assets
+- `components/Content.tsx` loads published CMS content and refreshes the gallery once per minute
+- `lib/moments.json` retains the original approved media inventory
 - `lib/schema.json` preserves the original 24 VideoObject records
 - `components/ArenaScene.tsx` contains the scroll camera, doors, lights, particles, and GLSL floor atmosphere
 - `components/FighterScene.tsx` and `lib/pose.ts` provide six stylized motion demonstrations
@@ -64,5 +66,30 @@ than certified results. The scene reduces particles and shadows on constrained d
 caps pixel ratio, but field performance has not been measured.
 
 This implementation includes Next, React, TypeScript, Tailwind, GSAP, Lenis, Three, React Three
-Fiber, Drei, Zustand, GLSL, and the Blender model. Spline, Theatre, a new CMS, AI features,
+Fiber, Drei, Zustand, GLSL, and the Blender model. Spline, Theatre, AI features,
 and new analytics services are not configured. Existing site analytics remain in place.
+
+## Existing HCF CMS
+
+Sign in at https://hcf-admin.onrender.com and open 選手頁管理. Save a draft, preview its
+media, and publish only when ready. The homepage entry and fighter page share
+`/api/public/arena`. Public responses contain only published visible records.
+The editor supports cover copy, media URLs, four categories, ordering, visibility,
+three featured items and rollback to one of the last eight published versions.
+This uses the separate `hcf-combat-admin-api` repository and existing database.
+It does not use the older `backend/` copy in this website repository.
+
+Media files must first be uploaded to this website or a public HTTPS media host.
+This editor manages their URLs and does not upload files. Images are WebP AVIF JPG
+or PNG and videos are MP4 WebM or M4V. Titles must not contain punctuation.
+
+Published content appears on a newly opened page after the public cache expires
+within 30 seconds. An already open visible page refreshes once per minute. Failed
+requests preserve the last good content or static fallback. No API key is needed.
+AI integration is deferred at the owner request.
+
+The HTML and initial SEO schema remain the build snapshot. To update the no-JavaScript
+snapshot, copy published `content` to `lib/arena-default.json`, update verified
+metadata as appropriate, rebuild and deploy. Runtime updates preserve the original
+verified video dates and remove schema records for hidden videos. New videos do not
+receive invented schema dates. CMS publication does not trigger a website rebuild.
