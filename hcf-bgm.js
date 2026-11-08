@@ -195,7 +195,7 @@
       if (enabled || frame) { event.preventDefault(); navigate(url.href, false); }
     });
     view.document.addEventListener('submit', function (event) {
-      if (view !== window && !event.defaultPrevented && event.target.tagName === 'FORM') event.target.target = '_top';
+      if (view !== window && !event.defaultPrevented && event.target.tagName === 'FORM' && (!event.target.target || event.target.target === '_self')) event.target.target = '_top';
     });
     ['play', 'pause', 'ended', 'volumechange'].forEach(function (name) { view.document.addEventListener(name, updateVolume, true); });
     notify();
