@@ -207,7 +207,7 @@
       openLineDraft('automatic');
     }, 3000);
   }
-  function openLineDraft(mode) { stopLine(); if (!lineHandoff) return; track('booking_line_open',{mode:mode}); document.getElementById('lineStep').textContent = '已開啟 LINE，請傳送'; window.location.assign(lineHandoff.url); }
+  function openLineDraft(mode) { stopLine(); if (!lineHandoff || (mode === 'automatic' && window.__hcfPageRetired)) return; track('booking_line_open',{mode:mode}); document.getElementById('lineStep').textContent = '已開啟 LINE，請傳送'; if (window.HCFMusic && window.HCFMusic.openExternal) window.HCFMusic.openExternal(lineHandoff.url); else window.location.assign(lineHandoff.url); }
   lineButton.addEventListener('click', function (event) { event.preventDefault(); openLineDraft('manual'); });
   cancelLine.addEventListener('click', function () { stopLine(); lineStatus.textContent = '已留在此頁。準備好後點「開啟 LINE」，確認內容再按傳送。'; });
   document.addEventListener('visibilitychange', function () { if (document.hidden && lineTimer !== null) { stopLine(); lineStatus.textContent = '需求已收件。若尚未在 LINE 傳送，請用下方按鈕繼續。'; } });
