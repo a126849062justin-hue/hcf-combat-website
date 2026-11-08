@@ -5,7 +5,6 @@
   var fine = matchMedia('(hover: hover) and (pointer: fine)');
   var motion = !reduced.matches;
   var motionButton = document.getElementById('arena-motion');
-  var musicButton = document.getElementById('arena-music');
   function applyMotion() {
     document.body.classList.toggle('arena-is-on', motion && !reduced.matches);
     motionButton.setAttribute('aria-pressed', String(motion && !reduced.matches));
@@ -16,13 +15,6 @@
   motionButton.addEventListener('click', function () { motion = !motion; applyMotion(); });
   if (reduced.addEventListener) reduced.addEventListener('change', applyMotion);
   applyMotion();
-  function musicState(state) {
-    musicButton.textContent = state.playing ? '暫停配樂' : '開啟配樂';
-    musicButton.setAttribute('aria-pressed', String(state.playing));
-  }
-  musicButton.addEventListener('click', function () { if (window.HCFMusic) window.HCFMusic.toggle(); });
-  window.addEventListener('hcfmusicchange', function (event) { musicState(event.detail); });
-  if (window.HCFMusic) musicState(window.HCFMusic.state());
 
   var cards = Array.from(document.querySelectorAll('.hcf-story-card'));
   var scene = document.querySelector('.arena-scene');
