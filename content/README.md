@@ -16,6 +16,11 @@ The archive has no automatic year carousel, autoplay timer, forced scroll, or so
 on page load. Viewer and embeds are closed on page retirement. Reduced-motion styling
 removes smooth scrolling and image transitions.
 
+The desktop and mobile profile share a dark palette with white text and red accents.
+On mobile the sticky year reel moves with the active chapter and a vertical progress
+line fills as the reader scrolls. Navigation offsets follow measured bar heights,
+including compact landscape layouts. The reel transition is disabled for reduced motion.
+
 Validate with `node --test arena-app/tests/coach-career.test.cjs` and inspect desktop
 and mobile visuals in the deploy preview. Browser automation was disabled during
 implementation so JSDOM checks do not constitute device or visual verification.

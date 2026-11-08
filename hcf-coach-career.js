@@ -5,28 +5,49 @@
   var chapters = Array.from(journey.querySelectorAll('[data-career-chapter]'));
   var links = Array.from(journey.querySelectorAll('[data-career-year]'));
   var progress = journey.querySelector('.career-progress i');
+  var rail = journey.querySelector('.career-nav');
+  var liveTitle = journey.querySelector('[data-career-live-title]');
+  var liveChapter = journey.querySelector('[data-career-live-chapter]');
   var nav = document.querySelector('header.nav');
   var frame = 0, stopped = false;
+  journey.classList.add('career-scroll-ready');
   function update() {
     frame = 0;
     if (stopped) return;
     var navHeight = nav ? nav.getBoundingClientRect().height : 76;
+    var railHeight = rail.getBoundingClientRect().height || 66;
     document.documentElement.style.setProperty('--career-nav', navHeight + 'px');
-    var line = navHeight + 100, active = chapters[0];
+    document.documentElement.style.setProperty('--career-rail-height', railHeight + 'px');
+    var line = navHeight + railHeight + 32, active = chapters[0];
     chapters.forEach(function (chapter) { if (chapter.getBoundingClientRect().top <= line) active = chapter; });
-    chapters.forEach(function (chapter) { chapter.classList.toggle('is-current', chapter === active); });
+    chapters.forEach(function (chapter) {
+      chapter.classList.toggle('is-current', chapter === active);
+      var rect = chapter.getBoundingClientRect();
+      var fraction = Math.max(0, Math.min(1, (line - rect.top) / Math.max(1, rect.height)));
+      chapter.style.setProperty('--career-chapter-progress', fraction.toFixed(4));
+    });
+    var activeIndex = chapters.indexOf(active);
+    rail.style.setProperty('--career-step', activeIndex);
+    liveTitle.textContent = active.querySelector('h3').textContent;
+    liveChapter.textContent = 'CHAPTER ' + String(activeIndex + 1).padStart(2, '0');
     links.forEach(function (a) {
       if (a.dataset.careerYear === active.dataset.careerChapter) a.setAttribute('aria-current', 'location');
       else a.removeAttribute('aria-current');
     });
     var bounds = journey.getBoundingClientRect();
-    var total = Math.max(1, journey.offsetHeight - innerHeight + navHeight);
+    var total = Math.max(1, journey.offsetHeight - innerHeight + navHeight + railHeight);
     progress.style.transform = 'scaleX(' + Math.max(0, Math.min(1, (navHeight - bounds.top) / total)) + ')';
   }
   function requestUpdate() { if (!stopped && !frame) frame = requestAnimationFrame(update); }
   addEventListener('scroll', requestUpdate, { passive: true });
   addEventListener('resize', requestUpdate);
   journey.querySelectorAll('details').forEach(function (el) { el.addEventListener('toggle', requestUpdate); });
+  var layoutObserver;
+  if (typeof ResizeObserver === 'function') {
+    layoutObserver = new ResizeObserver(requestUpdate);
+    if (nav) layoutObserver.observe(nav);
+    layoutObserver.observe(rail);
+  }
   update();
 
   var dialog = document.getElementById('career-lightbox');
@@ -93,6 +114,7 @@
     close();
     if (event.persisted) return;
     stopped = true; cancelAnimationFrame(frame);
+    if (layoutObserver) layoutObserver.disconnect();
     removeEventListener('scroll', requestUpdate); removeEventListener('resize', requestUpdate);
   });
 })();

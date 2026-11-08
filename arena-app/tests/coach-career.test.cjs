@@ -6,9 +6,12 @@ const {JSDOM} = require('jsdom');
 const root = path.resolve(__dirname, '../..');
 const html = fs.readFileSync(path.join(root, 'coach-huang.html'), 'utf8');
 const code = fs.readFileSync(path.join(root, 'hcf-coach-career.js'), 'utf8');
-function setup() {
+function setup({width=1280,height=900,railHeight=66}={}) {
   const dom = new JSDOM(html, {url:'https://www.hsinchucombat.com/coach-huang',runScripts:'outside-only',pretendToBeVisual:true});
   const w = dom.window, d = w.document;
+  Object.defineProperty(w, 'innerWidth', {value:width,writable:true});
+  Object.defineProperty(w, 'innerHeight', {value:height,writable:true});
+  d.querySelector('.career-nav').getBoundingClientRect=()=>({height:railHeight});
   w.HTMLDialogElement.prototype.showModal = function(){ this.open = true; };
   w.HTMLDialogElement.prototype.close = function(){ this.open = false; this.dispatchEvent(new w.Event('close')); };
   const chapters = [...d.querySelectorAll('[data-career-chapter]')];
@@ -22,7 +25,7 @@ function setup() {
   w.cancelAnimationFrame=id=>callbacks.delete(id);
   function flush(){const q=[...callbacks.values()];callbacks.clear();q.forEach(fn=>fn())}
   w.eval(code);
-  return {dom,w,d,chapters,scroll(value){scroll=value;w.dispatchEvent(new w.Event('scroll'));flush()}};
+  return {dom,w,d,chapters,scroll(value){scroll=value;w.dispatchEvent(new w.Event('scroll'));flush()},resize(nextHeight){railHeight=nextHeight;w.dispatchEvent(new w.Event('resize'));flush()}};
 }
 test('career HTML exposes seven chronological years all original events and all media without JavaScript',()=>{
   const {dom,d}=setup();
@@ -86,5 +89,32 @@ test('vertical scroll highlights its year and progress without an autoplay timer
     scroll(9000);assert.equal(d.querySelector('[data-career-year][aria-current]').dataset.careerYear,'2026');
     assert.equal(d.querySelector('.career-progress i').style.transform,'scaleX(1)');
     assert(!code.includes('setInterval'));
+  }finally{dom.window.close()}
+});
+
+test('mobile sticky year reel follows forward and backward scroll with room for both navigation bars',()=>{
+  const {dom,w,d,scroll,resize}=setup({width:390,height:844,railHeight:150});
+  try{
+    const rail=d.querySelector('.career-nav');
+    assert(d.getElementById('career-journey').classList.contains('career-scroll-ready'));
+    assert.equal(d.documentElement.style.getPropertyValue('--career-rail-height'),'150px');
+    assert.equal(d.querySelectorAll('.career-year-reel>span').length,7);
+    scroll(6200);
+    assert.equal(rail.style.getPropertyValue('--career-step'),'5');
+    assert.equal(d.querySelector('[data-career-live-title]').textContent,d.querySelector('#career-2024 h3').textContent);
+    assert.equal(d.querySelector('[data-career-live-chapter]').textContent,'CHAPTER 06');
+    const fraction=Number(d.getElementById('career-2024').style.getPropertyValue('--career-chapter-progress'));
+    assert(fraction>0 && fraction<1);
+    scroll(1400);
+    assert.equal(rail.style.getPropertyValue('--career-step'),'1');
+    assert.equal(d.querySelector('[data-career-year][aria-current]').dataset.careerYear,'2020');
+    resize(100);
+    assert.equal(d.documentElement.style.getPropertyValue('--career-rail-height'),'100px');
+    assert.equal(rail.style.getPropertyValue('--career-step'),'1');
+    scroll(-100);
+    assert.equal(rail.style.getPropertyValue('--career-step'),'0');
+    assert.equal(d.getElementById('career-2019').style.getPropertyValue('--career-chapter-progress'),'0.0000');
+    w.dispatchEvent(new w.PageTransitionEvent('pagehide'));
+    scroll(9000);assert.equal(rail.style.getPropertyValue('--career-step'),'0');
   }finally{dom.window.close()}
 });
