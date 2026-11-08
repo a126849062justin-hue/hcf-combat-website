@@ -187,8 +187,8 @@ document.querySelectorAll('[data-cnt]').forEach(function(el){cio.observe(el)});
   }
 })();
 
-/* 全站背景配樂（跨頁接續，桌面限定） */
-(function(){if(['booking','fighters'].indexOf(document.body.dataset.page)!==-1)return;var s=document.createElement('script');s.src='hcf-bgm.js';s.defer=true;(document.head||document.documentElement).appendChild(s);})();
+/* 全站雙曲配樂與持續播放 */
+(function(){var s=document.createElement('script');s.src='/hcf-bgm.js?v=20261108-immersive';s.defer=true;(document.head||document.documentElement).appendChild(s);})();
 
 /* 官網表單 → HCF 後台 APP（鏡射，不影響原本 FormSubmit/LINE 流程）2026-09 */
 (function(){

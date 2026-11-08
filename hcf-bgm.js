@@ -1,43 +1,208 @@
-/* HCF 背景配樂 — 跨頁接續 + 點擊靜音（桌面限定） */
-(function(){
-  if(window.__hcfBgm)return; window.__hcfBgm=1;                 /* 同頁防重複 */
-  if(/complaint/i.test(location.pathname))return;               /* 開封府「老闆我要投訴」頁不放配樂 */
-  var KT='hcfBgmT', KM='hcfBgmMuted', START=35;
-  var muted = sessionStorage.getItem(KM)==='1';                /* 跨頁記住靜音狀態 */
-  var bgm=new Audio('hero-music.m4a'); bgm.preload='auto'; bgm.volume=0.5;
-  var saved=parseFloat(sessionStorage.getItem(KT));
-  var target=(isFinite(saved)&&saved>START)?saved:START;        /* 換頁從上次秒數續播 */
-  bgm.addEventListener('loadedmetadata',function(){try{if(bgm.duration&&target<bgm.duration&&bgm.currentTime<target)bgm.currentTime=target;}catch(e){}});
-  bgm.addEventListener('ended',function(){try{bgm.currentTime=START;bgm.play();}catch(e){}});
-  function save(){try{if(bgm.currentTime>0)sessionStorage.setItem(KT,String(bgm.currentTime));}catch(e){}}
-  setInterval(function(){if(!bgm.paused)save();},1000);
-  window.addEventListener('pagehide',save); window.addEventListener('beforeunload',save);
-  function tryPlay(){ if(muted)return; var p=bgm.play(); if(p&&p.catch)p.catch(function(){}); }
-  /* 自動播放被擋時：首次互動接續播放 */
-  var evs=['pointerdown','keydown','wheel','touchstart','scroll','mousemove'];
-  function onGesture(){ tryPlay(); if(muted||!bgm.paused) evs.forEach(function(e){window.removeEventListener(e,onGesture,true);}); }
-  evs.forEach(function(e){window.addEventListener(e,onGesture,{capture:true,passive:true});});
-  document.addEventListener('visibilitychange',function(){ if(document.hidden){save();bgm.pause();} else tryPlay(); });
-  if(!muted) tryPlay();
+/* One player survives same origin page navigation */
+(function () {
+  'use strict';
+  if (window.HCFMusic) return;
+  try {
+    if (window.parent !== window) {
+      if (window.parent.HCFMusic) {
+        window.HCFMusic = window.parent.HCFMusic;
+        window.HCFMusic.register(window);
+      }
+      return;
+    }
+  } catch (_) { return; }
+  if (/\/(complaint|group-feedback|backend)(\.|\/|$)/.test(location.pathname)) return;
+  var ROOT = location.origin;
+  var TRACKS = [
+    {id: 'original', title: 'HCF 原版配樂', src: '/hero-music.m4a'},
+    {id: 'win', title: '為自己贏一次', src: '/assets/music/win-for-yourself.m4a'}
+  ];
+  var KEY = 'hcfMusicV2', saved = {};
+  try { saved = JSON.parse(sessionStorage.getItem(KEY) || '{}'); } catch (_) {}
+  if (!saved || typeof saved !== 'object') saved = {};
+  var choice = TRACKS.findIndex(function (t) { return t.id === saved.track; });
+  var current = choice < 0 ? Math.floor(Math.random() * TRACKS.length) : choice;
+  var wanted = saved.playing === true, enabled = wanted;
+  var bgm = new Audio(); bgm.preload = 'metadata'; bgm.volume = 0.38;
+  var resumeAt = choice >= 0 && Number.isFinite(saved.time) ? Math.max(0, saved.time) : 0;
+  var views = new Set([window]), bound = new WeakSet(), activeView = window;
+  var frame = null, stage = null, navTimer = null, navPending = '', navigationSerial = 0;
+  var message = '', player, playButton, title, status;
+  var allowed = new Set(["/battle-pass", "/beginner-muay-thai", "/booking", "/can-women-learn-muay-thai", "/card-huang", "/card-kao", "/card-mi", "/careers", "/coach-huang-archive", "/coach-huang-spotlight", "/coach-huang", "/courses", "/fighters", "/first-time-muay-thai-guide", "/group-classes", "/group-vs-private-training", "/gym-vs-muay-thai-fat-loss", "/how-often-train-muay-thai", "/how-to-book", "/how-to-choose-muay-thai-gym-hsinchu", "/hsinchu-fitness", "/hsinchu-kickboxing", "/hsinchu-muay-thai-price", "/hsinchu-muay-thai", "/hsinchu-private-training", "/index", "/", "/is-muay-thai-safe", "/is-private-training-worth-it", "/kickboxing", "/kids-muay-thai", "/knowledge", "/legal", "/muay-thai-gloves-hand-wraps-guide", "/muay-thai-padwork-vs-sparring", "/muay-thai-vs-boxing-kickboxing", "/muay-thai-weight-loss", "/muaythai", "/news", "/partnership", "/philosophy", "/plans-proposal", "/pricing", "/private-training", "/sanda", "/schedule", "/shop", "/status", "/story-kao", "/story-mi", "/strength", "/survey-trial-followup", "/survey", "/team", "/trial-review", "/website-design-case", "/what-is-muay-thai-8-limbs", "/will-muay-thai-make-you-bulky", "/shop/gloves-12oz/index", "/shop/gloves-12oz", "/shop/handwraps-5m/index", "/shop/handwraps-5m", "/shop/mouthguard/clear", "/shop/mouthguard/color"]);
 
-  /* 低調的點擊靜音鈕（右下小圓） */
-  function mk(){
-    if(document.getElementById('bgmBtn'))return;
-    var btn=document.createElement('button'); btn.id='bgmBtn'; btn.type='button';
-    btn.setAttribute('aria-label','背景音樂開關');
-    var bBottom=(window.innerWidth<768?'70px':'20px');
-    btn.style.cssText='position:fixed;right:16px;bottom:'+bBottom+';z-index:240;width:42px;height:42px;border-radius:50%;border:1px solid rgba(200,16,21,.55);background:rgba(17,17,17,.6);color:#fff;font-size:16px;line-height:1;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.3);transition:opacity .2s,transform .2s;opacity:.7';
-    btn.onmouseenter=function(){btn.style.opacity='1';btn.style.transform='scale(1.08)';};
-    btn.onmouseleave=function(){btn.style.opacity='.7';btn.style.transform='none';};
-    function ic(){ btn.innerHTML = muted ? "<svg viewBox='0 0 24 24' width='18' height='18' fill='currentColor'><path d='M3 9v6h4l5 4V5L7 9H3z'/><path d='M15.5 9.5l4 4m0-4l-4 4' fill='none' stroke='currentColor' stroke-width='1.7' stroke-linecap='round'/></svg>" : "<svg viewBox='0 0 24 24' width='18' height='18' fill='currentColor'><path d='M3 9v6h4l5 4V5L7 9H3z'/><path d='M16.5 12a3.5 3.5 0 00-2-3.16v6.32A3.5 3.5 0 0016.5 12z'/></svg>"; }  /* 🔇 / 🔊 */
-    ic();
-    btn.addEventListener('click',function(e){
-      e.stopPropagation(); muted=!muted;
-      if(muted){ sessionStorage.setItem(KM,'1'); bgm.pause(); }
-      else { sessionStorage.setItem(KM,'0'); var p=bgm.play(); if(p&&p.catch)p.catch(function(){}); }
-      ic();
-    });
-    document.body.appendChild(btn);
+  function persist() {
+    try { sessionStorage.setItem(KEY, JSON.stringify({track: TRACKS[current].id, time: bgm.currentTime || 0, playing: wanted})); } catch (_) {}
   }
-  if(document.body) mk(); else document.addEventListener('DOMContentLoaded',mk);
+  function snapshot() { return {track: TRACKS[current].title, playing: !bgm.paused, wanted: wanted, message: message}; }
+  function notify() {
+    var state = snapshot();
+    if (player) {
+      title.textContent = state.track;
+      status.textContent = message || (state.playing ? '兩首隨機輪播' : '點一下開啟配樂');
+      playButton.textContent = state.playing ? '暫停' : '播放';
+      playButton.setAttribute('aria-label', (state.playing ? '暫停' : '播放') + '背景音樂');
+      playButton.setAttribute('aria-pressed', String(state.playing));
+      player.classList.toggle('is-playing', state.playing);
+    }
+    views.forEach(function (v) {
+      try { v.dispatchEvent(new v.CustomEvent('hcfmusicchange', {detail: state})); } catch (_) { views.delete(v); }
+    });
+  }
+  function play() {
+    wanted = true; enabled = true; message = '';
+    var attempt;
+    try { attempt = bgm.play(); } catch (_) { attempt = Promise.reject(); }
+    Promise.resolve(attempt).then(function () { persist(); notify(); }).catch(function () {
+      message = '點播放開啟音樂'; notify();
+    });
+  }
+  function pause() { wanted = false; bgm.pause(); message = ''; persist(); notify(); }
+  function toggle() { if (bgm.paused) play(); else pause(); }
+  function select(index, autoplay) {
+    current = index; resumeAt = 0; message = '';
+    bgm.src = ROOT + TRACKS[current].src; bgm.load(); persist(); notify();
+    if (autoplay) play();
+  }
+  function next() { select((current + 1) % TRACKS.length, true); }
+  function updateVolume() {
+    var audible = false;
+    try {
+      audible = Array.prototype.some.call(activeView.document.querySelectorAll('video,audio'), function (m) {
+        return !m.paused && !m.ended && !m.muted && m.volume > 0;
+      });
+    } catch (_) {}
+    bgm.volume = audible ? 0.06 : 0.38;
+  }
+  bgm.addEventListener('loadedmetadata', function () {
+    if (resumeAt > 0 && resumeAt < bgm.duration - 1) bgm.currentTime = resumeAt;
+    resumeAt = 0;
+  });
+  bgm.addEventListener('play', notify); bgm.addEventListener('pause', notify);
+  bgm.addEventListener('ended', next);
+  bgm.addEventListener('error', function () { message = '音樂暫時無法載入 可切換下一首'; notify(); });
+  bgm.src = ROOT + TRACKS[current].src;
+  setInterval(function () { if (!bgm.paused) persist(); }, 1500);
+  window.addEventListener('pagehide', persist);
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { persist(); bgm.pause(); }
+    else if (wanted) play();
+  });
+
+  function makePlayer() {
+    var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = ROOT + '/hcf-music.css?v=20261108-immersive';
+    document.head.appendChild(css);
+    player = document.createElement('aside'); player.id = 'hcf-music-player'; player.setAttribute('aria-label', 'HCF 音樂播放器');
+    player.innerHTML = '<span class="hcf-music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span><div class="hcf-music-copy"><strong></strong><small></small></div><button type="button" class="hcf-music-play">播放</button><button type="button" class="hcf-music-next" aria-label="播放下一首">換歌</button>';
+    title = player.querySelector('strong'); status = player.querySelector('small'); playButton = player.querySelector('.hcf-music-play');
+    playButton.addEventListener('click', toggle); player.querySelector('.hcf-music-next').addEventListener('click', next);
+    document.body.appendChild(player); notify();
+  }
+  function eligible(url) {
+    return url.origin === ROOT && allowed.has(url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/');
+  }
+  function record(url, replace) { history[replace ? 'replaceState' : 'pushState']({hcfMusicShell: true}, '', url); }
+  function copyMetadata(doc) {
+    document.title = doc.title;
+    ['meta[name="description"]', 'link[rel="canonical"]', 'meta[property="og:title"]', 'meta[property="og:url"]', 'meta[property="og:image"]'].forEach(function (selector) {
+      var source = doc.querySelector(selector), target = document.querySelector(selector);
+      if (!source) { if (target) target.remove(); return; }
+      if (!target) { target = source.cloneNode(); document.head.appendChild(target); }
+      else if (source.tagName === 'LINK') target.href = source.href;
+      else target.content = source.content;
+    });
+  }
+  function finishNavigation() {
+    if (!frame) return;
+    try {
+      var view = frame.contentWindow;
+      if (!view.location.href || view.location.href === 'about:blank') return;
+      if (!eligible(new URL(view.location.href))) { location.assign(navPending || view.location.href); return; }
+      clearTimeout(navTimer); navPending = '';
+      activeView = view; views = new Set([window]); register(view);
+      frame.title = view.document.title || 'HCF 官網內容'; copyMetadata(view.document);
+      if (location.href !== view.location.href) record(view.location.href, true);
+      stage.classList.remove('is-loading'); stage.setAttribute('aria-busy', 'false');
+      updateVolume(); notify();
+      try { frame.focus({preventScroll: true}); } catch (_) {}
+    } catch (_) { if (navPending) location.assign(navPending); }
+  }
+  function navigate(url, replace) {
+    var target = new URL(url, activeView.location.href);
+    if (!eligible(target)) return false;
+    if (frame && !navPending && target.pathname === activeView.location.pathname && target.search === activeView.location.search) {
+      activeView.history.replaceState(null, '', target.href);
+      if (location.href !== target.href) record(target.href, !!replace);
+      var anchor = null;
+      try { anchor = activeView.document.getElementById(decodeURIComponent(target.hash.slice(1))); } catch (_) {}
+      if (anchor) anchor.scrollIntoView({behavior: 'auto'});
+      else activeView.scrollTo(0, 0);
+      return true;
+    }
+    if (!frame) {
+      record(location.href, true);
+      document.querySelectorAll('video,audio').forEach(function (m) { m.pause(); });
+      stage = document.createElement('div'); stage.id = 'hcf-site-stage';
+      stage.innerHTML = '<div class="hcf-page-loading" role="status">正在前往下一頁</div>';
+      frame = document.createElement('iframe'); frame.id = 'hcf-site-view'; frame.title = 'HCF 官網內容';
+      frame.setAttribute('allow', 'autoplay; fullscreen; clipboard-write'); frame.addEventListener('load', finishNavigation);
+      stage.appendChild(frame); document.body.appendChild(stage);
+      Array.prototype.forEach.call(document.body.children, function (node) {
+        if (node !== stage && node !== player && !/^(SCRIPT|STYLE|LINK)$/.test(node.tagName)) node.inert = true;
+      });
+      document.body.classList.add('hcf-audio-host');
+    }
+    updateVolume(); navPending = target.href; navigationSerial++;
+    var serial = navigationSerial;
+    stage.classList.add('is-loading'); stage.setAttribute('aria-busy', 'true');
+    if (location.href !== target.href) record(target.href, !!replace);
+    clearTimeout(navTimer);
+    navTimer = setTimeout(function () { if (serial === navigationSerial && navPending) location.assign(navPending); }, 18000);
+    // Only the parent owns history entries so browser Back does not double step
+    frame.contentWindow.location.replace(target.href);
+    return true;
+  }
+  function register(view) {
+    if (view !== window && (!frame || view !== frame.contentWindow)) return;
+    views.add(view); view.HCFMusic = api;
+    if (bound.has(view.document)) return;
+    bound.add(view.document);
+    view.document.addEventListener('click', function (event) {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      var link = event.target.closest && event.target.closest('a[href]');
+      if (!link || link.hasAttribute('download') || (link.target && link.target !== '_self')) return;
+      var url;
+      try { url = new URL(link.getAttribute('href'), view.location.href); } catch (_) { return; }
+      if (!eligible(url)) {
+        if (view !== window && !/^javascript:/.test(url.protocol)) link.target = '_top';
+        return;
+      }
+      if (url.pathname === view.location.pathname && url.search === view.location.search) {
+        if (view !== window && url.hash) {
+          var anchor;
+          try { anchor = view.document.getElementById(decodeURIComponent(url.hash.slice(1))); } catch (_) {}
+          if (anchor) {
+            event.preventDefault(); view.history.replaceState(null, '', url.href); record(url.href, false);
+            anchor.scrollIntoView({behavior: view.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+          }
+        }
+        return;
+      }
+      if (enabled || frame) { event.preventDefault(); navigate(url.href, false); }
+    });
+    view.document.addEventListener('submit', function (event) {
+      if (view !== window && !event.defaultPrevented && event.target.tagName === 'FORM') event.target.target = '_top';
+    });
+    ['play', 'pause', 'ended', 'volumechange'].forEach(function (name) { view.document.addEventListener(name, updateVolume, true); });
+    notify();
+  }
+  window.addEventListener('popstate', function () { if (frame) navigate(location.href, true); });
+  var api = window.HCFMusic = {
+    toggle: toggle, play: play, pause: pause, next: next, state: snapshot, register: register,
+    openExternal: function (url) {
+      var target = new URL(url, ROOT);
+      if (target.protocol === 'https:' || target.protocol === 'line:') { persist(); location.assign(target.href); }
+    }
+  };
+  makePlayer(); register(window);
+  if (wanted) play();
 })();
