@@ -1,4 +1,4 @@
-import {SHORT_SURVEY_ID,SHORT_SURVEY_VERSION,SHORT_ROUTES,SHORT_FIELDS,shortErrors,shortLabel,normalizeShortFeedback} from './short-feedback-schema.js?v=20261108-v3-options';
+import {SHORT_SURVEY_ID,SHORT_SURVEY_VERSION,SHORT_ROUTES,SHORT_FIELDS,shortErrors,shortLabel,shortSelections,normalizeShortFeedback} from './short-feedback-schema.js?v=20261108-multi-redesign';
 const $=id=>document.getElementById(id);
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const empty=()=>({group:{},private:{},memberName:''});
@@ -16,14 +16,17 @@ function fieldHtml(field,branch,index){
   inner=`<div class="stars" aria-describedby="star-status-${id}">${field.options.slice(0,5).map(([key,label])=>`<label class="star-choice ${Number(value)>=Number(key)?'lit':''}"><input type="radio" name="${id}" value="${key}" ${value===key?'checked':''} aria-label="${esc(label)}"><span class="star-icon" aria-hidden="true">★</span><span class="star-number" aria-hidden="true">${key} 星</span></label>`).join('')}</div><p class="star-status" id="star-status-${id}" aria-live="polite">${value?esc(shortLabel(field,value)):'點選星星評分　1 星很不滿意 → 5 星很滿意'}</p><label class="na-choice"><input type="radio" name="${id}" value="na" ${value==='na'?'checked':''}>還無法判斷</label>`;
  }else if(field.type==='text'){
   inner=field.key==='coachName'?`<input type="text" id="${id}" name="${id}" value="${esc(value)}" maxlength="${field.maxLength}" autocomplete="off" placeholder="${esc(field.placeholder)}">`:`<textarea id="${id}" name="${id}" rows="4" maxlength="${field.maxLength}" placeholder="${esc(field.placeholder)}">${esc(value)}</textarea>`;
+ }else if(field.type==='many'){
+  const picks=shortSelections(value);
+  inner=`<div class="multi-head"><p class="field-hint">可以複選，選出你在意的事。</p><span class="selection-count" id="count-${id}" aria-live="polite">已選 ${picks.length} 項</span></div><div class="choices multi-choices">${field.options.map(([key,label])=>`<label class="choice"><input type="checkbox" name="${id}" value="${key}" ${picks.includes(key)?'checked':''}><span>${esc(label)}</span></label>`).join('')}</div><p class="field-hint" style="margin-top:12px">「目前沒有特別需要改善」會單獨選取。</p>`;
  }else{
-  inner=`<div class="choices ${field.type==='rating'?'feeling-choices':''}">${field.options.map(([key,label])=>`<label class="choice"><input type="radio" name="${id}" value="${key}" ${value===key?'checked':''}><span>${esc(label)}</span></label>`).join('')}</div>`;
+  inner=`<div class="choices ${field.type==='rating'?'feeling-choices':''}">${field.options.map(([key,label])=>`<label class="choice"><input type="radio" name="${id}" value="${key}" ${value===key?'checked':''}><span class="feeling-score" aria-hidden="true">${key==='na'?'':key}</span><span>${esc(label)}</span></label>`).join('')}</div>`;
  }
  const title=field.type==='text'?`<label for="${id}">${esc(field.label)}</label>`:esc(field.label);
  return `<fieldset class="field" id="field-${id}" data-field="${field.key}" data-branch="${branch}"><legend>${field.required?`<span class="question-number">0${index+1}</span>`:''}${title} <span class="${field.required?'required':'optional'}">${field.required?'必填':'選填'}</span></legend>${inner}<p class="error" id="error-${id}" role="alert"></p></fieldset>`;
 }
 function reviewHtml(){
- return `<p class="review-note">確認三個重點就能送出。團課與私課分開統計，「無法判斷」不當作零分。</p>`+SHORT_ROUTES[route].branches.map(branch=>`<section class="review-section"><div class="review-title"><h3>${SHORT_ROUTES[branch].label}</h3><button type="button" data-edit="${branch}">修改<span class="sr-only">${SHORT_ROUTES[branch].label}</span> ↗</button></div><dl>${SHORT_FIELDS.filter(f=>f.required||answers[branch][f.key]).map(f=>`<div><dt>${esc(f.label)}</dt><dd>${f.stars&&answers[branch][f.key]!=='na'?`<span class="review-stars" aria-hidden="true">${'★'.repeat(Number(answers[branch][f.key]))}</span> `:''}${esc(shortLabel(f,answers[branch][f.key]))}</dd></div>`).join('')}</dl></section>`).join('')+
+ return `<p class="review-note">確認三個重點就能送出。團課與私課分開統計，「無法判斷」不當作零分。</p>`+SHORT_ROUTES[route].branches.map(branch=>`<section class="review-section"><div class="review-title"><h3>${SHORT_ROUTES[branch].label}</h3><button type="button" data-edit="${branch}">修改<span class="sr-only">${SHORT_ROUTES[branch].label}</span> ↗</button></div><dl>${SHORT_FIELDS.filter(f=>f.required||answers[branch][f.key]).map(f=>`<div><dt>${esc(f.label)}</dt><dd>${f.stars&&answers[branch][f.key]!=='na'?`<span class="review-stars" aria-hidden="true">${'★'.repeat(Number(answers[branch][f.key]))}</span> `:''}${f.type==='many'?`<ul class="review-picks">${shortSelections(answers[branch][f.key]).map(id=>`<li>${esc(shortLabel(f,id))}</li>`).join('')}</ul>`:esc(shortLabel(f,answers[branch][f.key]))}</dd></div>`).join('')}</dl></section>`).join('')+
  `<div class="name-field"><label for="memberName">姓名或暱稱 <span class="optional">選填</span></label><input type="text" id="memberName" maxlength="60" value="${esc(answers.memberName)}" autocomplete="off" placeholder="不填就是匿名回饋"><p class="field-hint">留名後就不是匿名回饋；不需要留下電話。</p></div><div class="privacy-box"><strong>你的感受 由館長先聽見</strong><p>館長看完整原文。教練只看館長公布的統計與去識別摘要，不會收到你的個別評分、姓名或原文。意見不連結會員帳號，也不會自動轉傳 LINE。</p></div>`;
 }
 function render(){
@@ -51,11 +54,15 @@ $('page-content').addEventListener('input',event=>{
  else{const box=event.target.closest('[data-field]');answers[box.dataset.branch][box.dataset.field]=event.target.value;}dirty=true;
 });
 $('page-content').addEventListener('change',event=>{
- if(pending||busy||!event.target.matches('input[type=radio]'))return;
+ if(pending||busy||!event.target.matches('input[type=radio],input[type=checkbox]'))return;
  const box=event.target.closest('[data-field]');if(!box)return;const {branch,field}=box.dataset;
- answers[branch][field]=event.target.value;dirty=true;box.classList.remove('invalid');$('error-'+branch+'-'+field).textContent='';box.querySelectorAll('[aria-invalid]').forEach(el=>{el.removeAttribute('aria-invalid');el.removeAttribute('aria-describedby');});
+ if(event.target.type==='checkbox'){
+  if(event.target.checked){box.querySelectorAll('input[type=checkbox]').forEach(input=>{if(event.target.value==='none'&&input!==event.target||event.target.value!=='none'&&input.value==='none')input.checked=false;});}
+  answers[branch][field]=[...box.querySelectorAll('input:checked')].map(input=>input.value);
+  $('count-'+branch+'-'+field).textContent='已選 '+answers[branch][field].length+' 項';
+ }else answers[branch][field]=event.target.value;dirty=true;box.classList.remove('invalid');$('error-'+branch+'-'+field).textContent='';box.querySelectorAll('[aria-invalid]').forEach(el=>{el.removeAttribute('aria-invalid');el.removeAttribute('aria-describedby');});
  if(field==='coachRating'){box.querySelectorAll('.star-choice').forEach(el=>el.classList.toggle('lit',Number(el.querySelector('input').value)<=Number(event.target.value)));$('star-status-'+branch+'-'+field).textContent=shortLabel(SHORT_FIELDS.find(f=>f.key===field),event.target.value);}
- if(field==='priority'&&event.target.value==='other')document.querySelector('.optional-note').open=true;
+ if(field==='priority'&&event.target.value==='other'&&event.target.checked)document.querySelector('.optional-note').open=true;
 });
 $('page-content').addEventListener('click',event=>{if(pending||busy)return;const edit=event.target.closest('[data-edit]');if(edit){pageIndex=pages().indexOf(edit.dataset.edit);render();}});
 $('back').addEventListener('click',()=>{if(pending||busy)return;if(pageIndex===0)showIntro();else{pageIndex--;render();}});
