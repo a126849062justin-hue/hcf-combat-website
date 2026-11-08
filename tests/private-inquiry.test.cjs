@@ -2,25 +2,18 @@ const test=require('node:test'),assert=require('node:assert/strict'),fs=require(
 const inquiry=require('../hcf-private.js');
 const ctx={window:{}};
 vm.runInNewContext(fs.readFileSync(require.resolve('../booking-line.js'),'utf8'),ctx);
-test('all private inquiry combinations preserve their choices in the official LINE draft',()=>{
- for(const plan of ['unsure','one','two','pads'])for(const goal of ['unsure','basics','fitness','technique','competition'])for(const time of ['flexible','day','evening','weekend']){
-  const fields=inquiry.fields({plan,goal,time});
+test('private links prefill real booking fields and distinguish two people from two lessons',()=>{
+ const html=fs.readFileSync(require.resolve('../booking.html'),'utf8');
+ for(const plan of ['unsure','one','two','pads'])for(const suffix of ['', '&goal=competition']){
+  const fields=inquiry.decode('#private='+plan+suffix);
+  for(const value of Object.values(fields))assert.ok(html.includes('value="'+value+'"'),value);
   const handoff=ctx.window.HCFBookingLine.build(fields,{userAgent:'iPhone',platform:'iPhone'});
-  assert.equal(handoff.autoOpen,true);
-  assert.ok(handoff.url.startsWith('https://line.me/R/oaMessage/%40228pffia/?'));
-  assert.equal(decodeURIComponent(handoff.url.split('/?')[1]),handoff.message);
-  assert.ok(handoff.message.includes('私人課諮詢（尚未預約）'));
   Object.values(fields).forEach(value=>assert.ok(handoff.message.includes(value)));
-  assert.ok(!handoff.message.includes('undefined'));
+  if(['two','pads'].includes(plan))assert.equal(fields['開始方式'],'私人課形式另行討論');
  }
 });
-test('desktop has profile fallback; iPad uses mobile draft; no arbitrary fields enter the message',()=>{
- const fields=inquiry.fields({plan:'__proto__',goal:'<script>secret</script>',time:'constructor',name:'PRIVATE'});
- assert.deepEqual(fields,inquiry.fields());
- const desktop=ctx.window.HCFBookingLine.build(fields,{userAgent:'Macintosh',platform:'MacIntel',maxTouchPoints:0});
- assert.equal(desktop.url,'https://line.me/R/ti/p/%40228pffia');
- assert.equal(desktop.autoOpen,false); assert.ok(!desktop.message.includes('PRIVATE'));
- assert.equal(ctx.window.HCFBookingLine.build(fields,{userAgent:'Macintosh',platform:'MacIntel',maxTouchPoints:5}).autoOpen,true);
+test('private prefill only accepts fixed non-personal choices',()=>{
+ for(const hash of ['', '#private=__proto__','#private=constructor','#private=one&name=PRIVATE','#private=one&goal=unknown','#private=one<script>'])assert.equal(inquiry.decode(hash),null);
 });
 test('LINE handoff records one existing click event with fixed intent and no message content',()=>{
  const events=[],handlers={};
