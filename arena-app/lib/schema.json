@@ -1,0 +1,252 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://www.hsinchucombat.com/fighters",
+      "url": "https://www.hsinchucombat.com/fighters",
+      "name": "HCF ENTER THE ARENA 新竹格鬥選手訓練與比賽",
+      "description": "從第一步走進 HCF 的訓練日常 教練故事 真實蛻變與選手比賽紀錄",
+      "inLanguage": "zh-Hant",
+      "dateModified": "2026-11-09",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "HCF 新竹格鬥",
+        "url": "https://www.hsinchucombat.com/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首頁",
+          "item": "https://www.hsinchucombat.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "選手比賽",
+          "item": "https://www.hsinchucombat.com/fighters"
+        }
+      ]
+    },
+    {
+      "@type": "VideoObject",
+      "name": "從每一次出拳開始",
+      "description": "館內沙袋練習 記錄出拳回收與腳步的日常累積",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/t01-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/t01.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT11S"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "練完 再聽教練說一次",
+      "description": "訓練後坐下來聽教練講解 把練習中的問題帶回討論",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/t02-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/t02.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT6S"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "上場之前 先確認重點",
+      "description": "教練面對面說明 串起館內練習與比賽當天的準備",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/t05-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/t05.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT8S"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "和夥伴一起進入狀態",
+      "description": "戴好護具後與夥伴練習出拳及反應 準備進入比賽",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/t06-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/t06.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT9S"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "場邊 教練就在身旁",
+      "description": "教練在場邊協助選手調整護具 陪伴每一次上場準備",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/z10-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/z10.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT8S"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "你在場上 教練在身旁",
+      "description": "從場邊教練的視角 看見選手把練習帶上賽場",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/t07-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/t07.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT18S"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "纏好手綁 再準備上場",
+      "description": "從纏好手綁開始 把賽前每個準備環節做好",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/z06-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/z06.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT7S"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "藍方護具選手的賽前打靶",
+      "description": "跟著教練的靶位練習拳腿組合 準備進入比賽節奏",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/z07-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/z07.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT11S"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "紅方護具選手的出場準備",
+      "description": "在準備區練習出拳與踢擊 把注意力放回每個動作",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/z08-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/z08.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT22S"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "上場前 把細節準備好",
+      "description": "賽前確認護具與動作 在教練陪伴下準備上場",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/z02-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/z02.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT9S"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "場上的攻防與移動",
+      "description": "觀察雙方的步法與攻防 把練習帶進真實回合",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/z03-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/z03.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT36S"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "92 秒實戰 步法與攻防",
+      "description": "連續的比賽片段 看見移動距離與攻防之間的選擇",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/z09-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/z09.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT92S"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "37 秒實戰 拳腿交鋒",
+      "description": "拳腿交鋒之間 練習觀察對手並回應不同節奏",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/z11-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/z11.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT37S"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "教練帶打靶 進入比賽節奏",
+      "description": "教練持靶帶著選手練習 在拳腿組合中確認節奏",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/l08-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/l08.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT42S"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "上場前最後的提醒",
+      "description": "上場前聽取教練提醒 把準備好的動作帶上擂台",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/l09-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/l09.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT16S"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "再確認一次膝法與防守",
+      "description": "教練再次示範膝法與防守 把動作重點確認清楚",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/l12-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/l12.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT17S"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "上場前的暖身與準備",
+      "description": "上場之前先暖身並熟悉動作 準備進入比賽的節奏",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/v06-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/v06.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT49S"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "從賽前鼓勵 到擂台攻防",
+      "description": "從賽前互動到擂台攻防 記錄選手上場的不同時刻",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/v03-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/v03.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT12S"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "立青精華 A 從上場到賽後",
+      "description": "把賽前準備與比賽現場 串成一段參賽紀錄",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/l02-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/l02.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT16S"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "立青精華 B 暖身到近距離攻防",
+      "description": "從不同角度回看擂台上的動作與攻防",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/l03-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/l03.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT21S"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "立青精華 C 擂台上的回合",
+      "description": "記錄現場回合與上場時刻 留下每次參賽的足跡",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/l04-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/l04.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT20S"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "3 分鐘擂台實戰紀錄",
+      "description": "保留較連續的擂台實戰 看見回合中的移動與應對",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/l10-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/l10.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT183S"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "回合結束後的擂台時刻",
+      "description": "回合結束後的現場時刻 選手與裁判一起留在擂台上",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/l11-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/l11.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT45S"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "MPF 現場比賽紀錄",
+      "description": "從觀眾席視角看見現場回合 保留比賽攻防與場館氣氛",
+      "thumbnailUrl": "https://www.hsinchucombat.com/assets/stories-20261108/v04-poster.webp",
+      "contentUrl": "https://www.hsinchucombat.com/assets/stories-20261108/v04.mp4",
+      "uploadDate": "2026-11-08T00:00:00+08:00",
+      "duration": "PT99S"
+    }
+  ]
+}

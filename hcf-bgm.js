@@ -88,7 +88,7 @@
     var doc = view.document;
     if (doc.getElementById('hcf-shark-assistant') || doc.querySelector('script[src*="hcf-assistant.js"]')) return;
     var script = doc.createElement('script');
-    script.id = 'hcf-assistant-loader'; script.src = ROOT + '/hcf-assistant.js?v=20261108-shark';
+    script.id = 'hcf-assistant-loader'; script.src = ROOT + '/hcf-assistant.js?v=20261109-arena';
     script.async = true; doc.head.appendChild(script);
   }
   function eligible(url) {

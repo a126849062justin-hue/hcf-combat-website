@@ -1,0 +1,4 @@
+Draco decoder from the Three.js distribution
+Draco source https://github.com/google/draco
+Copyright The Draco Authors
+Licensed under the Apache License Version 2

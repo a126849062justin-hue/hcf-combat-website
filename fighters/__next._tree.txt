@@ -1,0 +1,6 @@
+:HL["/arena-runtime/_next/static/css/9056374a7dc59797.css","style"]
+:HL["/assets/final-logo.webp","image"]
+:HL["/assets/stories-20261108/p03.webp","image",{"fetchPriority":"high"}]
+2:[["children",{"s":"__PAGE__","h":160}]]
+1:[["children",{"s":"fighters","h":96,"c":"$Q2"}]]
+0:{"b":"7KKwTDA0Sko-pFMrGYgJt","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
