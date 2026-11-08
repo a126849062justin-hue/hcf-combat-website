@@ -15,7 +15,7 @@
   host.style.visibility = 'hidden';
   const root = host.attachShadow({mode: 'open'});
   const sheet = document.createElement('link');
-  sheet.rel = 'stylesheet'; sheet.href = '/hcf-assistant.css?v=20261108-shark';
+  sheet.rel = 'stylesheet'; sheet.href = '/hcf-assistant.css?v=20261109-arena';
   const widget = document.createElement('div');
   widget.className = 'widget'; widget.dataset.mood = 'ready';
   widget.innerHTML = `
@@ -25,6 +25,7 @@
         <div class="music-heading"><span>HCF 隨身配樂</span><span id="music-state" role="status">配樂準備中</span></div>
         <strong id="music-track">兩首隨機輪播</strong>
         <div class="music-actions"><button id="music-play" type="button" aria-pressed="false" disabled>開啟音樂</button><button id="music-next" type="button" aria-label="播放下一首配樂" disabled>換下一首</button></div>
+        <button id="music-scene" class="music-scene" type="button" aria-pressed="false" hidden>開啟擂台音效</button>
       </section>
       <div id="conversation" class="conversation" role="log" aria-live="polite" aria-relevant="additions text" aria-label="與小鯊的對話"><div class="message"><small>小鯊</small><p>嗨，我是 HCF 小鯊！🥊\n第一次接觸格鬥也沒關係。想先了解課程、體驗費用，還是怎麼預約？</p></div></div>
       <button id="guide-start" class="guide-start" type="button">三個問題，幫我選第一堂課 →</button><div class="quick" aria-label="課程快捷問題"><button type="button" data-question="我是零基礎">我是零基礎 ↗</button><button type="button" data-question="體驗課多少錢？">體驗課多少錢？</button><button type="button" data-question="查看最新課表">查看最新課表</button><button type="button" data-question="第一次要帶什麼？">第一次要帶什麼？</button></div>
@@ -285,6 +286,17 @@
   $('#music-play').addEventListener('click', () => { window.HCFMusic?.toggle(); musicState(); });
   $('#music-next').addEventListener('click', () => { window.HCFMusic?.next(); musicState(); });
   window.addEventListener('hcfmusicchange', musicState);
+  function sceneSoundState() {
+    const scene = window.HCFArenaSound;
+    $('#music-scene').hidden = !scene;
+    const enabled = !!scene?.state();
+    $('#music-scene').textContent = enabled ? '關閉擂台音效' : '開啟擂台音效';
+    $('#music-scene').setAttribute('aria-pressed', String(enabled));
+  }
+  $('#music-scene').addEventListener('click', () => window.HCFArenaSound?.toggle());
+  window.addEventListener('hcfarenasoundready', sceneSoundState);
+  window.addEventListener('hcfarenasoundchange', sceneSoundState);
+  sceneSoundState();
   musicState();
   setMinimized(minimized);
   setMotion(reduced); motionPreference.addEventListener('change', e => setMotion(e.matches));

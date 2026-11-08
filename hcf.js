@@ -188,7 +188,7 @@ document.querySelectorAll('[data-cnt]').forEach(function(el){cio.observe(el)});
 })();
 
 /* 全站雙曲配樂與持續播放 */
-(function(){var s=document.createElement('script');s.src='/hcf-bgm.js?v=20261108-shark';s.defer=true;(document.head||document.documentElement).appendChild(s);})();
+(function(){var s=document.createElement('script');s.src='/hcf-bgm.js?v=20261109-arena';s.defer=true;(document.head||document.documentElement).appendChild(s);})();
 
 /* 官網表單 → HCF 後台 APP（鏡射，不影響原本 FormSubmit/LINE 流程）2026-09 */
 (function(){
@@ -256,7 +256,7 @@ document.querySelectorAll('[data-cnt]').forEach(function(el){cio.observe(el)});
   if (excluded.indexOf(page) !== -1 || document.getElementById('hcf-shark-assistant') || document.getElementById('hcf-assistant-loader')) return;
   var script = document.createElement('script');
   script.id = 'hcf-assistant-loader';
-  script.src = '/hcf-assistant.js?v=20261108-shark';
+  script.src = '/hcf-assistant.js?v=20261109-arena';
   script.async = true;
   document.head.appendChild(script);
 })();
