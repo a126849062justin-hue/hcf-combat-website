@@ -140,7 +140,11 @@
     }
     if (!frame) {
       record(location.href, true);
+      // Retire the original page lifecycle without unloading the audio owner
+      // This cancels booking handoff timers and any pagehide cleanup hooks
+      window.dispatchEvent(new Event('pagehide'));
       document.querySelectorAll('video,audio').forEach(function (m) { m.pause(); });
+      document.querySelectorAll('iframe').forEach(function (embedded) { embedded.src = 'about:blank'; });
       stage = document.createElement('div'); stage.id = 'hcf-site-stage';
       stage.innerHTML = '<div class="hcf-page-loading" role="status">正在前往下一頁</div>';
       frame = document.createElement('iframe'); frame.id = 'hcf-site-view'; frame.title = 'HCF 官網內容';
