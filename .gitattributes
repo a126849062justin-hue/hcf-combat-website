@@ -1,0 +1,8 @@
+# Generated runtime and pre-rendered route outputs
+arena-runtime/** linguist-generated=true -whitespace
+fighters.html linguist-generated=true
+fighters.txt linguist-generated=true
+fighters/** linguist-generated=true
+# Keep upstream decoder and license text intact
+assets/arena/draco/** linguist-vendored=true -whitespace
+assets/arena/OFL.txt -whitespace
