@@ -191,6 +191,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 @media(prefers-reduced-motion:reduce){.nhero-h .ln>span{animation:none;transform:none}.nhero-h i::after{animation:none;transform:scaleX(1)}}
 </style>
 <link rel="stylesheet" href="hcf-clear-covers.css?v=20261101-clear2">
+<link rel="stylesheet" href="hcf-stories.css?v=20261108">
 </head>
 <body class="hcf-clear-cover" data-page="news">
 <header class="nav" id="nav"></header>
@@ -218,7 +219,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
   <div class="wrap">
     <div class="pm-head rv">
       <div class="kicker">ACTIVITIES &amp; OFFERS / 本月活動</div>
-      <h2>本月活動 <i>一次玩懂</i></h2>
+      <h2>本月活動<i>一次玩懂</i></h2>
       <p class="pm-lead">四個進行中的活動——點一下、拉一下，立刻知道你能拿到什麼。完整方案與價目見 <a href="pricing.html">價目表</a>。</p>
     </div>
 
@@ -434,6 +435,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 </script>
 
 <!-- ===== 場館公告 ===== -->
+<section class="hcf-stories" id="shared-event-entry" aria-labelledby="shared-event-entry-title"><div class="hcf-story-wrap"><div class="hcf-story-intro"><figure><img src="assets/stories-20261108/p03.webp" srcset="assets/stories-20261108/p03-640.webp 640w, assets/stories-20261108/p03.webp 1600w" sizes="(max-width: 650px) calc(100vw - 44px), (max-width: 1000px) 45vw, 540px" width="1600" height="1143" alt="擂台上 紅方選手踢擊與藍方選手防守的比賽瞬間" loading="lazy" decoding="async"></figure><div><span class="hcf-story-eyebrow">HCF FIGHTER STORIES</span><h2 id="shared-event-entry-title">把努力帶上賽場</h2><p>選手比賽紀錄已更新 從日常訓練到賽前準備 一起回看擂台上的攻防與團隊時刻</p><div class="hcf-story-actions"><a class="hcf-story-action" href="fighters.html">看選手訓練與比賽</a><a class="hcf-story-link" href="booking.html">安排我的第一堂體驗</a></div></div></div></div></section>
 <section class="bulletin dotbg">
   <div class="wrap">
     <div class="b-head rv"><span class="tagm">MONTHLY BULLETIN</span><h2>場館公告</h2></div>
@@ -452,14 +454,14 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 <div class="seamC"><div class="wedge dot"></div></div>
 <section class="finale" id="finale"></section>
 
-<script src="hcf.js?v=20261104-audit"></script>
+<script src="hcf.js?v=20261108-stories"></script>
 <script src="hcf-analytics.js?v=20261104-audit" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded',function(){(window.HCF_CONTENT||Promise.resolve({})).then(function(c){
   if(c&&c.news&&c.news.length){
     var esc=function(x){return String(x).replace(/[<>&]/g,function(ch){return{'<':'&lt;','>':'&gt;','&':'&amp;'}[ch]})};
     document.getElementById('bulletinList').innerHTML=c.news.map(function(n){
-      return '<div class="nitem rv in"><h3>'+esc(n.title)+'</h3><ul>'+(n.lines||[]).map(function(l){return '<li>'+esc(l)+'</li>'}).join('')+'</ul></div>';
+      return '<div class="nitem rv in"><h3>+esc n title +</h3><ul>'+(n.lines||[]).map(function(l){return '<li>'+esc(l)+'</li>'}).join('')+'</ul></div>';
     }).join('');
   }
 })});
@@ -525,5 +527,6 @@ document.addEventListener('DOMContentLoaded',function(){(window.HCF_CONTENT||Pro
    }).catch(function(){});
 })();
 </script>
+<script src="hcf-stories.js?v=20261108" defer></script>
 </body>
 </html>
