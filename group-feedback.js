@@ -1,4 +1,4 @@
-import {SHORT_SURVEY_ID,SHORT_SURVEY_VERSION,SHORT_ROUTES,SHORT_FIELDS,shortErrors,shortLabel,normalizeShortFeedback} from './short-feedback-schema.js?v=20261108-v3';
+import {SHORT_SURVEY_ID,SHORT_SURVEY_VERSION,SHORT_ROUTES,SHORT_FIELDS,shortErrors,shortLabel,normalizeShortFeedback} from './short-feedback-schema.js?v=20261108-v3-options';
 const $=id=>document.getElementById(id);
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const empty=()=>({group:{},private:{},memberName:''});

@@ -8,7 +8,7 @@ export const COACH_OPTIONS=[['1','1 星 很不滿意'],['2','2 星 不太滿意'
 export const SHORT_FIELDS=[
   {key:'feeling',label:'這次上課的整體感受如何',type:'rating',options:FEELING_OPTIONS,required:true},
   {key:'coachRating',label:'你對教練的教學感受',type:'rating',options:COACH_OPTIONS,required:true,stars:true},
-  {key:'priority',label:'最希望先改善哪一件事',type:'one',required:true,options:[['content','課程內容更符合需求'],['pace','節奏或強度更適合我'],['clarity','教學說明更清楚'],['attention','更多個別指導與關心'],['atmosphere','上課氣氛更自在'],['schedule','排課與溝通更順暢'],['none','目前沒有特別需要改善'],['other','其他，我想補充']]},
+  {key:'priority',label:'最希望先改善哪一件事',type:'one',required:true,options:[['content','課程內容更符合需求'],['beginner','課程對新手太難或進度太快'],['pace','節奏或強度更適合我'],['clarity','教學說明更清楚'],['attention','更多個別指導與關心'],['approachability','教練表情或語氣讓我有壓力'],['atmosphere','上課氣氛更自在'],['schedule','排課與溝通更順暢'],['none','目前沒有特別需要改善'],['other','其他，我想補充']]},
   {key:'coachName',label:'這次回饋哪位教練',type:'text',maxLength:60,placeholder:'教練稱呼或整個教練團隊，不確定可留白'},
   {key:'comment',label:'想對課程或教練說的話',type:'text',maxLength:600,placeholder:'哪個時刻讓你覺得被照顧？哪裡不舒服或希望改變？一句話也可以。'},
 ];
