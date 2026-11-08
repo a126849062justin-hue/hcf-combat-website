@@ -10,13 +10,13 @@
   function track(event, data) {
     var events = ['booking_start','booking_step_view','booking_step_complete','booking_step_leave','booking_edit','booking_submit_success','booking_submit_failure','booking_line_open','booking_copy'];
     if (!events.includes(event)) return;
-    var safe = { form_version: '20261027' };
+    var safe = { form_version: '20261108' };
     if (data && Number.isInteger(data.step) && data.step >= 1 && data.step <= TOTAL) safe.step = data.step;
     if (data && ['manual','automatic'].includes(data.mode)) safe.mode = data.mode;
     if (window.hcfGrowthTrack) window.hcfGrowthTrack(event, safe);
     else if (typeof window.gtag === 'function') window.gtag('event', event, safe);
   }
-  function chosen(name) { return Array.from(form.elements).filter(function (el) { return el.name === name && el.checked; }).map(function (el) { return el.value; }); }
+  function chosen(name) { return Array.from(form.elements).filter(function (el) { return el.name === name && el.checked && !el.disabled; }).map(function (el) { return el.value; }); }
   function branch(id, visible) {
     var el = document.getElementById(id); el.style.display = visible ? 'block' : 'none';
     el.querySelectorAll('input,textarea').forEach(function (input) { input.disabled = !visible; });
@@ -26,6 +26,11 @@
     branch('branchFat', goals.includes('減脂、瘦身、改善體態'));
     branch('branchComp', goals.includes('想參加比賽或進入選手班'));
     branch('branchKid', goals.includes('想讓孩子學習運動與紀律'));
+    document.querySelectorAll('[data-purpose]').forEach(function (group) {
+      var visible = goals.includes(group.dataset.purpose); group.hidden = !visible;
+      group.querySelectorAll('input').forEach(function (input) { input.disabled = !visible; });
+    });
+    branch('privatePreferences', (chosen('開始方式')[0] || '').indexOf('私人') === 0);
     var body = chosen('身體狀況')[0]; branch('injuryNote', !!body && body !== '沒有');
   }
   function answers() {
@@ -63,7 +68,7 @@
     });
     btnP.style.display = editing || cur === 1 ? 'none' : 'block';
     btnN.textContent = editing ? '完成修改 回到摘要' : cur === TOTAL ? '送出並前往 LINE' : '下一步 →';
-    document.getElementById('navHint').textContent = ['下一步：體驗方式', '下一步：方便時間', '下一步：安全與確認', 'LINE 會帶入表單，請再按傳送'][cur - 1];
+    document.getElementById('navHint').textContent = ['下一步：體驗方式', '下一步：方便時間', '下一步：訓練目的與確認', 'LINE 會帶入表單，請再按傳送'][cur - 1];
     document.querySelector('.step.on h2').focus({ preventScroll: true });
     window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion:reduce)').matches ? 'instant' : 'smooth' });
   }
@@ -89,11 +94,23 @@
     form.querySelectorAll('.q').forEach(function (q) {
       var valid = false, required = q.querySelector('input[required],textarea[required]');
       if (required) { valid = !!required.value.trim(); if (valid) required.removeAttribute('aria-invalid'); }
-      if (q.dataset.group) { var count = q.querySelectorAll('input:checked').length, max = Number(q.dataset.max); valid = count > 0 && (!max || count <= max); }
+      if (q.dataset.group) { var count = q.querySelectorAll('input:checked:not(:disabled)').length, max = Number(q.dataset.max); valid = count > 0 && (!max || count <= max); }
       if (valid) { q.removeAttribute('aria-invalid'); var err = q.querySelector('.err'); if (err) err.classList.remove('on'); }
     });
   }
-  form.addEventListener('change', function () { revealBranches(); clearCorrectedErrors(); summary(); });
+  form.addEventListener('change', function (event) {
+    if (event.target.name === '私課形式') {
+      var format = event.target.value;
+      var type = /兩人|打靶/.test(format) ? '私人課形式另行討論' : format === '一對一私人課' ? '私人教練體驗 1 堂 $1,400' : null;
+      if (type) Array.from(form.elements).find(function (input) { return input.name === '開始方式' && input.value === type; }).checked = true;
+    }
+    if (event.target.name === '開始方式') {
+      var type = event.target.value;
+      Array.from(form.elements).filter(function (input) { return input.name === '私課形式'; }).forEach(function (input) {
+        input.checked = type.indexOf('私人教練') === 0 && input.value === '一對一私人課';
+      });
+    }
+    revealBranches(); clearCorrectedErrors(); summary(); });
   form.addEventListener('input', function () { clearCorrectedErrors(); summary(); });
   function validate(section) {
     section.querySelectorAll('.err').forEach(function (el) { el.classList.remove('on'); });
@@ -103,8 +120,8 @@
       if (!input.value.trim()) { first = first || input; input.setAttribute('aria-invalid', 'true'); input.closest('.q').querySelector('.err').classList.add('on'); }
     });
     section.querySelectorAll('.q[data-group]').forEach(function (q) {
-      if (!q.dataset.group || q.closest('.branch')) return;
-      var count = q.querySelectorAll('input:checked').length, max = Number(q.dataset.max);
+      if (!q.dataset.group || q.closest('.branch') || !q.querySelector('input:not(:disabled)')) return;
+      var count = q.querySelectorAll('input:checked:not(:disabled)').length, max = Number(q.dataset.max);
       if (!count || (max && count > max)) { first = first || q.querySelector('input'); q.setAttribute('aria-invalid', 'true'); q.querySelector('.err').classList.add('on'); }
     });
     if (first) { first.focus({ preventScroll: true }); first.closest('.q').scrollIntoView({ block: 'center', behavior: 'smooth' }); }
@@ -219,6 +236,16 @@
     document.getElementById('choiceText').textContent=recommendation.name+' · '+window.HCFChoice.goals[prefill.goal][0]+' · '+window.HCFChoice.experience[prefill.experience][0]+' · '+window.HCFChoice.times[prefill.time][0];
     window.hcfGrowthTrack?.('booking_prefill',{course:recommendation.id});
     history.replaceState(null,'',location.pathname+location.search);
+  }
+  var privateFields = window.HCFPrivate && window.HCFPrivate.decode(location.hash);
+  if (privateFields) {
+    Object.entries(privateFields).forEach(function (pair) {
+      Array.from(form.elements).filter(function (el) { return el.name === pair[0] && el.value === pair[1]; }).forEach(function (el) { el.checked = true; prefilled.push(el); });
+    });
+    document.getElementById('choicePreview').hidden = false;
+    document.getElementById('choiceTitle').textContent = '已帶入私人課詢問需求';
+    document.getElementById('choiceText').textContent = privateFields['私課形式'] + ' · 請接著告訴教練你的訓練目標';
+    history.replaceState(null, '', location.pathname + location.search);
   }
   document.getElementById('clearChoice').addEventListener('click',function(){
     prefilled.forEach(function(el){el.checked=false;});prefilled=[];

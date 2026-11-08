@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>60 秒需求診斷｜HCF 新竹格鬥</title>
-<meta name="description" content="HCF 新生訓練規劃・60 秒需求診斷。不需任何格鬥基礎，告訴我們你的目標、經驗與方便時間，教練依你的狀況推薦適合的體驗方式。">
+<title>安排我的第一堂體驗｜HCF 新竹格鬥</title>
+<meta name="description" content="HCF 新生訓練規劃。不需任何格鬥基礎，告訴我們你的目標、經驗與方便時間，教練依你的狀況推薦適合的體驗方式。">
 <link rel="canonical" href="https://www.hsinchucombat.com/booking">
-<meta property="og:title" content="60 秒需求診斷｜HCF 新竹格鬥">
-<meta property="og:description" content="不需格鬥基礎。60 秒告訴教練你的目標與方便時間，教練幫你規劃適合的體驗方式。">
+<meta property="og:title" content="安排我的第一堂體驗｜HCF 新竹格鬥">
+<meta property="og:description" content="不需格鬥基礎。告訴教練你的訓練目的、每週天數與方便時間，教練幫你規劃適合的體驗方式。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.hsinchucombat.com/booking">
 <meta property="og:site_name" content="HCF 新竹格鬥">
@@ -16,8 +16,8 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="60 秒需求診斷｜HCF 新竹格鬥">
-<meta name="twitter:description" content="不需格鬥基礎。60 秒告訴教練你的目標與方便時間，教練幫你規劃適合的體驗方式。">
+<meta name="twitter:title" content="安排我的第一堂體驗｜HCF 新竹格鬥">
+<meta name="twitter:description" content="不需格鬥基礎。告訴教練你的訓練目的、每週天數與方便時間，教練幫你規劃適合的體驗方式。">
 <meta name="twitter:image" content="https://www.hsinchucombat.com/og-cover.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +32,7 @@
   if (['www.hsinchucombat.com','hsinchucombat.com'].includes(location.hostname)) gtag('config', 'G-ZCPVLM3SY0');
 </script>
 
-<link rel="stylesheet" href="booking-app.css?v=hcf-booking-20261027">
+<link rel="stylesheet" href="booking-app.css?v=20261108-intake">
 </head>
 <body data-page="booking" data-design="hcf-booking-20261027">
 
@@ -44,12 +44,12 @@
 </header>
 
 <div class="pg" id="pgWrap" style="display:none">
-  <ol class="step-track" aria-label="填寫進度"><li data-progress="1" aria-current="step"><span>01</span>你的目標</li><li data-progress="2"><span>02</span>體驗方式</li><li data-progress="3"><span>03</span>方便時間</li><li data-progress="4"><span>04</span>安全與確認</li></ol><div class="pg-bar"><div class="pg-fill" id="pgFill"></div></div>
-  <div class="pg-txt"><span id="pgStep">第 1 步 / 共 4 步</span><span>約 60 秒</span></div>
+  <ol class="step-track" aria-label="填寫進度"><li data-progress="1" aria-current="step"><span>01</span>你的目標</li><li data-progress="2"><span>02</span>體驗方式</li><li data-progress="3"><span>03</span>方便時間</li><li data-progress="4"><span>04</span>目的與確認</li></ol><div class="pg-bar"><div class="pg-fill" id="pgFill"></div></div>
+  <div class="pg-txt"><span id="pgStep">第 1 步 / 共 4 步</span><span>依你的步調填寫</span></div>
 </div>
 
 <main>
-  <aside id="choicePreview" class="choice-preview" hidden aria-label="小鯊選課建議"><b>已帶入小鯊選課建議</b><p id="choiceText"></p><small>所有選項都可修改；實際課程與時段由教練確認。</small><button id="clearChoice" type="button">清除建議，自己選擇</button></aside>
+  <aside id="choicePreview" class="choice-preview" hidden aria-label="已帶入的課程需求"><b id="choiceTitle">已帶入小鯊選課建議</b><p id="choiceText"></p><small>所有選項都可修改；實際課程與時段由教練確認。</small><button id="clearChoice" type="button">清除建議，自己選擇</button></aside>
   <!-- ============ 首頁 ============ -->
   <div class="lede" id="intro">
     <div class="hero-copy">
@@ -57,9 +57,9 @@
       <h1>安排我的<br><em>第一堂體驗</em></h1>
       <p class="hero-sub">不需要有基礎<br>先讓教練認識你</p>
       <p class="hero-description">告訴我們你的目標、運動經驗與方便時間，<br class="desktop-break">一起找到適合你的訓練起點。</p>
-      <div class="hero-price">團體課體驗 <b>$400 起</b></div>
+      <div class="hero-price">團體課體驗 <b>$400</b> · 一對一體驗 <b>$1,400</b></div>
       <div class="trust"><span>零基礎友善</span><span>教練親自規劃</span><span>不強迫購買</span></div>
-      <button class="startbtn" id="startBtn" type="button"><span>開始我的訓練規劃<small>約 60 秒 · 4 個步驟</small></span><b aria-hidden="true">↗</b></button>
+      <button class="startbtn" id="startBtn" type="button"><span>開始我的訓練規劃<small>4 個步驟 · 讓教練了解你</small></span><b aria-hidden="true">↗</b></button>
       <p class="booking-note">手機送出後將開啟官方 LINE 並帶入表單，請再按「傳送」。時段仍由教練確認。</p>
       <a class="first-visit-link" href="first-time-muay-thai-guide.html">第一次來？先看上課流程與準備清單 →</a>
       <a class="booking-direct" href="https://www.fit-book.com.tw/hsinchucombat/plan/588" target="_blank" rel="noopener">已確定課程？直接到 FitBook 約課 ↗</a>
@@ -123,9 +123,19 @@
             <label class="opt"><input type="radio" name="開始方式" value="團體課體驗 $400"><span class="box"></span><span class="lb"><span class="plan-type">一起練習</span><b>團體課體驗</b><strong class="plan-price">$400</strong><span class="sub"><em>適合你</em>想先感受團體課氣氛<br><em>體驗內容</em>流汗運動、認識基本動作</span></span></label>
             <label class="opt"><input type="radio" name="開始方式" value="私人教練體驗 1 堂 $1,400"><span class="box"></span><span class="lb"><span class="plan-type">專注在你</span><b>私人教練體驗 1 堂</b><strong class="plan-price">$1,400</strong><span class="sub"><em>適合你</em>想從一對一教學開始<br><em>體驗內容</em>動作評估、基礎教學與專屬建議</span></span></label>
             <label class="opt"><input type="radio" name="開始方式" value="私人教練深度體驗 2 堂 $2,400"><span class="box"></span><span class="lb"><span class="plan-type">多一步了解</span><b>私人教練深度體驗 2 堂</b><strong class="plan-price">$2,400</strong><span class="sub"><em>適合你</em>想多一些時間了解訓練方向<br><em>體驗內容</em>更完整了解動作、體能與適合的訓練方向</span></span></label>
+            <label class="opt"><input type="radio" name="開始方式" value="私人課形式另行討論"><span class="box"></span><span class="lb"><b>兩人同行、私人打靶，或先詢問</b><span class="sub">告訴教練想怎麼練，費用與安排由教練確認。</span></span></label>
             <label class="opt"><input type="radio" name="開始方式" value="還不確定，希望教練依狀況推薦"><span class="box"></span><span class="lb">還不確定，希望教練依照我的狀況推薦</span></label>
           </div>
           <div class="err">請選擇一項</div>
+        </div>
+        <div class="branch" id="privatePreferences" style="display:none">
+          <div class="bt">私人課需求</div><p class="bd">可調整下方偏好。兩人同行是兩位一起上課，與一人上兩堂的深度體驗不同。</p>
+          <div class="q"><span class="t">偏好的私課形式<span class="optag">選填</span></span><div class="opts two">
+            <label class="opt"><input type="radio" name="私課形式" value="一對一私人課"><span class="box"></span><span class="lb">一對一私人課</span></label>
+            <label class="opt"><input type="radio" name="私課形式" value="一對二，兩人同行"><span class="box"></span><span class="lb">一對二，兩人同行</span></label>
+            <label class="opt"><input type="radio" name="私課形式" value="40 分鐘私人打靶"><span class="box"></span><span class="lb">40 分鐘私人打靶</span></label>
+            <label class="opt"><input type="radio" name="私課形式" value="還不確定，想聽教練建議"><span class="box"></span><span class="lb">還不確定，想聽教練建議</span></label>
+          </div></div>
         </div>
       </section>
 
@@ -144,52 +154,36 @@
           </div>
           <div class="err">請至少選一個時段</div>
         </div>
-        <div class="q" data-group="when">
-          <span class="t">你預計什麼時候開始訓練？<span class="req">*</span></span>
+        <div class="q" data-group="frequency">
+          <span class="t">你一個禮拜願意花幾天在這項運動上？<span class="req">*</span></span>
           <div class="opts two">
-            <label class="opt"><input type="radio" name="預計開始" value="最近 3 天內"><span class="box"></span><span class="lb">最近 3 天內</span></label>
-            <label class="opt"><input type="radio" name="預計開始" value="這個星期"><span class="box"></span><span class="lb">這個星期</span></label>
-            <label class="opt"><input type="radio" name="預計開始" value="兩個星期內"><span class="box"></span><span class="lb">兩個星期內</span></label>
-            <label class="opt"><input type="radio" name="預計開始" value="下個月"><span class="box"></span><span class="lb">下個月</span></label>
-            <label class="opt"><input type="radio" name="預計開始" value="目前先了解看看"><span class="box"></span><span class="lb">目前先了解看看</span></label>
+            <label class="opt"><input type="radio" name="每週訓練天數" value="每週 1 天"><span class="box"></span><span class="lb">每週 1 天</span></label>
+            <label class="opt"><input type="radio" name="每週訓練天數" value="每週 2 天"><span class="box"></span><span class="lb">每週 2 天</span></label>
+            <label class="opt"><input type="radio" name="每週訓練天數" value="每週 3 天"><span class="box"></span><span class="lb">每週 3 天</span></label>
+            <label class="opt"><input type="radio" name="每週訓練天數" value="每週 4 天以上"><span class="box"></span><span class="lb">每週 4 天以上</span></label>
+            <label class="opt"><input type="radio" name="每週訓練天數" value="還不確定，希望和教練討論"><span class="box"></span><span class="lb">還不確定，希望和教練討論</span></label>
           </div>
           <div class="err">請選擇一項</div>
         </div>
       </section>
 
       <!-- STEP 4 -->
-      <section class="step" data-step="4"><header class="step-heading"><span class="eyebrow">STEP 04 / 安全與確認</span><h2 tabindex="-1">準備好你的第一堂</h2><p>讓教練了解需要注意的地方，送出前再核對一次。</p></header>
-        <div class="q" data-group="body">
-          <span class="t">目前是否有舊傷、疾病或需要教練特別注意的狀況？<span class="req">*</span></span>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="身體狀況" value="沒有"><span class="box"></span><span class="lb">沒有</span></label>
-            <label class="opt"><input type="radio" name="身體狀況" value="膝蓋或腳踝舊傷"><span class="box"></span><span class="lb">膝蓋或腳踝舊傷</span></label>
-            <label class="opt"><input type="radio" name="身體狀況" value="腰部或背部不適"><span class="box"></span><span class="lb">腰部或背部不適</span></label>
-            <label class="opt"><input type="radio" name="身體狀況" value="肩膀、手肘或手腕不適"><span class="box"></span><span class="lb">肩膀、手肘或手腕不適</span></label>
-            <label class="opt"><input type="radio" name="身體狀況" value="心血管、氣喘或其他慢性疾病"><span class="box"></span><span class="lb">心血管、氣喘或其他慢性疾病</span></label>
-            <label class="opt"><input type="radio" name="身體狀況" value="其他狀況"><span class="box"></span><span class="lb">其他狀況</span></label>
-          </div>
-          <div class="err">請選擇一項</div>
-          <div id="injuryNote" style="display:none;margin-top:12px">
-            <textarea name="需注意說明" placeholder="請簡單說明需要教練注意的地方"></textarea>
-          </div>
-        </div>
-
-        <details class="optional-details" id="optionalDetails"><summary><span><b>讓教練更了解我</b><small>選填 可以先略過，之後與教練討論</small></span><span aria-hidden="true">＋</span></summary><div class="optional-body">
+      <section class="step" data-step="4"><header class="step-heading"><span class="eyebrow">STEP 04 / 訓練目的與確認</span><h2 tabindex="-1">準備好你的第一堂</h2><p>先說清楚訓練目的與需要注意的地方，送出前再核對一次。</p></header>
+        <section class="coach-details" id="coachDetails" aria-labelledby="coachDetailsTitle">
+          <div class="coach-details-heading"><span class="important-tag">重要 · 教練課前必看</span><h3 id="coachDetailsTitle">讓教練更了解我</h3><p>請把訓練目的說得更具體，教練會依你的目標、每週天數與程度，討論第一堂課的安排。</p><strong>每個已選目標，請至少勾選一項細節。</strong></div>
+          <div class="coach-details-body">
+          <div class="q purpose-detail" data-purpose="減脂、瘦身、改善體態" data-group="purpose0" hidden><span class="t">體態目標<span class="req">*</span><span class="hint">可複選，至少選一項</span></span><div class="opts multi"><label class="opt"><input type="checkbox" name="訓練目的_體態目標" value="降低整體體脂、改善體態"><span class="box"></span><span class="lb">降低整體體脂、改善體態</span></label><label class="opt"><input type="checkbox" name="訓練目的_體態目標" value="讓腰腹與身體線條更緊實"><span class="box"></span><span class="lb">讓腰腹與身體線條更緊實</span></label><label class="opt"><input type="checkbox" name="訓練目的_體態目標" value="維持體重，建立規律運動習慣"><span class="box"></span><span class="lb">維持體重，建立規律運動習慣</span></label><label class="opt"><input type="checkbox" name="訓練目的_體態目標" value="提升運動量，搭配日常飲食管理"><span class="box"></span><span class="lb">提升運動量，搭配日常飲食管理</span></label><label class="opt"><input type="checkbox" name="訓練目的_體態目標" value="其他／希望教練協助釐清"><span class="box"></span><span class="lb">其他／希望教練協助釐清</span></label></div><div class="err">請至少選擇一項體態目標細節</div></div>
+<div class="q purpose-detail" data-purpose="提升體能、肌力與爆發力" data-group="purpose1" hidden><span class="t">體能目標<span class="req">*</span><span class="hint">可複選，至少選一項</span></span><div class="opts multi"><label class="opt"><input type="checkbox" name="訓練目的_體能目標" value="改善心肺與耐力，不容易喘"><span class="box"></span><span class="lb">改善心肺與耐力，不容易喘</span></label><label class="opt"><input type="checkbox" name="訓練目的_體能目標" value="提升全身肌力與核心穩定"><span class="box"></span><span class="lb">提升全身肌力與核心穩定</span></label><label class="opt"><input type="checkbox" name="訓練目的_體能目標" value="提升速度、敏捷與爆發力"><span class="box"></span><span class="lb">提升速度、敏捷與爆發力</span></label><label class="opt"><input type="checkbox" name="訓練目的_體能目標" value="改善協調性與活動能力"><span class="box"></span><span class="lb">改善協調性與活動能力</span></label><label class="opt"><input type="checkbox" name="訓練目的_體能目標" value="其他／希望教練協助釐清"><span class="box"></span><span class="lb">其他／希望教練協助釐清</span></label></div><div class="err">請至少選擇一項體能目標細節</div></div>
+<div class="q purpose-detail" data-purpose="學習真正的泰拳或踢拳技術" data-group="purpose2" hidden><span class="t">技術目標<span class="req">*</span><span class="hint">可複選，至少選一項</span></span><div class="opts multi"><label class="opt"><input type="checkbox" name="訓練目的_技術目標" value="從站架、步法與基本拳腿開始"><span class="box"></span><span class="lb">從站架、步法與基本拳腿開始</span></label><label class="opt"><input type="checkbox" name="訓練目的_技術目標" value="學會拳腿組合與打靶節奏"><span class="box"></span><span class="lb">學會拳腿組合與打靶節奏</span></label><label class="opt"><input type="checkbox" name="訓練目的_技術目標" value="修正出拳、踢腿或防守動作"><span class="box"></span><span class="lb">修正出拳、踢腿或防守動作</span></label><label class="opt"><input type="checkbox" name="訓練目的_技術目標" value="加強距離、時機與攻防觀念"><span class="box"></span><span class="lb">加強距離、時機與攻防觀念</span></label><label class="opt"><input type="checkbox" name="訓練目的_技術目標" value="其他／希望教練協助釐清"><span class="box"></span><span class="lb">其他／希望教練協助釐清</span></label></div><div class="err">請至少選擇一項技術目標細節</div></div>
+<div class="q purpose-detail" data-purpose="防身、增加自信" data-group="purpose3" hidden><span class="t">防身與自信目標<span class="req">*</span><span class="hint">可複選，至少選一項</span></span><div class="opts multi"><label class="opt"><input type="checkbox" name="訓練目的_防身與自信目標" value="建立距離與危險情境的判斷"><span class="box"></span><span class="lb">建立距離與危險情境的判斷</span></label><label class="opt"><input type="checkbox" name="訓練目的_防身與自信目標" value="練習基本防守與脫離方式"><span class="box"></span><span class="lb">練習基本防守與脫離方式</span></label><label class="opt"><input type="checkbox" name="訓練目的_防身與自信目標" value="增加面對陌生情境的自信"><span class="box"></span><span class="lb">增加面對陌生情境的自信</span></label><label class="opt"><input type="checkbox" name="訓練目的_防身與自信目標" value="提升身體控制與反應能力"><span class="box"></span><span class="lb">提升身體控制與反應能力</span></label><label class="opt"><input type="checkbox" name="訓練目的_防身與自信目標" value="其他／希望教練協助釐清"><span class="box"></span><span class="lb">其他／希望教練協助釐清</span></label></div><div class="err">請至少選擇一項防身與自信目標細節</div></div>
+<div class="q purpose-detail" data-purpose="舒壓、改善生活狀態" data-group="purpose4" hidden><span class="t">生活與舒壓目標<span class="req">*</span><span class="hint">可複選，至少選一項</span></span><div class="opts multi"><label class="opt"><input type="checkbox" name="訓練目的_生活與舒壓目標" value="下班後釋放壓力、轉換心情"><span class="box"></span><span class="lb">下班後釋放壓力、轉換心情</span></label><label class="opt"><input type="checkbox" name="訓練目的_生活與舒壓目標" value="減少久坐，讓生活更有活動量"><span class="box"></span><span class="lb">減少久坐，讓生活更有活動量</span></label><label class="opt"><input type="checkbox" name="訓練目的_生活與舒壓目標" value="建立固定運動與生活節奏"><span class="box"></span><span class="lb">建立固定運動與生活節奏</span></label><label class="opt"><input type="checkbox" name="訓練目的_生活與舒壓目標" value="透過學習與進步增加成就感"><span class="box"></span><span class="lb">透過學習與進步增加成就感</span></label><label class="opt"><input type="checkbox" name="訓練目的_生活與舒壓目標" value="其他／希望教練協助釐清"><span class="box"></span><span class="lb">其他／希望教練協助釐清</span></label></div><div class="err">請至少選擇一項生活與舒壓目標細節</div></div>
+<div class="q purpose-detail" data-purpose="想參加比賽或進入選手班" data-group="purpose5" hidden><span class="t">比賽目標<span class="req">*</span><span class="hint">可複選，至少選一項</span></span><div class="opts multi"><label class="opt"><input type="checkbox" name="訓練目的_比賽目標" value="先了解自己是否適合備賽"><span class="box"></span><span class="lb">先了解自己是否適合備賽</span></label><label class="opt"><input type="checkbox" name="訓練目的_比賽目標" value="準備第一場業餘比賽"><span class="box"></span><span class="lb">準備第一場業餘比賽</span></label><label class="opt"><input type="checkbox" name="訓練目的_比賽目標" value="加強技術、戰術與實戰判斷"><span class="box"></span><span class="lb">加強技術、戰術與實戰判斷</span></label><label class="opt"><input type="checkbox" name="訓練目的_比賽目標" value="規劃比賽所需的體能與訓練頻率"><span class="box"></span><span class="lb">規劃比賽所需的體能與訓練頻率</span></label><label class="opt"><input type="checkbox" name="訓練目的_比賽目標" value="其他／希望教練協助釐清"><span class="box"></span><span class="lb">其他／希望教練協助釐清</span></label></div><div class="err">請至少選擇一項比賽目標細節</div></div>
+<div class="q purpose-detail" data-purpose="想讓孩子學習運動與紀律" data-group="purpose6" hidden><span class="t">孩子的訓練目標<span class="req">*</span><span class="hint">可複選，至少選一項</span></span><div class="opts multi"><label class="opt"><input type="checkbox" name="訓練目的_孩子的訓練目標" value="培養運動習慣與身體協調"><span class="box"></span><span class="lb">培養運動習慣與身體協調</span></label><label class="opt"><input type="checkbox" name="訓練目的_孩子的訓練目標" value="練習專注、聽指令與自我管理"><span class="box"></span><span class="lb">練習專注、聽指令與自我管理</span></label><label class="opt"><input type="checkbox" name="訓練目的_孩子的訓練目標" value="增加自信與遇到挫折的耐心"><span class="box"></span><span class="lb">增加自信與遇到挫折的耐心</span></label><label class="opt"><input type="checkbox" name="訓練目的_孩子的訓練目標" value="學習安全觀念與基本防身"><span class="box"></span><span class="lb">學習安全觀念與基本防身</span></label><label class="opt"><input type="checkbox" name="訓練目的_孩子的訓練目標" value="其他／希望教練協助釐清"><span class="box"></span><span class="lb">其他／希望教練協助釐清</span></label></div><div class="err">請至少選擇一項孩子的訓練目標細節</div></div>
+<div class="q purpose-detail" data-purpose="還不確定，想先體驗看看" data-group="purpose7" hidden><span class="t">初次體驗目標<span class="req">*</span><span class="hint">可複選，至少選一項</span></span><div class="opts multi"><label class="opt"><input type="checkbox" name="訓練目的_初次體驗目標" value="想了解泰拳或踢拳適不適合我"><span class="box"></span><span class="lb">想了解泰拳或踢拳適不適合我</span></label><label class="opt"><input type="checkbox" name="訓練目的_初次體驗目標" value="想找到可以長期持續的運動"><span class="box"></span><span class="lb">想找到可以長期持續的運動</span></label><label class="opt"><input type="checkbox" name="訓練目的_初次體驗目標" value="想認識課程節奏與教練教法"><span class="box"></span><span class="lb">想認識課程節奏與教練教法</span></label><label class="opt"><input type="checkbox" name="訓練目的_初次體驗目標" value="想釐清個人目標與適合的上課方式"><span class="box"></span><span class="lb">想釐清個人目標與適合的上課方式</span></label><label class="opt"><input type="checkbox" name="訓練目的_初次體驗目標" value="其他／希望教練協助釐清"><span class="box"></span><span class="lb">其他／希望教練協助釐清</span></label></div><div class="err">請至少選擇一項初次體驗目標細節</div></div>
         <!-- 條件式分流：減脂 -->
         <div class="branch" id="branchFat" style="display:none">
           <div class="bt">關於「減脂・改善體態」</div>
-          <div class="bd">以下兩題為選填，幫助教練抓訓練密度，不需要填體重。</div>
-          <div class="q" data-group="" style="margin-top:0">
-            <span class="t" style="font-size:16px">每週大約可以安排幾天運動？<span class="optag">選填</span></span>
-            <div class="opts two">
-              <label class="opt"><input type="radio" name="減脂_每週天數" value="每週 1 天"><span class="box"></span><span class="lb">每週 1 天</span></label>
-              <label class="opt"><input type="radio" name="減脂_每週天數" value="每週 2 天"><span class="box"></span><span class="lb">每週 2 天</span></label>
-              <label class="opt"><input type="radio" name="減脂_每週天數" value="每週 3 天"><span class="box"></span><span class="lb">每週 3 天</span></label>
-              <label class="opt"><input type="radio" name="減脂_每週天數" value="每週 4 天以上"><span class="box"></span><span class="lb">每週 4 天以上</span></label>
-              <label class="opt"><input type="radio" name="減脂_每週天數" value="還不確定"><span class="box"></span><span class="lb">還不確定</span></label>
-            </div>
-          </div>
+          <div class="bd">可補充想改善的體態，不需要填體重。</div>
           <div class="q" style="margin-top:18px">
             <label class="t" style="font-size:16px" for="f_fat">最想改善的部位或體態問題？<span class="optag">選填</span></label>
             <input type="text" id="f_fat" name="減脂_想改善部位" placeholder="例如：肚子、蝴蝶袖、想更緊實">
@@ -247,7 +241,7 @@
         <div class="q" style="margin-top:28px">
           <label class="t" for="f_change">三個月後最希望看到什麼改變？<span class="optag">選填</span>
             <span class="hint">點選下方例子加入文字，也可以自己寫；這是你的期待，教練會再與你討論可行目標。</span></label>
-          <div class="goal-prompts" aria-label="期待改變的例子"><button type="button" data-goal-prompt="體力變好">＋ 體力變好</button><button type="button" data-goal-prompt="建立固定運動習慣">＋ 建立固定運動習慣</button><button type="button" data-goal-prompt="學會基本攻防">＋ 學會基本攻防</button><button type="button" data-goal-prompt="運動時更有自信">＋ 運動時更有自信</button><button type="button" data-goal-prompt="舒緩日常壓力">＋ 舒緩日常壓力</button></div><textarea id="f_change" name="三個月期望" placeholder="一句話描述就好，教練體驗當天會依這個幫你規劃"></textarea>
+          <div class="goal-prompts" aria-label="期待改變的例子"><button type="button" data-goal-prompt="體力變好">＋ 體力變好</button><button type="button" data-goal-prompt="建立固定運動習慣">＋ 建立固定運動習慣</button><button type="button" data-goal-prompt="學會基本攻防">＋ 學會基本攻防</button><button type="button" data-goal-prompt="運動時更有自信">＋ 運動時更有自信</button><button type="button" data-goal-prompt="舒緩日常壓力">＋ 舒緩日常壓力</button></div><textarea id="f_change" name="三個月期望與目標補充" placeholder="例如：每週練兩天，希望爬樓梯不那麼喘；已學過泰拳，想修正踢腿與防守。也可以補充上方未列出的目的。"></textarea>
         </div>
         <div class="q">
           <span class="t">你是從哪裡知道 HCF 新竹格鬥的？<span class="optag">選填</span></span>
@@ -263,7 +257,24 @@
           </div>
         </div>
 
-        </div></details>
+        </div></section>
+        <div class="q" data-group="body">
+          <span class="t">目前是否有舊傷、疾病或需要教練特別注意的狀況？<span class="req">*</span></span>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="身體狀況" value="沒有"><span class="box"></span><span class="lb">沒有</span></label>
+            <label class="opt"><input type="radio" name="身體狀況" value="膝蓋或腳踝舊傷"><span class="box"></span><span class="lb">膝蓋或腳踝舊傷</span></label>
+            <label class="opt"><input type="radio" name="身體狀況" value="腰部或背部不適"><span class="box"></span><span class="lb">腰部或背部不適</span></label>
+            <label class="opt"><input type="radio" name="身體狀況" value="肩膀、手肘或手腕不適"><span class="box"></span><span class="lb">肩膀、手肘或手腕不適</span></label>
+            <label class="opt"><input type="radio" name="身體狀況" value="心血管、氣喘或其他慢性疾病"><span class="box"></span><span class="lb">心血管、氣喘或其他慢性疾病</span></label>
+            <label class="opt"><input type="radio" name="身體狀況" value="其他狀況"><span class="box"></span><span class="lb">其他狀況</span></label>
+          </div>
+          <div class="err">請選擇一項</div>
+          <div id="injuryNote" style="display:none;margin-top:12px">
+            <textarea name="需注意說明" placeholder="請簡單說明需要教練注意的地方"></textarea>
+          </div>
+        </div>
+
+
         <section class="review-card" aria-labelledby="reviewTitle"><div class="review-title"><span class="eyebrow">READY FOR YOUR FIRST ROUND</span><h3 id="reviewTitle">送出前 再看一次</h3><p>每一項都能直接修改，完成後會回到這份摘要。</p></div><dl id="bookingSummary"></dl></section>
         <p class="privacy-note">
           以上資料供 HCF 新竹格鬥安排課程與訓練安全評估使用，透過網站收件與寄信服務保存及傳遞。手機送出成功後將開啟 HCF 官方 LINE，帶入剛填寫的完整表單（包含你填寫的身體狀況），請確認後再按「傳送」。本分頁會短暫保留收件摘要供返回後複製，30 分鐘後不再還原。本頁以步驟編號及操作類型統計填寫流程，不將姓名、答案或收件編號加入這些統計事件。你可隨時向 HCF 要求查詢、更正或刪除資料。
@@ -317,6 +328,7 @@
 <script src="booking-line.js?v=hcf-booking-upgrade-20261014-r3" defer></script>
 <script src="hcf-course-data.js?v=20261027" defer></script>
 <script src="hcf-growth-events.js?v=20261104-audit" defer></script>
-<script src="booking-app.js?v=20261027" defer></script>
+<script src="hcf-private.js?v=20261108-intake" defer></script>
+<script src="booking-app.js?v=20261108-intake" defer></script>
 </body>
 </html>

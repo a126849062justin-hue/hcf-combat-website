@@ -256,7 +256,7 @@ document.querySelectorAll('[data-cnt]').forEach(function(el){cio.observe(el)});
   if (excluded.indexOf(page) !== -1 || document.getElementById('hcf-shark-assistant') || document.getElementById('hcf-assistant-loader')) return;
   var script = document.createElement('script');
   script.id = 'hcf-assistant-loader';
-  script.src = '/hcf-assistant.js?v=20261104-audit';
+  script.src = '/hcf-assistant.js?v=20261108-intake';
   script.async = true;
   document.head.appendChild(script);
 })();
