@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import moments from "../lib/moments.json";
-type Moment = (typeof moments)[number];
+import originalMoments from "../lib/moments.json";
+import { useArenaContent } from "./Content";
+type Moment = (typeof originalMoments)[number];
 const Play = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true">
     <path d="m9 5 11 7-11 7Z" />
@@ -306,10 +307,17 @@ const filters = [
   ["ringside", "擂台現場"],
 ];
 export function MomentsGallery() {
+  const content = useArenaContent();
+  const moments = content.moments;
   const [current, setCurrent] = useState<Moment | null>(null),
     [filter, setFilter] = useState("all");
   const trigger = useRef<HTMLElement | null>(null);
-  const featured = ["p03", "z10", "l10"]
+  useEffect(() => {
+    setCurrent((current) =>
+      current ? moments.find((m) => m.id === current.id) || null : null,
+    );
+  }, [moments]);
+  const featured = content.featured
     .map((id) => moments.find((m) => m.id === id)!)
     .filter(Boolean);
   const list =
@@ -360,7 +368,10 @@ export function MomentsGallery() {
       <details className="film-archive">
         <summary>
           <span>進入影像紀錄室</span>
-          <small>37 個時刻 24 支影片</small>
+          <small>
+            {moments.length} 個時刻 {moments.filter((m) => m.video).length}{" "}
+            支影片
+          </small>
           <span aria-hidden="true">＋</span>
         </summary>
         <div className="moment-filters" role="group" aria-label="影像分類">

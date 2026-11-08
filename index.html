@@ -689,6 +689,8 @@ body .svtab,body .vtab-wrap{display:none!important}
 <link rel="stylesheet" href="hcf-clear-covers.css?v=20261101-clear2">
 <link rel="stylesheet" href="hcf-growth-fixes.css?v=20261104">
 <link rel="stylesheet" href="hcf-stories.css?v=20261108">
+<link rel="stylesheet" href="/hcf-arena-entry.css?v=20261109-cms">
+<style>#act2 .hcf-head-coach-photo{height:auto;min-height:0;aspect-ratio:1122/1402;background:#fff;max-width:480px;width:100%;margin:auto;border:1px solid #ffffff40;overflow:hidden;box-shadow:0 20px 60px #0003}#act2 .head-coach-poster{display:block;position:relative;width:100%;height:auto;object-fit:contain;transform:none;filter:none}</style>
 </head>
 <body class="hcf-clear-cover hcf-conversion-home">
 
@@ -942,11 +944,8 @@ body .svtab,body .vtab-wrap{display:none!important}
       </div>
       <a class="a2-btn" href="coach-huang.html">完整戰歷 · 教練專頁 →</a>
     </div>
-    <div class="a2-vis">
-      <span class="a2-glow" aria-hidden="true"></span>
-      <span class="a2-ring" aria-hidden="true"></span>
-      <img class="cut" src="huang_punch.png" alt="黃謙和 總教練 出拳" loading="lazy" decoding="async">
-      <div class="tag">MPF07 · TKO 勝</div>
+    <div class="a2-vis hcf-head-coach-photo">
+      <img class="head-coach-poster" src="/assets/coaches/huang-head-coach-20261109-1200.webp" srcset="/assets/coaches/huang-head-coach-20261109-640.webp 640w, /assets/coaches/huang-head-coach-20261109-1200.webp 1122w" sizes="(max-width: 760px) calc(100vw - 48px), 480px" width="1122" height="1402" alt="黃謙和總教練 HCF 紅黑白形象海報" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -1023,7 +1022,12 @@ body .svtab,body .vtab-wrap{display:none!important}
 <div class="seamB"><div class="wedge"></div></div>
 
 <!-- 第四幕 -->
-<section class="hcf-stories" id="shared-fighter-entry" aria-labelledby="shared-fighter-entry-title"><div class="hcf-story-wrap"><div class="hcf-story-intro"><figure><img src="assets/stories-20261108/z05.webp" srcset="assets/stories-20261108/z05-640.webp 640w, assets/stories-20261108/z05.webp 1350w" sizes="(max-width: 650px) calc(100vw - 44px), (max-width: 1000px) 45vw, 540px" width="1350" height="1800" alt="五人在比賽場地內的立牌前擺出拳架合照" loading="lazy" decoding="async"></figure><div><span class="hcf-story-eyebrow">HCF FIGHTER STORIES</span><h2 id="shared-fighter-entry-title">每一次上場<br>都有一起努力的夥伴</h2><p>從館內練習到教練陪伴 再到正式比賽 看見每一步累積的真實過程</p><div class="hcf-story-actions"><a class="hcf-story-action" href="fighters.html">看選手訓練與比賽</a><a class="hcf-story-link" href="booking.html">安排我的第一堂體驗</a></div></div></div></div></section>
+<section class="hcf-arena-entry" id="shared-fighter-entry" aria-labelledby="shared-fighter-entry-title">
+  <img class="arena-entry-image" src="/assets/stories-20261108/p03.webp" width="1600" height="1143" alt="HCF 選手在擂台上進行拳腿攻防" loading="lazy" decoding="async">
+  <div class="arena-entry-top"><b>HCF</b><span>HSINCHU COMBAT FIGHTER EXPERIENCE</span></div>
+  <div class="arena-entry-body"><h2 id="shared-fighter-entry-title"><span>ENTER</span><span>THE <em>ARENA</em></span></h2><p class="arena-entry-headline">這輩子總要為自己贏一次</p><p class="arena-entry-intro">從訓練日常到正式比賽 走進 HCF 的擂台世界 看見每一步累積的真實過程</p><div class="arena-entry-actions"><a href="fighters.html">進入擂台世界 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M12 5l7 7-7 7"/></svg></a><a href="booking.html">安排我的第一堂體驗</a></div></div>
+  <div class="arena-entry-bottom"><p class="arena-entry-values">HONOR <b>COURAGE</b> FAITH</p><nav class="arena-entry-chapters" aria-label="選手旅程章節"><a href="fighters.html#training"><i>01</i>開始訓練</a><a href="fighters.html#records"><i>02</i>上場時刻</a><a href="fighters.html#community"><i>03</i>成為夥伴</a></nav></div>
+</section>
 <section class="act4">
   <div class="wrap">
     <div class="a4-grid">
@@ -1528,5 +1532,6 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches){
 <script src="hcf-growth-ui.js?v=20261027" defer></script>
 <script src="hcf-training-media.js?v=20261101" defer></script>
 <script src="hcf-stories.js?v=20261108" defer></script>
+<script src="/hcf-arena-entry.js?v=20261109-cms" defer></script>
 </body>
 </html>
