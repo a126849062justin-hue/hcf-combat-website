@@ -1,0 +1,472 @@
+[
+  {
+    "year": "2019",
+    "roc": "108",
+    "eyebrow": "THE FIRST CHAPTER",
+    "title": "把第一步站穩",
+    "description": "從全國散打到乙組泰拳 把每一場比賽累積成往前走的底氣",
+    "events": [
+      {
+        "title": "全國散打搏擊錦標賽",
+        "result": "亞軍"
+      },
+      {
+        "title": "全國乙組泰拳錦標賽",
+        "result": "冠軍"
+      },
+      {
+        "title": "桃園市長盃搏擊錦標賽",
+        "result": "冠軍"
+      }
+    ],
+    "photos": [
+      {
+        "src": "/assets/huang-career-20261109/fight_108_taoyuan.webp",
+        "small": "/assets/huang-career-20261109/fight_108_taoyuan-640.webp",
+        "width": 1179,
+        "height": 1172,
+        "smallWidth": 640,
+        "alt": "桃園市長盃搏擊錦標賽 黃謙和",
+        "title": "桃園市長盃搏擊錦標賽",
+        "result": "冠軍",
+        "order": 0,
+        "original": "fight_108_taoyuan.jpg"
+      }
+    ],
+    "lead": 0,
+    "video": null
+  },
+  {
+    "year": "2020",
+    "roc": "109",
+    "eyebrow": "BEYOND ONE DISCIPLINE",
+    "title": "走進不同的戰場",
+    "description": "站上鐵籠 擁抱不同規則 在散打與柔術之間拓展自己的格鬥語言",
+    "events": [
+      {
+        "title": "全國散打搏擊錦標賽",
+        "result": "冠軍"
+      },
+      {
+        "title": "WOTD 鐵籠搏擊賽",
+        "result": "優勝"
+      },
+      {
+        "title": "WOTD 鐵籠綜合格鬥賽",
+        "result": "優勝"
+      },
+      {
+        "title": "桃園市全民運動會柔術",
+        "result": "冠軍"
+      },
+      {
+        "title": "全民運動會格鬥柔術",
+        "result": "亞軍"
+      }
+    ],
+    "photos": [
+      {
+        "src": "/assets/huang-career-20261109/fight_109_sanda.webp",
+        "small": "/assets/huang-career-20261109/fight_109_sanda-640.webp",
+        "width": 1376,
+        "height": 1192,
+        "smallWidth": 640,
+        "alt": "全國散打搏擊錦標賽 黃謙和",
+        "title": "全國散打搏擊錦標賽",
+        "result": "冠軍",
+        "order": 1,
+        "original": "fight_109_sanda.jpg"
+      },
+      {
+        "src": "/assets/huang-career-20261109/fight_109_wotd.webp",
+        "small": "/assets/huang-career-20261109/fight_109_wotd-640.webp",
+        "width": 1050,
+        "height": 1400,
+        "smallWidth": 480,
+        "alt": "WOTD 鐵籠搏擊賽 黃謙和",
+        "title": "WOTD 鐵籠搏擊賽",
+        "result": "優勝",
+        "order": 2,
+        "original": "fight_109_wotd.jpg"
+      },
+      {
+        "src": "/assets/huang-career-20261109/fight_109_wotd_mma.webp",
+        "small": "/assets/huang-career-20261109/fight_109_wotd_mma-640.webp",
+        "width": 1400,
+        "height": 762,
+        "smallWidth": 640,
+        "alt": "WOTD 鐵籠綜合格鬥賽 黃謙和",
+        "title": "WOTD 鐵籠綜合格鬥賽",
+        "result": "優勝",
+        "order": 3,
+        "original": "fight_109_wotd_mma.jpg"
+      }
+    ],
+    "lead": 1,
+    "video": null
+  },
+  {
+    "year": "2021",
+    "roc": "110",
+    "eyebrow": "STAY IN THE FIGHT",
+    "title": "持續站上擂台",
+    "description": "慕泰泰拳菁英賽 留下繼續前進的一頁",
+    "events": [
+      {
+        "title": "慕泰泰拳菁英賽",
+        "result": "優勝"
+      }
+    ],
+    "photos": [],
+    "lead": 0,
+    "video": null
+  },
+  {
+    "year": "2022",
+    "roc": "111",
+    "eyebrow": "BUILD THE FOUNDATION",
+    "title": "把累積變成實力",
+    "description": "泰拳 踢拳與柔術 每一場出賽 都是不同能力的驗證",
+    "events": [
+      {
+        "title": "WOTD 鐵籠綜合格鬥賽",
+        "result": "優勝"
+      },
+      {
+        "title": "桃園市全民運動會柔術",
+        "result": "冠軍"
+      },
+      {
+        "title": "全民運動會格鬥柔術",
+        "result": "亞軍"
+      },
+      {
+        "title": "慕泰泰拳菁英賽 踢拳",
+        "result": "冠軍"
+      },
+      {
+        "title": "WBC Muay Thai Taiwan",
+        "result": "冠軍"
+      }
+    ],
+    "photos": [
+      {
+        "src": "/assets/huang-career-20261109/fight_111_jujitsu.webp",
+        "small": "/assets/huang-career-20261109/fight_111_jujitsu-640.webp",
+        "width": 1400,
+        "height": 933,
+        "smallWidth": 640,
+        "alt": "全民運動會格鬥柔術 黃謙和",
+        "title": "全民運動會格鬥柔術",
+        "result": "亞軍",
+        "order": 4,
+        "original": "fight_111_jujitsu.jpg"
+      },
+      {
+        "src": "/assets/huang-career-20261109/fight_111_mutai_kb.webp",
+        "small": "/assets/huang-career-20261109/fight_111_mutai_kb-640.webp",
+        "width": 1400,
+        "height": 932,
+        "smallWidth": 640,
+        "alt": "慕泰泰拳菁英賽 踢拳 黃謙和",
+        "title": "慕泰泰拳菁英賽 踢拳",
+        "result": "冠軍",
+        "order": 5,
+        "original": "fight_111_mutai_kb.jpg"
+      },
+      {
+        "src": "/assets/huang-career-20261109/fight_111_wbc.webp",
+        "small": "/assets/huang-career-20261109/fight_111_wbc-640.webp",
+        "width": 1400,
+        "height": 933,
+        "smallWidth": 640,
+        "alt": "WBC Muay Thai Taiwan 黃謙和",
+        "title": "WBC Muay Thai Taiwan",
+        "result": "冠軍",
+        "order": 6,
+        "original": "fight_111_wbc.jpg"
+      }
+    ],
+    "lead": 2,
+    "video": null
+  },
+  {
+    "year": "2023",
+    "roc": "112",
+    "eyebrow": "BEYOND BORDERS",
+    "title": "把挑戰帶向國際",
+    "description": "走進 WMO 世界武術節與韓國 MAXFC 讓比賽經驗繼續向外延伸",
+    "events": [
+      {
+        "title": "WMO 世界武術節錦標賽",
+        "result": "季軍"
+      },
+      {
+        "title": "韓國 MAXFC 職業踢拳賽",
+        "result": "主賽事"
+      }
+    ],
+    "photos": [
+      {
+        "src": "/assets/huang-career-20261109/fight_112_wmo.webp",
+        "small": "/assets/huang-career-20261109/fight_112_wmo-640.webp",
+        "width": 843,
+        "height": 562,
+        "smallWidth": 640,
+        "alt": "WMO 世界武術節錦標賽 黃謙和",
+        "title": "WMO 世界武術節錦標賽",
+        "result": "季軍",
+        "order": 7,
+        "original": "fight_112_wmo.jpg"
+      },
+      {
+        "src": "/assets/huang-career-20261109/fight_112_maxfc.webp",
+        "small": "/assets/huang-career-20261109/fight_112_maxfc-640.webp",
+        "width": 1206,
+        "height": 656,
+        "smallWidth": 640,
+        "alt": "韓國 MAXFC 職業踢拳賽 黃謙和",
+        "title": "韓國 MAXFC 職業踢拳賽",
+        "result": "主賽事",
+        "order": 8,
+        "original": "fight_112_maxfc.jpg"
+      }
+    ],
+    "lead": 1,
+    "video": {
+      "id": "YUj0ev7tH3A",
+      "title": "MAX FC 27 台韓對決",
+      "detail": "黃謙和賽事高光與戰術解析"
+    }
+  },
+  {
+    "year": "2024",
+    "roc": "113",
+    "eyebrow": "ON THE WORLD STAGE",
+    "title": "在更大的舞台上場",
+    "description": "從台灣代表隊到越南 MAXFC 再踏上 THAI FIGHT 留下不同舞台的身影",
+    "events": [
+      {
+        "title": "WBC 泰拳台灣代表隊",
+        "result": "入選"
+      },
+      {
+        "title": "MPF06 泰拳職業賽",
+        "result": "優勝"
+      },
+      {
+        "title": "MAXFC 越南站",
+        "result": "冠軍"
+      },
+      {
+        "title": "THAIFIGHT 泰拳職業賽",
+        "result": "參賽"
+      }
+    ],
+    "photos": [
+      {
+        "src": "/assets/huang-career-20261109/fight_113_wbc_team.webp",
+        "small": "/assets/huang-career-20261109/fight_113_wbc_team-640.webp",
+        "width": 853,
+        "height": 1280,
+        "smallWidth": 426,
+        "alt": "WBC 泰拳台灣代表隊 黃謙和",
+        "title": "WBC 泰拳台灣代表隊",
+        "result": "入選",
+        "order": 9,
+        "original": "fight_113_wbc_team.jpg"
+      },
+      {
+        "src": "/assets/huang-career-20261109/fight_113_mpf06.webp",
+        "small": "/assets/huang-career-20261109/fight_113_mpf06-640.webp",
+        "width": 1400,
+        "height": 933,
+        "smallWidth": 640,
+        "alt": "MPF06 泰拳職業賽 黃謙和",
+        "title": "MPF06 泰拳職業賽",
+        "result": "優勝",
+        "order": 10,
+        "original": "fight_113_mpf06.jpg"
+      },
+      {
+        "src": "/assets/huang-career-20261109/fight_113_maxfc_vn.webp",
+        "small": "/assets/huang-career-20261109/fight_113_maxfc_vn-640.webp",
+        "width": 1400,
+        "height": 932,
+        "smallWidth": 640,
+        "alt": "MAXFC 越南站 黃謙和",
+        "title": "MAXFC 越南站",
+        "result": "冠軍",
+        "order": 11,
+        "original": "fight_113_maxfc_vn.jpg"
+      },
+      {
+        "src": "/assets/huang-career-20261109/fight_113_tf_card.webp",
+        "small": "/assets/huang-career-20261109/fight_113_tf_card-640.webp",
+        "width": 1179,
+        "height": 646,
+        "smallWidth": 640,
+        "alt": "THAIFIGHT 泰拳職業賽 賽事海報 黃謙和",
+        "title": "THAIFIGHT 泰拳職業賽 賽事海報",
+        "result": "參賽",
+        "order": 12,
+        "original": "fight_113_tf_card.jpg"
+      },
+      {
+        "src": "/assets/huang-career-20261109/fight_113_tf_action.webp",
+        "small": "/assets/huang-career-20261109/fight_113_tf_action-640.webp",
+        "width": 1400,
+        "height": 786,
+        "smallWidth": 640,
+        "alt": "THAIFIGHT 泰拳職業賽 比賽現場 黃謙和",
+        "title": "THAIFIGHT 泰拳職業賽 比賽現場",
+        "result": "參賽",
+        "order": 13,
+        "original": "fight_113_tf_action.jpg"
+      },
+      {
+        "src": "/assets/huang-career-20261109/fight_113_tf_team.webp",
+        "small": "/assets/huang-career-20261109/fight_113_tf_team-640.webp",
+        "width": 1400,
+        "height": 1000,
+        "smallWidth": 640,
+        "alt": "THAIFIGHT 泰拳職業賽 團隊合照 黃謙和",
+        "title": "THAIFIGHT 泰拳職業賽 團隊合照",
+        "result": "參賽",
+        "order": 14,
+        "original": "fight_113_tf_team.jpg"
+      }
+    ],
+    "lead": 4,
+    "video": null
+  },
+  {
+    "year": "2026",
+    "roc": "115",
+    "eyebrow": "THE COMEBACK",
+    "title": "再次為自己而戰",
+    "description": "MPF07 慕泰菁英賽 從入場到交鋒 再到勝利時刻 重新走過這場比賽",
+    "events": [
+      {
+        "title": "MPF07 慕泰菁英賽 65KG",
+        "result": "TKO 勝"
+      }
+    ],
+    "photos": [
+      {
+        "src": "/assets/huang-career-20261109/mpf07_01_entry.webp",
+        "small": "/assets/huang-career-20261109/mpf07_01_entry-640.webp",
+        "width": 1300,
+        "height": 929,
+        "smallWidth": 640,
+        "alt": "MPF07 慕泰菁英賽 65KG 入場 黃謙和",
+        "title": "MPF07 慕泰菁英賽 65KG 入場",
+        "result": "TKO 勝",
+        "order": 15,
+        "original": "mpf07_01_entry.jpg"
+      },
+      {
+        "src": "/assets/huang-career-20261109/mpf07_02_waikru.webp",
+        "small": "/assets/huang-career-20261109/mpf07_02_waikru-640.webp",
+        "width": 1300,
+        "height": 976,
+        "smallWidth": 640,
+        "alt": "MPF07 慕泰菁英賽 65KG 拜師舞 黃謙和",
+        "title": "MPF07 慕泰菁英賽 65KG 拜師舞",
+        "result": "TKO 勝",
+        "order": 16,
+        "original": "mpf07_02_waikru.jpg"
+      },
+      {
+        "src": "/assets/huang-career-20261109/mpf07_03_punch.webp",
+        "small": "/assets/huang-career-20261109/mpf07_03_punch-640.webp",
+        "width": 1300,
+        "height": 976,
+        "smallWidth": 640,
+        "alt": "MPF07 慕泰菁英賽 65KG 拳法交鋒 黃謙和",
+        "title": "MPF07 慕泰菁英賽 65KG 拳法交鋒",
+        "result": "TKO 勝",
+        "order": 17,
+        "original": "mpf07_03_punch.jpg"
+      },
+      {
+        "src": "/assets/huang-career-20261109/mpf07_04_kick.webp",
+        "small": "/assets/huang-career-20261109/mpf07_04_kick-640.webp",
+        "width": 1300,
+        "height": 929,
+        "smallWidth": 640,
+        "alt": "MPF07 慕泰菁英賽 65KG 踢擊 黃謙和",
+        "title": "MPF07 慕泰菁英賽 65KG 踢擊",
+        "result": "TKO 勝",
+        "order": 18,
+        "original": "mpf07_04_kick.jpg"
+      },
+      {
+        "src": "/assets/huang-career-20261109/mpf07_05_teep.webp",
+        "small": "/assets/huang-career-20261109/mpf07_05_teep-640.webp",
+        "width": 1300,
+        "height": 929,
+        "smallWidth": 640,
+        "alt": "MPF07 慕泰菁英賽 65KG 正蹬 黃謙和",
+        "title": "MPF07 慕泰菁英賽 65KG 正蹬",
+        "result": "TKO 勝",
+        "order": 19,
+        "original": "mpf07_05_teep.jpg"
+      },
+      {
+        "src": "/assets/huang-career-20261109/mpf07_06_clash.webp",
+        "small": "/assets/huang-career-20261109/mpf07_06_clash-640.webp",
+        "width": 1300,
+        "height": 976,
+        "smallWidth": 640,
+        "alt": "MPF07 慕泰菁英賽 65KG 近距離交鋒 黃謙和",
+        "title": "MPF07 慕泰菁英賽 65KG 近距離交鋒",
+        "result": "TKO 勝",
+        "order": 20,
+        "original": "mpf07_06_clash.jpg"
+      },
+      {
+        "src": "/assets/huang-career-20261109/mpf07_07_guard.webp",
+        "small": "/assets/huang-career-20261109/mpf07_07_guard-640.webp",
+        "width": 1300,
+        "height": 976,
+        "smallWidth": 640,
+        "alt": "MPF07 慕泰菁英賽 65KG 防守 黃謙和",
+        "title": "MPF07 慕泰菁英賽 65KG 防守",
+        "result": "TKO 勝",
+        "order": 21,
+        "original": "mpf07_07_guard.jpg"
+      },
+      {
+        "src": "/assets/huang-career-20261109/mpf07_08_counter.webp",
+        "small": "/assets/huang-career-20261109/mpf07_08_counter-640.webp",
+        "width": 1300,
+        "height": 976,
+        "smallWidth": 640,
+        "alt": "MPF07 慕泰菁英賽 65KG 反擊 黃謙和",
+        "title": "MPF07 慕泰菁英賽 65KG 反擊",
+        "result": "TKO 勝",
+        "order": 22,
+        "original": "mpf07_08_counter.jpg"
+      },
+      {
+        "src": "/assets/huang-career-20261109/mpf07_09_trophy.webp",
+        "small": "/assets/huang-career-20261109/mpf07_09_trophy-640.webp",
+        "width": 1300,
+        "height": 928,
+        "smallWidth": 640,
+        "alt": "MPF07 慕泰菁英賽 65KG 賽後獎盃 黃謙和",
+        "title": "MPF07 慕泰菁英賽 65KG 賽後獎盃",
+        "result": "TKO 勝",
+        "order": 23,
+        "original": "mpf07_09_trophy.jpg"
+      }
+    ],
+    "lead": 2,
+    "video": {
+      "id": "gLbwgmaSyno",
+      "title": "MPF07 復出之戰",
+      "detail": "黃謙和職業泰拳賽完整紀錄"
+    }
+  }
+]
