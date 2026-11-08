@@ -27,7 +27,7 @@
   var resumeAt = choice >= 0 && Number.isFinite(saved.time) ? Math.max(0, saved.time) : 0;
   var views = new Set([window]), bound = new WeakSet(), activeView = window;
   var frame = null, stage = null, navTimer = null, navPending = '', navigationSerial = 0;
-  var message = '', player, playButton, title, status;
+  var message = '';
   var allowed = new Set(["/battle-pass", "/beginner-muay-thai", "/booking", "/can-women-learn-muay-thai", "/card-huang", "/card-kao", "/card-mi", "/careers", "/coach-huang-archive", "/coach-huang-spotlight", "/coach-huang", "/courses", "/fighters", "/first-time-muay-thai-guide", "/group-classes", "/group-vs-private-training", "/gym-vs-muay-thai-fat-loss", "/how-often-train-muay-thai", "/how-to-book", "/how-to-choose-muay-thai-gym-hsinchu", "/hsinchu-fitness", "/hsinchu-kickboxing", "/hsinchu-muay-thai-price", "/hsinchu-muay-thai", "/hsinchu-private-training", "/index", "/", "/is-muay-thai-safe", "/is-private-training-worth-it", "/kickboxing", "/kids-muay-thai", "/knowledge", "/legal", "/muay-thai-gloves-hand-wraps-guide", "/muay-thai-padwork-vs-sparring", "/muay-thai-vs-boxing-kickboxing", "/muay-thai-weight-loss", "/muaythai", "/news", "/partnership", "/philosophy", "/plans-proposal", "/pricing", "/private-training", "/sanda", "/schedule", "/shop", "/status", "/story-kao", "/story-mi", "/strength", "/survey-trial-followup", "/survey", "/team", "/trial-review", "/website-design-case", "/what-is-muay-thai-8-limbs", "/will-muay-thai-make-you-bulky", "/shop/gloves-12oz/index", "/shop/gloves-12oz", "/shop/handwraps-5m/index", "/shop/handwraps-5m", "/shop/mouthguard/clear", "/shop/mouthguard/color"]);
 
   function persist() {
@@ -36,14 +36,6 @@
   function snapshot() { return {track: TRACKS[current].title, playing: !bgm.paused, wanted: wanted, message: message}; }
   function notify() {
     var state = snapshot();
-    if (player) {
-      title.textContent = state.track;
-      status.textContent = message || (state.playing ? '兩首隨機輪播' : '點一下開啟配樂');
-      playButton.textContent = state.playing ? '暫停' : '播放';
-      playButton.setAttribute('aria-label', (state.playing ? '暫停' : '播放') + '背景音樂');
-      playButton.setAttribute('aria-pressed', String(state.playing));
-      player.classList.toggle('is-playing', state.playing);
-    }
     views.forEach(function (v) {
       try { v.dispatchEvent(new v.CustomEvent('hcfmusicchange', {detail: state})); } catch (_) { views.delete(v); }
     });
@@ -88,14 +80,16 @@
     else if (wanted) play();
   });
 
-  function makePlayer() {
-    var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = ROOT + '/hcf-music.css?v=20261108-immersive';
+  function loadShellStyles() {
+    var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = ROOT + '/hcf-music.css?v=20261108-shark';
     document.head.appendChild(css);
-    player = document.createElement('aside'); player.id = 'hcf-music-player'; player.setAttribute('aria-label', 'HCF 音樂播放器');
-    player.innerHTML = '<span class="hcf-music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span><div class="hcf-music-copy"><strong></strong><small></small></div><button type="button" class="hcf-music-play">播放</button><button type="button" class="hcf-music-next" aria-label="播放下一首">換歌</button>';
-    title = player.querySelector('strong'); status = player.querySelector('small'); playButton = player.querySelector('.hcf-music-play');
-    playButton.addEventListener('click', toggle); player.querySelector('.hcf-music-next').addEventListener('click', next);
-    document.body.appendChild(player); notify();
+  }
+  function ensureAssistant(view) {
+    var doc = view.document;
+    if (doc.getElementById('hcf-shark-assistant') || doc.querySelector('script[src*="hcf-assistant.js"]')) return;
+    var script = doc.createElement('script');
+    script.id = 'hcf-assistant-loader'; script.src = ROOT + '/hcf-assistant.js?v=20261108-shark';
+    script.async = true; doc.head.appendChild(script);
   }
   function eligible(url) {
     return url.origin === ROOT && allowed.has(url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/');
@@ -152,7 +146,7 @@
       frame.setAttribute('allow', 'autoplay; fullscreen; clipboard-write'); frame.addEventListener('load', finishNavigation);
       stage.appendChild(frame); document.body.appendChild(stage);
       Array.prototype.forEach.call(document.body.children, function (node) {
-        if (node !== stage && node !== player && !/^(SCRIPT|STYLE|LINK)$/.test(node.tagName)) node.inert = true;
+        if (node !== stage && !/^(SCRIPT|STYLE|LINK)$/.test(node.tagName)) node.inert = true;
       });
       document.body.classList.add('hcf-audio-host');
     }
@@ -169,11 +163,13 @@
   function register(view) {
     if (view !== window && (!frame || view !== frame.contentWindow)) return;
     views.add(view); view.HCFMusic = api;
+    ensureAssistant(view);
     if (bound.has(view.document)) return;
     bound.add(view.document);
     view.document.addEventListener('click', function (event) {
       if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-      var link = event.target.closest && event.target.closest('a[href]');
+      // Assistant links live in a shadow root so the document target is its host
+      var link = event.composedPath().find(function (node) { return node.matches && node.matches('a[href]'); });
       if (!link || link.hasAttribute('download') || (link.target && link.target !== '_self')) return;
       var url;
       try { url = new URL(link.getAttribute('href'), view.location.href); } catch (_) { return; }
@@ -208,6 +204,6 @@
       if (target.protocol === 'https:' || target.protocol === 'line:') { persist(); location.assign(target.href); }
     }
   };
-  makePlayer(); register(window);
+  loadShellStyles(); register(window);
   if (wanted) play();
 })();

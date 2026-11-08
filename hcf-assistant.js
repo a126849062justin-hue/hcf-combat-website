@@ -1,7 +1,8 @@
 /* HCF original-logo course companion. Local FAQ only; no chat data is transmitted. */
 (async () => {
   'use strict';
-  if (document.getElementById('hcf-shark-assistant')) return;
+  if (document.getElementById('hcf-shark-assistant') || window.__hcfAssistantLoading) return;
+  window.__hcfAssistantLoading = true;
   async function dependency(src, ready) {
     if (ready()) return;
     await new Promise((resolve, reject) => { const s = document.createElement('script'); s.src = src; s.onload = resolve; s.onerror = reject; document.head.append(s); });
@@ -14,12 +15,17 @@
   host.style.visibility = 'hidden';
   const root = host.attachShadow({mode: 'open'});
   const sheet = document.createElement('link');
-  sheet.rel = 'stylesheet'; sheet.href = '/hcf-assistant.css?v=20261027';
+  sheet.rel = 'stylesheet'; sheet.href = '/hcf-assistant.css?v=20261108-shark';
   const widget = document.createElement('div');
   widget.className = 'widget'; widget.dataset.mood = 'ready';
   widget.innerHTML = `
     <section id="panel" class="panel" role="dialog" aria-label="小鯊課程小幫手" hidden>
-      <header class="header"><span class="sprite avatar" aria-hidden="true"></span><div><h2>小鯊・課程小幫手</h2><p id="status" class="status">陪你找到第一堂課</p></div><button id="close" class="close" type="button" aria-label="收起小鯊對話">−</button></header>
+      <header class="header"><span class="sprite avatar" aria-hidden="true"></span><div><h2>小鯊課程小幫手</h2><p id="status" class="status">陪你找到第一堂課</p></div><button id="close" class="close" type="button" aria-label="收起小鯊對話">−</button></header>
+      <section id="music" class="music" aria-label="小鯊音樂播放器">
+        <div class="music-heading"><span>HCF 隨身配樂</span><span id="music-state" role="status">配樂準備中</span></div>
+        <strong id="music-track">兩首隨機輪播</strong>
+        <div class="music-actions"><button id="music-play" type="button" aria-pressed="false" disabled>開啟音樂</button><button id="music-next" type="button" aria-label="播放下一首配樂" disabled>換下一首</button></div>
+      </section>
       <div id="conversation" class="conversation" role="log" aria-live="polite" aria-relevant="additions text" aria-label="與小鯊的對話"><div class="message"><small>小鯊</small><p>嗨，我是 HCF 小鯊！🥊\n第一次接觸格鬥也沒關係。想先了解課程、體驗費用，還是怎麼預約？</p></div></div>
       <button id="guide-start" class="guide-start" type="button">三個問題，幫我選第一堂課 →</button><div class="quick" aria-label="課程快捷問題"><button type="button" data-question="我是零基礎">我是零基礎 ↗</button><button type="button" data-question="體驗課多少錢？">體驗課多少錢？</button><button type="button" data-question="查看最新課表">查看最新課表</button><button type="button" data-question="第一次要帶什麼？">第一次要帶什麼？</button></div>
       <form id="form" class="form"><label for="question" class="sr-only">想問小鯊的問題</label><input id="question" type="text" placeholder="試著問：怎麼預約？" autocomplete="off" maxlength="180"><button class="send" id="send" type="submit" aria-label="送出問題">↑</button></form>
@@ -60,11 +66,10 @@
     const saved = JSON.parse(localStorage.getItem(POSITION_KEY));
     if (saved && Number.isFinite(saved.x) && Number.isFinite(saved.y)) position = {x: Math.max(0, Math.min(1, saved.x)), y: Math.max(0, Math.min(1, saved.y))};
   } catch { /* Position storage is optional. */ }
-  const readingPage = document.body.classList.contains('hcf-reading');
-  const inquiryPage = document.body.classList.contains('hcf-private');
-  const conversionHome = document.body.classList.contains('hcf-conversion-home');
-  let minimized = document.body.dataset.page === 'booking' || readingPage || inquiryPage || conversionHome;
-  try { minimized = minimized || sessionStorage.getItem('hcf-shark-minimized') === '1'; } catch (_) {}
+  // Restore the original animated logo by default rather than the compact pill
+  const MINIMIZED_KEY = 'hcf-shark-minimized-v2';
+  let minimized = false;
+  try { minimized = sessionStorage.getItem(MINIMIZED_KEY) === '1'; } catch (_) {}
   const clamp = (n, min, max) => Math.max(min, Math.min(Math.max(min, max), n));
   function setMotion(value) {
     reduced = value; widget.classList.toggle('reduced', value);
@@ -102,8 +107,8 @@
   function bounds() {
     const v = viewport(), size = launcher.offsetWidth, margin = 24;
     let bottomInset = Math.max(margin, parseFloat(getComputedStyle($('#safe-area')).paddingBottom) + 16);
-    // Keep the resting position above existing booking bars and the music control.
-    document.querySelectorAll('.mcta,.stickybar,.nav.on,#bgmBtn').forEach(element => {
+    // Keep the resting position above existing booking bars.
+    document.querySelectorAll('.mcta,.stickybar,.nav.on').forEach(element => {
       const r = element.getBoundingClientRect(), style = getComputedStyle(element);
       if (style.position === 'fixed' && style.display !== 'none' && style.visibility !== 'hidden' && r.width && r.height && r.height < 180 && r.top > v.top + v.height / 2 && r.top < v.top + v.height) {
         bottomInset = Math.max(bottomInset, v.top + v.height - r.top + 20);
@@ -117,11 +122,7 @@
     const x = b.left + b.width * position.x, y = b.top + b.height * position.y;
     Object.assign(launcher.style, {left: x + 'px', top: y + 'px'});
     Object.assign($('#tuck').style, {left: (x + b.size - 18) + 'px', top: (y - 15) + 'px'});
-    // On the home cover, use the existing utility-control row so the compact
-    // assistant cannot cover either primary inquiry button.
-    const musicBox = conversionHome ? document.getElementById('bgmBtn')?.getBoundingClientRect() : null;
-    const utilityRow = v.width <= 920 && musicBox?.width && musicBox.top > v.top + v.height / 2;
-    Object.assign($('#rest').style, {right: utilityRow ? (innerWidth - musicBox.left + 12) + 'px' : '12px', top: (utilityRow ? musicBox.top : Math.max(v.top + 12,b.bottom - 44)) + 'px'});
+    Object.assign($('#rest').style, {right: '12px', top: Math.max(v.top + 12,b.bottom - 44) + 'px'});
     const bubbleWidth = Math.min(220, v.width - margin * 2);
     Object.assign($('#speech').style, {width: bubbleWidth + 'px', left: clamp(x + b.size / 2 - bubbleWidth / 2, v.left + margin, v.left + v.width - margin - bubbleWidth) - x + 'px'});
     $('#speech').classList.toggle('below', y - v.top < 100);
@@ -153,14 +154,15 @@
   function setOpen(value, focus = true) {
     if (value && minimized) setMinimized(false);
     open = value; widget.classList.toggle('is-open', value); panel.hidden = !value; launcher.setAttribute('aria-expanded', String(value)); label(); layout();
-    if (focus) (value ? input : launcher).focus({preventScroll: true});
+    // Opening music controls should not summon the mobile typing keyboard
+    if (focus) (value ? $('#close') : launcher).focus({preventScroll: true});
   }
   function setMinimized(value, focus = false) {
     minimized = value;
     if (value && open) setOpen(false, false);
     launcher.hidden = value; $('#tuck').hidden = value; $('#rest').hidden = !value;
     widget.classList.toggle('is-minimized', value);
-    try { sessionStorage.setItem('hcf-shark-minimized', value ? '1' : '0'); } catch (_) {}
+    try { sessionStorage.setItem(MINIMIZED_KEY, value ? '1' : '0'); } catch (_) {}
     layout(); if (focus) (value ? $('#rest') : launcher).focus({preventScroll:true});
   }
   $('#minimize').addEventListener('click', () => {track('shark_minimize');setMinimized(true,true);});
@@ -265,10 +267,25 @@
   $$('.quick button').forEach(b => b.addEventListener('click', () => ask(b.dataset.question)));
   $('#form').addEventListener('submit', e => { e.preventDefault(); ask(input.value); });
   input.addEventListener('input', () => { if (!busy) mood(input.value ? 'thinking' : 'ready', input.value ? '我在聽，慢慢說。' : undefined); });
-  $('#close').addEventListener('click', () => {if(document.body.dataset.page==='booking'||readingPage||inquiryPage||conversionHome)setMinimized(true,true);else setOpen(false);});
+  $('#close').addEventListener('click', () => setOpen(false));
   root.addEventListener('keydown', e => { if (e.key === 'Escape' && open) { e.preventDefault(); e.stopPropagation(); setOpen(false); } });
   $('#reset').addEventListener('click', () => { position = {x: 1, y: 1}; layout(); savePosition(); });
   $('#motion').addEventListener('click', () => setMotion(!reduced));
+  function musicState() {
+    const api = window.HCFMusic;
+    const state = api?.state();
+    $('#music-play').disabled = !state;
+    $('#music-next').disabled = !state;
+    $('#music-track').textContent = state?.track || '兩首隨機輪播';
+    $('#music-state').textContent = state ? state.message || (state.playing ? '正在播放' : '點一下開啟') : '配樂準備中';
+    $('#music-play').textContent = state?.playing ? '暫停音樂' : '開啟音樂';
+    $('#music-play').setAttribute('aria-pressed', String(!!state?.playing));
+    $('#music').classList.toggle('is-playing', !!state?.playing);
+  }
+  $('#music-play').addEventListener('click', () => { window.HCFMusic?.toggle(); musicState(); });
+  $('#music-next').addEventListener('click', () => { window.HCFMusic?.next(); musicState(); });
+  window.addEventListener('hcfmusicchange', musicState);
+  musicState();
   setMinimized(minimized);
   setMotion(reduced); motionPreference.addEventListener('change', e => setMotion(e.matches));
   let layoutFrame = 0;
