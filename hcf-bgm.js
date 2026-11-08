@@ -142,6 +142,7 @@
       record(location.href, true);
       // Retire the original page lifecycle without unloading the audio owner
       // This cancels booking handoff timers and any pagehide cleanup hooks
+      window.__hcfPageRetired = true;
       window.dispatchEvent(new Event('pagehide'));
       document.querySelectorAll('video,audio').forEach(function (m) { m.pause(); });
       document.querySelectorAll('iframe').forEach(function (embedded) { embedded.src = 'about:blank'; });
