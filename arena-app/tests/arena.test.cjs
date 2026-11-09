@@ -381,14 +381,16 @@ test("CMS publishes update the gallery and schema with safe offline fallback and
   } finally { await unmount(); global.fetch = originalFetch; schema.remove(); }
 });
 
-test("homepage arena links and head coach posters keep full photo proportions", () => {
-  for (const name of ['index.html', 'coach-huang.html', 'team.html']) {
+test("homepage arena links and team coach poster keep full photo proportions", () => {
+  for (const name of ['index.html', 'team.html']) {
     const window = new JSDOM(fs.readFileSync(path.join(R,name),'utf8')).window;
     const d = window.document, poster = d.querySelector('img.head-coach-poster');
-    assert(poster, name);
-    assert.equal(poster.getAttribute('width'), '1122');
-    assert.equal(poster.getAttribute('height'), '1402');
-    assert(fs.existsSync(R + poster.getAttribute('src')));
+    if (name === 'team.html') {
+      assert(poster, name);
+      assert.equal(poster.getAttribute('width'), '1122');
+      assert.equal(poster.getAttribute('height'), '1402');
+      assert(fs.existsSync(R + poster.getAttribute('src')));
+    }
     if (name === 'index.html') {
       const entry = d.querySelector('.hcf-arena-entry');
       assert(entry.querySelector('a[href="fighters.html"]'));

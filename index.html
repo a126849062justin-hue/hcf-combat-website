@@ -690,7 +690,16 @@ body .svtab,body .vtab-wrap{display:none!important}
 <link rel="stylesheet" href="hcf-growth-fixes.css?v=20261104">
 <link rel="stylesheet" href="hcf-stories.css?v=20261108">
 <link rel="stylesheet" href="/hcf-arena-entry.css?v=20261109-cms">
-<style>#act2 .hcf-head-coach-photo{height:auto;min-height:0;aspect-ratio:1122/1402;background:#fff;max-width:480px;width:100%;margin:auto;border:1px solid #ffffff40;overflow:hidden;box-shadow:0 20px 60px #0003}#act2 .head-coach-poster{display:block;position:relative;width:100%;height:auto;object-fit:contain;transform:none;filter:none}</style>
+<style id="hcf-home-coach-cover">
+#act2{display:flex;align-items:flex-end;min-height:84svh;padding:72px 0 56px;background:#101216}
+#act2 .a2-bg{background:linear-gradient(0deg,rgba(8,10,14,.94),rgba(8,10,14,.45) 40%,rgba(8,10,14,.05) 72%),url('/huang_ring.jpg') center 24%/cover;opacity:1;clip-path:none}
+#act2 .a2-in{width:100%;grid-template-columns:minmax(0,1fr);opacity:1;transform:none}
+#act2 .a2-in>div{max-width:700px}
+#act2 .a2-in p{color:#e7e8eb}
+#act2 .h2 i,#act2 .a2-rec .w .num i{color:#ff6269}
+#act2 .a2-rec .lbl{color:#d4d7dd}
+@media(max-width:850px){#act2{min-height:88svh;padding-top:180px;padding-bottom:36px}#act2 .a2-bg{background-position:42% center}}
+</style>
 </head>
 <body class="hcf-clear-cover hcf-conversion-home">
 
@@ -934,7 +943,7 @@ body .svtab,body .vtab-wrap{display:none!important}
   <div class="a2-ghost">IRON MAN</div>
   <div class="a2-in">
     <div>
-      <div class="kicker">ACT 2 / HEAD COACH</div>
+      <div class="kicker">HCF HEAD COACH</div>
       <h2 class="h2">總教練<br><i>大獲全勝</i></h2>
       <p>黃謙和「格鬥鋼鐵人」——台灣泰拳 63KG 衛冕冠軍、THAI FIGHT 國際職業賽選手。休養一年後強勢回歸 MPF07，TKO 終結泰國對手。</p>
       <div class="a2-rec">
@@ -942,10 +951,7 @@ body .svtab,body .vtab-wrap{display:none!important}
         <div><div class="num"><span data-cnt="12">0</span><em>敗</em></div><div class="lbl">LOSSES</div></div>
         <div><div class="num"><span data-cnt="63">0</span><em>KG</em></div><div class="lbl">CHAMPION</div></div>
       </div>
-      <a class="a2-btn" href="coach-huang.html">完整戰歷 · 教練專頁 →</a>
-    </div>
-    <div class="a2-vis hcf-head-coach-photo">
-      <img class="head-coach-poster" src="/assets/coaches/huang-head-coach-20261109-1200.webp" srcset="/assets/coaches/huang-head-coach-20261109-640.webp 640w, /assets/coaches/huang-head-coach-20261109-1200.webp 1122w" sizes="(max-width: 760px) calc(100vw - 48px), 480px" width="1122" height="1402" alt="黃謙和總教練 HCF 紅黑白形象海報" loading="lazy" decoding="async">
+      <a class="a2-btn" href="coach-huang.html">探索總教練歷年賽事</a>
     </div>
   </div>
 </section>
