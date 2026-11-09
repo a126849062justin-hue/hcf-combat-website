@@ -103,18 +103,6 @@ a{color:inherit;text-decoration:none}
 
 /* ================= 第一幕 ================= */
 .act1{background:#fff;padding:30px 0 60px;position:relative;overflow:hidden}
-.act1 .pick2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
-.act1 .pk{display:block;text-decoration:none;border-radius:18px;padding:28px 26px;border:1px solid var(--line);background:var(--surface);transition:transform .25s,box-shadow .25s;position:relative}
-.act1 .pk:hover{transform:translateY(-3px);box-shadow:0 22px 46px rgba(0,0,0,.12)}
-.act1 .pk-g{border-top:4px solid var(--red)}
-.act1 .pk-p{border-top:4px solid var(--ink)}
-.act1 .pk-en{font-family:var(--en);font-weight:700;letter-spacing:.16em;font-size:.72rem;color:var(--red)}
-.act1 .pk-p .pk-en{color:var(--ink)}
-.act1 .pk-t{display:block;font-family:var(--serif);font-weight:900;font-size:clamp(1.5rem,4vw,2.05rem);color:var(--ink);margin:8px 0 10px}
-.act1 .pk p{color:#555;line-height:1.8;font-size:.95rem;margin:0 0 16px}
-.act1 .pk-go{font-weight:900;color:var(--ink)}
-.act1 .pk:hover .pk-go{color:var(--red)}
-@media(max-width:640px){.act1 .pick2{grid-template-columns:1fr}}
 .kicker{font-family:var(--en);letter-spacing:.36em;font-size:.72rem;color:var(--red);font-weight:600}
 .h2{font-family:var(--serif);font-weight:900;font-size:clamp(1.9rem,5.5vw,3rem);letter-spacing:.04em;line-height:1.25;margin-top:10px}
 .h2 i{font-style:normal;color:var(--red)}
@@ -690,7 +678,35 @@ body .svtab,body .vtab-wrap{display:none!important}
 <link rel="stylesheet" href="hcf-growth-fixes.css?v=20261104">
 <link rel="stylesheet" href="hcf-stories.css?v=20261108">
 <link rel="stylesheet" href="/hcf-arena-entry.css?v=20261109-cms">
-<style>#act2 .hcf-head-coach-photo{height:auto;min-height:0;aspect-ratio:1122/1402;background:#fff;max-width:480px;width:100%;margin:auto;border:1px solid #ffffff40;overflow:hidden;box-shadow:0 20px 60px #0003}#act2 .head-coach-poster{display:block;position:relative;width:100%;height:auto;object-fit:contain;transform:none;filter:none}</style>
+<style id="hcf-home-coach-cover">
+#act2{display:flex;align-items:flex-end;min-height:84svh;padding:72px 0 56px;background:#101216}
+#act2 .a2-bg{background:linear-gradient(0deg,rgba(8,10,14,.94),rgba(8,10,14,.45) 40%,rgba(8,10,14,.05) 72%),url('/huang_ring.jpg') center 24%/cover;opacity:1;clip-path:none}
+#act2 .a2-in{width:100%;grid-template-columns:minmax(0,1fr);opacity:1;transform:none}
+#act2 .a2-in>div{max-width:700px}
+#act2 .a2-in p{color:#e7e8eb}
+#act2 .h2 i,#act2 .a2-rec .w .num i{color:#c81015}
+#act2 .a2-rec .lbl{color:#d4d7dd}
+@media(max-width:850px){#act2{min-height:88svh;padding-top:180px;padding-bottom:36px}#act2 .a2-bg{background-position:42% center}}
+
+#act2 .a2-in .kicker{color:#fff}
+</style>
+<style id="hcf-home-kao-cover">
+#actK{display:flex;align-items:flex-end;min-height:84svh;padding:72px 0 56px;background:#101216}
+#actK .a2-bg{background:linear-gradient(90deg,rgba(8,10,14,.85),rgba(8,10,14,.48) 42%,rgba(8,10,14,.03) 70%),linear-gradient(0deg,rgba(8,10,14,.65),transparent 50%),url('/assets/kao-ring/ringside-1440.webp') center 28%/cover;opacity:1;clip-path:none}
+#actK .a2-in{width:100%;grid-template-columns:minmax(0,1fr);opacity:1;transform:none}
+#actK .a2-in>div{max-width:560px}
+#actK .a2-in p,#actK .a2-rec .lbl{color:#e7e8eb}
+#actK .a2-in .kicker{color:#fff}
+#actK .h2 i,#actK .a2-rec .w .num i{color:#c81015}
+#actK .a2-event{display:inline-block;margin-top:20px;padding:6px 10px;background:#c81015;color:#fff;font-size:12px;font-weight:700}
+#actK .a2-ghost{display:none}
+@media(max-width:850px){
+ #actK{min-height:88svh;padding-top:54svh;padding-bottom:36px}
+ #actK .a2-bg{background:linear-gradient(0deg,rgba(8,10,14,.96),rgba(8,10,14,.72) 42%,rgba(8,10,14,.04) 74%),url('/assets/kao-ring/ringside-1440.webp') 76% center/cover}
+}
+</style>
+<link rel="stylesheet" href="/hcf-image-framing.css?v=20261109-preview9">
+<link rel="stylesheet" href="/hcf-home-course-entries.css?v=20261109-preview13">
 </head>
 <body class="hcf-clear-cover hcf-conversion-home">
 
@@ -760,20 +776,26 @@ body .svtab,body .vtab-wrap{display:none!important}
     <div class="kicker rv">ACT 1 / TRAINING</div>
     <h2 class="h2 rv">走進 HCF<br>先選你的<i>路線</i></h2>
     <p class="lead rv">團課一起練，私課按你的節奏。零基礎也能開始。</p>
-    <div class="pick2 rv">
-      <a class="pk pk-g" href="group-classes.html">
-        <span class="pk-en">GROUP CLASSES</span>
-        <b class="pk-t">團體課程</b>
-        <p>依程度分級，入門班零基礎友善、不互相擊打。</p>
-        <span class="pk-go">了解團課・看課表 →</span>
-      </a>
-      <a class="pk pk-p" href="private-training.html">
-        <span class="pk-en">PRIVATE 1:1 / 1:2</span>
-        <b class="pk-t">私人課程</b>
-        <p>零基礎也能開始。一對一體驗 $1,400／60 分鐘；也可兩人同行。</p>
-        <span class="pk-go">先了解私教・費用與時段 →</span>
-      </a>
-    </div>
+  </div>
+  <div class="hcf-course-entries">
+    <article class="hcf-course-entry" id="group-course-entry" aria-labelledby="group-course-entry-title">
+      <div class="hcf-course-entry-watermark" aria-hidden="true">GROUP CLASSES</div>
+      <picture class="hcf-course-entry-media"><img src="assets/course-entries/group-community-20261109-1920.webp" srcset="assets/course-entries/group-community-20261109-480.webp 480w, assets/course-entries/group-community-20261109.webp 768w, assets/course-entries/group-community-20261109-1920.webp 1920w" sizes="100vw" width="1920" height="2560" alt="HCF 教練與團課學員在鯊魚標誌前的擂台合照" loading="lazy" decoding="async"></picture>
+      <div class="hcf-course-entry-content">
+        <div class="hcf-course-entry-label">GROUP CLASSES</div>
+        <h3 id="group-course-entry-title">團體課程<span>一起練出自己的節奏</span></h3>
+        <div class="hcf-course-entry-actions"><a href="group-classes.html">走進團體課程</a><a class="secondary" href="booking.html">安排我的第一堂體驗</a></div>
+      </div>
+    </article>
+    <article class="hcf-course-entry" id="private-course-entry" aria-labelledby="private-course-entry-title">
+      <div class="hcf-course-entry-watermark" aria-hidden="true">PRIVATE TRAINING</div>
+      <picture class="hcf-course-entry-media"><img src="assets/course-entries/private-ring-20261109-1206.webp" srcset="assets/course-entries/private-ring-20261109-480.webp 480w, assets/course-entries/private-ring-20261109.webp 771w, assets/course-entries/private-ring-20261109-1206.webp 1206w" sizes="100vw" width="1206" height="1592" alt="兩位訓練夥伴在新竹格鬥標誌前的擂台合照" loading="lazy" decoding="async"></picture>
+      <div class="hcf-course-entry-content">
+        <div class="hcf-course-entry-label">PRIVATE TRAINING</div>
+        <h3 id="private-course-entry-title">私人課程<span>讓教練專心帶你練</span></h3>
+        <div class="hcf-course-entry-actions"><a href="booking.html#private=unsure" data-intent="private">安排我的第一堂體驗</a><a class="secondary" href="private-training.html">走進私人課程</a></div>
+      </div>
+    </article>
   </div>
   <div class="float-track-clip">
     <div class="float-track" id="ftrack"></div>
@@ -901,7 +923,7 @@ body .svtab,body .vtab-wrap{display:none!important}
 </script>
 
 <aside class="first-visit-callout"><b>準備踏出第一步？</b><p>從報到到上課，先用四個步驟認識第一次來 HCF 的流程。</p><a href="first-time-muay-thai-guide.html">第一次來館導覽 →</a></aside>
-<!-- 選手故事：小米 -->
+<!-- 首頁教練故事 -->
 <section class="hcf-discovery" aria-labelledby="discovery-title"><div class="wrap">
   <div class="kicker">BEFORE YOU START / 報名前先了解</div><h2 id="discovery-title">費用 課程與第一次上課 先看清楚再決定</h2>
   <div class="hcf-discovery-grid">
@@ -910,6 +932,46 @@ body .svtab,body .vtab-wrap{display:none!important}
     <a href="first-time-muay-thai-guide.html"><span>03 · 新手</span><h3>第一次來 要帶什麼 怎麼上課</h3><p>先認識報到、裝備與上課流程，零基礎也能安心準備。</p><b>看第一次來館指南 →</b></a>
   </div><div class="hcf-discovery-actions"><a href="knowledge.html">看全部泰拳文章 →</a><a href="booking.html#private=unsure" data-intent="private">想個別指導？先問私人課 →</a></div>
 </div></section>
+<section class="act2 actk" id="actK">
+  <div class="a2-bg" role="img" aria-label="高大可戴著藍色拳套在擂台繩邊準備比賽"></div>
+  <div class="a2-ghost">UNDERDOG</div>
+  <div class="a2-in">
+    <div>
+      <div class="kicker">HCF FIGHTER STORY</div>
+      <h2 class="h2">高大可<br><i>30 公斤的逆襲</i></h2>
+      <span class="a2-event">立青泰拳精英挑戰賽優勝</span>
+      <p>教練很強，但你更想知道的是——普通人練得起來嗎？他用一年回答：從 104 公斤的上班族，練到 74 公斤站上擂台，拿下優勝。</p>
+      <div class="a2-rec">
+        <div><div class="num"><span data-cnt="104">0</span><em>KG</em></div><div class="lbl">起點</div></div>
+        <div><div class="num"><span data-cnt="74">0</span><em>KG</em></div><div class="lbl">現在</div></div>
+        <div class="w"><div class="num"><i data-cnt="30">0</i><em>KG</em></div><div class="lbl">減去的重量</div></div>
+      </div>
+      <a class="a2-btn" href="story-kao.html">走進高大可的擂台故事</a>
+    </div>
+  </div>
+</section>
+
+<section class="act2" id="act2">
+  <div class="a2-bg"></div>
+  <div class="a2-ghost">IRON MAN</div>
+  <div class="a2-in">
+    <div>
+      <div class="kicker">HCF HEAD COACH</div>
+      <h2 class="h2">總教練<br><i>大獲全勝</i></h2>
+      <p>黃謙和「格鬥鋼鐵人」——台灣泰拳 63KG 衛冕冠軍、THAI FIGHT 國際職業賽選手。休養一年後強勢回歸 MPF07，TKO 終結泰國對手。</p>
+      <div class="a2-rec">
+        <div class="w"><div class="num"><i data-cnt="42">0</i><em>勝</em></div><div class="lbl">WINS</div></div>
+        <div><div class="num"><span data-cnt="12">0</span><em>敗</em></div><div class="lbl">LOSSES</div></div>
+        <div><div class="num"><span data-cnt="63">0</span><em>KG</em></div><div class="lbl">CHAMPION</div></div>
+      </div>
+      <a class="a2-btn" href="coach-huang.html">探索總教練歷年賽事</a>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 選手故事：小米 -->
 <section class="act-mi" id="actMi">
   <div class="in">
     <div class="body">
@@ -925,52 +987,6 @@ body .svtab,body .vtab-wrap{display:none!important}
       <img class="now" src="mi-fighter.jpg" alt="小米教練 戰鬥形象" loading="lazy" decoding="async">
       <img class="then" src="mi-life.jpg" alt="小米 蛻變前的日常" loading="lazy" decoding="async">
       <span class="then-lbl">曾經 · 62kg</span>
-    </div>
-  </div>
-</section>
-
-<section class="act2" id="act2">
-  <div class="a2-bg"></div>
-  <div class="a2-ghost">IRON MAN</div>
-  <div class="a2-in">
-    <div>
-      <div class="kicker">ACT 2 / HEAD COACH</div>
-      <h2 class="h2">總教練<br><i>大獲全勝</i></h2>
-      <p>黃謙和「格鬥鋼鐵人」——台灣泰拳 63KG 衛冕冠軍、THAI FIGHT 國際職業賽選手。休養一年後強勢回歸 MPF07，TKO 終結泰國對手。</p>
-      <div class="a2-rec">
-        <div class="w"><div class="num"><i data-cnt="42">0</i><em>勝</em></div><div class="lbl">WINS</div></div>
-        <div><div class="num"><span data-cnt="12">0</span><em>敗</em></div><div class="lbl">LOSSES</div></div>
-        <div><div class="num"><span data-cnt="63">0</span><em>KG</em></div><div class="lbl">CHAMPION</div></div>
-      </div>
-      <a class="a2-btn" href="coach-huang.html">完整戰歷 · 教練專頁 →</a>
-    </div>
-    <div class="a2-vis hcf-head-coach-photo">
-      <img class="head-coach-poster" src="/assets/coaches/huang-head-coach-20261109-1200.webp" srcset="/assets/coaches/huang-head-coach-20261109-640.webp 640w, /assets/coaches/huang-head-coach-20261109-1200.webp 1122w" sizes="(max-width: 760px) calc(100vw - 48px), 480px" width="1122" height="1402" alt="黃謙和總教練 HCF 紅黑白形象海報" loading="lazy" decoding="async">
-    </div>
-  </div>
-</section>
-
-
-
-<!-- 會員逆襲（與總教練同級特效）-->
-<section class="act2 actk" id="actK">
-  <div class="a2-bg"></div>
-  <div class="a2-ghost">UNDERDOG</div>
-  <div class="a2-in">
-    <div class="a2-vis vk">
-      <picture><source srcset="kao_punch.webp" type="image/webp"><img class="cut cutk" src="kao_punch.jpg" alt="高大可破框出拳主視覺" loading="lazy" decoding="async"></picture>
-      <div class="tag">立青泰拳精英挑戰賽 · 優勝</div>
-    </div>
-    <div>
-      <div class="kicker">REAL MEMBER / 逆襲狂人</div>
-      <h2 class="h2">高大可<br><i>30 公斤的逆襲</i></h2>
-      <p>教練很強，但你更想知道的是——普通人練得起來嗎？他用一年回答：從 104 公斤的上班族，練到 74 公斤站上擂台，拿下優勝。</p>
-      <div class="a2-rec">
-        <div><div class="num"><span data-cnt="104">0</span><em>KG</em></div><div class="lbl">起點</div></div>
-        <div><div class="num"><span data-cnt="74">0</span><em>KG</em></div><div class="lbl">現在</div></div>
-        <div class="w"><div class="num"><i data-cnt="30">0</i><em>KG</em></div><div class="lbl">減去的重量</div></div>
-      </div>
-      <a class="a2-btn" href="story-kao.html">看他的互動蛻變故事 →</a>
     </div>
   </div>
 </section>
@@ -1300,17 +1316,17 @@ rib.innerHTML=('<span>'+words+'</span>').repeat(12);
 
 // ===== 第一幕 漂浮卡跑馬燈（向左） =====
 var cards=[
- ['course_muaythai.jpg','泰拳','MUAY THAI','muaythai.html'],
+ ['assets/kao-ring/clinch-1440.webp','泰拳','MUAY THAI','muaythai.html'],
  ['course_sanda.jpg','散打','SANDA','sanda.html'],
  ['course_kickboxing.jpg','踢拳','KICKBOXING','kickboxing.html'],
  ['course_sc.jpg','肌力體能','STRENGTH','strength.html'],
- ['IMG_8904.jpeg','團體課程','GROUP CLASSES','group-classes.html'],
- ['coach_kao.jpg','私人課程','PRIVATE 1:1','private-training.html'],
- ['coach_huang.jpg','教練團隊','COACHES','team.html']
+ ['assets/training/partner-footwork.webp','團體課程','GROUP CLASSES','group-classes.html'],
+ ['assets/training/coached-padwork.webp','私人課程','PRIVATE 1:1','private-training.html'],
+ ['assets/covers/coaches-1280.webp','教練團隊','COACHES','team.html']
 ];
 var ft=document.getElementById('ftrack'),html='';
 cards.concat(cards).forEach(function(c){
-  html+='<a class="fcard" href="'+c[3]+'"><div class="ph"><img src="'+c[0]+'" alt="'+c[1]+'" loading="lazy"></div><div class="bd"><b>'+c[1]+'</b><span>'+c[2]+'</span></div></a>';
+  html+='<a class="fcard" href="'+c[3]+'"><div class="ph"><img src="'+c[0]+'" alt="'+c[1]+'" loading="lazy" decoding="async"></div><div class="bd"><b>'+c[1]+'</b><span>'+c[2]+'</span></div></a>';
 });
 ft.innerHTML=html;
 
