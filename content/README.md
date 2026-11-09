@@ -21,6 +21,8 @@ HCF combat red accents in #C81015 for large years buttons and lines.
 The cover retains the large competition photograph with a lower text shade on both
 layouts while the separate coach poster remains removed. The homepage head coach
 section uses the same competition-photo treatment without a foreground poster.
+The homepage Kao entry uses his supplied ringside competition photo from
+`assets/kao-ring/ringside-1440.webp` with desktop and mobile focal positioning.
 On mobile the sticky year reel moves with the active chapter and a vertical progress
 line fills as the reader scrolls. Navigation offsets follow measured bar heights,
 including compact landscape layouts. The reel transition is disabled for reduced motion.

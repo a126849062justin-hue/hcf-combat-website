@@ -702,6 +702,21 @@ body .svtab,body .vtab-wrap{display:none!important}
 
 #act2 .a2-in .kicker{color:#fff}
 </style>
+<style id="hcf-home-kao-cover">
+#actK{display:flex;align-items:flex-end;min-height:84svh;padding:72px 0 56px;background:#101216}
+#actK .a2-bg{background:linear-gradient(90deg,rgba(8,10,14,.85),rgba(8,10,14,.48) 42%,rgba(8,10,14,.03) 70%),linear-gradient(0deg,rgba(8,10,14,.65),transparent 50%),url('/assets/kao-ring/ringside-1440.webp') center 28%/cover;opacity:1;clip-path:none}
+#actK .a2-in{width:100%;grid-template-columns:minmax(0,1fr);opacity:1;transform:none}
+#actK .a2-in>div{max-width:560px}
+#actK .a2-in p,#actK .a2-rec .lbl{color:#e7e8eb}
+#actK .a2-in .kicker{color:#fff}
+#actK .h2 i,#actK .a2-rec .w .num i{color:#c81015}
+#actK .a2-event{display:inline-block;margin-top:20px;padding:6px 10px;background:#c81015;color:#fff;font-size:12px;font-weight:700}
+#actK .a2-ghost{display:none}
+@media(max-width:850px){
+ #actK{min-height:88svh;padding-top:54svh;padding-bottom:36px}
+ #actK .a2-bg{background:linear-gradient(0deg,rgba(8,10,14,.96),rgba(8,10,14,.72) 42%,rgba(8,10,14,.04) 74%),url('/assets/kao-ring/ringside-1440.webp') 76% center/cover}
+}
+</style>
 </head>
 <body class="hcf-clear-cover hcf-conversion-home">
 
@@ -962,23 +977,20 @@ body .svtab,body .vtab-wrap{display:none!important}
 
 <!-- 會員逆襲（與總教練同級特效）-->
 <section class="act2 actk" id="actK">
-  <div class="a2-bg"></div>
+  <div class="a2-bg" role="img" aria-label="高大可戴著藍色拳套在擂台繩邊準備比賽"></div>
   <div class="a2-ghost">UNDERDOG</div>
   <div class="a2-in">
-    <div class="a2-vis vk">
-      <picture><source srcset="kao_punch.webp" type="image/webp"><img class="cut cutk" src="kao_punch.jpg" alt="高大可破框出拳主視覺" loading="lazy" decoding="async"></picture>
-      <div class="tag">立青泰拳精英挑戰賽 · 優勝</div>
-    </div>
     <div>
-      <div class="kicker">REAL MEMBER / 逆襲狂人</div>
+      <div class="kicker">HCF FIGHTER STORY</div>
       <h2 class="h2">高大可<br><i>30 公斤的逆襲</i></h2>
+      <span class="a2-event">立青泰拳精英挑戰賽優勝</span>
       <p>教練很強，但你更想知道的是——普通人練得起來嗎？他用一年回答：從 104 公斤的上班族，練到 74 公斤站上擂台，拿下優勝。</p>
       <div class="a2-rec">
         <div><div class="num"><span data-cnt="104">0</span><em>KG</em></div><div class="lbl">起點</div></div>
         <div><div class="num"><span data-cnt="74">0</span><em>KG</em></div><div class="lbl">現在</div></div>
         <div class="w"><div class="num"><i data-cnt="30">0</i><em>KG</em></div><div class="lbl">減去的重量</div></div>
       </div>
-      <a class="a2-btn" href="story-kao.html">看他的互動蛻變故事 →</a>
+      <a class="a2-btn" href="story-kao.html">走進高大可的擂台故事</a>
     </div>
   </div>
 </section>
