@@ -73,3 +73,9 @@ body.hcf-career-dark{--bg:#101216;--surface:#1a1e24;--surface-2:#20252d;--ink:#f
  .career-nav-inner{min-height:40px}.career-nav a{min-height:40px;padding-block:11px;font-size:18px}
 }
 @media(prefers-reduced-motion:reduce){.career-year-reel{transition:none}.career-year:after{transition:none}}
+
+/* Text-led cover with no coach portrait on desktop or mobile. */
+.hcf-career-dark .al-hero{min-height:0}
+.hcf-career-dark .al-hero::before{background:radial-gradient(circle at 85% 30%,#c810151a,transparent 45%),linear-gradient(135deg,#15181d,#0d0f12)}
+.hcf-career-dark .al-hero-in{grid-template-columns:minmax(0,1fr);min-height:0;align-items:center;padding-top:clamp(60px,10vw,120px);padding-bottom:clamp(48px,8vw,96px)}
+.hcf-career-dark .al-hero-t{max-width:900px;padding-bottom:0}

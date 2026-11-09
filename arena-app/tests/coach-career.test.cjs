@@ -36,7 +36,6 @@ test('career HTML exposes seven chronological years all original events and all 
     assert.equal(d.querySelectorAll('[data-career-video]').length,2);
     assert.equal(d.querySelectorAll('iframe').length,0);
     assert.equal(d.querySelectorAll('#huang-training,#alPanel,#alYears').length,0);
-    assert(d.querySelector('img.head-coach-poster'));
     for(const a of d.querySelectorAll('[data-career-year]')) assert(d.querySelector(a.getAttribute('href')));
     for(const el of d.querySelectorAll('.career-journey h2,.career-journey h3,.career-journey h4,.career-intro h2')) assert(!/[\p{P}\p{S}]/u.test(el.textContent),el.textContent);
     for(const img of d.querySelectorAll('.career-photo img')){
