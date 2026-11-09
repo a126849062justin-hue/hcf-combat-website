@@ -1,0 +1,47 @@
+/* Keep faces and artwork inside their frames instead of center-cropping portraits. */
+.fcard .ph{height:auto;aspect-ratio:16/9;background:#f2f2f0}
+.fcard .ph img{display:block;object-fit:contain;object-position:center}
+.cimg img{object-fit:contain;background:#f2f2f0}
+
+/* Course descriptions sit below the photograph so they cannot cover a face. */
+.sysx{display:flex;flex-direction:column;min-height:0;background:#fff;color:#181a1b;border:1px solid #e4e4e1}
+.sysx>picture{display:block}
+.sysx img{position:static;display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;opacity:1;background:#f2f2f0}
+.sysx::after{display:none}
+.sysx:hover img{transform:none;opacity:1}
+.sysx .in{position:static;flex:1;justify-content:flex-start;padding:26px}
+.sysx .no{top:12px;left:12px;color:#fff;background:#181a1b;padding:3px 9px;border-radius:3px}
+.sysx .en{color:#a20c11}
+.sysx p{color:#555}
+.sysx .go{color:#181a1b;margin-top:auto;padding-top:16px}
+
+/* Portrait and team covers have separate text and media columns. */
+.hcf-uncropped-hero{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:center;gap:40px;min-height:0;padding:116px max(24px,calc((100vw - 1200px)/2)) 56px;background:#0d0d0d;color:#fff}
+.hcf-uncropped-hero::after,.hcf-uncropped-hero .glow,.hcf-uncropped-hero .phero-ghost{display:none}
+.hcf-uncropped-hero .hcf-hero-photo{grid-column:2;grid-row:1;min-width:0;position:relative;z-index:1}
+.hcf-uncropped-hero .hcf-hero-photo img{display:block;position:static;width:100%;height:auto;max-height:640px;object-fit:contain;object-position:center;opacity:1;filter:none;animation:none;transform:none}
+.hcf-uncropped-hero .phero-in,.hcf-uncropped-hero .sphero-in{grid-column:1;grid-row:1;width:100%;max-width:none;margin:0;padding:0;text-shadow:none}
+.hcf-uncropped-hero h1{font-size:clamp(32px,4vw,54px)}
+@media(max-width:760px){
+ .hcf-uncropped-hero{grid-template-columns:minmax(0,1fr);gap:28px;padding:94px 22px 42px}
+ .hcf-uncropped-hero .hcf-hero-photo{grid-column:1;grid-row:1}
+ .hcf-uncropped-hero .hcf-hero-photo img{max-height:520px}
+ .hcf-uncropped-hero .phero-in,.hcf-uncropped-hero .sphero-in{grid-column:1;grid-row:2}
+}
+
+/* Coach posters retain the head, feet, and original typography at every size. */
+.cphoto .pc-front>picture{display:block;width:100%;height:100%}
+.cphoto .pc-front>picture>img{object-fit:contain;object-position:center;background:#fff}
+.pc-front .ph>picture{position:absolute;inset:0;display:block}
+.pc-front .ph>picture>img{object-fit:contain;object-position:center;background:#fff}
+
+/* Supporting story and article photos also keep their original frame. */
+.article-photo img{height:auto;max-height:480px;object-fit:contain;background:#f2f2f0}
+.olds img{aspect-ratio:3/4;object-fit:contain}
+.full img{object-fit:contain}
+.fgal img{height:auto;object-fit:contain;transform:none}
+.fgal figure:hover img{transform:none}
+.fgal .f-a,.fgal .f-w,.fgal figure:not(.f-a):not(.f-w){aspect-ratio:auto;align-self:start}
+.fgal figcaption{position:relative;background:#111;padding:14px}
+.spot img,.hcard.photo .ph img,.fcar-frame img{object-fit:contain;transform:none}
+.spot.lit img{transform:none}

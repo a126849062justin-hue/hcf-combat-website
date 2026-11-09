@@ -103,18 +103,6 @@ a{color:inherit;text-decoration:none}
 
 /* ================= 第一幕 ================= */
 .act1{background:#fff;padding:30px 0 60px;position:relative;overflow:hidden}
-.act1 .pick2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
-.act1 .pk{display:block;text-decoration:none;border-radius:18px;padding:28px 26px;border:1px solid var(--line);background:var(--surface);transition:transform .25s,box-shadow .25s;position:relative}
-.act1 .pk:hover{transform:translateY(-3px);box-shadow:0 22px 46px rgba(0,0,0,.12)}
-.act1 .pk-g{border-top:4px solid var(--red)}
-.act1 .pk-p{border-top:4px solid var(--ink)}
-.act1 .pk-en{font-family:var(--en);font-weight:700;letter-spacing:.16em;font-size:.72rem;color:var(--red)}
-.act1 .pk-p .pk-en{color:var(--ink)}
-.act1 .pk-t{display:block;font-family:var(--serif);font-weight:900;font-size:clamp(1.5rem,4vw,2.05rem);color:var(--ink);margin:8px 0 10px}
-.act1 .pk p{color:#555;line-height:1.8;font-size:.95rem;margin:0 0 16px}
-.act1 .pk-go{font-weight:900;color:var(--ink)}
-.act1 .pk:hover .pk-go{color:var(--red)}
-@media(max-width:640px){.act1 .pick2{grid-template-columns:1fr}}
 .kicker{font-family:var(--en);letter-spacing:.36em;font-size:.72rem;color:var(--red);font-weight:600}
 .h2{font-family:var(--serif);font-weight:900;font-size:clamp(1.9rem,5.5vw,3rem);letter-spacing:.04em;line-height:1.25;margin-top:10px}
 .h2 i{font-style:normal;color:var(--red)}
@@ -717,6 +705,8 @@ body .svtab,body .vtab-wrap{display:none!important}
  #actK .a2-bg{background:linear-gradient(0deg,rgba(8,10,14,.96),rgba(8,10,14,.72) 42%,rgba(8,10,14,.04) 74%),url('/assets/kao-ring/ringside-1440.webp') 76% center/cover}
 }
 </style>
+<link rel="stylesheet" href="/hcf-image-framing.css?v=20261109-preview9">
+<link rel="stylesheet" href="/hcf-home-course-entries.css?v=20261109-preview10">
 </head>
 <body class="hcf-clear-cover hcf-conversion-home">
 
@@ -786,20 +776,28 @@ body .svtab,body .vtab-wrap{display:none!important}
     <div class="kicker rv">ACT 1 / TRAINING</div>
     <h2 class="h2 rv">走進 HCF<br>先選你的<i>路線</i></h2>
     <p class="lead rv">團課一起練，私課按你的節奏。零基礎也能開始。</p>
-    <div class="pick2 rv">
-      <a class="pk pk-g" href="group-classes.html">
-        <span class="pk-en">GROUP CLASSES</span>
-        <b class="pk-t">團體課程</b>
-        <p>依程度分級，入門班零基礎友善、不互相擊打。</p>
-        <span class="pk-go">了解團課・看課表 →</span>
-      </a>
-      <a class="pk pk-p" href="private-training.html">
-        <span class="pk-en">PRIVATE 1:1 / 1:2</span>
-        <b class="pk-t">私人課程</b>
-        <p>零基礎也能開始。一對一體驗 $1,400／60 分鐘；也可兩人同行。</p>
-        <span class="pk-go">先了解私教・費用與時段 →</span>
-      </a>
-    </div>
+  </div>
+  <div class="hcf-course-entries">
+    <article class="hcf-course-entry" id="group-course-entry" aria-labelledby="group-course-entry-title">
+      <picture class="hcf-course-entry-media"><img src="assets/course-entries/group-community-20261109.webp" srcset="assets/course-entries/group-community-20261109-480.webp 480w, assets/course-entries/group-community-20261109.webp 768w" sizes="(max-width: 620px) 100vw, (max-width: 1100px) 620px, 50vw" width="768" height="1024" alt="HCF 教練與團課學員在鯊魚標誌前的擂台合照" loading="lazy" decoding="async"></picture>
+      <div class="hcf-course-entry-content">
+        <div class="hcf-course-entry-label">GROUP TRAINING</div>
+        <h3 id="group-course-entry-title">團體課程<span>一起練出自己的節奏</span></h3>
+        <p>從站架到拳腿組合 和夥伴一起練習<br>依程度分級 入門班零基礎也能開始</p>
+        <p class="hcf-course-facts">泰拳 散打 踢拳 肌力體能</p>
+        <div class="hcf-course-entry-actions"><a href="group-classes.html">走進團體課程</a><a class="secondary" href="booking.html">安排我的第一堂體驗</a></div>
+      </div>
+    </article>
+    <article class="hcf-course-entry" id="private-course-entry" aria-labelledby="private-course-entry-title">
+      <picture class="hcf-course-entry-media"><img src="assets/course-entries/private-ring-20261109.webp" srcset="assets/course-entries/private-ring-20261109-480.webp 480w, assets/course-entries/private-ring-20261109.webp 771w" sizes="(max-width: 620px) 100vw, (max-width: 1100px) 620px, 50vw" width="771" height="1018" alt="兩位訓練夥伴在新竹格鬥標誌前的擂台合照" loading="lazy" decoding="async"></picture>
+      <div class="hcf-course-entry-content">
+        <div class="hcf-course-entry-label">PRIVATE COACHING</div>
+        <h3 id="private-course-entry-title">私人課程<span>讓教練專心帶你練</span></h3>
+        <p>按照你的目標和節奏 一步一步拆解動作<br>一個人開始 或和朋友兩人同行</p>
+        <p class="hcf-course-facts">一對一體驗 NT$1400　60 分鐘</p>
+        <div class="hcf-course-entry-actions"><a href="booking.html#private=unsure" data-intent="private">安排我的第一堂體驗</a><a class="secondary" href="private-training.html">走進私人課程</a></div>
+      </div>
+    </article>
   </div>
   <div class="float-track-clip">
     <div class="float-track" id="ftrack"></div>
@@ -1320,17 +1318,17 @@ rib.innerHTML=('<span>'+words+'</span>').repeat(12);
 
 // ===== 第一幕 漂浮卡跑馬燈（向左） =====
 var cards=[
- ['course_muaythai.jpg','泰拳','MUAY THAI','muaythai.html'],
+ ['assets/kao-ring/clinch-1440.webp','泰拳','MUAY THAI','muaythai.html'],
  ['course_sanda.jpg','散打','SANDA','sanda.html'],
  ['course_kickboxing.jpg','踢拳','KICKBOXING','kickboxing.html'],
  ['course_sc.jpg','肌力體能','STRENGTH','strength.html'],
- ['IMG_8904.jpeg','團體課程','GROUP CLASSES','group-classes.html'],
- ['coach_kao.jpg','私人課程','PRIVATE 1:1','private-training.html'],
- ['coach_huang.jpg','教練團隊','COACHES','team.html']
+ ['assets/training/partner-footwork.webp','團體課程','GROUP CLASSES','group-classes.html'],
+ ['assets/training/coached-padwork.webp','私人課程','PRIVATE 1:1','private-training.html'],
+ ['assets/covers/coaches-1280.webp','教練團隊','COACHES','team.html']
 ];
 var ft=document.getElementById('ftrack'),html='';
 cards.concat(cards).forEach(function(c){
-  html+='<a class="fcard" href="'+c[3]+'"><div class="ph"><img src="'+c[0]+'" alt="'+c[1]+'" loading="lazy"></div><div class="bd"><b>'+c[1]+'</b><span>'+c[2]+'</span></div></a>';
+  html+='<a class="fcard" href="'+c[3]+'"><div class="ph"><img src="'+c[0]+'" alt="'+c[1]+'" loading="lazy" decoding="async"></div><div class="bd"><b>'+c[1]+'</b><span>'+c[2]+'</span></div></a>';
 });
 ft.innerHTML=html;
 
