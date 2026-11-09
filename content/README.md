@@ -17,7 +17,8 @@ on page load. Viewer and embeds are closed on page retirement. Reduced-motion st
 removes smooth scrolling and image transitions.
 
 The desktop and mobile profile share a dark palette with white text and red accents.
-The cover uses a single text column on a dark gradient without a coach portrait.
+The cover retains the large competition photograph with a lower text shade on both
+layouts while the separate coach poster remains removed.
 On mobile the sticky year reel moves with the active chapter and a vertical progress
 line fills as the reader scrolls. Navigation offsets follow measured bar heights,
 including compact landscape layouts. The reel transition is disabled for reduced motion.

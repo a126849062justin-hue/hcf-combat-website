@@ -74,8 +74,12 @@ body.hcf-career-dark{--bg:#101216;--surface:#1a1e24;--surface-2:#20252d;--ink:#f
 }
 @media(prefers-reduced-motion:reduce){.career-year-reel{transition:none}.career-year:after{transition:none}}
 
-/* Text-led cover with no coach portrait on desktop or mobile. */
+/* Keep the large competition cover while omitting the separate coach poster. */
 .hcf-career-dark .al-hero{min-height:0}
-.hcf-career-dark .al-hero::before{background:radial-gradient(circle at 85% 30%,#c810151a,transparent 45%),linear-gradient(135deg,#15181d,#0d0f12)}
-.hcf-career-dark .al-hero-in{grid-template-columns:minmax(0,1fr);min-height:0;align-items:center;padding-top:clamp(60px,10vw,120px);padding-bottom:clamp(48px,8vw,96px)}
+.hcf-career-dark .al-hero::before{background:linear-gradient(0deg,rgba(8,10,14,.94),rgba(8,10,14,.45) 40%,rgba(8,10,14,.05) 72%),url('/huang_ring.jpg') center 24%/cover}
+.hcf-career-dark .al-hero-in{grid-template-columns:minmax(0,1fr);min-height:84svh;align-items:end;padding-top:72px;padding-bottom:56px}
 .hcf-career-dark .al-hero-t{max-width:900px;padding-bottom:0}
+@media(max-width:850px){
+ .hcf-career-dark .al-hero::before{background-position:42% center}
+ .hcf-career-dark .al-hero-in{min-height:88svh;padding-top:180px;padding-bottom:36px}
+}
