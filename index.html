@@ -714,6 +714,8 @@ body .svtab,body .vtab-wrap{display:none!important}
 </style>
 <link rel="stylesheet" href="/hcf-image-framing.css?v=20261109-preview9">
 <link rel="stylesheet" href="/hcf-home-course-entries.css?v=20261109-preview13">
+<link rel="stylesheet" href="hcf-venue-carousel.css?v=20261110">
+<style>.hcf-venue.hcf-venue-home{padding-block:clamp(40px,6vw,80px)}</style>
 </head>
 <body class="hcf-clear-cover hcf-conversion-home">
 
@@ -995,6 +997,52 @@ body .svtab,body .vtab-wrap{display:none!important}
       <img class="then" src="mi-life.jpg" alt="小米 蛻變前的日常" loading="lazy" decoding="async">
       <span class="then-lbl">曾經 · 62kg</span>
     </div>
+  </div>
+</section>
+
+<section class="hcf-venue hcf-venue-home" id="venue-tour" data-venue-carousel aria-labelledby="venue-title" aria-roledescription="照片輪播">
+  <div class="hcf-venue-shell">
+    <span class="hcf-venue-kicker">INSIDE HCF</span>
+    <h2 id="venue-title">走進 HCF 看看你的訓練環境</h2>
+    <p class="hcf-venue-lead">從訓練空間到館內擂台 提前熟悉第一堂課的環境<br>照片每六秒切換 也可以自行切換或暫停</p>
+    <div class="hcf-venue-controls" hidden>
+      <div class="hcf-venue-buttons">
+        <button type="button" data-venue-toggle aria-controls="venue-slides">暫停輪播</button>
+        <button type="button" data-venue-prev aria-label="上一張場館照片" aria-controls="venue-slides">←</button>
+        <button type="button" data-venue-next aria-label="下一張場館照片" aria-controls="venue-slides">→</button>
+      </div>
+      <div class="hcf-venue-dots" role="group" aria-label="選擇場館照片">
+        <button type="button" data-venue-index="0" aria-label="觀看先認識你的訓練空間" aria-controls="venue-slides" aria-current="true">01</button>
+        <button type="button" data-venue-index="1" aria-label="觀看館內擂台" aria-controls="venue-slides">02</button>
+        <button type="button" data-venue-index="2" aria-label="觀看沙包訓練區" aria-controls="venue-slides">03</button>
+        <button type="button" data-venue-index="3" aria-label="觀看肌力訓練區" aria-controls="venue-slides">04</button>
+        <button type="button" data-venue-index="4" aria-label="觀看屬於 HCF 的一角" aria-controls="venue-slides">05</button>
+      </div>
+      <span class="hcf-venue-count" data-venue-count aria-hidden="true">01 / 05</span>
+    </div>
+    <div class="hcf-venue-stage" id="venue-slides" aria-live="off">
+      <figure class="hcf-venue-slide" data-venue-slide role="group" aria-roledescription="照片" aria-label="第 1 張 共 5 張">
+        <img src="assets/venue-20261110/training-floor-1280.webp" srcset="assets/venue-20261110/training-floor-640.webp 640w, assets/venue-20261110/training-floor-1280.webp 1280w, assets/venue-20261110/training-floor-1920.webp 1920w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 1000px) calc(100vw - 40px), 960px" width="1280" height="960" alt="HCF 新竹格鬥館內全景 沙包 訓練地墊與擂台" loading="lazy" decoding="async" draggable="false">
+        <figcaption><h3>先認識你的訓練空間</h3><p>從沙包區望向擂台 先熟悉第一堂課的館內環境</p></figcaption>
+      </figure>
+      <figure class="hcf-venue-slide" data-venue-slide role="group" aria-roledescription="照片" aria-label="第 2 張 共 5 張">
+        <img src="assets/venue-20261110/boxing-ring-1280.webp" srcset="assets/venue-20261110/boxing-ring-640.webp 640w, assets/venue-20261110/boxing-ring-1280.webp 1280w, assets/venue-20261110/boxing-ring-1920.webp 1920w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 1000px) calc(100vw - 40px), 960px" width="1280" height="960" alt="HCF 館內擂台 白色圍繩與後方鯊魚標誌" loading="lazy" decoding="async" draggable="false">
+        <figcaption><h3>館內擂台</h3><p>實際看看擂台環境 入門課程的內容由教練依程度安排</p></figcaption>
+      </figure>
+      <figure class="hcf-venue-slide" data-venue-slide role="group" aria-roledescription="照片" aria-label="第 3 張 共 5 張">
+        <img src="assets/venue-20261110/heavy-bag-1280.webp" srcset="assets/venue-20261110/heavy-bag-640.webp 640w, assets/venue-20261110/heavy-bag-1280.webp 1280w, assets/venue-20261110/heavy-bag-1920.webp 1920w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 1000px) calc(100vw - 40px), 960px" width="1280" height="960" alt="新竹格鬥沙包訓練區與後方擂台" loading="lazy" decoding="async" draggable="false">
+        <figcaption><h3>沙包訓練區</h3><p>第一堂先從站姿與基本動作開始 依教練安排練習</p></figcaption>
+      </figure>
+      <figure class="hcf-venue-slide" data-venue-slide role="group" aria-roledescription="照片" aria-label="第 4 張 共 5 張">
+        <img src="assets/venue-20261110/strength-area-1280.webp" srcset="assets/venue-20261110/strength-area-640.webp 640w, assets/venue-20261110/strength-area-1280.webp 1280w, assets/venue-20261110/strength-area-1920.webp 1920w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 1000px) calc(100vw - 40px), 960px" width="1280" height="960" alt="HCF 肌力訓練區的啞鈴 槓鈴與訓練架" loading="lazy" decoding="async" draggable="false">
+        <figcaption><h3>肌力訓練區</h3><p>啞鈴 槓鈴與訓練架 讓你先認識館內器材配置</p></figcaption>
+      </figure>
+      <figure class="hcf-venue-slide" data-venue-slide role="group" aria-roledescription="照片" aria-label="第 5 張 共 5 張">
+        <img src="assets/venue-20261110/hcf-ring-corner-1280.webp" srcset="assets/venue-20261110/hcf-ring-corner-640.webp 640w, assets/venue-20261110/hcf-ring-corner-1280.webp 1280w, assets/venue-20261110/hcf-ring-corner-1920.webp 1920w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 1000px) calc(100vw - 40px), 960px" width="1280" height="960" alt="HCF 發光鯊魚標誌與擂台角落" loading="lazy" decoding="async" draggable="false">
+        <figcaption><h3>屬於 HCF 的一角</h3><p>鯊魚標誌與擂台邊的日常 等你親自走進來</p></figcaption>
+      </figure>
+    </div>
+    <p class="hcf-venue-status" data-venue-status role="status" aria-live="polite" aria-atomic="true"></p>
   </div>
 </section>
 
@@ -1556,5 +1604,6 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches){
 <script src="hcf-training-media.js?v=20261101" defer></script>
 <script src="hcf-stories.js?v=20261108" defer></script>
 <script src="/hcf-arena-entry.js?v=20261109-cms" defer></script>
+<script src="hcf-venue-carousel.js?v=20261110" defer></script>
 </body>
 </html>
