@@ -16,7 +16,8 @@ The archive has no automatic year carousel, autoplay timer, forced scroll, or so
 on page load. Viewer and embeds are closed on page retirement. Reduced-motion styling
 removes smooth scrolling and image transitions.
 
-The desktop and mobile profile share a dark palette with white text and red accents.
+The desktop and mobile profile share a dark palette with white supporting text and
+HCF combat red accents in #C81015 for large years buttons and lines.
 The cover retains the large competition photograph with a lower text shade on both
 layouts while the separate coach poster remains removed. The homepage head coach
 section uses the same competition-photo treatment without a foreground poster.
