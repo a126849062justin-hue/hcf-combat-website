@@ -23,7 +23,7 @@
     root.dataset.playing = 'false';
     if (!retired && pageActive && visible && automatic && !hovered && !focused && !document.hidden) {
       root.dataset.playing = 'true';
-      timer = setTimeout(function () { show(index + 1, false); }, 6000);
+      timer = setTimeout(function () { show(index + 1, false); }, 1000);
     }
   }
   async function show(target, manual) {
