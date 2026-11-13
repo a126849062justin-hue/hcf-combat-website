@@ -58,6 +58,8 @@ body.no-webgl #webgl-fallback{display:block}
 
 /* ===== ACT 00 HERO ===== */
 .hero{min-height:100vh;align-items:center;justify-content:center;text-align:center}
+.hero::before{content:"";position:absolute;inset:0;z-index:5;pointer-events:none;
+  background:radial-gradient(44% 38% at 50% 46%,rgba(5,5,5,.74),rgba(5,5,5,.3) 60%,transparent 74%)}
 .hero-inner{position:relative;z-index:10;padding:0 20px}
 .eyebrow{font-family:var(--en);font-weight:700;letter-spacing:.42em;font-size:.72rem;color:var(--ink2)}
 .hero-title{font-family:var(--en);font-weight:900;font-size:clamp(3.4rem,13vw,10rem);line-height:.92;letter-spacing:-.01em;margin:22px 0;text-shadow:0 6px 60px rgba(0,0,0,.8)}

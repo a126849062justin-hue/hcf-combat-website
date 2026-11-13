@@ -35,9 +35,11 @@ const pointer = { x: 0, y: 0 }
 
 function buildGlove(): THREE.Group {
   const g = new THREE.Group()
-  const leather = new THREE.MeshStandardMaterial({ color: RED, roughness: 0.42, metalness: 0.15, transparent: true, opacity: 1 })
-  const leatherDark = new THREE.MeshStandardMaterial({ color: 0x8e0a0e, roughness: 0.5, metalness: 0.12, transparent: true, opacity: 1 })
-  const white = new THREE.MeshStandardMaterial({ color: 0xf3f3f3, roughness: 0.6, metalness: 0.05, transparent: true, opacity: 1 })
+  // 白色拳套（對照真實 HCF 手套）
+  const leather = new THREE.MeshStandardMaterial({ color: 0xf2f2f2, roughness: 0.5, metalness: 0.06, transparent: true, opacity: 1 })
+  const leatherDark = new THREE.MeshStandardMaterial({ color: 0xe7e7e7, roughness: 0.55, metalness: 0.05, transparent: true, opacity: 1 })
+  const white = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.6, metalness: 0.04, transparent: true, opacity: 1 })
+  const redMat = new THREE.MeshStandardMaterial({ color: RED, roughness: 0.4, metalness: 0.1, transparent: true, opacity: 1 })
 
   // main fist — rounded box, slightly squashed
   const fist = new THREE.Mesh(new RoundedBoxGeometry(2.1, 1.7, 1.6, 6, 0.55), leather)
@@ -54,17 +56,40 @@ function buildGlove(): THREE.Group {
   const cuff = new THREE.Mesh(new RoundedBoxGeometry(1.5, 1.2, 1.5, 5, 0.4), leatherDark)
   cuff.position.set(0, -1.25, -0.1); cuff.scale.set(1, 0.8, 1)
   g.add(cuff)
-  // white brand band on cuff
-  const band = new THREE.Mesh(new THREE.TorusGeometry(0.82, 0.1, 10, 28), white)
+  // red brand band on cuff (對照真實手套紅色收邊)
+  const band = new THREE.Mesh(new THREE.TorusGeometry(0.82, 0.1, 10, 28), redMat)
   band.position.set(0, -1.25, -0.1); band.rotation.x = Math.PI / 2
   g.add(band)
-  // subtle logo stud
-  const stud = new THREE.Mesh(new THREE.CylinderGeometry(0.26, 0.26, 0.08, 24), white)
-  stud.position.set(0, 0.1, 0.83); stud.rotation.x = Math.PI / 2
-  g.add(stud)
 
   g.scale.setScalar(0)
   return g
+}
+
+/* 用真實手套圖裁出書法、去白底，貼到拳面（印刷感，不吃光） */
+function loadImg(src: string): Promise<HTMLImageElement> {
+  return new Promise((res, rej) => { const i = new Image(); i.crossOrigin = 'anonymous'; i.onload = () => res(i); i.onerror = rej; i.src = src })
+}
+function decalTexture(img: HTMLImageElement, fx: number, fy: number, fw: number, fh: number): THREE.CanvasTexture {
+  const sw = img.naturalWidth * fw, sh = img.naturalHeight * fh
+  const cv = document.createElement('canvas'); cv.width = 640; cv.height = Math.max(64, Math.round(640 * sh / sw))
+  const ctx = cv.getContext('2d')!
+  ctx.drawImage(img, img.naturalWidth * fx, img.naturalHeight * fy, sw, sh, 0, 0, cv.width, cv.height)
+  const d = ctx.getImageData(0, 0, cv.width, cv.height); const a = d.data
+  for (let i = 0; i < a.length; i += 4) { a[i + 3] = 255 - Math.min(a[i], a[i + 1], a[i + 2]) } // 去白：保留黑字與紅字
+  ctx.putImageData(d, 0, 0)
+  const tex = new THREE.CanvasTexture(cv); (tex as any).colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 4
+  return tex
+}
+async function applyGloveDecals(g: THREE.Group) {
+  try {
+    const img = await loadImg('/glove-ref.webp')
+    const tex = decalTexture(img, 0.15, 0.12, 0.29, 0.50) // 左手套「新竹拳」直書
+    const w = 1.12, h = w * ((tex.image as HTMLCanvasElement).height / (tex.image as HTMLCanvasElement).width)
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h),
+      new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, depthTest: true }))
+    m.position.set(0.02, 0.18, 0.865)
+    g.add(m)
+  } catch (e) { console.warn('glove decal failed', e) }
 }
 
 function initThree() {
@@ -82,7 +107,7 @@ function initThree() {
 
   // lighting — dark room, white key + red rim
   scene.add(new THREE.HemisphereLight(0x20202a, 0x000000, 0.45))
-  const key = new THREE.DirectionalLight(0xffffff, 2.6)
+  const key = new THREE.DirectionalLight(0xffffff, 2.1)
   key.position.set(4, 6, 5); scene.add(key)
   const rim = new THREE.PointLight(RED, 60, 40); rim.position.set(-5, 1, -3); scene.add(rim)
   const fill = new THREE.PointLight(0xff3b42, 22, 30); fill.position.set(5, -2, 4); scene.add(fill)
@@ -90,6 +115,7 @@ function initThree() {
   glove = buildGlove()
   glove.position.set(0, 0, 0)
   scene.add(glove)
+  applyGloveDecals(glove)
 
   // reveal glove on load
   gsap.to(glove.scale, { x: 1, y: 1, z: 1, duration: reduce ? 0.1 : 1.8, ease: 'expo.out', delay: 0.2 })
@@ -106,10 +132,9 @@ function initThree() {
     const dt = Math.min((now - last) / 1000, 0.05); last = now
     const p = scrollProgress()
     if (glove) {
-      // idle spin + scroll-driven rotation (concept "scroll camera")
-      glove.rotation.y += dt * 0.25 + 0
-      glove.rotation.y = glove.rotation.y // keep
-      glove.rotation.x = THREE.MathUtils.lerp(glove.rotation.x, -0.1 + pointer.y * 0.3 + p * 0.6, 0.06)
+      // 和緩擺動（保持書法面對鏡頭）＋ 捲動時轉動（概念運鏡）
+      glove.rotation.y = Math.sin(now * 0.0004) * 0.3 + pointer.x * 0.4 + p * 2.2
+      glove.rotation.x = THREE.MathUtils.lerp(glove.rotation.x, -0.06 + pointer.y * 0.22 + p * 0.5, 0.06)
       // recede + drift after hero so content stays readable
       const recede = Math.min(p * 2.2, 1)
       glove.position.z = THREE.MathUtils.lerp(glove.position.z, -recede * 3.2, 0.06)
