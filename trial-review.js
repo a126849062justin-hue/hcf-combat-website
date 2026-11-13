@@ -5,11 +5,13 @@
   var error=document.getElementById('submitError');
   function track(event,step){
     if(typeof window.gtag!=='function')return;
-    var safe={form_version:'20261108'};
+    var safe={form_version:'20261113-app'};
     if(Number.isInteger(step)&&step>=1&&step<=4)safe.step=step;
     window.gtag('event',event,safe);
   }
   var LEAD_EMAIL='hsinchucombat2022@gmail.com';
+  // The existing APP inbox is authoritative across Netlify Vercel and Cloudflare.
+  var LEAD_ENDPOINT='https://beamish-basbousa-cb3585.netlify.app/.netlify/functions/web-lead';
   var form=document.getElementById('revForm'),steps=document.querySelectorAll('.step');
   var fill=document.getElementById('pgFill'),pgStep=document.getElementById('pgStep');
   var btnN=document.getElementById('btnNext'),btnP=document.getElementById('btnPrev');
@@ -171,6 +173,23 @@
     return {main:main,reason:reason,alt:alt};
   }
 
+  // The existing inbox stores at most 500 UTF-16 units per answer. Keep long
+  // comments in ordered continuation fields instead of silently truncating them.
+  function inboxFields(payload){
+    var fields={};
+    Object.keys(payload).forEach(function(key){
+      if(key.charAt(0)==='_')return;
+      var rest=String(payload[key]),part=1;
+      do{
+        var end=Math.min(500,rest.length);
+        if(end<rest.length&&/[\uD800-\uDBFF]/.test(rest.charAt(end-1)))end--;
+        fields[key+(part===1?'':'_續'+part)]=rest.slice(0,end);
+        rest=rest.slice(end);part++;
+      }while(rest);
+    });
+    return fields;
+  }
+
   async function submit(){
     if(submitted)return;submitted=true;btnN.disabled=true;btnP.disabled=true;btnN.textContent='正在送出評估…';error.hidden=true;
     var rec=recommend(),name=document.getElementById('f_name').value.trim();
@@ -178,17 +197,24 @@
     payload['系統建議_主推薦']=rec.main;payload['系統建議_原因']=rec.reason;
     payload._subject='🥊 體驗後評估｜'+name+'（'+val('下一步安排')+'）';payload._template='table';payload._captcha='false';
     var score=parseInt(val('教練評分'),10),coach=val('帶課教練');
+    payload['教練評分星等']='★'.repeat(score)+'☆'.repeat(5-score);
+    var feelScore=parseInt(val('整體感受'),10);
+    payload['整體感受星等']='★'.repeat(feelScore)+'☆'.repeat(5-feelScore);
     var inputs=Array.from(form.elements).map(function(input){return {input:input,disabled:input.disabled};});
     inputs.forEach(function(row){row.input.disabled=true;});form.setAttribute('aria-busy','true');
     var controller=new AbortController(),timer=setTimeout(function(){controller.abort();},20000);
     try{
-      var response=await fetch('https://formsubmit.co/ajax/'+LEAD_EMAIL,{method:'POST',keepalive:true,signal:controller.signal,headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
+      var response=await fetch(LEAD_ENDPOINT,{method:'POST',keepalive:true,signal:controller.signal,headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({formType:'trial-review',page:location.pathname,fields:inboxFields(payload)})});
       var result=await response.json();
-      if(!response.ok||!(result.success===true||result.success==='true'))throw new Error('unconfirmed');
+      if(!response.ok||result.ok!==true||typeof result.id!=='string'||!/^[a-z0-9]{10,40}$/.test(result.id))throw new Error('unconfirmed');
     }catch(e){
       inputs.forEach(function(row){row.input.disabled=row.disabled;});submitted=false;btnN.disabled=false;btnP.disabled=false;btnN.textContent='重新送出評估 →';
-      error.textContent='暫時無法確認送出，剛才填的內容都還在。請稍後重試，或先把畫面交給現場教練。';error.hidden=false;error.scrollIntoView({block:'center',behavior:reduced?'instant':'smooth'});track('trial_review_failure');return;
+      error.textContent='暫時無法確認 APP 收件，剛才填的內容都還在。請先請教練查看體驗後評估，確認未收到後再重試。';error.hidden=false;error.scrollIntoView({block:'center',behavior:reduced?'instant':'smooth'});track('trial_review_failure');return;
     }finally{clearTimeout(timer);form.removeAttribute('aria-busy');}
+    // Preserve the existing email copy only after APP acknowledgement. Email
+    // delivery cannot undo an accepted inbox record or prompt duplicate retries.
+    Promise.resolve().then(function(){return fetch('https://formsubmit.co/ajax/'+LEAD_EMAIL,{method:'POST',keepalive:true,headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});}).catch(function(){});
+    document.getElementById('doneReceipt').textContent='APP 收件編號 '+result.id;
     track('trial_review_submit');
     document.getElementById('recMain').textContent=rec.main;document.getElementById('recReason').textContent=rec.reason;
     document.getElementById('recAlt').textContent=rec.alt;
