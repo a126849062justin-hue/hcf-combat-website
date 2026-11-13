@@ -29,7 +29,7 @@ if (!reduce) {
 
 /* ---------- 3D: procedural boxing glove (concept asset) ---------- */
 let renderer: THREE.WebGLRenderer | null = null
-let glove: THREE.Group | null = null
+let gloves: THREE.Group | null = null
 let camera: THREE.PerspectiveCamera
 const pointer = { x: 0, y: 0 }
 
@@ -61,7 +61,6 @@ function buildGlove(): THREE.Group {
   band.position.set(0, -1.25, -0.1); band.rotation.x = Math.PI / 2
   g.add(band)
 
-  g.scale.setScalar(0)
   return g
 }
 
@@ -80,14 +79,14 @@ function decalTexture(img: HTMLImageElement, fx: number, fy: number, fw: number,
   const tex = new THREE.CanvasTexture(cv); (tex as any).colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 4
   return tex
 }
-async function applyGloveDecals(g: THREE.Group) {
+async function applyGloveDecals(g: THREE.Group, fx: number, fy: number, fw: number, fh: number, planeW: number, px: number, py: number) {
   try {
     const img = await loadImg('/glove-ref.webp')
-    const tex = decalTexture(img, 0.15, 0.12, 0.29, 0.50) // 左手套「新竹拳」直書
-    const w = 1.12, h = w * ((tex.image as HTMLCanvasElement).height / (tex.image as HTMLCanvasElement).width)
+    const tex = decalTexture(img, fx, fy, fw, fh)
+    const w = planeW, h = w * ((tex.image as HTMLCanvasElement).height / (tex.image as HTMLCanvasElement).width)
     const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h),
       new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, depthTest: true }))
-    m.position.set(0.02, 0.18, 0.865)
+    m.position.set(px, py, 0.865)
     g.add(m)
   } catch (e) { console.warn('glove decal failed', e) }
 }
@@ -112,14 +111,19 @@ function initThree() {
   const rim = new THREE.PointLight(RED, 60, 40); rim.position.set(-5, 1, -3); scene.add(rim)
   const fill = new THREE.PointLight(0xff3b42, 22, 30); fill.position.set(5, -2, 4); scene.add(fill)
 
-  glove = buildGlove()
-  glove.position.set(0, 0, 0)
-  scene.add(glove)
-  applyGloveDecals(glove)
+  gloves = new THREE.Group()
+  const gloveL = buildGlove(); gloveL.scale.setScalar(0.82); gloveL.position.set(-2.45, 0.05, 0); gloveL.rotation.y = 0.24
+  const gloveR = buildGlove(); gloveR.scale.setScalar(0.82); gloveR.position.set(2.45, 0.05, 0); gloveR.rotation.y = -0.24
+  gloves.add(gloveL, gloveR)
+  gloves.scale.setScalar(0)
+  scene.add(gloves)
+  applyGloveDecals(gloveL, 0.15, 0.12, 0.29, 0.50, 1.0, 0.02, 0.18)   // 左：新竹拳
+  applyGloveDecals(gloveR, 0.53, 0.14, 0.38, 0.47, 1.3, 0.0, 0.2)     // 右：格鬥 / COMBAT
+  layoutGloves()
 
-  // reveal glove on load
-  gsap.to(glove.scale, { x: 1, y: 1, z: 1, duration: reduce ? 0.1 : 1.8, ease: 'expo.out', delay: 0.2 })
-  gsap.from(glove.rotation, { y: -1.2, duration: reduce ? 0.1 : 2.2, ease: 'expo.out', delay: 0.2 })
+  // reveal on load
+  gsap.to(gloves.scale, { x: 1, y: 1, z: 1, duration: reduce ? 0.1 : 1.8, ease: 'expo.out', delay: 0.2 })
+  gsap.from(gloves.rotation, { y: -0.7, duration: reduce ? 0.1 : 2.0, ease: 'expo.out', delay: 0.2 })
 
   addEventListener('pointermove', (e) => {
     pointer.x = (e.clientX / innerWidth - 0.5)
@@ -131,17 +135,16 @@ function initThree() {
   function loop(now: number) {
     const dt = Math.min((now - last) / 1000, 0.05); last = now
     const p = scrollProgress()
-    if (glove) {
+    if (gloves) {
       // 和緩擺動（保持書法面對鏡頭）＋ 捲動時轉動（概念運鏡）
-      glove.rotation.y = Math.sin(now * 0.0004) * 0.3 + pointer.x * 0.4 + p * 2.2
-      glove.rotation.x = THREE.MathUtils.lerp(glove.rotation.x, -0.06 + pointer.y * 0.22 + p * 0.5, 0.06)
-      // recede + drift after hero so content stays readable
+      gloves.rotation.y = Math.sin(now * 0.0004) * 0.16 + pointer.x * 0.3 + p * 1.8
+      gloves.rotation.x = THREE.MathUtils.lerp(gloves.rotation.x, -0.04 + pointer.y * 0.18 + p * 0.45, 0.06)
+      // 捲動時後退上移，讓內容可讀
       const recede = Math.min(p * 2.2, 1)
-      glove.position.z = THREE.MathUtils.lerp(glove.position.z, -recede * 3.2, 0.06)
-      glove.position.x = THREE.MathUtils.lerp(glove.position.x, recede * 2.4, 0.06)
-      glove.position.y = THREE.MathUtils.lerp(glove.position.y, recede * 1.1, 0.06)
+      gloves.position.z = THREE.MathUtils.lerp(gloves.position.z, -recede * 3.0, 0.06)
+      gloves.position.y = THREE.MathUtils.lerp(gloves.position.y, recede * 0.9, 0.06)
       const op = 1 - Math.min(Math.max((p - 0.12) * 2.2, 0), 0.75)
-      glove.traverse((o: any) => { if (o.material) o.material.opacity = op })
+      gloves.traverse((o: any) => { if (o.material) o.material.opacity = op })
     }
     camera.position.x = THREE.MathUtils.lerp(camera.position.x, pointer.x * 0.8, 0.05)
     camera.position.y = THREE.MathUtils.lerp(camera.position.y, -pointer.y * 0.5, 0.05)
@@ -152,10 +155,21 @@ function initThree() {
   requestAnimationFrame(loop)
 }
 
+function layoutGloves() {
+  if (!gloves || !camera) return
+  const mobile = innerWidth < 760
+  const sep = mobile ? 1.35 : 2.45
+  const sc = mobile ? 0.58 : 0.82
+  const gl: any = gloves.children[0], gr: any = gloves.children[1]
+  if (gl) { gl.position.x = -sep; gl.scale.setScalar(sc) }
+  if (gr) { gr.position.x = sep; gr.scale.setScalar(sc) }
+  camera.position.z = mobile ? 9.4 : 7.4
+}
 function onResize() {
   if (!renderer) return
   camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix()
   renderer.setSize(innerWidth, innerHeight)
+  layoutGloves()
 }
 
 function scrollProgress(): number {
