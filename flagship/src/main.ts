@@ -9,6 +9,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches
 const RED = 0xc81015
+const BASE = import.meta.env.BASE_URL // 讓資產路徑在子路徑部署下也正確
 
 /* ---------- WebGL support ---------- */
 function hasWebGL(): boolean {
@@ -81,7 +82,7 @@ function decalTexture(img: HTMLImageElement, fx: number, fy: number, fw: number,
 }
 async function applyGloveDecals(g: THREE.Group, fx: number, fy: number, fw: number, fh: number, planeW: number, px: number, py: number) {
   try {
-    const img = await loadImg('/glove-ref.webp')
+    const img = await loadImg(BASE + 'glove-ref.webp')
     const tex = decalTexture(img, fx, fy, fw, fh)
     const w = planeW, h = w * ((tex.image as HTMLCanvasElement).height / (tex.image as HTMLCanvasElement).width)
     const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h),
@@ -244,7 +245,7 @@ function setGoal(key: string) {
   refs.rec.textContent = g.rec; refs.tag.textContent = g.tag
   if (vEl.getAttribute('data-src') !== g.video) {
     vEl.setAttribute('data-src', g.video); vEl.classList.remove('on')
-    vEl.src = g.video; vEl.load()
+    vEl.src = BASE + g.video.replace(/^\//, ''); vEl.load()
     vEl.play().then(() => vEl.classList.add('on')).catch(() => vEl.classList.add('on'))
   }
   gsap.fromTo('.goal-copy > *', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .5, stagger: .05, ease: 'power2.out', overwrite: true })
