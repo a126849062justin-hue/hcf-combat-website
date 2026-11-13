@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>HCF 新竹格鬥 ｜ ENTER THE FIGHT</title>
+<meta name="description" content="HCF 新竹格鬥 — 為自己贏一次的戰鬥信仰。3D 沉浸式旗艦體驗。Honor · Courage · Faith。" />
+<meta name="theme-color" content="#050505" />
+<link rel="icon" href="favicon.webp" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="./assets/index-DBWHdIrT.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BVMPGwPj.css">
+</head>
+<body>
+  <!-- ===== 固定 3D 畫布（ACT 00 覺醒 / 全程背景運鏡） ===== -->
+  <canvas id="scene"></canvas>
+  <div id="webgl-fallback" aria-hidden="true"></div>
+  <div id="grain" aria-hidden="true"></div>
+  <div id="vignette" aria-hidden="true"></div>
+
+  <!-- ===== 頂部導覽 + 章節進度 ===== -->
+  <header class="nav" id="nav">
+    <a class="nav-logo" href="#act0" aria-label="HCF 新竹格鬥 首頁">
+      <img src="logo.webp" alt="HCF" width="34" height="34" />
+      <span><b>HCF</b><i>HSINCHU COMBAT</i></span>
+    </a>
+    <nav class="nav-acts" aria-label="章節導覽">
+      <a href="#act1" data-act="1">館</a>
+      <a href="#act2" data-act="2">選</a>
+      <a href="#act3" data-act="3">技</a>
+      <a href="#act4" data-act="4">師</a>
+      <a href="#act5" data-act="5">階</a>
+      <a href="#act6" data-act="6">事</a>
+      <a href="#act7" data-act="7">約</a>
+    </nav>
+    <a class="nav-cta" href="https://www.hsinchucombat.com/booking" target="_blank" rel="noopener">預約體驗</a>
+  </header>
+  <div class="scroll-rail" aria-hidden="true"><span id="scroll-fill"></span></div>
+
+  <main id="scroll">
+    <!-- ACT 00 — THE AWAKENING -->
+    <section class="act hero" id="act0" data-act="0">
+      <div class="hero-inner">
+        <p class="eyebrow rv">HONOR · COURAGE · FAITH</p>
+        <h1 class="hero-title">
+          <span class="line rv">ENTER</span>
+          <span class="line rv"><em>THE</em> FIGHT<span class="dot">.</span></span>
+        </h1>
+        <p class="hero-sub rv">你的戰鬥，從這裡開始。</p>
+      </div>
+      <div class="scroll-hint rv"><span>SCROLL</span><i></i></div>
+    </section>
+
+    <!-- ACT 01 — ENTER HCF -->
+    <section class="act" id="act1" data-act="1">
+      <div class="wrap">
+        <p class="kicker rv">ACT 01 — ENTER HCF</p>
+        <h2 class="h2 rv">走進 <em>格鬥館</em></h2>
+        <p class="lead rv">從入口、沙包區到擂台，鏡頭隨你的滾動穿過 HCF 的真實訓練空間。每一步，都離你的第一堂更近。</p>
+        <div class="space-grid">
+          <article class="space-card rv"><span class="n">01</span><b>入口・報到</b><p>第一次來不緊張，裝備館內免費借。</p></article>
+          <article class="space-card rv"><span class="n">02</span><b>沙包・打靶區</b><p>把力量打進目標，感受第一次出拳的手感。</p></article>
+          <article class="space-card rv"><span class="n">03</span><b>擂台・對練區</b><p>依程度分級，入門不對打，安全第一。</p></article>
+        </div>
+        <p class="concept-note rv">※ 場館 3D 建模為概念替代資產；正式版將以實際場館測繪或 360° 影像置換。</p>
+      </div>
+    </section>
+
+    <!-- ACT 02 — FIND YOUR FIGHT (互動課程選擇器) -->
+    <section class="act" id="act2" data-act="2">
+      <div class="wrap">
+        <p class="kicker rv">ACT 02 — FIND YOUR FIGHT</p>
+        <h2 class="h2 rv">選擇你的 <em>戰鬥</em></h2>
+        <p class="lead rv">你為什麼而練？選一個目標，我們幫你配一條最適合的路線。</p>
+        <div class="selector">
+          <div class="goal-chips" role="tablist" aria-label="訓練目標">
+            <button class="chip is-active" data-goal="beginner" role="tab">新手入門</button>
+            <button class="chip" data-goal="fatloss" role="tab">減脂體能</button>
+            <button class="chip" data-goal="stress" role="tab">紓壓興趣</button>
+            <button class="chip" data-goal="skill" role="tab">技術精進</button>
+            <button class="chip" data-goal="spar" role="tab">實戰對練</button>
+            <button class="chip" data-goal="defense" role="tab">自我保護</button>
+            <button class="chip" data-goal="fighter" role="tab">選手培訓</button>
+          </div>
+          <div class="goal-panel" id="goalPanel" aria-live="polite">
+            <div class="goal-media"><video id="goalVideo" muted loop playsinline preload="none"></video><div class="goal-media-tag" id="goalTag"></div></div>
+            <div class="goal-copy">
+              <p class="goal-en" id="goalEn"></p>
+              <h3 id="goalTitle"></h3>
+              <p id="goalDesc"></p>
+              <p class="goal-rec" id="goalRec"></p>
+              <div class="goal-cta">
+                <a class="btn btn-red" id="goalBook" href="https://www.hsinchucombat.com/booking" target="_blank" rel="noopener">預約這條路線 →</a>
+                <a class="btn btn-line" href="https://lin.ee/7lidUv0" target="_blank" rel="noopener">LINE 問教練</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACT 03 — THE ART OF COMBAT -->
+    <section class="act" id="act3" data-act="3">
+      <div class="wrap">
+        <p class="kicker rv">ACT 03 — THE ART OF COMBAT</p>
+        <h2 class="h2 rv">格鬥的 <em>技術</em></h2>
+        <p class="lead rv">泰拳「八肢的藝術」——拳、肘、膝、腿，加上步法、防禦與纏抱。正式版將可 3D 旋轉查看每個動作的角度與發力鏈。</p>
+        <div class="tech-grid">
+          <div class="tech rv"><b>站架・步法</b><span>STANCE</span></div>
+          <div class="tech rv"><b>拳法</b><span>PUNCH</span></div>
+          <div class="tech rv"><b>腿法</b><span>KICK</span></div>
+          <div class="tech rv"><b>肘法</b><span>ELBOW</span></div>
+          <div class="tech rv"><b>膝法</b><span>KNEE</span></div>
+          <div class="tech rv"><b>防禦</b><span>DEFENSE</span></div>
+          <div class="tech rv"><b>纏抱</b><span>CLINCH</span></div>
+          <div class="tech rv tech-chain"><b>發力鏈</b><span>下肢→髖軀幹→肢體→打擊回收</span></div>
+        </div>
+        <p class="concept-note rv">※ 動作 3D 模型與慢動作分解為下一階段開發項目；目前為資訊架構原型。</p>
+      </div>
+    </section>
+
+    <!-- ACT 04 — MEET THE COACHES -->
+    <section class="act" id="act4" data-act="4">
+      <div class="wrap">
+        <p class="kicker rv">ACT 04 — MEET THE COACHES</p>
+        <h2 class="h2 rv">遇見 <em>教練</em></h2>
+        <p class="lead rv">HCF 真實教練陣容，電影式角色介紹。此區將接入正式站的教練資料與形象照，不虛構經歷。</p>
+        <div class="coach-row">
+          <a class="coach rv" href="https://www.hsinchucombat.com/coach-huang" target="_blank" rel="noopener"><div class="coach-ph" data-ph></div><b>黃謙和 總教練</b><span>MUAY THAI · 63KG 衛冕冠軍</span></a>
+          <a class="coach rv" href="https://www.hsinchucombat.com/team" target="_blank" rel="noopener"><div class="coach-ph" data-ph></div><b>教練團隊</b><span>SEE THE FULL ROSTER →</span></a>
+        </div>
+        <p class="concept-note rv">※ 形象照位為概念佔位；正式版接入實際教練照片與戰績。</p>
+      </div>
+    </section>
+
+    <!-- ACT 05 — YOUR EVOLUTION -->
+    <section class="act" id="act5" data-act="5">
+      <div class="wrap">
+        <p class="kicker rv">ACT 05 — YOUR EVOLUTION</p>
+        <h2 class="h2 rv">你的 <em>進化</em></h2>
+        <p class="lead rv">從第一堂到站上擂台，HCF 的成長路徑。</p>
+        <div class="path">
+          <div class="node rv"><span class="lv">LV.1</span><b>新手泰拳</b><p>站架、步法、基本拳腿；零基礎友善、不對打。</p></div>
+          <div class="node rv"><span class="lv">LV.2</span><b>中階泰拳</b><p>組合、距離與情境攻防；部分主題有搭檔接觸。</p></div>
+          <div class="node rv"><span class="lv">LV.3</span><b>進階・自由技術對打</b><p>護具下對練與複盤，距離・時機・節奏。</p></div>
+          <div class="node rv node-elite"><span class="lv">ELITE</span><b>選手培訓</b><p>邀請制專項與備賽，技術・體能・複盤。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACT 06 — REAL STORIES -->
+    <section class="act" id="act6" data-act="6">
+      <div class="wrap">
+        <p class="kicker rv">ACT 06 — REAL STORIES</p>
+        <h2 class="h2 rv">真實 <em>戰鬥故事</em></h2>
+        <p class="lead rv">從踏出第一步，到體能改善、技術進步、完成比賽。此區接入正式站的真實學員與選手故事，不虛構評價或成果。</p>
+        <div class="story-row">
+          <a class="story rv" href="https://www.hsinchucombat.com/story-mi" target="_blank" rel="noopener"><b>學員・小米</b><span>READ THE STORY →</span></a>
+          <a class="story rv" href="https://www.hsinchucombat.com/story-kao" target="_blank" rel="noopener"><b>學員・大可</b><span>READ THE STORY →</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACT 07 — YOUR FIRST ROUND -->
+    <section class="act finale" id="act7" data-act="7">
+      <div class="wrap finale-inner">
+        <p class="kicker rv">ACT 07 — YOUR FIRST ROUND</p>
+        <h2 class="finale-title rv">為自己<br><em>贏一次。</em></h2>
+        <p class="lead rv">第一堂體驗 $400・零基礎友善・裝備免費借。你的戰鬥，就從今天開始。</p>
+        <div class="finale-cta">
+          <a class="btn btn-red btn-lg rv" href="https://www.hsinchucombat.com/booking" target="_blank" rel="noopener">立即預約體驗 →</a>
+          <a class="btn btn-ghost rv" href="https://www.hsinchucombat.com/schedule" target="_blank" rel="noopener">查看最新課表</a>
+          <a class="btn btn-ghost rv" href="https://www.hsinchucombat.com/pricing" target="_blank" rel="noopener">了解課程方案</a>
+          <a class="btn btn-line rv" href="https://lin.ee/7lidUv0" target="_blank" rel="noopener">LINE 諮詢</a>
+        </div>
+        <footer class="foot rv">HCF 新竹格鬥 · 新竹市北區林森路 301 號 2 樓 · Honor / Courage / Faith<br><a href="https://www.hsinchucombat.com" target="_blank" rel="noopener">← 回到現行官網</a></footer>
+      </div>
+    </section>
+  </main>
+
+  <!-- 持續存在的預約浮標（手機） -->
+  <a class="float-cta" href="https://www.hsinchucombat.com/booking" target="_blank" rel="noopener">預約 $400 體驗</a>
+
+  <!-- 概念版標示 -->
+  <div class="build-badge">FLAGSHIP PREVIEW · 概念原型 · 非正式站</div>
+
+</body>
+</html>
