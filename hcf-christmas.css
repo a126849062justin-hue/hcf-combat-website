@@ -9,6 +9,15 @@
 .hcfx-lights{position:fixed;top:0;left:0;right:0;height:12px;display:flex;justify-content:space-around;pointer-events:none;z-index:9998;border-top:1px solid #8b755c66}
 .hcfx-lights i{width:4px;height:7px;border-radius:0 0 60% 60%;background:#f7d998;box-shadow:0 0 8px #e7c780;transform:translateY(calc(mod(var(--i),3) * 2px))}
 .hcfx-lights i:nth-child(3n){background:#f16260;box-shadow:0 0 8px #e44643}.hcfx-lights i:nth-child(3n+1){background:#b4d6c5;box-shadow:0 0 8px #92c2ab}
+@media(min-width:921px){
+ .hcfx-lights{height:34px;border-top:2px solid #43624e;filter:drop-shadow(0 1px 2px #0002)}
+ .hcfx-lights i{--bulb:#ffd46b;--glow:#ffc44d99;position:relative;flex-shrink:0;width:12px;height:20px;margin-top:6px;border:1px solid #fff9;border-radius:42% 42% 50% 50%;background:radial-gradient(ellipse at 35% 27%,#fff 0 8%,var(--bulb) 52%);box-shadow:0 0 8px var(--bulb),0 0 20px var(--glow),0 0 34px var(--glow);transform:rotate(-9deg)}
+ .hcfx-lights i::before{content:"";position:absolute;top:-8px;left:4px;width:2px;height:8px;background:#43624e}
+ .hcfx-lights i::after{content:"";position:absolute;top:-3px;left:1px;width:8px;height:4px;background:#42634d;border-radius:2px 2px 0 0}
+ .hcfx-lights i:nth-child(even){transform:rotate(9deg)}
+ .hcfx-lights i:nth-child(3n){--bulb:#ff6865;--glow:#ff454d88;background:radial-gradient(ellipse at 35% 27%,#fff 0 8%,var(--bulb) 52%);box-shadow:0 0 8px var(--bulb),0 0 20px var(--glow),0 0 34px var(--glow)}
+ .hcfx-lights i:nth-child(3n+1){--bulb:#91edb6;--glow:#50dc8b88;background:radial-gradient(ellipse at 35% 27%,#fff 0 8%,var(--bulb) 52%);box-shadow:0 0 8px var(--bulb),0 0 20px var(--glow),0 0 34px var(--glow)}
+}
 .hcfx-dock{position:fixed;bottom:20px;left:16px;display:flex;align-items:center;gap:4px;z-index:170;filter:drop-shadow(0 4px 14px #0003)}
 .hcfx-dock button{border:1px solid #d1b27970;background:#14352cf5;color:#fff5e0;min-height:46px}
 .hcfx-dock-open{display:flex;align-items:center;gap:9px;border-radius:10px;padding:8px 13px;font-weight:700!important;font-size:12px!important;text-align:left}
