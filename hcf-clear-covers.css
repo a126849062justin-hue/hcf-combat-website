@@ -33,7 +33,7 @@
 .hcf-clear-cover.hcf-light-cover .ph2,.hcf-clear-cover.hcf-light-cover .gh{min-height:90svh;align-items:center;padding:124px 24px 72px}
 .hcf-clear-cover.hcf-light-cover .ph2::before,.hcf-clear-cover.hcf-light-cover .gh::before{display:none}
 .hcf-clear-cover.hcf-light-cover .ph2-in,.hcf-clear-cover.hcf-light-cover .gh-in{max-width:570px;width:48%;margin:0 auto 0 max(0px,calc((100vw - 1240px)/2));padding:32px;background:#fff;border:1px solid #e7e7e5;border-radius:8px;box-shadow:0 12px 36px #18222c12}
-.hcf-clear-cover.hcf-private-cover .ph2-in{background:#fffdf7}
+.hcf-clear-cover.hcf-private-cover .ph2-in{background:#fff}
 .hcf-clear-cover.hcf-light-cover .ph2 h1,.hcf-clear-cover.hcf-light-cover .gh h1{font-size:clamp(36px,4vw,56px);line-height:1.25}
 .hcf-clear-cover.hcf-light-cover .ph2 .sub,.hcf-clear-cover.hcf-light-cover .gh .sub{font-size:16px;line-height:1.85;margin-top:18px}
 .hcf-clear-cover.hcf-light-cover .ph2 .cta,.hcf-clear-cover.hcf-light-cover .gh .cta{gap:10px;margin-top:24px}
