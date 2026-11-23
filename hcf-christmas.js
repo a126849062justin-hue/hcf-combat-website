@@ -146,14 +146,30 @@ async function startChristmas(rules) {
   const observer=new MutationObserver(()=>{if(dressShark())observer.disconnect();});
   if(!dressShark())observer.observe(document.body,{childList:true});
 
-  // Low-density ambient snow capped at 30fps with no interception of page input.
+  // Cache the crystal artwork so larger flakes stay light to render at 30fps.
   const canvas=$('#hcfx-snow'),ctx=canvas.getContext('2d');
+  const crystal=document.createElement('canvas');crystal.width=crystal.height=96;
+  const ice=crystal.getContext('2d');
+  if(ice){
+    ice.translate(48,48);ice.lineCap='round';ice.lineJoin='round';ice.beginPath();
+    for(let arm=0;arm<6;arm++){
+      const a=arm*Math.PI/3,c=Math.cos(a),s=Math.sin(a);
+      ice.moveTo(0,0);ice.lineTo(c*34,s*34);
+      for(const [distance,length] of [[17,10],[26,7]])for(const side of [-1,1]){
+        ice.moveTo(c*distance,s*distance);
+        ice.lineTo(c*distance+Math.cos(a+side*Math.PI/3)*length,s*distance+Math.sin(a+side*Math.PI/3)*length);
+      }
+    }
+    ice.strokeStyle='rgba(91,132,158,.65)';ice.lineWidth=6.5;ice.stroke();
+    ice.strokeStyle='#fff';ice.lineWidth=3.8;ice.shadowColor='rgba(216,242,255,.9)';ice.shadowBlur=6;ice.stroke();
+  }
   let flakes=[],raf=0,last=0,width=0,height=0,breeze=0,drift=0;
   const canMove=()=>state.snow&&!reduced.matches&&!document.hidden&&!retired&&!window.__hcfPageRetired;
   function resize(){
     width=innerWidth;height=innerHeight;const dpr=Math.min(devicePixelRatio||1,1.5);
     canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);if(ctx)ctx.setTransform(dpr,0,0,dpr,0,0);
-    flakes=Array.from({length:width<600?12:28},()=>({x:Math.random()*width,y:Math.random()*height,r:Math.random()*1.6+.8,v:Math.random()*18+15,phase:Math.random()*6.28}));
+    const mobile=width<600;
+    flakes=Array.from({length:mobile?16:36},(_,i)=>({x:Math.random()*width,y:Math.random()*height,crystal:i%3!==0,r:i%3!==0?(mobile?9+Math.random()*6:12+Math.random()*10):2+Math.random()*2,v:Math.random()*18+22,phase:Math.random()*6.28,angle:Math.random()*6.28,spin:i%2?.14:-.14,alpha:.8+Math.random()*.2}));
     let inset=18;
     document.querySelectorAll('.mcta,.stickybar,.nav').forEach(el=>{const r=el.getBoundingClientRect(),s=getComputedStyle(el);if(s.position==='fixed'&&s.display!=='none'&&r.height>0&&r.height<180&&r.top>height/2&&r.bottom>=height-12)inset=Math.max(inset,height-r.top+12);});
     $('.hcfx-dock').style.bottom=`calc(${inset}px + env(safe-area-inset-bottom))`;
@@ -161,7 +177,14 @@ async function startChristmas(rules) {
   function frame(now){
     raf=0;if(!ctx||!canMove())return;
     if(now-last>=32){const dt=Math.min((now-last)/1000,.07);last=now;drift+=(breeze-drift)*.04;ctx.clearRect(0,0,width,height);
-      flakes.forEach(f=>{f.y+=f.v*dt;f.x+=(Math.sin(now/1600+f.phase)*7+drift*22)*dt;if(f.y>height+4){f.y=-4;f.x=Math.random()*width;}if(f.x<0)f.x=width;if(f.x>width)f.x=0;ctx.beginPath();ctx.fillStyle='rgba(242,239,220,.65)';ctx.arc(f.x,f.y,f.r,0,Math.PI*2);ctx.fill();});
+      flakes.forEach(f=>{
+        f.y+=f.v*dt;f.x+=(Math.sin(now/1600+f.phase)*7+drift*22)*dt;f.angle+=f.spin*dt;
+        if(f.y>height+f.r){f.y=-f.r;f.x=Math.random()*width;}if(f.x < -f.r)f.x=width+f.r;if(f.x>width+f.r)f.x=-f.r;
+        ctx.save();ctx.globalAlpha=f.alpha;
+        if(f.crystal&&ice){ctx.translate(f.x,f.y);ctx.rotate(f.angle);ctx.drawImage(crystal,-f.r,-f.r,f.r*2,f.r*2);}
+        else{ctx.beginPath();ctx.fillStyle='#fff';ctx.strokeStyle='rgba(91,132,158,.45)';ctx.lineWidth=.8;ctx.arc(f.x,f.y,f.r,0,Math.PI*2);ctx.fill();ctx.stroke();}
+        ctx.restore();
+      });
     }raf=requestAnimationFrame(frame);
   }
   function motion(){
