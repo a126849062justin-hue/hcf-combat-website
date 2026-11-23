@@ -1,6 +1,20 @@
 const test=require('node:test');
 const assert=require('node:assert/strict');
 const rules=require('../hcf-christmas.js');
+const fs=require('node:fs');
+const path=require('node:path');
+
+test('every public HTML entry point loads the seasonal component once including nested shop pages',()=>{
+  const root=path.resolve(__dirname,'..');
+  const files=fs.readdirSync(root).filter(p=>p.endsWith('.html'));
+  for(const entry of fs.readdirSync(path.join(root,'shop'),{recursive:true}))if(entry.endsWith('.html'))files.push(path.join('shop',entry));
+  for(const name of files){
+    const html=fs.readFileSync(path.join(root,name),'utf8');
+    if(!/<\/head>/i.test(html))continue; // Google ownership verification is not a page.
+    assert.equal((html.match(/id="hcf-christmas-loader"/g)||[]).length,1,name);
+    assert.match(html,/<script id="hcf-christmas-loader" src="\/hcf-christmas\.js\?v=20261123" defer><\/script>/,name);
+  }
+});
 
 test('holiday uses Taipei boundaries and the same season across New Year',()=>{
   for(const [instant,expected] of [

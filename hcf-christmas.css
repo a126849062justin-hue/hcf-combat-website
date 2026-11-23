@@ -76,6 +76,7 @@
 .hcfx-signature{font-size:9px;letter-spacing:.13em;color:#6a7058}
 .hcfx-wish-tools{display:flex;gap:8px;margin:17px 0 11px}.hcfx-wish-tools button{min-height:44px;border:1px solid #566c494d;background:transparent;padding:8px 10px;border-radius:3px;color:#334c38;font-size:11px!important}
 .hcfx-wish-tools button:hover{background:#f2f2f2}
+#hcf-christmas .hcfx-wish button:focus-visible,#hcf-christmas .hcfx-wish a:focus-visible{outline-color:#14352c}
 #hcf-christmas .hcfx-trial{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:13px 15px;min-height:48px;border-radius:3px;background:#bd1820;color:#fff;text-decoration:none;font-size:13px;font-weight:700}
 .hcfx-footer{display:flex;flex-wrap:wrap;align-items:center;gap:10px;justify-content:space-between;margin-top:28px;padding-top:16px;border-top:1px solid #cbb98524;color:#afbaa6;font-size:10px}
 .hcfx-footer button{border:0;background:none;text-decoration:underline;text-underline-offset:4px;min-height:44px;color:#d4c7a4;font-size:11px!important;padding:4px 0}
