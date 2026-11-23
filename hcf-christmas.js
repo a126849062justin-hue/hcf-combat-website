@@ -65,8 +65,8 @@ async function startChristmas(rules) {
   const glove = '<svg viewBox="0 0 120 130" aria-hidden="true"><path d="M39 92C19 82 19 54 23 31 27 9 49 5 71 10 92 15 98 32 93 50c8-5 17 0 17 10 0 17-11 29-27 34l-2 23H39Z" fill="currentColor" stroke="#f3dfb1" stroke-width="2"/><path d="M30 42c4-14 8-19 21-21M85 50 71 70M39 92h44M40 102h41" fill="none" stroke="#f3dfb1" stroke-opacity=".65" stroke-width="2" stroke-linecap="round"/><text x="60" y="69" text-anchor="middle" fill="#fff5db" font-family="Arial,sans-serif" font-weight="900" font-size="19" font-style="italic">HCF</text></svg>';
   const giftArt = `<span class="hcfx-gift-art" aria-hidden="true"><span class="hcfx-orbit"></span><span class="hcfx-box"><span class="hcfx-face hcfx-front"><b>HCF</b><small>FOR YOU</small></span><span class="hcfx-face hcfx-right"></span><span class="hcfx-face hcfx-top"></span><span class="hcfx-bow">${star}</span></span><span class="hcfx-gift-shadow"></span></span>`;
   const host = document.createElement('div');host.id='hcf-christmas';
-  host.innerHTML = `<canvas id="hcfx-snow" aria-hidden="true"></canvas><div class="hcfx-lights" aria-hidden="true">${Array.from({length:15},(_,i)=>`<i style="--i:${i}"></i>`).join('')}</div>
-    <div class="hcfx-dock" aria-label="聖誕互動控制"><button class="hcfx-dock-open" type="button" data-hcfx-open aria-haspopup="dialog">${giftIcon}<span>聖誕驚喜<small>HCF CHRISTMAS</small></span></button><button class="hcfx-snow-switch" type="button" data-hcfx-snow aria-pressed="true" aria-label="暫停飄雪">❄</button></div>
+  host.innerHTML = `<canvas id="hcfx-snow" aria-hidden="true"></canvas><div class="hcfx-lights" role="group" aria-label="互動聖誕燈串 點燈換色">${Array.from({length:15},(_,i)=>`<button class="hcfx-bulb" type="button" data-hcfx-color="${['green','gold','red'][i%3]}" aria-label="第 ${i+1} 盞聖誕燈 點擊換色" title="點我換色"><i aria-hidden="true"></i></button>`).join('')}</div>
+    <div class="hcfx-dock" aria-label="聖誕互動控制"><button class="hcfx-dock-open" type="button" data-hcfx-open aria-haspopup="dialog">${giftIcon}<span>聖誕驚喜<small>HCF CHRISTMAS</small></span></button><button class="hcfx-snow-play" type="button" aria-label="灑一把雪" title="灑一把雪">❄</button><button class="hcfx-snow-switch" type="button" data-hcfx-snow aria-pressed="true" aria-label="暫停飄雪">Ⅱ</button></div>
     <dialog id="hcfx-dialog" aria-labelledby="hcfx-title" aria-describedby="hcfx-description">
       <button class="hcfx-close" type="button" aria-label="關閉聖誕驚喜" autofocus>×</button>
       <div class="hcfx-dialog-layout">
@@ -76,7 +76,7 @@ async function startChristmas(rules) {
           <div class="hcfx-gloves" aria-label="點亮三個 HCF 精神拳套">${values.map((v,i)=>`<button type="button" class="hcfx-glove" data-hcfx-value="${i}" aria-pressed="false" aria-label="點亮${v[1]}拳套"><span class="hcfx-glove-art">${glove}<i class="hcfx-check">✓</i></span><b>${v[1]}</b><small>${v[0]}</small></button>`).join('')}</div>
           <p class="hcfx-message" role="status" aria-live="polite" aria-atomic="true">從任何一個拳套開始</p>
           <section class="hcfx-wish" aria-labelledby="hcfx-wish-title" hidden><span class="hcfx-eyebrow">MERRY CHRISTMAS</span><h3 id="hcfx-wish-title"></h3><p class="hcfx-wish-sub"></p><p class="hcfx-wish-body"></p><span class="hcfx-signature">WITH LOVE　HCF 新竹格鬥</span><div class="hcfx-wish-tools"><button type="button" data-hcfx-copy>複製我的祝福</button><button type="button" data-hcfx-again>再開一張</button></div><a class="hcfx-trial" href="/booking.html" data-cta data-intent="christmas_trial">安排我的第一堂體驗 <span aria-hidden="true">↗</span></a></section>
-          <div class="hcfx-footer"><span>一份給每個努力中的你的祝福</span><button type="button" data-hcfx-snow aria-pressed="true">暫停飄雪</button></div>
+          <div class="hcfx-footer"><span>撥動雪花 點燈換色 收下你的祝福</span><button type="button" data-hcfx-snow aria-pressed="true">暫停飄雪</button></div>
         </div>
       </div>
     </dialog>`;
@@ -146,14 +146,79 @@ async function startChristmas(rules) {
   const observer=new MutationObserver(()=>{if(dressShark())observer.disconnect();});
   if(!dressShark())observer.observe(document.body,{childList:true});
 
-  // Low-density ambient snow capped at 30fps with no interception of page input.
+  // Cache the crystal artwork so larger flakes stay light to render at 30fps.
   const canvas=$('#hcfx-snow'),ctx=canvas.getContext('2d');
-  let flakes=[],raf=0,last=0,width=0,height=0,breeze=0,drift=0;
+  const crystal=document.createElement('canvas');crystal.width=crystal.height=96;
+  const ice=crystal.getContext('2d');
+  if(ice){
+    ice.translate(48,48);ice.lineCap='round';ice.lineJoin='round';ice.beginPath();
+    for(let arm=0;arm<6;arm++){
+      const a=arm*Math.PI/3,c=Math.cos(a),s=Math.sin(a);
+      ice.moveTo(0,0);ice.lineTo(c*34,s*34);
+      for(const [distance,length] of [[17,10],[26,7]])for(const side of [-1,1]){
+        ice.moveTo(c*distance,s*distance);
+        ice.lineTo(c*distance+Math.cos(a+side*Math.PI/3)*length,s*distance+Math.sin(a+side*Math.PI/3)*length);
+      }
+    }
+    ice.strokeStyle='rgba(91,132,158,.65)';ice.lineWidth=6.5;ice.stroke();
+    ice.strokeStyle='#fff';ice.lineWidth=3.8;ice.shadowColor='rgba(216,242,255,.9)';ice.shadowBlur=6;ice.stroke();
+  }
+  let flakes=[],bursts=[],raf=0,last=0,width=0,height=0,breeze=0,drift=0;
+  const wind={x:0,y:0,until:0};let touchStart=null,lastBurst=0;
+  const lightButtons=[...host.querySelectorAll('.hcfx-bulb')],lightTimers=[];
   const canMove=()=>state.snow&&!reduced.matches&&!document.hidden&&!retired&&!window.__hcfPageRetired;
+  const pageSurface=target=>target instanceof Element&&!target.closest('a,button,input,textarea,select,label,summary,[role="button"],[contenteditable],#hcf-shark-assistant,dialog');
+  function scatter(x,y){
+    if(!canMove()||!ctx)return;
+    const now=performance.now();if(now-lastBurst<180)return;lastBurst=now;
+    const count=width<600?10:18,limit=width<600?24:48;
+    const fresh=Array.from({length:count},(_,i)=>{const a=i*Math.PI*2/count,speed=50+Math.random()*100;return{x,y,r:6+Math.random()*7,vx:Math.cos(a)*speed,vy:Math.sin(a)*speed-45,life:1.1,maxLife:1.1,crystal:true,angle:a,spin:.8,alpha:1};});
+    bursts=bursts.concat(fresh).slice(-limit);
+  }
+  function clearLights(){lightTimers.splice(0).forEach(clearTimeout);lightButtons.forEach(b=>b.classList.remove('hcfx-lit'));}
+  lightButtons.forEach((button,index)=>button.addEventListener('click',()=>{
+    const colors=['gold','green','red'],labels={gold:'金色',green:'綠色',red:'紅色'};
+    const color=colors[(colors.indexOf(button.dataset.hcfxColor)+1)%colors.length];button.dataset.hcfxColor=color;
+    button.setAttribute('aria-label',`第 ${index+1} 盞聖誕燈 ${labels[color]} 點擊換色`);
+    clearLights();if(!canMove())return;
+    const rect=button.getBoundingClientRect();scatter(rect.left+rect.width/2,rect.bottom);
+    lightButtons.forEach((bulb,i)=>{
+      if(!bulb.getClientRects().length)return;
+      lightTimers.push(setTimeout(()=>{bulb.classList.add('hcfx-lit');lightTimers.push(setTimeout(()=>bulb.classList.remove('hcfx-lit'),760));},Math.abs(i-index)*65));
+    });
+  }));
+  $('.hcfx-snow-play').addEventListener('click',()=>scatter(width/2,height*.4));
+  document.addEventListener('pointermove',event=>{
+    if(event.pointerType!=='mouse'||!canMove()||dialog.open||!pageSurface(event.target))return;
+    wind.x=event.clientX;wind.y=event.clientY;wind.until=performance.now()+250;
+  },{passive:true});
+  // Passive touch events retain native scrolling while a swipe stirs the snow.
+  document.addEventListener('touchmove',event=>{
+    if(event.touches.length!==1||!canMove()||dialog.open||!pageSurface(event.target))return;
+    wind.x=event.touches[0].clientX;wind.y=event.touches[0].clientY;wind.until=performance.now()+250;
+  },{passive:true});
+  document.addEventListener('pointerdown',event=>{
+    touchStart=event.isPrimary&&event.button===0&&pageSurface(event.target)?{x:event.clientX,y:event.clientY,id:event.pointerId}:null;
+  },{passive:true});
+  document.addEventListener('pointerup',event=>{
+    const start=touchStart;touchStart=null;
+    if(!start||start.id!==event.pointerId||Math.hypot(event.clientX-start.x,event.clientY-start.y)>12||!pageSurface(event.target)||dialog.open||!canMove())return;
+    const flake=flakes.find(f=>Math.hypot(f.x-event.clientX,f.y-event.clientY)<f.r+24);
+    if(flake){scatter(flake.x,flake.y);flake.y=-flake.r;flake.x=Math.random()*width;}
+  },{passive:true});
+  document.addEventListener('pointercancel',()=>{touchStart=null;},{passive:true});
+  function drawFlake(f){
+    ctx.save();ctx.globalAlpha=f.alpha;
+    if(f.crystal&&ice){ctx.translate(f.x,f.y);ctx.rotate(f.angle);ctx.drawImage(crystal,-f.r,-f.r,f.r*2,f.r*2);}
+    else{ctx.beginPath();ctx.fillStyle='#fff';ctx.strokeStyle='rgba(91,132,158,.45)';ctx.lineWidth=.8;ctx.arc(f.x,f.y,f.r,0,Math.PI*2);ctx.fill();ctx.stroke();}
+    ctx.restore();
+  }
   function resize(){
     width=innerWidth;height=innerHeight;const dpr=Math.min(devicePixelRatio||1,1.5);
     canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);if(ctx)ctx.setTransform(dpr,0,0,dpr,0,0);
-    flakes=Array.from({length:width<600?12:28},()=>({x:Math.random()*width,y:Math.random()*height,r:Math.random()*1.6+.8,v:Math.random()*18+15,phase:Math.random()*6.28}));
+    const mobile=width<600;
+    flakes=Array.from({length:mobile?16:36},(_,i)=>({x:Math.random()*width,y:Math.random()*height,crystal:i%3!==0,r:i%3!==0?(mobile?9+Math.random()*6:12+Math.random()*10):2+Math.random()*2,v:Math.random()*18+22,phase:Math.random()*6.28,angle:Math.random()*6.28,spin:i%2?.14:-.14,alpha:.8+Math.random()*.2,dx:0,dy:0}));
+    bursts=[];wind.until=0;
     let inset=18;
     document.querySelectorAll('.mcta,.stickybar,.nav').forEach(el=>{const r=el.getBoundingClientRect(),s=getComputedStyle(el);if(s.position==='fixed'&&s.display!=='none'&&r.height>0&&r.height<180&&r.top>height/2&&r.bottom>=height-12)inset=Math.max(inset,height-r.top+12);});
     $('.hcfx-dock').style.bottom=`calc(${inset}px + env(safe-area-inset-bottom))`;
@@ -161,14 +226,23 @@ async function startChristmas(rules) {
   function frame(now){
     raf=0;if(!ctx||!canMove())return;
     if(now-last>=32){const dt=Math.min((now-last)/1000,.07);last=now;drift+=(breeze-drift)*.04;ctx.clearRect(0,0,width,height);
-      flakes.forEach(f=>{f.y+=f.v*dt;f.x+=(Math.sin(now/1600+f.phase)*7+drift*22)*dt;if(f.y>height+4){f.y=-4;f.x=Math.random()*width;}if(f.x<0)f.x=width;if(f.x>width)f.x=0;ctx.beginPath();ctx.fillStyle='rgba(242,239,220,.65)';ctx.arc(f.x,f.y,f.r,0,Math.PI*2);ctx.fill();});
+      flakes.forEach(f=>{
+        if(now<wind.until){const dx=f.x-wind.x,dy=f.y-wind.y,d=Math.hypot(dx,dy),range=width<600?90:140;if(d>0&&d<range){const force=(1-d/range)*350*dt;f.dx+=dx/d*force;f.dy+=dy/d*force;}}
+        const decay=Math.exp(-dt*2.4);f.dx*=decay;f.dy*=decay;
+        f.y+=(f.v+f.dy)*dt;f.x+=(Math.sin(now/1600+f.phase)*7+drift*22+f.dx)*dt;f.angle+=f.spin*dt;
+        if(f.y>height+f.r){f.y=-f.r;f.x=Math.random()*width;}if(f.x < -f.r)f.x=width+f.r;if(f.x>width+f.r)f.x=-f.r;
+        drawFlake(f);
+      });
+      bursts=bursts.filter(f=>{f.life-=dt;if(f.life<=0)return false;f.x+=f.vx*dt;f.y+=f.vy*dt;f.vy+=100*dt;f.angle+=f.spin*dt;f.alpha=Math.min(1,f.life/.45);drawFlake(f);return true;});
     }raf=requestAnimationFrame(frame);
   }
   function motion(){
     cancelAnimationFrame(raf);raf=0;last=performance.now();
     const enabled=canMove();host.classList.toggle('hcfx-still',!enabled);banner?.classList.toggle('hcfx-still',!enabled);
+    if(!enabled){bursts=[];wind.until=0;clearLights();}
+    $('.hcfx-snow-play').disabled=!enabled;
     if(ctx)ctx.clearRect(0,0,width,height);
-    host.querySelectorAll('[data-hcfx-snow]').forEach(b=>{b.disabled=reduced.matches;b.setAttribute('aria-pressed',String(state.snow&&!reduced.matches));const label=reduced.matches?'已依系統減少動態':state.snow?'暫停節慶動態':'開啟節慶動態';b.setAttribute('aria-label',label);if(!b.classList.contains('hcfx-snow-switch'))b.textContent=label;});
+    host.querySelectorAll('[data-hcfx-snow]').forEach(b=>{b.disabled=reduced.matches;b.setAttribute('aria-pressed',String(state.snow&&!reduced.matches));const label=reduced.matches?'已依系統減少動態':state.snow?'暫停節慶動態':'開啟節慶動態';b.setAttribute('aria-label',label);b.textContent=b.classList.contains('hcfx-snow-switch')?(state.snow&&!reduced.matches?'Ⅱ':'▶'):label;});
     if(enabled&&ctx)raf=requestAnimationFrame(frame);
   }
   host.querySelectorAll('[data-hcfx-snow]').forEach(b=>b.addEventListener('click',()=>{state={...state,snow:!state.snow};persist();motion();}));
